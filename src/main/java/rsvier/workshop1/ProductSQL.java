@@ -19,9 +19,6 @@ import java.math.BigDecimal;
  */
 public class ProductSQL implements ProductDAO {
     
-    public void snelkoppelingNaarFuncties() { // deze functie negeren, is puur om makkelijker te navigeren in IDE
-        
-    }
     // Functies:
     // 1: Om producten te zoeken:
     //      1.1: findProductByID(int productId); - returns Product object als zoekresultaat
@@ -47,8 +44,9 @@ public class ProductSQL implements ProductDAO {
         this.productenconnectie = connectie;
     }
     
-    public List findProductByID(int productId) {
-        List<Product> zoekresultaat = new ArrayList<>();
+    @Override
+    public Product findProductByID(int productId) {
+        Product zoekresultaat = new Product();
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
                 "SELECT * " +
                 "FROM producten " +
@@ -57,25 +55,23 @@ public class ProductSQL implements ProductDAO {
             ResultSet rs = stmt.executeQuery();
             // Laat alle producten met het opgegeven productId zien
             while (rs.next()) {
-                Product gevondenProduct = new Product.ProductBuilder(rs.getInt("producten_id"))
+                Product gevondenProduct = new Product.ProductBuilder()
+                                                    .productId(rs.getInt("producten_id"))
                                                     .omschrijving(rs.getString("omschrijving"))
                                                     .soort(rs.getString("soort"))
                                                     .prijs(rs.getBigDecimal("prijs"))
                                                     .voorraad(rs.getInt("voorraad"))
                                                     .build();
-                zoekresultaat.add(gevondenProduct);
             }
             rs.close();
         } catch (SQLException ex) {
             System.out.print(ex.getMessage());
-            System.out.println("Het zoeken op productId ging mis.");
+            System.out.println("Er ging iets mis bij het zoeken van een product op productID.");
         }
-        if (zoekresultaat.isEmpty()) {
-            System.out.println("Geen zoekresultaten.");
-        } 
         return zoekresultaat;
     } // einde findProductByID(int productId)
     
+    @Override
     public List findProductBySoort(String soort) {
         List<Product> zoekresultaat = new ArrayList<>();
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
@@ -86,7 +82,8 @@ public class ProductSQL implements ProductDAO {
             ResultSet rs = stmt.executeQuery();
             // Laat alle producten met de opgegeven soort zien
             while (rs.next()) {
-                Product gevondenProduct = new Product.ProductBuilder(rs.getInt("producten_id"))
+                Product gevondenProduct = new Product.ProductBuilder()
+                                                    .productId(rs.getInt("producten_id"))
                                                     .omschrijving(rs.getString("omschrijving"))
                                                     .soort(rs.getString("soort"))
                                                     .prijs(rs.getBigDecimal("prijs"))
@@ -97,7 +94,7 @@ public class ProductSQL implements ProductDAO {
             rs.close();
         } catch (SQLException ex) {
             System.out.print(ex.getMessage());
-            System.out.println("Het zoeken op soort ging mis.");
+            System.out.println("Er ging iets mis bij het zoeken van een product op soort.");        
         }
         if (zoekresultaat.isEmpty()) {
             System.out.println("Geen zoekresultaten.");
@@ -105,6 +102,7 @@ public class ProductSQL implements ProductDAO {
         return zoekresultaat;
     } // einde findProductBySoort(String soort)
     
+    @Override
     public List findProductByPrijs(BigDecimal prijs) {
         List<Product> zoekresultaat = new ArrayList<>();
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
@@ -115,7 +113,8 @@ public class ProductSQL implements ProductDAO {
             ResultSet rs = stmt.executeQuery();
             // Laat alle producten met de opgegeven prijs zien
             while (rs.next()) {
-                Product gevondenProduct = new Product.ProductBuilder(rs.getInt("producten_id"))
+                Product gevondenProduct = new Product.ProductBuilder()
+                                                    .productId(rs.getInt("producten_id"))
                                                     .omschrijving(rs.getString("omschrijving"))
                                                     .soort(rs.getString("soort"))
                                                     .prijs(rs.getBigDecimal("prijs"))
@@ -126,7 +125,7 @@ public class ProductSQL implements ProductDAO {
             rs.close();
         } catch (SQLException ex) {
             System.out.print(ex.getMessage());
-            System.out.println("Het zoeken op prijs ging mis.");
+            System.out.println("Er ging iets mis bij het zoeken van een product op prijs.");
         }
         if (zoekresultaat.isEmpty()) {
             System.out.println("Geen zoekresultaten.");
@@ -134,6 +133,7 @@ public class ProductSQL implements ProductDAO {
         return zoekresultaat;
     } // einde findProductByPrijs(BigDecimal Prijs)
     
+    @Override
     public List findProductByVoorraad(int voorraad) {
         List<Product> zoekresultaat = new ArrayList<>();
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
@@ -144,7 +144,8 @@ public class ProductSQL implements ProductDAO {
             ResultSet rs = stmt.executeQuery();
             // Laat alle producten met de opgegeven voorraad zien
             while (rs.next()) {
-                Product gevondenProduct = new Product.ProductBuilder(rs.getInt("producten_id"))
+                Product gevondenProduct = new Product.ProductBuilder()
+                                                    .productId(rs.getInt("producten_id"))
                                                     .omschrijving(rs.getString("omschrijving"))
                                                     .soort(rs.getString("soort"))
                                                     .prijs(rs.getBigDecimal("prijs"))
@@ -155,7 +156,7 @@ public class ProductSQL implements ProductDAO {
             rs.close();
         } catch (SQLException ex) {
             System.out.print(ex.getMessage());
-            System.out.println("Het zoeken op voorraad ging mis.");
+            System.out.println("Er ging iets mis bij het zoeken van een product op voorraad.");
         }
         if (zoekresultaat.isEmpty()) {
             System.out.println("Geen zoekresultaten.");
@@ -163,6 +164,7 @@ public class ProductSQL implements ProductDAO {
         return zoekresultaat;
     } // einde findProductByVoorraad(int voorraad)
     
+    @Override
     public boolean toevoegenProduct(Product product) {
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
                 "INSERT into producten (omschrijving, soort, prijs, voorraad) "+
@@ -179,7 +181,8 @@ public class ProductSQL implements ProductDAO {
         }
         return true;
     } // einde toevoegenProduct(Product product)
-
+    
+    @Override
     public boolean updateProductOmschrijving(int productId, String omschrijving) {
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
                 "UPDATE producten" +
@@ -189,12 +192,13 @@ public class ProductSQL implements ProductDAO {
             stmt.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            System.out.println("Er ging iets fout met het updaten van de productomschrijving.");
+            System.out.println("Er ging iets mis bij het updaten van de productomschrijving.");
             return false;
         }
         return true;
     } // einde updateProductOmschrijving(int productId, String omschrijving)
-
+    
+    @Override
     public boolean updateProductSoort(int productId, String soort) {
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
                 "UPDATE producten" +
@@ -204,11 +208,13 @@ public class ProductSQL implements ProductDAO {
             stmt.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            System.out.println("Er ging iets fout met het updaten van de productsoort.");
+            System.out.println("Er ging iets mis bij het updaten van de productsoort.");
             return false;
         }
         return true;
     } // einde updateProductSoort(int productId, String soort)
+    
+    @Override
     public boolean updateProductPrijs(int productId, BigDecimal prijs)  {
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
                 "UPDATE producten" +
@@ -218,11 +224,13 @@ public class ProductSQL implements ProductDAO {
             stmt.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            System.out.println("Er ging iets fout met het updaten van de productprijs.");
+            System.out.println("Er ging iets mis bij het updaten van de productprijs.");
             return false;
         }
         return true;
     } // einde updateProductPrijs(int productId, BigDecimal prijs)
+    
+    @Override
     public boolean updateProductVoorraad(int productId, int voorraad) {
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
                 "UPDATE producten" +
@@ -232,12 +240,13 @@ public class ProductSQL implements ProductDAO {
             stmt.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            System.out.println("Er ging iets fout met het updaten van de productvoorraad.");
+            System.out.println("Er ging iets mis bij het updaten van de productvoorraad.");
             return false;
         }
         return true;
     } // einde updateProductVoorraad(int productId, int voorraad)
-
+    
+    @Override
     public boolean verwijderenProduct(int productId) {
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
                 "DELETE FROM producten" +
@@ -247,7 +256,7 @@ public class ProductSQL implements ProductDAO {
             stmt.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis met verwijderen van het product.");
+            System.out.println("Er ging iets mis bij het verwijderen van het product.");
             return false;
         }        
     return true;

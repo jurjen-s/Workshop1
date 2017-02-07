@@ -49,7 +49,6 @@ public class Controller {
     //      4.1: verwijderenProduct(int productId); - returns succes of mislukt (of return: vernieuwd product?)
     
     // Voorbeeld / test functie
-    findKlantById(klantId)
     
     public void findProductByID(int productId) {
         if (existsProductId(productId)) {
@@ -142,4 +141,5 @@ public class Controller {
             }
             return true;
         }
+} // einde Controller
 
