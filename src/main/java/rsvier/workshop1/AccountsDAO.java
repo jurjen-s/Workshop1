@@ -11,11 +11,15 @@ package opdracht6test;
  */
 public interface AccountsDAO {
     
+    //deze 3 worden in menu gebruikt
+    void findAccountByID(int id);
+    void CreateAccount(String type, String wachtwoord);
+    void DeleteAccount(int id);
+    void UpdateAccountType(int id, String type);
     
-    void findAccountByID();
-    void CreateAccount();
-    void DeleteAccount();
-    void UpdateAccountType();
+    
+    // deze alleen in log in menu.
+    void AccountLoginCheck(int id, String wachtwoord);
     
       
 }
