@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author Frank
  */
-public class menu  {
+public class Menu  {
    
     
    
@@ -26,7 +26,7 @@ public class menu  {
     
 
     
-    public static void hoofdmenu(){
+    public void hoofdmenu(){
 
      Scanner input = new Scanner(System.in);   
    
@@ -58,7 +58,7 @@ else if (cijfer <= 8 && cijfer >0){
         case 3: System.out.println(" 3 Adres gegevens menu bestaat ");  adressenmenu(); break;
         case 4: System.out.println(" 4 Bestelling menu bestaat ");  bestellingenmenu(); break;
         case 5: System.out.println(" 5 Medewerkers maken menu bestaat nog niet");  medewerkersmenu(); break;
-        case 6: System.out.println(" 6 Accounts gegevens menu bestaat nog niet");    accountsmenu(); break;
+        case 6: System.out.println(" 6 Accounts gegevens menu bestaat ");  AccountMenu am = new AccountMenu(); am.accountsmenu(); break;
         case 7: System.out.println(" 7 Factuur gegevens menu bestaat nog niet");   facturenmenu(); break;
         case 8: System.out.println(" 8 Bestelling regel menu bestaat nog niet"); bestellingregelmenu(); break;
      
@@ -74,7 +74,7 @@ else{ System.out.println("foute cijfer waarde probeer opnieuw"); hoofdmenu(); }
     
     
 
-public static void  klantenmenu(){
+public void  klantenmenu(){
    
   
 System.out.println("Welkom in het klantenmenu ");
@@ -124,7 +124,7 @@ klantenmenu();
 
 
 }
-public static void klantenmenuZoKid(){
+public void klantenmenuZoKid(){
     
     System.out.println("U gaat een klant zoeken.");
     System.out.println("Vul ID in en druk op enter.");
@@ -134,9 +134,9 @@ public static void klantenmenuZoKid(){
 //Controller.findKlantById(productId);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.klantenmenu();
+    klantenmenu();
 }
-public static void klantenmenuZoVN(){
+public void klantenmenuZoVN(){
      System.out.println("U gaat een klant zoeken op voornaam.");
     System.out.println("Vul de voornaam in en druk op enter.");
     
@@ -145,9 +145,9 @@ public static void klantenmenuZoVN(){
 //Controller.findBijVoornaam(VN);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.klantenmenu();
+    klantenmenu();
 }
-public static void klantenmenuZoAN(){
+public  void klantenmenuZoAN(){
      System.out.println("U gaat een klant zoeken op achternaam.");
     System.out.println("Vul de achternaam in en druk op enter.");
     
@@ -156,9 +156,9 @@ public static void klantenmenuZoAN(){
 //Controller.findBijLasteName(AN);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.klantenmenu();
+    klantenmenu();
 }
-public static void klantenmenuZoN(){
+public  void klantenmenuZoN(){
  System.out.println("U gaat een klant zoeken op naam.");
     System.out.println("Vul de voornaam in en druk op enter.");
     
@@ -175,21 +175,21 @@ public static void klantenmenuZoN(){
 //Controller.findBijNaam(VN,T,AN);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.klantenmenu();
+    klantenmenu();
 }
-public static void klantenmenuV(){
+public void klantenmenuV(){
     System.out.println("deze klantenDAO is nog niet goed");
-    menu.klantenmenu();
+    klantenmenu();
 }
-public static void klantenmenuShow(){
+public void klantenmenuShow(){
      System.out.println("deze klantenDAO is nog niet goed");
-    menu.klantenmenu();
+    klantenmenu();
 }
-public static void klantenmenuT(){
+public  void klantenmenuT(){
     System.out.println(" Maak een klant, nog een slechte DAO");
-    menu.klantenmenu();
+    klantenmenu();
 }
-public static void klantenmenuDELETE(){
+public void klantenmenuDELETE(){
     System.out.println("U gaat een klant verwijderen. (0 is annuleren)");
     
    
@@ -211,7 +211,7 @@ public static void klantenmenuDELETE(){
 
 
 
-public static void  productmenu(){
+public void  productmenu(){
    
   
 System.out.println("Welkom in het productmenu ");
@@ -266,7 +266,7 @@ klantenmenu();
 }
 
 
-public static void productmenuDoPi(){
+public  void productmenuDoPi(){
     
     System.out.println("U gaat een product zoeken op ID.");
     System.out.println("Vul ID in en druk op enter.");
@@ -275,9 +275,9 @@ public static void productmenuDoPi(){
 //Controller.findProductById(productId);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.productmenu();
+    productmenu();
 }
-public static void productmenuDoS(){
+public  void productmenuDoS(){
     
     System.out.println("U gaat een product zoeken op Soort.");
     System.out.println("Vul Soort als tekst in en druk op enter.");
@@ -286,9 +286,9 @@ public static void productmenuDoS(){
 //Controller.findProductBySoort(Soort);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.productmenu();
+    productmenu();
 }
-public static void productmenuDoP(){
+public  void productmenuDoP(){
     
     System.out.println("U gaat een product zoeken op Prijs.");
     System.out.println("Vul prijs in en druk op enter.");
@@ -297,9 +297,9 @@ public static void productmenuDoP(){
 //Controller.findProductByPrijs(pPrijs);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.productmenu();
+    productmenu();
 }
-public static void productmenuDoV(){
+public  void productmenuDoV(){
     
     System.out.println("U gaat een product zoeken op Voorraad.");
     System.out.println("Vul het voorraad in en druk op enter.");
@@ -308,9 +308,9 @@ public static void productmenuDoV(){
 //Controller.findProductByVoorraad(pVoorraad);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.productmenu();
+    productmenu();
 }
-public static void productmenuTP(){
+public  void productmenuTP(){
     
     System.out.println("U gaat een product TOEVOEGEN.");
     
@@ -333,10 +333,10 @@ public static void productmenuTP(){
 System.out.println(nProduct.toString());
 System.out.println("de controller klasse is nog niet af.");
 
-menu.productmenu();
+productmenu();
     
 }
-public static void productmenuVPO(){
+public  void productmenuVPO(){
     
     System.out.println("U gaat een product omschrijving veranderen.");
     System.out.println("Vul het product id en dan enter.");
@@ -351,9 +351,9 @@ public static void productmenuVPO(){
 //Controller.updateProductOmschrijving(pID,pOmschrijving);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.productmenu();
+    productmenu();
 }
-public static void productmenuVPS(){
+public  void productmenuVPS(){
     
     System.out.println("U gaat een product soort veranderen.");
     System.out.println("Vul het product id en dan enter.");
@@ -368,9 +368,9 @@ public static void productmenuVPS(){
 //Controller.updateProductSoort(pID,pSoort);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.productmenu();
+    productmenu();
 }
-public static void productmenuVPP(){
+public  void productmenuVPP(){
     
     System.out.println("U gaat een product prijs veranderen.");
     System.out.println("Vul het product id en dan enter.");
@@ -385,9 +385,9 @@ public static void productmenuVPP(){
 //Controller.updateProductPrijs(pID,pPrijs);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.productmenu();
+    productmenu();
 }
-public static void productmenuVPV(){
+public  void productmenuVPV(){
     
     System.out.println("U gaat een product voorraad veranderen.");
     System.out.println("Vul het product id en dan enter.");
@@ -402,9 +402,9 @@ public static void productmenuVPV(){
 //Controller.updateProductVoorraad(pID,pVoorraad);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.productmenu();
+    productmenu();
 }
-public static void productmenuDELETE(){
+public  void productmenuDELETE(){
     
     System.out.println("U gaat een product verwijderen.");
     System.out.println("Vul het product id en dan enter.");
@@ -419,14 +419,14 @@ public static void productmenuDELETE(){
 //Controller.verwijderenProduct(pID);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.productmenu();
+    productmenu();
 }
 
 
 
 
 
-public static void  adressenmenu(){
+public  void  adressenmenu(){
    
   
 System.out.println("Welkom in het adressenmenu ");
@@ -488,7 +488,7 @@ adressenmenu();
 }
 
 
-public static void adressenmenuDoAid(){
+public  void adressenmenuDoAid(){
     
     System.out.println("U gaat een adres zoeken op ID.");
     System.out.println("Vul ID in en druk op enter.");
@@ -497,9 +497,9 @@ public static void adressenmenuDoAid(){
 //Controller.findAdresById(adresId);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.adressenmenu();
+    adressenmenu();
 }
-public static void adressenmenuDoPc(){
+public  void adressenmenuDoPc(){
     
     System.out.println("U gaat een adres zoeken op postcode.");
     System.out.println("Vul het postcode ###### (1111AA) in en druk op enter.");
@@ -508,9 +508,9 @@ public static void adressenmenuDoPc(){
 //Controller.findAdresByPostcode(adresPC);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.adressenmenu();
+    adressenmenu();
 }
-public static void adressenmenuDoS(){
+public  void adressenmenuDoS(){
     
     System.out.println("U gaat een adres zoeken op straatnaam.");
     System.out.println("Vul de straatnaam in en druk op enter.");
@@ -519,9 +519,9 @@ public static void adressenmenuDoS(){
 //Controller.findAdresByStraat(adresStraat);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.adressenmenu();
+    adressenmenu();
 }
-public static void adressenmenuDoK(){
+public  void adressenmenuDoK(){
     
     System.out.println("U gaat een adres zoeken op klantid.");
     System.out.println("Vul de adress klant id in en druk op enter.");
@@ -530,9 +530,9 @@ public static void adressenmenuDoK(){
 //Controller.findAdresByAdresKlantid(Akid);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.adressenmenu();
+    adressenmenu();
 }
-public static void adressenmenuDoL(){
+public  void adressenmenuDoL(){
     
     System.out.println("U gaat een adres zoeken op Land.");
     System.out.println("Vul het Land in en druk op enter.");
@@ -541,9 +541,9 @@ public static void adressenmenuDoL(){
 //Controller.findAdresByLand(land);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.adressenmenu();
+    adressenmenu();
 }
-public static void adressenmenuTA(){
+public  void adressenmenuTA(){
     
     System.out.println("U gaat een adres toevoegen.");
     System.out.println("Vul het adres type toe");
@@ -585,10 +585,10 @@ public static void adressenmenuTA(){
 //Controller..
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.adressenmenu();
+    adressenmenu();
 }
 
-public static void adressenmenuVT(){
+public  void adressenmenuVT(){
     
     System.out.println("U gaat een adres typen veranderen.");
     System.out.println("Vul het adres id in en druk op enter.");
@@ -602,9 +602,9 @@ public static void adressenmenuVT(){
 //Controller.UpdateAdresByType(Aid,AT);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.adressenmenu();
+    adressenmenu();
 }
-public static void adressenmenuVS(){
+public  void adressenmenuVS(){
     
     System.out.println("U gaat een adres straatnaam veranderen.");
     System.out.println("Vul het adres id in en druk op enter.");
@@ -618,10 +618,10 @@ public static void adressenmenuVS(){
 //Controller.UpdateAdresByStraat(Aid,AS);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.adressenmenu();
+    adressenmenu();
 }
 
-public static void adressenmenuVHnr(){
+public  void adressenmenuVHnr(){
     
     System.out.println("U gaat een adres huisnummer veranderen.");
     System.out.println("Vul het adres id in en druk op enter.");
@@ -635,9 +635,9 @@ public static void adressenmenuVHnr(){
 //Controller.UpdateAdresByStraat(Aid,AS);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.adressenmenu();
+    adressenmenu();
 }
-public static void adressenmenuVHnrT(){
+public  void adressenmenuVHnrT(){
     
     System.out.println("U gaat een adres straatnaam veranderen.");
     System.out.println("Vul het adres id in en druk op enter.");
@@ -653,9 +653,9 @@ public static void adressenmenuVHnrT(){
 //Controller.UpdateAdresByStraat(Aid,AHnrT);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.adressenmenu();
+    adressenmenu();
 }
-public static void adressenmenuVPC(){
+public  void adressenmenuVPC(){
     
     System.out.println("U gaat een adres postcode veranderen.");
     System.out.println("Vul het adres id in en druk op enter.");
@@ -671,9 +671,9 @@ public static void adressenmenuVPC(){
 //Controller.UpdateAdresByStraat(Aid,PC);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.adressenmenu();
+    adressenmenu();
 }
-public static void adressenmenuVL(){
+public  void adressenmenuVL(){
     
     System.out.println("U gaat een adres Land veranderen.");
     System.out.println("Vul het adres id in en druk op enter.");
@@ -689,9 +689,9 @@ public static void adressenmenuVL(){
 //Controller.UpdateAdresByLand(Aid,Land);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.adressenmenu();
+    adressenmenu();
 }
-public static void adressenmenuDELETE(){
+public  void adressenmenuDELETE(){
     
     System.out.println("U gaat een adres verwijderen.");
     System.out.println("Vul het adres id in en druk op enter.");
@@ -707,7 +707,7 @@ public static void adressenmenuDELETE(){
 //Controller.DELETEAdres(Aid);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.adressenmenu();
+    adressenmenu();
 }
 
 
@@ -715,7 +715,7 @@ System.out.println("de controller klasse is nog niet af.");
 
 
 
-public static void bestellingenmenu(){
+public  void bestellingenmenu(){
 
 System.out.println("Welkom in het bestellingenmenu ");
 System.out.println("Wat wilt u doen?");
@@ -769,7 +769,7 @@ klantenmenu();
     }
 }
 
-public static void bestellingenmenuDbi(){
+public  void bestellingenmenuDbi(){
     
      System.out.println("U gaat een bestelling zoeken op bestelling ID.");
     System.out.println("Vul ID in en druk op enter.");
@@ -778,12 +778,12 @@ public static void bestellingenmenuDbi(){
 //Controller.findBestellingById(bestellingId);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.bestellingenmenu();
+    bestellingenmenu();
     
     
     
 }
-public static void bestellingenmenuDbk(){
+public  void bestellingenmenuDbk(){
      System.out.println("U gaat een bestelling zoeken mbv klant ID.");
     System.out.println("Vul ID in en druk op enter.");
     
@@ -791,11 +791,11 @@ public static void bestellingenmenuDbk(){
 //Controller.findBestellingByKlant(klantId);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.bestellingenmenu();
+    bestellingenmenu();
     
 
 }
-public static void bestellingenmenuDbA(){
+public  void bestellingenmenuDbA(){
     
      System.out.println("U gaat een bestelling zoeken op Adress id.");
     System.out.println("Vul ID in en druk op enter.");
@@ -804,11 +804,11 @@ public static void bestellingenmenuDbA(){
 //Controller.findBestellingByAdress(adressId);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.bestellingenmenu();
+    bestellingenmenu();
     
     
 }
-public static void bestellingenmenuDbAA(){
+public  void bestellingenmenuDbAA(){
     
      System.out.println("U gaat een bestelling zoeken op Aantal Artikelen.");
     System.out.println("Vul het aantal in en druk op enter.");
@@ -817,11 +817,11 @@ public static void bestellingenmenuDbAA(){
 //Controller.findBestellingByAantalArtikelen(aantal);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.bestellingenmenu();
+    bestellingenmenu();
     
     
 }
-public static void bestellingenmenuDoTP(){
+public  void bestellingenmenuDoTP(){
     
      System.out.println("U gaat een bestelling zoeken op Totaal prijs.");
     System.out.println("Vul het totaal in en druk op enter.");
@@ -830,12 +830,12 @@ public static void bestellingenmenuDoTP(){
 //Controller.findBestellingTotaalprijs(pPrijs);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.bestellingenmenu();
+    bestellingenmenu();
     
     
 }
 
-public static void bestellingenmenuTB(){
+public  void bestellingenmenuTB(){
     
      System.out.println("U gaat een bestelling toevoegen.");
    System.out.println("Vul de klant id  in en druk op enter.");
@@ -860,12 +860,12 @@ public static void bestellingenmenuTB(){
 System.out.println("de controller klasse is nog niet af.");
 
 
-    menu.bestellingenmenu();
+    bestellingenmenu();
     
     
 }
 
-public static void bestellingenmenuVki(){
+public  void bestellingenmenuVki(){
     
      
     System.out.println("U gaat een bestelling klant id veranderen.");
@@ -890,12 +890,12 @@ public static void bestellingenmenuVki(){
 //Controller.updateBestellingKlantID(Bid,Kid);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.bestellingenmenu();
+    bestellingenmenu();
     
     
     
 }
-public static void bestellingenmenuVAi(){
+public  void bestellingenmenuVAi(){
     
      
     System.out.println("U gaat een bestelling Adres id veranderen.");
@@ -917,12 +917,12 @@ public static void bestellingenmenuVAi(){
 //Controller.updateBestellingAdresID(Bid,AiD);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.bestellingenmenu();
+    bestellingenmenu();
     
     
     
 }
-public static void bestellingenmenuVAA(){
+public  void bestellingenmenuVAA(){
     
      
     System.out.println("U gaat het aantal artikelen in een bestelling veranderen.");
@@ -945,12 +945,12 @@ public static void bestellingenmenuVAA(){
 //Controller.updateBestellingAantalartikelen(Bid,AiD);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.bestellingenmenu();
+    bestellingenmenu();
     
     
     
 }
-public static void bestellingenmenuVTP(){
+public  void bestellingenmenuVTP(){
     
      
     System.out.println("U gaat het totaal prijs in een bestelling veranderen.");
@@ -973,12 +973,12 @@ public static void bestellingenmenuVTP(){
 //Controller.updateBestellingTotaalprijs(Bid,TP);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.bestellingenmenu();
+    bestellingenmenu();
     
     
     
 }
-public static void bestellingenmenuDELETE(){
+public  void bestellingenmenuDELETE(){
     
      
     System.out.println("U gaat een bestelling verwijderen");
@@ -1001,11 +1001,28 @@ public static void bestellingenmenuDELETE(){
 //Controller.DELETEBestellingTotaalprijs(Bid);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.bestellingenmenu();
+    bestellingenmenu();
     
     
     
 }
+
+/**  info om bestellingmenu te maken:
+1: Om bestellingen te zoeken:
+    Bestelling findBestellingById(int bestellingId); // returns Bestelling object als zoekresultaat
+    List findBestellingByKlant(int klantId); // returns List<Bestelling> met zoekresultaten
+    List findBestellingByAdres(Adres opgegevenAdres); // returns List<Bestelling> met zoekresultaten
+    List findBestellingByAantalArtikelen(int aantal); // returns List<Bestelling> met zoekresultaten
+    List findBestellingByTotaalprijs(BigDecimal prijs); // returns List<Bestelling> met zoekresultaten
+    // 2: Om bestellingen toe te voegen:
+    boolean toevoegenBestelling(Bestelling opgegevenBestelling); //returns succes of mislukt
+    // 3: Om bestellingen aan te passen:
+    boolean updateBestellingKlantId(int bestellingId, int klantId); // returns succes of mislukt (+ laat vernieuwde bestelling zien?)
+    boolean updateBestellingAdresId(int bestellingId, int adresId); // returns succes of mislukt
+    boolean updateBestellingAantalArtikelen(int bestellingId, int aantalArtikelen); // returns succes of mislukt
+    boolean updateBestellingTotaalprijs(int bestellingId, BigDecimal totaalprijs); // returns succes of mislukt
+    // 4: Om bestellingen te verwijderen:
+    boolean verwijderenBestelling(int bestellingId); // returns succes of mislukt
 
 /**  info om bestellingmenu te maken:
 1: Om bestellingen te zoeken:
@@ -1032,7 +1049,7 @@ System.out.println("de controller klasse is nog niet af.");
 
 
 
-public static void  medewerkersmenu(){
+public  void  medewerkersmenu(){
    
   
 System.out.println("Welkom in het medewerkersmenu ");
@@ -1071,12 +1088,12 @@ else if(waarde <= 5 && waarde >0){
    
                      
 else{ System.out.println("verkeerde waarde");
-menu.medewerkersmenu();
+medewerkersmenu();
 
     }
 }
 
-public static void medewerkersmenuZ(){
+public  void medewerkersmenuZ(){
     
     System.out.println("Welkom in het medewerkers zoekmenu ");
 System.out.println("Wat wilt u doen?");
@@ -1107,13 +1124,13 @@ else if(waarde <= 3 && waarde >0){
    
                      
 else{ System.out.println("verkeerde waarde");
-menu.medewerkersmenu();
+medewerkersmenu();
 
     }
 
 
 }
-public static void mederwerkersmenuMT() {
+public  void mederwerkersmenuMT() {
       //maak een medewerker aan
       
       System.out.println("U wilt een medewerker toevoegen");
@@ -1124,9 +1141,9 @@ public static void mederwerkersmenuMT() {
       
       
       System.out.println("controller laag bestaat nog niet");
-      menu.medewerkersmenu();
+      medewerkersmenu();
     }
-public static void medewerkersmenuMAoId() {
+public  void medewerkersmenuMAoId() {
         System.out.println("U gaat een medewerkers aanpassen op ID.");
     
     
@@ -1170,9 +1187,9 @@ public static void medewerkersmenuMAoId() {
 //Controller.updateBestellingTotaalprijs(Bid,TP);
 
 
-    menu.medewerkersmenu();
+    medewerkersmenu();
     }
-public static void medewerkersmenuDELETE() {
+public  void medewerkersmenuDELETE() {
          System.out.println("U gaat een medewerker verwijderen");
     
     
@@ -1189,12 +1206,12 @@ public static void medewerkersmenuDELETE() {
    // String pOmschrijving = TextIO.getln();
     System.out.println("de controller klasse is nog niet af.");
     
-    menu.medewerkersmenu();
+    medewerkersmenu();
     
     
 //Controller.DELETEBestellingTotaalprijs(Bid);
     }
-public static void medewerkersmenuMZoV() {
+public  void medewerkersmenuMZoV() {
        System.out.println("U gaat een medewerkers zoeken op voornaam.");
     
     
@@ -1217,9 +1234,9 @@ public static void medewerkersmenuMZoV() {
 //Controller.updateBestellingTotaalprijs(Bid,TP);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.medewerkersmenu();
+    medewerkersmenu();
     }
-public static void medewerkersmenuMZoA() {
+public  void medewerkersmenuMZoA() {
          System.out.println("U gaat een medewerkers zoeken op achternaam.");
     
     
@@ -1242,9 +1259,9 @@ public static void medewerkersmenuMZoA() {
 //Controller.updateBestellingTotaalprijs(Bid,TP);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.medewerkersmenu();
+    medewerkersmenu();
     }
-public static void medewerkersmenuMZoE() {
+public  void medewerkersmenuMZoE() {
           System.out.println("U gaat een medewerkers zoeken op email.");
     
     
@@ -1267,7 +1284,7 @@ public static void medewerkersmenuMZoE() {
 //Controller.updateBestellingTotaalprijs(Bid,TP);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.medewerkersmenu();
+    medewerkersmenu();
     }
 
 
@@ -1280,15 +1297,17 @@ System.out.println("de controller klasse is nog niet af.");
     
     
 
-public static void accountsmenu(){
+public  void accountsmenu(){
     
-    System.out.println("Welkom in het accountsmenu ");
-    System.out.println("=========================");
+System.out.println("Welkom in het accountsmenu ");
+System.out.println("=========================");
+
 System.out.println("Wat wilt u doen?");
 System.out.println(" 1: accountgegevens zoeken op id");
 System.out.println(" 2: account aanmaken");  
-System.out.println(" 3: account type aanpassen (optioneel)");
-System.out.println(" 4: account verwijderen");
+System.out.println(" 3: account type aanpassen ");
+System.out.println(" 4: account wachtwoord aanpassen");
+System.out.println(" 5: account verwijderen");
 System.out.println(" 0: terug naar hoofdmenu");
    System.out.println("=========================");     
        
@@ -1300,14 +1319,15 @@ System.out.println("en druk dan op enter.");
     
     int waarde = inputmedewerker.nextInt();
     if (waarde == 0){ hoofdmenu();}
-else if(waarde <= 4 && waarde >0){
+else if(waarde <= 5 && waarde >0){
     
             switch (waarde){
                 
                 case 1: System.out.println(" 1: accountgegevens zoeken op id"); accountsmenuZoId(); break;
                 case 2: System.out.println(" 2: account aanmaken");  accountsmenuAT(); break;
-                case 3: System.out.println(" 3: account type aanpassen (optioneel)"); accountsmenuAAt(); break;
-                case 4: System.out.println(" 4: account verwijderen"); accountsmenuDELETE(); break;
+                case 3: System.out.println(" 3: account type aanpassen "); accountsmenuAAt(); break;
+                case 4: System.out.println(" 4: account wachtwoord aanpassen "); accountsmenuAAw(); break;
+                case 5: System.out.println(" 5: account verwijderen"); accountsmenuDELETE(); break;
    
                             }
 
@@ -1319,7 +1339,7 @@ else if(waarde <= 4 && waarde >0){
 }
 
 
-public static void accountsmenuZoId() {
+public  void accountsmenuZoId() {
          System.out.println("U gaat een account zoeken op ID.");
     
     
@@ -1329,15 +1349,15 @@ public static void accountsmenuZoId() {
    int Acid = TextIO.getlnInt();
      
     System.out.println("controller bestaat nog niet.");
-    menu.accountsmenu();
+    accountsmenu();
     
     }
-public static void accountsmenuAT() {
+public  void accountsmenuAT() {
           System.out.println("U gaat een account toevoegen.");
     
     
     System.out.println("Vul een type in druk enter.");
-    String type = TextIO.getln();
+    int type = TextIO.getlnInt();
     
     
      //int Bid = TextIO.getlnInt();
@@ -1349,15 +1369,15 @@ public static void accountsmenuAT() {
    //Controller.accountstoevoegen(type,Aw8);
      
     System.out.println("controller bestaat nog niet.");
-    menu.accountsmenu();
+    accountsmenu();
     }
-public static void accountsmenuAAt() {
+public  void accountsmenuAAt() {
         
           System.out.println("U gaat een account type aanpassen.");
     
     
     System.out.println("Vul een type in druk enter.");
-    String type = TextIO.getln();
+    int type = TextIO.getlnInt();
     
     
      
@@ -1366,16 +1386,42 @@ public static void accountsmenuAAt() {
    //Controller.accountstypeaanpassen(type);
      
     System.out.println("controller bestaat nog niet.");
-    menu.accountsmenu();
+    accountsmenu();
     }
-public static void accountsmenuDELETE() {
+public  void accountsmenuAAw() {
+        
+          System.out.println("U gaat een account wachtwoord aanpassen.");
+    
+    
+    System.out.println("Vul een wachtwoord in druk enter.");
+    String wachtwoord = TextIO.getln();
+    
+    
+     
+   
+   
+   //Controller.accountstypeaanpassenwachtwoord(wachtwoord);
+     
+    System.out.println("controller bestaat nog niet.");
+    accountsmenu();
+    }
+
+
+
+
+
+
+
+
+
+public  void accountsmenuDELETE() {
          System.out.println("U gaat een account verwijderen");
     
     
     System.out.println("Vul accountid in druk enter, druk 0 als u het niet wilt.");
     
      int delA = TextIO.getlnInt();
-     if(delA == 0){menu.hoofdmenu();}
+     if(delA == 0){hoofdmenu();}
     //System.out.println("Vul het totaal prijs in  en dan enter.");
     
     
@@ -1386,7 +1432,7 @@ public static void accountsmenuDELETE() {
    // String pOmschrijving = TextIO.getln();
     System.out.println("de controller klasse is nog niet af.");
     
-    menu.accountsmenu();
+    accountsmenu();
     }
 
     
@@ -1397,7 +1443,7 @@ public static void accountsmenuDELETE() {
     
     
 
-public static void facturenmenu(){
+public  void facturenmenu(){
     
    
   System.out.println("Welkom in het facturenmenu ");
@@ -1458,14 +1504,14 @@ facturenmenu();
     
 }
 
-    public static void facturenmenuDELETE() {
+    public  void facturenmenuDELETE() {
         System.out.println("U gaat een factuur verwijderen");
     
     
     System.out.println("Vul factuurid in druk enter, druk 0 als u het niet wilt.");
     
      int delF = TextIO.getlnInt();
-     if(delF == 0){menu.hoofdmenu();}
+     if(delF == 0){hoofdmenu();}
     //System.out.println("Vul het totaal prijs in  en dan enter.");
     
     
@@ -1476,9 +1522,9 @@ facturenmenu();
    // String pOmschrijving = TextIO.getln();
     System.out.println("de controller klasse is nog niet af.");
     
-    menu.facturenmenu();
+    facturenmenu();
     }
-    public static void facturenmenuVtp() {
+    public  void facturenmenuVtp() {
        
         System.out.println("U gaat het totaale prijs van factuur id veranderen.");
     
@@ -1504,13 +1550,13 @@ facturenmenu();
 //Controller.updatefacturentotaalprijs(Fid,fTotaalprijs);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.facturenmenu();
+    facturenmenu();
         
         
         
         
     }
-    public static void facturenmenuVkId() {
+    public  void facturenmenuVkId() {
          System.out.println("U gaat het klant id van factuur id veranderen.");
     
     
@@ -1528,9 +1574,9 @@ System.out.println("de controller klasse is nog niet af.");
 //Controller.updatefacturenklantid(Fid,Kid);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.facturenmenu();
+    facturenmenu();
     }
-    public static void facturenmenuVaId() {
+    public  void facturenmenuVaId() {
      System.out.println("U gaat het adres id van factuur id veranderen.");
     
     
@@ -1553,9 +1599,9 @@ System.out.println("de controller klasse is nog niet af.");
 //Controller.updatefacturenadressid(Fid,Aid);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.facturenmenu();
+    facturenmenu();
     }
-    public static void facturenmenuVS() {
+    public  void facturenmenuVS() {
           System.out.println("U gaat de status van factuur id veranderen.");
     
     
@@ -1579,10 +1625,10 @@ System.out.println("de controller klasse is nog niet af.");
 //Controller.updatefacturenstatus(Fid,status);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.facturenmenu();
+    facturenmenu();
     
     }
-    public static void facturenmenuFT() {
+    public  void facturenmenuFT() {
           System.out.println("U gaat een factuur toevoegen.");
           
    System.out.println("Vul de klant id  in en druk op enter.");
@@ -1610,9 +1656,9 @@ System.out.println("de controller klasse is nog niet af.");
 System.out.println("de controller klasse is nog niet af.");
 
 
-    menu.facturenmenu();
+    facturenmenu();
     }
-    public static void facturenmenuZoTP() {
+    public  void facturenmenuZoTP() {
          System.out.println("U gaat een factuur zoeken mbv totaal prijs");
     System.out.println("Vul totaal prijs in en druk op enter.");
     
@@ -1622,9 +1668,9 @@ System.out.println("de controller klasse is nog niet af.");
 //Controller.findfacturenByKlant(totaalprijs);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.facturenmenu();
+    facturenmenu();
     }
-    public static void facturenmenuZoBid() {
+    public  void facturenmenuZoBid() {
            System.out.println("U gaat een factuur zoeken mbv bestelling id");
     System.out.println("Vul een bestelling id (int) in en druk op enter.");
     
@@ -1636,9 +1682,9 @@ System.out.println("de controller klasse is nog niet af.");
 //Controller.findfacturenBybestellingID(bid);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.facturenmenu();
+    facturenmenu();
     }
-    public static void facturenmenuZoAid() {
+    public  void facturenmenuZoAid() {
           System.out.println("U gaat een factuur zoeken mbv adress id");
     System.out.println("Vul adress id (int) in en druk op enter.");
     
@@ -1648,9 +1694,9 @@ System.out.println("de controller klasse is nog niet af.");
 //Controller.findfacturenByAdressid(tAid);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.facturenmenu();
+    facturenmenu();
     }
-    public static void facturenmenuZoKid() {
+    public  void facturenmenuZoKid() {
           System.out.println("U gaat een factuur zoeken mbv klanten id");
     System.out.println("Vul klant id (int) in en druk op enter.");
     
@@ -1660,12 +1706,12 @@ System.out.println("de controller klasse is nog niet af.");
 //Controller.findfacturenByklantenid(Kid);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.facturenmenu();
+    facturenmenu();
         
         
         
     }
-    public static void facturenmenuZoId() {
+    public  void facturenmenuZoId() {
          System.out.println("U gaat een factuur zoeken mbv  id");
     System.out.println("Vul factuur id (int) in en druk op enter.");
     
@@ -1675,25 +1721,25 @@ System.out.println("de controller klasse is nog niet af.");
 //Controller.findfacturenById(Fid);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.facturenmenu();
+    facturenmenu();
     }
 
     
 
 
-public void printString(String string){
+public void print(String string){
     
     System.out.println(string);
 }
      
-public void printList(List list){
+public void print(List list){
       
       System.out.println(Arrays.toString(list.toArray()));
         }
 
 
 
-public static void bestellingregelmenu(){
+public  void bestellingregelmenu(){
     
    
   System.out.println("Welkom in het productregelmenu ");
@@ -1745,7 +1791,7 @@ bestellingregelmenu();
 }
 
 
-public static void bestellingregelmenuZoID(){
+public  void bestellingregelmenuZoID(){
  System.out.println("U gaat een bestellingregel zoeken op bestellingregel ID.");
     System.out.println("Vul ID in en druk op enter.");
     
@@ -1753,9 +1799,9 @@ public static void bestellingregelmenuZoID(){
 //Controller.findBestellingregelById(bestellingRId);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.bestellingregelmenu();    
+    bestellingregelmenu();    
 }
-public static void bestellingregelmenuZoBid(){
+public  void bestellingregelmenuZoBid(){
      System.out.println("U gaat een bestellingregel zoeken op bestelling ID.");
     System.out.println("Vul ID in en druk op enter.");
     
@@ -1763,9 +1809,9 @@ public static void bestellingregelmenuZoBid(){
 //Controller.findBestellingregelById(bestellingId);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.bestellingregelmenu();
+    bestellingregelmenu();
 }
-public static void bestellingregelmenuZoPid(){
+public  void bestellingregelmenuZoPid(){
     System.out.println("U gaat een bestellingregel zoeken op product ID.");
     System.out.println("Vul ID in en druk op enter.");
     
@@ -1773,9 +1819,9 @@ public static void bestellingregelmenuZoPid(){
 //Controller.findBestellingregelById(PId);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.bestellingregelmenu(); 
+    bestellingregelmenu(); 
 }
-public static void bestellingregelmenuZoH(){
+public  void bestellingregelmenuZoH(){
    System.out.println("U gaat een bestellingregel zoeken op hoeveelheid.");
     System.out.println("Vul ID in en druk op enter.");
     
@@ -1783,9 +1829,9 @@ public static void bestellingregelmenuZoH(){
 //Controller.findBestellingregelByHoeveelheid(H);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.bestellingregelmenu();  
+    bestellingregelmenu();  
 }
-public static void bestellingregelmenuT(){
+public  void bestellingregelmenuT(){
    
       System.out.println("U gaat een bestellingregel toevoegen.");
           
@@ -1811,11 +1857,11 @@ public static void bestellingregelmenuT(){
 System.out.println("de controller klasse is nog niet af.");
 
 
-    menu.bestellingregelmenu();
+    bestellingregelmenu();
     
     
 }
-public static void bestellingregelmenuVBid(){
+public  void bestellingregelmenuVBid(){
     System.out.println("U gaat het bestelling id van bestellingregel id veranderen.");
     
     
@@ -1833,9 +1879,9 @@ public static void bestellingregelmenuVBid(){
 //Controller.updatebestellingregelbybestellingid(BRid,Bid);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.bestellingregelmenu(); 
+    bestellingregelmenu(); 
 }
-public static void bestellingregelmenuVPid(){
+public  void bestellingregelmenuVPid(){
    System.out.println("U gaat het product id van bestellingregel id veranderen.");
     
     
@@ -1853,9 +1899,9 @@ public static void bestellingregelmenuVPid(){
 //Controller.updatebestellingregelbyProductid(BRid,Pid);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.bestellingregelmenu();   
+    bestellingregelmenu();   
 }
-public static void bestellingregelmenuVH(){
+public  void bestellingregelmenuVH(){
      System.out.println("U gaat de hoeveelheid van bestellingregel id veranderen.");
     
     
@@ -1873,16 +1919,16 @@ public static void bestellingregelmenuVH(){
 //Controller.updatebestellingregelbyHoeveelheid(BRid,H);
 
 System.out.println("de controller klasse is nog niet af.");
-    menu.bestellingregelmenu(); 
+    bestellingregelmenu(); 
 }
-public static void bestellingregelmenuDELETE() {
+public  void bestellingregelmenuDELETE() {
         System.out.println("U gaat een productregel verwijderen");
     
     
     System.out.println("Vul productregel id in druk enter, druk 0 als u het niet wilt.");
     
      int delPR = TextIO.getlnInt();
-     if(delPR == 0){menu.hoofdmenu();}
+     if(delPR == 0){hoofdmenu();}
     //System.out.println("Vul het totaal prijs in  en dan enter.");
     
     
@@ -1893,7 +1939,7 @@ public static void bestellingregelmenuDELETE() {
    // String pOmschrijving = TextIO.getln();
     System.out.println("de controller klasse is nog niet af.");
     
-    menu.bestellingregelmenu();
+   bestellingregelmenu();
     }
 
 

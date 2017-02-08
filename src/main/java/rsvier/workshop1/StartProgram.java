@@ -12,21 +12,14 @@ package opdracht6test;
 public class StartProgram {
     
     
+    
     public static void main(String[] args){
     
-        
         System.out.println("Eerst inloggen");
         
-        //Inlogmenu.inlogMenu();
+        Inlogmenu inlogmenu= new Inlogmenu();
         
-        if(Inlogmenu.inlogMenu() == 1){
-        System.out.println("Start hoofd menu");
-        
-       menu.hoofdmenu();
-        }
-       else{ System.out.println("u stopte met inloggen");
-       
-       
+       inlogmenu.inlogMenu();
        
        
         System.out.println("Eind programma");
@@ -38,4 +31,4 @@ public class StartProgram {
 }
     
     
-}
+

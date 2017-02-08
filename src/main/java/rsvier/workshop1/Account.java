@@ -11,16 +11,16 @@ import java.util.List;
 public class Account {
     
     
-    private int accountId;
+    private int accountId, type;
     
-    private String wachtwoord, type;
+    private String wachtwoord ;
     
     
     public int getAccountId() {
         return accountId;
     }
     
-    public String getType(){
+    public int getType(){
         return type;
     }
     public String getWachtwoord(){
@@ -31,7 +31,7 @@ public class Account {
         wachtwoord = w8w;
      }
      
-     public void setType (String type){
+     public void setType (int type){
          this.type = type;
      }
      
@@ -39,13 +39,18 @@ public class Account {
         accountId = aid;
     }
     
-    public void setAccountALL( int aid , String w8w , String type ){
+    public void setAccountALL( int aid , String w8w , int type ){
         accountId= aid;
         wachtwoord = w8w;
         this.type = type;
         
     }
     
+    public void getALL (Account account ){
+        
+        System.out.println("id: " + this.accountId +" type : " + this.type + " wachtwoord: " + this.wachtwoord);
+        
+    }
     
     
 }
