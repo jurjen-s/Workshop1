@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rsvier.kaasbaas.Meebezig.Jurjen;
+package rsvier.workshop1;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -327,19 +327,19 @@ public class BestellingSQL implements BestellingDAO {
                     Product besteldProduct = new Product();
                     besteldProduct.setSoort(rs.getString("soort"));
                     besteldProduct.setPrijs(rs.getBigDecimal("prijs"));
-                    zoekresultaat.add(besteldProduct);
-                    String hoeveelheid = "" + rs.getInt("hoeveelheid");
-                    aantal.add("" + rs.getInt("hoeveelheid"));
+                    int hoeveelheid = rs.getInt("hoeveelheid");
                     // Testen of het lukt met 1 return, een hashmap
                         for (int i = 0; i < zoekresultaat.size(); i++) {
-                            test.put(besteldProduct, rs.getInt("hoeveelheid"));
+                            test.put(besteldProduct, hoeveelheid);
                         }
                 }
+                /*
                 System.out.println("Bestelling " + bestellingId + " bestaat uit " + aantalArtikelen + " artikelen met een totaalprijs van " + totaalprijs + ".");
-                System.out.println("De bestelling bestaat uit de volgende producten: ");
-                for (int i = 0; i < zoekresultaat.size() - 1; i++) {
-                    System.out.println("Product: " + zoekresultaat.get(i) + "/t/t" + "Aantal: " + aantal.get(i));
+                System.out.println("De bestelling bestaat uit de volgende producten: "); // soort, prijs, hoeveelheid
+                for (Product product: zoekresultaat) {
+                    System.out.println("Product: " + product.getSoort() + "");
                 }
+                */
                 // Testen of het lukt met 1 return, een hashmap
                 // return test; (om te printen in view)
                 // hier printen (om te testen)
