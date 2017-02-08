@@ -15,7 +15,8 @@ import java.util.List;
 public interface ProductDAO {
     
     // Functies:
-    List findProductByID(int productId);
+    // 1: Om producten te zoeken:
+    Product findProductByID(int productId); // returns Product object als zoekresultaat
     List findProductBySoort(String soort); // returns List<Product> met zoekresultaten
     List findProductByPrijs(BigDecimal prijs); // returns List<Product> met zoekresultaten
     List findProductByVoorraad(int voorraad); // returns List<Product> met zoekresultaten

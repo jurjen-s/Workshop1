@@ -13,13 +13,6 @@ import java.math.BigDecimal;
  */
 public class Product {
     
-    // laat menu zien
-    // vang user input
-    // geef request aan DAOProducten
-    // ontvang info van DAOProducten
-    // laat resultaten zien in Producten   
-    
-    
     private int productId;
     private String omschrijving;
     private String soort;
@@ -68,6 +61,20 @@ public class Product {
         return product;
     }
     
+    public Product() {        
+    
+    }
+    
+    public boolean bestelProduct(int bestellingId, int productId, int hoeveelheid) {
+        Bestelregel bestelregel = new Bestelregel();
+        bestelregel.setBestellingId(bestellingId);
+        bestelregel.setProductId(productId);
+        bestelregel.setHoeveelheid(hoeveelheid);
+        // Voeg de bestelregel toe aan de database
+        bestelregel.toevoegenBestelregel(bestelregel);
+        return true;
+    }
+    
     public static class ProductBuilder {
         private int productId;
         private String omschrijving;
@@ -75,9 +82,15 @@ public class Product {
         private BigDecimal prijs;
         private int voorraad;
         
-        public ProductBuilder(int productId) {
-            this.productId = productId;
+        public ProductBuilder() {
+            
         }
+        
+        public ProductBuilder productId(int productId) {
+            this.productId = productId;
+            return this;
+        }
+        
         public ProductBuilder omschrijving(String omschrijving) {
             this.omschrijving = omschrijving;
             return this;

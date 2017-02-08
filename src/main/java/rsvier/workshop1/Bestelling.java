@@ -12,46 +12,83 @@ import java.math.BigDecimal;
  * @author jurjen
  */
 public class Bestelling {
-    private int bestellingID; //verwijst naar bestellingen_id
-    private int klantID; // verwijst naar FK_bestellingen_klanten_id
-    private int adresID; // verwijst naar FK_bestlelingen_adressen_id
+    private int bestellingId; //verwijst naar bestellingen_id
+    private int klantId; // verwijst naar FK_bestellingen_klanten_id
+    private int adresId; // verwijst naar FK_bestlelingen_adressen_id
     private int aantalArtikelen; // verwijst naar aantal_artikelen
     private BigDecimal totaalprijs; // verwijst naar totaalprijs
     
+    public void setBestellingId(int bestellingId) {
+        this.bestellingId = bestellingId;
+    }
+    public void setKlantId(int klantId) {
+        this.klantId = klantId;
+    }
+    public void setAdresId(int adresId) {
+        this.adresId = adresId;
+    }
+    public void setAantalArtikelen(int aantalArtikelen) {
+        this.aantalArtikelen = aantalArtikelen;
+    }
+    public void setTotaalprijs(BigDecimal totaalprijs) {
+        this.totaalprijs = totaalprijs;
+    }
+    public int getBestellingId() {
+        return bestellingId;
+    }
+    public int getKlantId() {
+        return klantId;
+    }
+    public int getAdresId() {
+        return adresId;
+    }
+    public int getAantalArtikelen() {
+        return aantalArtikelen;
+    }
+    public BigDecimal getTotaalprijs() {
+        return totaalprijs;
+    }
+    
+    
+    
     @Override
     public String toString() {
-        String bestelling = "Bestelling " + bestellingID +
-                            ", behorende bij klant " + klantID +
-                            " en adres " + adresID +
+        String bestelling = "Bestelling " + bestellingId +
+                            ", behorende bij klant " + klantId +
+                            " en adres " + adresId +
                             ", heeft " + aantalArtikelen + " artikelen" +
                             " met een totaalprijs van " + totaalprijs + "Euro.";
         return bestelling;                           
     }
     
+    public Bestelling() {
+        
+    }
+    
     private Bestelling(Bestelling.BestellingBuilder builder) {
-            bestellingID = builder.bestellingID;
-            klantID = builder.klantID;
-            adresID = builder.adresID;            
+            bestellingId = builder.bestellingId;
+            klantId = builder.klantId;
+            adresId = builder.adresId;            
             aantalArtikelen = builder.aantalArtikelen;
             totaalprijs = builder.totaalprijs;
         } 
     
     public static class BestellingBuilder {
-        private int bestellingID; //verwijst naar bestellingen_id
-        private int klantID; // verwijst naar FK_bestellingen_klanten_id
-        private int adresID; // verwijst naar FK_bestlelingen_adressen_id
+        private int bestellingId; //verwijst naar bestellingen_id
+        private int klantId; // verwijst naar FK_bestellingen_klanten_id
+        private int adresId; // verwijst naar FK_bestlelingen_adressen_id
         private int aantalArtikelen; // verwijst naar aantal_artikelen
         private BigDecimal totaalprijs; // verwijst naar totaalprijs
         
-        public BestellingBuilder(int bestellingID) {
-            this.bestellingID = bestellingID;
+        public BestellingBuilder(int bestellingId) {
+            this.bestellingId = bestellingId;
         }
-        public BestellingBuilder klantID(int klantID) {
-            this.klantID = klantID;
+        public BestellingBuilder klantId(int klantId) {
+            this.klantId = klantId;
             return this;
         }
-        public BestellingBuilder adresID(int adresID) {
-            this.adresID = adresID;
+        public BestellingBuilder adresId(int adresId) {
+            this.adresId = adresId;
             return this;
         }
         public BestellingBuilder aantalArtikelen(int aantalArtikelen) {
