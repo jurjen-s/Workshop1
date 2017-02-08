@@ -5,7 +5,7 @@
  */
 
 
-package opdracht6test;
+package rsvier.workshop1;
 import java.util.Scanner;
 import java.math.BigDecimal;
 import java.util.Arrays;
