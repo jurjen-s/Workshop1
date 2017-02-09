@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rsvier.kaasbaas.Meebezig.Jurjen;
+package rsvier.workshop1;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,7 +45,7 @@ public class ProductSQL implements ProductDAO {
     }
     
     @Override
-    public Product findProductByID(int productId) {
+    public Product findProductById(int productId) {
         Product zoekresultaat = new Product();
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
                 "SELECT * " +
@@ -247,7 +247,7 @@ public class ProductSQL implements ProductDAO {
     } // einde updateProductVoorraad(int productId, int voorraad)
     
     @Override
-    public boolean verwijderenProduct(int productId) {
+    public boolean deleteProduct(int productId) {
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
                 "DELETE FROM producten" +
                 "WHERE productId = ?")) {

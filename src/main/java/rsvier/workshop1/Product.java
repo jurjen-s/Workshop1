@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rsvier.kaasbaas.Meebezig.Jurjen;
+package rsvier.workshop1;
 
 import java.math.BigDecimal;
+import rsvier.workshop1.Bestelregel;
 
 /**
  *
@@ -66,10 +67,8 @@ public class Product {
     }
     
     public boolean bestelProduct(int bestellingId, int productId, int hoeveelheid) {
-        Bestelregel bestelregel = new Bestelregel();
+        Bestelregel bestelregel = new Bestelregel(productId, hoeveelheid);
         bestelregel.setBestellingId(bestellingId);
-        bestelregel.setProductId(productId);
-        bestelregel.setHoeveelheid(hoeveelheid);
         // Voeg de bestelregel toe aan de database
         bestelregel.toevoegenBestelregel(bestelregel);
         return true;

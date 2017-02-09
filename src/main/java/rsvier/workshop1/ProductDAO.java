@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rsvier.kaasbaas.Meebezig.Jurjen;
+package rsvier.workshop1;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -16,7 +16,7 @@ public interface ProductDAO {
     
     // Functies:
     // 1: Om producten te zoeken:
-    Product findProductByID(int productId); // returns Product object als zoekresultaat
+    Product findProductById(int productId); // returns Product object als zoekresultaat
     List findProductBySoort(String soort); // returns List<Product> met zoekresultaten
     List findProductByPrijs(BigDecimal prijs); // returns List<Product> met zoekresultaten
     List findProductByVoorraad(int voorraad); // returns List<Product> met zoekresultaten
@@ -28,6 +28,6 @@ public interface ProductDAO {
     boolean updateProductPrijs(int productId, BigDecimal prijs); // returns succes of mislukt (of return: vernieuwd product?)
     boolean updateProductVoorraad(int productId, int voorraad); // returns succes of mislukt (of return: vernieuwd product?)
     // 4: Om producten te verwijderen:
-    boolean verwijderenProduct(int productId); // returns succes of mislukt (of return: vernieuwd product?)
+    boolean deleteProduct(int productId); // returns succes of mislukt (of return: vernieuwd product?)
     
 }

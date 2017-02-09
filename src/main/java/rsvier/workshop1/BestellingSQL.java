@@ -63,21 +63,24 @@ public class BestellingSQL implements BestellingDAO {
     public Bestelling findBestellingById(int bestellingId) {
         // @@Controleren of bestellingId bestaat in de db
         Bestelling zoekresultaat = new Bestelling();
-        try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
+        String query = "SELECT * FROM bestellingen WHERE bestellingen_id = ?";
+        /*try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
             "SELECT * " +
             "FROM bestellingen" +
-            "WHERE bestellingen_id = ?")) {
+            "WHERE bestellingen_id = ?")) {*/
+        try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(query)) {
             stmt.setInt(1, bestellingId);
             ResultSet rs = stmt.executeQuery();
-            int klantId = rs.getInt("FK_bestellingen_klanten_id");
-            // @@Controleren of klantId bestaat in bestellingen aangezien het een FK is
-            int adresId = rs.getInt("FK_bestellingen_adressen_id");
-            // @@Controleren of adresId bestaat in bestellingen aangezien het een FK is
-            int aantalArtikelen = rs.getInt("aantal_artikelen");
-            BigDecimal totaalprijs = rs.getBigDecimal("totaalprijs");
             // Er kan maar 1 resultaat zijn
             while (rs.next()) {
-                zoekresultaat = new Bestelling.BestellingBuilder(bestellingId)
+                int klantId = rs.getInt("FK_bestellingen_klanten_id");
+                // @@Controleren of klantId bestaat in bestellingen aangezien het een FK is
+                int adresId = rs.getInt("FK_bestellingen_adressen_id");
+                // @@Controleren of adresId bestaat in bestellingen aangezien het een FK is
+                int aantalArtikelen = rs.getInt("aantal_artikelen");
+                BigDecimal totaalprijs = rs.getBigDecimal("totaalprijs");
+                zoekresultaat = new Bestelling.BestellingBuilder()
+                                                         .bestellingId(bestellingId)
                                                          .klantId(klantId)
                                                          .adresId(adresId)
                                                          .aantalArtikelen(aantalArtikelen)
@@ -93,7 +96,7 @@ public class BestellingSQL implements BestellingDAO {
     } // einde zoekBestelling(int bestellingId)
     
     @Override
-    public List findBestellingByKlant(int klantId) {
+    public List findBestellingByKlantId(int klantId) {
         // @@Controleren of klantId bestaat in database
         List<Bestelling> zoekresultaat = new ArrayList<>();
         try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
@@ -108,7 +111,8 @@ public class BestellingSQL implements BestellingDAO {
             BigDecimal totaalprijs = rs.getBigDecimal("totaalprijs");
             // Laat alle bestellingen met het opgegeven klantId zien
             while (rs.next()) {
-            Bestelling gevondenBestelling = new Bestelling.BestellingBuilder(bestellingId)
+            Bestelling gevondenBestelling = new Bestelling.BestellingBuilder()
+                                               .bestellingId(bestellingId)
                                                .klantId(klantId)
                                                .adresId(adresId)
                                                .aantalArtikelen(aantalArtikelen)
@@ -134,7 +138,8 @@ public class BestellingSQL implements BestellingDAO {
             stmt.setInt(1, adresId);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-            Bestelling gevondenBestelling = new Bestelling.BestellingBuilder(rs.getInt("bestellingen_id"))
+            Bestelling gevondenBestelling = new Bestelling.BestellingBuilder()
+                                                          .bestellingId(rs.getInt("bestellingen_id"))
                                                           .klantId(rs.getInt("FK_bestellingen_klanten_id"))
                                                           .adresId(rs.getInt("FK_bestellingen_adressen_id"))
                                                           .aantalArtikelen(rs.getInt("aantal_artikelen"))
@@ -160,7 +165,8 @@ public class BestellingSQL implements BestellingDAO {
             stmt.setInt(1, aantalArtikelen);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                Bestelling gevondenBestelling = new Bestelling.BestellingBuilder(rs.getInt("bestellingen_id"))
+                Bestelling gevondenBestelling = new Bestelling.BestellingBuilder()
+                                                              .bestellingId(rs.getInt("bestellingen_id"))
                                                               .klantId(rs.getInt("FK_bestellingen_klanten_id"))
                                                               .adresId(rs.getInt("FK_bestellingen_adressen_id"))
                                                               .aantalArtikelen(rs.getInt("aantal_artikelen"))
@@ -186,7 +192,8 @@ public class BestellingSQL implements BestellingDAO {
             stmt.setBigDecimal(1, totaalprijs);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                Bestelling gevondenBestelling = new Bestelling.BestellingBuilder(rs.getInt("bestellingen_id"))
+                Bestelling gevondenBestelling = new Bestelling.BestellingBuilder()
+                                                              .bestellingId(rs.getInt("bestellingen_id"))
                                                               .klantId(rs.getInt("FK_bestellingen_klanten_id"))
                                                               .adresId(rs.getInt("FK_bestellingen_adressen_id"))
                                                               .aantalArtikelen(rs.getInt("aantal_artikelen"))
@@ -203,21 +210,23 @@ public class BestellingSQL implements BestellingDAO {
     } // einde findBestellingByTotaalprijs(BigDecimal totaalprijs)
 
     @Override
-    public boolean toevoegenBestelling(Bestelling opgegevenBestelling) {
+    public Bestelling toevoegenBestelling(Bestelling opgegevenBestelling) {
         try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
                 "INSERT INTO bestellingen (FK_bestellingen_klanten_id, FK_bestellingen_adres_id, aantal_artikelen, totaalprijs)" +
                 "VALUES ?, ?, ?, ?")) {
+            ResultSet rs = stmt.executeQuery("SELECT LAST_INSERT_ID()");
+            int bestellingId = rs.getInt(1);
             stmt.setInt(1, opgegevenBestelling.getKlantId());
             stmt.setInt(2, opgegevenBestelling.getAdresId());
             stmt.setInt(3, opgegevenBestelling.getAantalArtikelen());
             stmt.setBigDecimal(4, opgegevenBestelling.getTotaalprijs());
             stmt.executeUpdate();
+            opgegevenBestelling.setBestellingId(bestellingId);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             System.out.println("Er ging iets mis bij het toevoegen van de bestelling.");
-            return false;
         }
-        return true;
+        return opgegevenBestelling;
     } // einde toevoegenBestelling(Bestelling opgegevenBestelling)
     
     @Override
@@ -289,7 +298,7 @@ public class BestellingSQL implements BestellingDAO {
     } // einde updateBestellingTotaalprijs(int bestellingId, BigDecimal totaalprijs)
 
     @Override
-    public boolean verwijderenBestelling(int bestellingId) {
+    public boolean deleteBestelling(int bestellingId) {
         try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
                     "DELETE FROM bestellingen" +
                     "WHERE bestellingen_id = ?")) {

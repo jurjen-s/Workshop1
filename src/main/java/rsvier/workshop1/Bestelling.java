@@ -57,7 +57,7 @@ public class Bestelling {
                             ", behorende bij klant " + klantId +
                             " en adres " + adresId +
                             ", heeft " + aantalArtikelen + " artikelen" +
-                            " met een totaalprijs van " + totaalprijs + "Euro.";
+                            " met een totaalprijs van " + totaalprijs + " Euro.";
         return bestelling;                           
     }
     
@@ -80,8 +80,9 @@ public class Bestelling {
         private int aantalArtikelen; // verwijst naar aantal_artikelen
         private BigDecimal totaalprijs; // verwijst naar totaalprijs
         
-        public BestellingBuilder(int bestellingId) {
+        public BestellingBuilder bestellingId(int bestellingId) {
             this.bestellingId = bestellingId;
+            return this;
         }
         public BestellingBuilder klantId(int klantId) {
             this.klantId = klantId;
