@@ -3,16 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rsvier.kaasbaas.Meebezig.Jurjen;
+package rsvier.workshop1;
 
-import java.util.HashMap;
+import java.math.BigDecimal;
+import java.util.List;
 
 /**
  *
  * @author jurjen
  */
 public interface FactuurDAO {
-    boolean maakFactuur();
-    HashMap bekijkFactuur();
-    boolean betaalFactuur();
+    
+    boolean maakFactuur(Factuur factuur);
+    // Factuur bekijkFactuur(int factuurId); overbodig, hetzelfde als findFactuurById
+    boolean betaalFactuur(int factuurId);
+    boolean deleteFactuur(int factuurId);
+    
+    Factuur findFactuurById(int factuurId);
+    Factuur findFactuurByBestellingId(int bestellingId);
+    List findFactuurByKlantId(int klantId);
+    List findFactuurByAdresId(int adresId);
+    List findFactuurByTotaalprijs(BigDecimal prijs);
+    List findFactuurByStatus(int status);
+    
 }

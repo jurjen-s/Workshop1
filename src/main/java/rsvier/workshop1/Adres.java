@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rsvier.kaasbaas.Meebezig.Jurjen;
+package rsvier.workshop1;
 
 /**
  *
@@ -19,6 +19,10 @@ public class Adres {
     private String huisnrToevoeging;
     private String postcode;
     private String land;
+    
+    public Adres() {
+        
+    }
 
     public void setAdresId(int adresId) {
         this.adresId = adresId;
@@ -74,6 +78,24 @@ public class Adres {
     }
     public String getLand() {
         return land;
+    }
+    
+    @Override
+    public String toString() {
+        String adres = adresId + "\t\t" +
+                       adresType  + "\t\t" +
+                       klantId + "\t\t" +
+                       straatnaam + "\t\t" +
+                       huisnummer + "\t\t" +
+                       huisnrToevoeging + "\t\t" +
+                       postcode + "\t\t" +
+                       land;
+        return adres;
+    }
+    
+    
+    public static class AdresBuilder {
+        
     }
     
 }

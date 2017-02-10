@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rsvier.kaasbaas.Meebezig.Jurjen;
+package rsvier.workshop1;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
+import rsvier.workshop1.ProductDAO;
+import rsvier.workshop1.ProductSQL;
 
 /**
  *
@@ -26,7 +28,7 @@ public class Controller {
     private Connection sqlConnectie = connectie.getSQLConnection();
     private BestellingDAO bestellingDAO = new BestellingSQL(sqlConnectie);
     private ProductDAO productDAO = new ProductSQL(sqlConnectie);
-    private Klantinterface klantDAO = new KlantDAOinterfaceImpl();
+    private KlantInterface klantDAO = new KlantDAOinterfaceImpl(sqlConnectie);
     private Menu menu = new Menu();
     
     // Functies:
@@ -49,7 +51,7 @@ public class Controller {
     //      4.1: verwijderenProduct(int productId); - returns succes of mislukt (of return: vernieuwd product?)
     
     // Voorbeeld / test functie
-    
+    /*
     public void findProductByID(int productId) {
         if (existsProductId(productId)) {
             Product zoekresultaat = productDAO.findProductByID(productId);
@@ -62,7 +64,7 @@ public class Controller {
         List<Product> zoekresultaat = productDAO.findProductBySoort(soort);
         Menu.print(zoekresultaat);
     }
-    
+    */
     
     // Error handling nodig voor
         // adressen_klanten_id

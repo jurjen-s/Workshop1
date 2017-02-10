@@ -56,7 +56,7 @@ else if (cijfer <= 8 && cijfer >0){
         case 1: System.out.println(" 1 Producten menu, het bestaat");  productmenu(); break;
         case 2: System.out.println(" 2 Klanten menu bestaat "); klantenmenu();   break;
         case 3: System.out.println(" 3 Adres gegevens menu bestaat ");  adressenmenu(); break;
-        case 4: System.out.println(" 4 Bestelling menu bestaat ");  bestellingenmenu(); break;
+        case 4: System.out.println(" 4 Bestelling menu bestaat ");  BestellingMenu bestellingmenu = new BestellingMenu(); bestellingmenu.bestellingenmenu(); break;
         case 5: System.out.println(" 5 Medewerkers maken menu bestaat nog niet");  medewerkersmenu(); break;
         case 6: System.out.println(" 6 Accounts gegevens menu bestaat ");  AccountMenu am = new AccountMenu(); am.accountsmenu(); break;
         case 7: System.out.println(" 7 Factuur gegevens menu bestaat nog niet");   facturenmenu(); break;
