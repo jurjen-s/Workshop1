@@ -14,7 +14,7 @@ public class Klant  {
     
     //PRIVATE
     
-private int klanten_id, telefoonnummer,FK_accounts_id,FK_adressen_klant,FK_adressen_type, heeft_tussenvoegsel;
+private int klanten_id, telefoonnummer,FK_accounts_id, heeft_tussenvoegsel;
         //Bezorghuisnummer, Factuurhuisnummer, idMedewerker;
 private String Land, voornaam,tussenvoegsel, achternaam;
         //BezorgPostcode,FactuurPostcode,BezorgHuisnummerToevoeging, FactuurHuisnummerToevoeging;
@@ -30,8 +30,8 @@ this.tussenvoegsel = tv;
 this.achternaam = anaam;
 this.telefoonnummer = tel;
 this.FK_accounts_id = FKAI;
-this.FK_adressen_klant = FKAK;
-this.FK_adressen_type = FKAT;
+//this.FK_adressen_klant = FKAK;
+//this.FK_//adressen_type = FKAT;
 //this.Bezorghuisnummer = BHnr;
 //this.BezorgHuisnummerToevoeging = BHnrT;
 //this.BezorgPostcode = BPc;
@@ -39,16 +39,20 @@ this.FK_adressen_type = FKAT;
 //this.Factuurhuisnummer = FHnr;
 //this.FactuurHuisnummerToevoeging = FHnrT;
 //this.Land = L;
-System.out.println(klanten_id + voornaam + tussenvoegsel + achternaam + telefoonnummer + FK_accounts_id + " " + FK_adressen_klant + " "+ FK_adressen_type);
+System.out.println(klanten_id + voornaam + tussenvoegsel + achternaam + telefoonnummer + FK_accounts_id);
         //Bezorghuisnummer + BezorgHuisnummerToevoeging + BezorgPostcode + FactuurPostcode + Factuurhuisnummer +FactuurHuisnummerToevoeging + Land);
 }
 
 
-public void getAll (){
+public void getAll (Klant klant){
 
-System.out.println(klanten_id + voornaam + tussenvoegsel + achternaam + telefoonnummer + FK_accounts_id + " " + FK_adressen_klant + " "+ FK_adressen_type);
+System.out.println("klanten id: " +this.klanten_id +" "+ this.voornaam +" "+ this.tussenvoegsel +" "+ this.achternaam + " tel: "+ this.telefoonnummer + "account id: "+this.FK_accounts_id );
 
 }
+
+
+        
+    
 
 
 
@@ -84,6 +88,17 @@ System.out.println(klanten_id + voornaam + tussenvoegsel + achternaam + telefoon
         this.tussenvoegsel = tussenvoegsel;
     }
 
+    public int getHeeftTusv() {
+        return heeft_tussenvoegsel;
+    }
+
+    public void setHeeftTusv(int HTV) {
+        this.heeft_tussenvoegsel = HTV;
+    }
+    
+    
+    
+    
    /**
     public String getBezorgPostcode() {
         return BezorgPostcode;
@@ -135,14 +150,8 @@ System.out.println(klanten_id + voornaam + tussenvoegsel + achternaam + telefoon
         this.FK_accounts_id = FKAI;
     }
     
-     public int getFKadressenKlant() {
-        return FK_adressen_klant;
-    }
-
-    public void setFKadressenKlant(int FKAK) {
-        this.FK_adressen_klant = FKAK;
-    }
     
+    /*
     public int getFKadressenType() {
         return FK_adressen_type;
     }
@@ -151,6 +160,7 @@ System.out.println(klanten_id + voornaam + tussenvoegsel + achternaam + telefoon
         this.FK_adressen_type = FKAT;
     }
     
+    */
     /**
     public int getFactuurhuisnummer() {
         return Factuurhuisnummer;
