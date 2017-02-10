@@ -93,9 +93,68 @@ public class Adres {
         return adres;
     }
     
+    private Adres(AdresBuilder builder) {
+        adresId = builder.adresId;
+        adresType = builder.adresType;
+        klantId = builder.klantId;
+        straatnaam = builder.straatnaam;
+        huisnummer = builder.huisnummer;
+        heeftHuisnrToevoeging = builder.heeftHuisnrToevoeging;
+        huisnrToevoeging = builder.huisnrToevoeging;
+        postcode = builder.postcode;
+        land = builder.land;
+    }
     
     public static class AdresBuilder {
+        private int adresId;
+        private int adresType;
+        private int klantId;
+        private String straatnaam;
+        private int huisnummer;
+        private boolean heeftHuisnrToevoeging;
+        private String huisnrToevoeging;
+        private String postcode;
+        private String land;
         
+        public AdresBuilder adresId(int adresId) {
+            this.adresId = adresId;
+            return this;
+        }
+        public AdresBuilder adresType(int adresType) {
+            this.adresType = adresType;
+            return this;
+        }
+        public AdresBuilder klantId(int klantId) {
+            this.klantId = klantId;
+            return this;
+        }
+        public AdresBuilder straatnaam(String straatnaam) {
+            this.straatnaam = straatnaam;
+            return this;
+        }
+        public AdresBuilder huisnummer(int huisnummer) {
+            this.huisnummer = huisnummer;
+            return this;
+        }
+        public AdresBuilder heeftHuisnrToevoeging(boolean heeftHuisnrToevoeging) {
+            this.heeftHuisnrToevoeging = heeftHuisnrToevoeging;
+            return this;
+        }
+        public AdresBuilder huisnrToevoeging(String huisnrToevoeging) {
+            this.huisnrToevoeging = huisnrToevoeging;
+            return this;
+        }
+        public AdresBuilder postcode(String postcode) {
+            this.postcode = postcode;
+            return this;
+        }
+        public AdresBuilder land(String land) {
+            this.land = land;
+            return this;
+        }
+        public Adres build() {
+            return new Adres(this);
+        }
     }
     
 }
