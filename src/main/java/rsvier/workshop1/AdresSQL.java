@@ -31,7 +31,7 @@ public class AdresSQL implements AdresDAO {
     
      private Connection adresconnectie;
     
-    public AccountSQL(Connection connectie) {
+    public AdresSQL(Connection connectie) {
         this.adresconnectie = connectie;
     }
     
@@ -58,12 +58,12 @@ public class AdresSQL implements AdresDAO {
                 
                 
                 
-                adres.setAdresID(resultset.getInt("adressen_id"));
+                adres.setAdresId(resultset.getInt("adressen_id"));
                 adres.setAdresType(resultset.getInt("adressen_type"));
-                adres.setKlantID(resultset.getInt("FK_adressen_klanten_id"));
+                adres.setKlantId(resultset.getInt("FK_adressen_klanten_id"));
                 adres.setStraatnaam(resultset.getString("straatnaam"));
                 adres.setHuisnummer(resultset.getInt("huisnummer"));
-                adres.setHuisnrToevoeging(resultset.getInt("heeft_huisnummer_toevoeging"));
+                adres.setHuisnrToevoeging(resultset.getString("huisnummer_toevoeging"));
                 adres.setPostcode(resultset.getString("postcode"));
                 adres.setLand(resultset.getString("land"));
                 
@@ -74,7 +74,7 @@ public class AdresSQL implements AdresDAO {
        	System.out.println(ex.getMessage());
         }
         
-        return Adres;    
+        return adres;    
     }
 
     @Override
@@ -93,7 +93,7 @@ public class AdresSQL implements AdresDAO {
             int     twee = resultset.getInt("FK_adressen_klanten_id");
             String  drie = resultset.getString("straatnaam");
             int     vier =  resultset.getInt("huisnummer");
-            int     vijf = resultset.getInt("heeft_huisnummer_toevoeging");
+            boolean     vijf = (resultset.getBoolean("heeft_huisnummer_toevoeging"));
             String x = resultset.getString("huisnummer_toevoeging");
             String  zes = resultset.getString("postcode");
             String  zeven =resultset.getString("land");
@@ -137,7 +137,7 @@ public class AdresSQL implements AdresDAO {
             int     twee = (resultset.getInt("FK_adressen_klanten_id"));
             String  drie = (resultset.getString("straatnaam"));
             int     vier = (resultset.getInt("huisnummer"));
-            int     vijf = (resultset.getInt("heeft_huisnummer_toevoeging"));
+            boolean     vijf = (resultset.getBoolean("heeft_huisnummer_toevoeging"));
             String x = (resultset.getString("huisnummer_toevoeging"));
             String  zes = (resultset.getString("postcode"));
             String  zeven =(resultset.getString("land"));
@@ -182,7 +182,7 @@ public class AdresSQL implements AdresDAO {
             int     twee = (resultset.getInt("FK_adressen_klanten_id"));
             String  drie = (resultset.getString("straatnaam"));
             int     vier = (resultset.getInt("huisnummer"));
-            int     vijf = (resultset.getInt("heeft_huisnummer_toevoeging"));
+            boolean     vijf = (resultset.getBoolean("heeft_huisnummer_toevoeging"));
             String x = (resultset.getString("huisnummer_toevoeging"));
             String  zes = (resultset.getString("postcode"));
             String  zeven =(resultset.getString("land"));
@@ -227,7 +227,7 @@ public class AdresSQL implements AdresDAO {
             int     twee = (resultset.getInt("FK_adressen_klanten_id"));
             String  drie = (resultset.getString("straatnaam"));
             int     vier = (resultset.getInt("huisnummer"));
-            int     vijf = (resultset.getInt("heeft_huisnummer_toevoeging"));
+            boolean     vijf = (resultset.getBoolean("heeft_huisnummer_toevoeging"));
             String x = (resultset.getString("huisnummer_toevoeging"));
             String  zes = (resultset.getString("postcode"));
             String  zeven =(resultset.getString("land"));
@@ -267,12 +267,12 @@ public class AdresSQL implements AdresDAO {
             int AdresId = resultset.getInt(1);
             
            stmt.setInt(1,   adres.getAdresType());
-           stmt.setInt(2,   adres.getKlantID());
-           stmt.setInt(3,   adres.getStraatnaam());
+           stmt.setInt(2,   adres.getKlantId());
+           stmt.setString(3,   adres.getStraatnaam());
            stmt.setInt(4,   adres.getHuisnummer());
-           stmt.setInt(5,   adres.getHuisnrToevoeging());
-           stmt.setInt(6,   adres.getPostcode());
-           stmt.setInt(7,   adres.getLand());
+           stmt.setString(5,   adres.getHuisnrToevoeging());
+           stmt.setString(6,   adres.getPostcode());
+           stmt.setString(7,   adres.getLand());
           
          
             
@@ -291,42 +291,98 @@ public class AdresSQL implements AdresDAO {
     
     
     @Override
-    public boolean updateAdresType(int adresType) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean updateAdresType(int adresId, int adresType) {
+        String query = "UPDATE adressen SET adressen_type = adresType WHERE adressen_id = adresId";
+        try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            System.out.println("Er ging iets mis bij het updaten van het adres.");
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public boolean updateAdresStraatnaam(String straatnaam) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean updateAdresStraatnaam(int adresId, String straatnaam) {
+        String query = "UPDATE adressen SET straatnaam = straatnaam WHERE adressen_id = adresId";
+        try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            System.out.println("Er ging iets mis bij het updaten van het adres.");
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public boolean updateAdresHuisnummer(int huisnummer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean updateAdresHuisnummer(int adresId, int huisnummer) {
+        String query = "UPDATE adressen SET huisnummer = huisnummer WHERE adressen_id = adresId";
+        try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            System.out.println("Er ging iets mis bij het updaten van het adres.");
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public boolean updateAdresHeeftHuisnrToevoeging(int heeftHuisnrToevoeging) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean updateAdresHeeftHuisnrToevoeging(int adresId, int heeftHuisnrToevoeging) {
+        String query = "UPDATE adressen SET heeft_huisnr_toevoeging = heeftHuisnrToevoeging WHERE adressen_id = adresId";
+        try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            System.out.println("Er ging iets mis bij het updaten van het adres.");
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public boolean updateAdresHuisnrToevoeging(String huisnrToevoeging) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean updateAdresHuisnrToevoeging(int adresId, String huisnrToevoeging) {
+        String query = "UPDATE adressen SET huisnummer_toevoeging = huisnrToevoeging WHERE adressen_id = adresId";
+        try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            System.out.println("Er ging iets mis bij het updaten van het adres.");
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public boolean updateAdresPostcode(String postcode) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean updateAdresPostcode(int adresId, String postcode) {
+        String query = "UPDATE adressen SET postcode = postcode WHERE adressen_id = adresId";
+        try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            System.out.println("Er ging iets mis bij het updaten van het adres.");
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public boolean updateAdresLand(String land) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean updateAdresLand(int adresId, String land) {
+        String query = "UPDATE adressen SET land = land WHERE adressen_id = adresId";
+        try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            System.out.println("Er ging iets mis bij het updaten van het adres.");
+            return false;
+        }
+        return true;
     }
    
     
-    
+    @Override
     public boolean deleteAdres(int AdresID){
         
           String query = "DELETE FROM accounts WHERE accounts_id = " + AdresID;        

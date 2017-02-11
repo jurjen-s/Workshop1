@@ -20,13 +20,14 @@ public interface AdresDAO {
     List findAdresByLand(String land);
     
     Adres toevoegenAdres(Adres adres);
+    boolean deleteAdres(int AdresID);
     
-    boolean updateAdresType(int adresType);
-    boolean updateAdresStraatnaam(String straatnaam);
-    boolean updateAdresHuisnummer(int huisnummer);
-    boolean updateAdresHeeftHuisnrToevoeging(int heeftHuisnrToevoeging);
-    boolean updateAdresHuisnrToevoeging(String huisnrToevoeging);
-    boolean updateAdresPostcode(String postcode);
-    boolean updateAdresLand(String land);
+    boolean updateAdresType(int adresId, int adresType);
+    boolean updateAdresStraatnaam(int adresId, String straatnaam);
+    boolean updateAdresHuisnummer(int adresId, int huisnummer);
+    boolean updateAdresHeeftHuisnrToevoeging(int adresId, int heeftHuisnrToevoeging);
+    boolean updateAdresHuisnrToevoeging(int adresId, String huisnrToevoeging);
+    boolean updateAdresPostcode(int adresId, String postcode);
+    boolean updateAdresLand(int adresId, String land);
     
 }

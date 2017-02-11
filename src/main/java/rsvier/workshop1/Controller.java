@@ -17,56 +17,10 @@ import rsvier.workshop1.ProductSQL;
  * @author jurjen
  */
 
-// behandelt de interactie tussen het model (data + methodes) en de view (UI, console)
+// CLASS is op dit moment niet in gebruik
+// Hieronder volgen voorbeelden van error handling die nog naar de juiste DAO's moeten
 /*
-de controller heeft dan toegang tot het model via de DAO's
-controller krijgt bijv via actionlistener in view binnen: ik wil een product updaten
-controller geeft dat door aan de juiste DAO en geeft resultaat terug aan view voor display
-*/
-public class Controller {
-    private SQLConnection connectie = new SQLConnection();
-    private Connection sqlConnectie = connectie.getSQLConnection();
-    private BestellingDAO bestellingDAO = new BestellingSQL(sqlConnectie);
-    private ProductDAO productDAO = new ProductSQL(sqlConnectie);
-    private KlantInterface klantDAO = new KlantDAOinterfaceImpl(sqlConnectie);
-    private Menu menu = new Menu();
-    
-    // Functies:
-    // 1: Om producten te zoeken:
-    //      1.1: findProductByID(int productId); - returns Product object als zoekresultaat
-    //      1.2: findProductBySoort(String soort); - returns List<Product> met zoekresultaten
-    //      1.3: findProductByPrijs(BigDecimal Prijs); - returns List<Product> met zoekresultaten
-    //      1.4: findProductByVoorraad(int voorraad); - returns List<Product> met zoekresultaten
-    // 2: Om producten toe te voegen:
-    //      // De functie bij 2.1 heeft een in de view aangemaakt Product Object nodig
-    //      2.1: toevoegenProduct(Product product) - returns succes of mislukt (of return: vernieuwd product?)
-    // 3: Om producten aan te passen:
-    //      // De functies hieronder hebben een productId (of Product Object? nog niet geimplementeerd) nodig
-    //      3.1: updateProductOmschrijving(int productId, String omschrijving); - returns succes of mislukt (of return: vernieuwd product?)
-    //      3.2: updateProductSoort(int productId, String soort); - returns succes of mislukt (of return: vernieuwd product?)
-    //      3.3: updateProductPrijs(int productId, BigDecimal prijs); - returns succes of mislukt (of return: vernieuwd product?)
-    //      3.4: updateProductVoorraad(int productId, int voorraad); - returns succes of mislukt (of return: vernieuwd product?)
-    // 4: Om producten te verwijderen:
-    //      // De functie hieronder heeft een productId (of Product Object? nog niet geimplementeerd) nodig
-    //      4.1: verwijderenProduct(int productId); - returns succes of mislukt (of return: vernieuwd product?)
-    
-    // Voorbeeld / test functie
-    /*
-    public void findProductByID(int productId) {
-        if (existsProductId(productId)) {
-            Product zoekresultaat = productDAO.findProductByID(productId);
-            Menu.print(zoekresultaat.toString());
-        } else {
-            Menu.print("Er is geen product met het opgegeven productId gevonden.");
-        }
-    }
-    public void findProductBySoort(String soort) {
-        List<Product> zoekresultaat = productDAO.findProductBySoort(soort);
-        Menu.print(zoekresultaat);
-    }
-    */
-    
-    // Error handling nodig voor
+// Error handling nodig voor
         // adressen_klanten_id
         // bestellingen_klanten_id
         // facturen_klanten_id
@@ -143,5 +97,68 @@ public class Controller {
             }
             return true;
         }
+*/
+
+
+
+
+
+
+
+
+
+
+
+// behandelt de interactie tussen het model (data + methodes) en de view (UI, console)
+/*
+de controller heeft dan toegang tot het model via de DAO's
+controller krijgt bijv via actionlistener in view binnen: ik wil een product updaten
+controller geeft dat door aan de juiste DAO en geeft resultaat terug aan view voor display
+*/
+/*public class Controller {
+    private SQLConnection connectie = new SQLConnection();
+    private Connection sqlConnectie = connectie.getSQLConnection();
+    private BestellingDAO bestellingDAO = new BestellingSQL(sqlConnectie);
+    private ProductDAO productDAO = new ProductSQL(sqlConnectie);
+    private KlantInterface klantDAO = new KlantDAOinterfaceImpl(sqlConnectie);
+    private Menu menu = new Menu();
+ */   
+    // Functies:
+    // 1: Om producten te zoeken:
+    //      1.1: findProductByID(int productId); - returns Product object als zoekresultaat
+    //      1.2: findProductBySoort(String soort); - returns List<Product> met zoekresultaten
+    //      1.3: findProductByPrijs(BigDecimal Prijs); - returns List<Product> met zoekresultaten
+    //      1.4: findProductByVoorraad(int voorraad); - returns List<Product> met zoekresultaten
+    // 2: Om producten toe te voegen:
+    //      // De functie bij 2.1 heeft een in de view aangemaakt Product Object nodig
+    //      2.1: toevoegenProduct(Product product) - returns succes of mislukt (of return: vernieuwd product?)
+    // 3: Om producten aan te passen:
+    //      // De functies hieronder hebben een productId (of Product Object? nog niet geimplementeerd) nodig
+    //      3.1: updateProductOmschrijving(int productId, String omschrijving); - returns succes of mislukt (of return: vernieuwd product?)
+    //      3.2: updateProductSoort(int productId, String soort); - returns succes of mislukt (of return: vernieuwd product?)
+    //      3.3: updateProductPrijs(int productId, BigDecimal prijs); - returns succes of mislukt (of return: vernieuwd product?)
+    //      3.4: updateProductVoorraad(int productId, int voorraad); - returns succes of mislukt (of return: vernieuwd product?)
+    // 4: Om producten te verwijderen:
+    //      // De functie hieronder heeft een productId (of Product Object? nog niet geimplementeerd) nodig
+    //      4.1: verwijderenProduct(int productId); - returns succes of mislukt (of return: vernieuwd product?)
+    
+    // Voorbeeld / test functie
+    /*
+    public void findProductByID(int productId) {
+        if (existsProductId(productId)) {
+            Product zoekresultaat = productDAO.findProductByID(productId);
+            Menu.print(zoekresultaat.toString());
+        } else {
+            Menu.print("Er is geen product met het opgegeven productId gevonden.");
+        }
+    }
+    public void findProductBySoort(String soort) {
+        List<Product> zoekresultaat = productDAO.findProductBySoort(soort);
+        Menu.print(zoekresultaat);
+    }
+    
+    
+    
 } // einde Controller
 
+*/
