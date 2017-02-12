@@ -13,7 +13,7 @@ import java.util.List;
  * @author jurjen
  */
 
-public class ProductenMenu {
+public class ProductMenu {
 
     private ProductController productController = new ProductController();
     

@@ -89,7 +89,7 @@ public class BestelregelMenu {
         int bestellingId = TextIO.getlnInt();
         System.out.println("Vul het producten id en druk op enter");
         int productId = TextIO.getlnInt();
-        System.out.println("Vult de hoeveelheid van dit product in en druk op enter");
+        System.out.println("Vul de hoeveelheid van dit product in en druk op enter");
         int hoeveelheid = TextIO.getlnInt();
         Bestelregel bestelregel = new Bestelregel.BestelregelBuilder()
                                                  .bestellingId(bestellingId)

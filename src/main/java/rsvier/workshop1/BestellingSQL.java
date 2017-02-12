@@ -338,7 +338,7 @@ public class BestellingSQL implements BestellingDAO {
                     besteldProduct.setPrijs(rs.getBigDecimal("prijs"));
                     int hoeveelheid = rs.getInt("hoeveelheid");
                     // Testen of het lukt met 1 return, een hashmap
-                        for (int i = 0; i < zoekresultaat.size(); i++) {
+                        for (int i = 0; i < aantalArtikelen; i++) {
                             test.put(besteldProduct, hoeveelheid);
                         }
                 }

@@ -132,7 +132,7 @@ public class BestellingMenu {
         int adresId = TextIO.getlnInt();
         System.out.println("Vult aantal artikelen in en druk op enter");
         int aantalArtikelen = TextIO.getlnInt();
-        System.out.println("Vul het aantal in de voorraad en druk op enter");
+        System.out.println("Vul totaalprijs in en druk op enter");
         BigDecimal totaalprijs = new BigDecimal(TextIO.getln());
         Bestelling bestelling = new Bestelling.BestellingBuilder()
                                               .klantId(klantId)

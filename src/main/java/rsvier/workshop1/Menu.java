@@ -38,11 +38,11 @@ System.out.println("=========================");
         System.out.println(" 2 Klanten menu  "); 
         System.out.println(" 3 Adres gegevens menu  "); 
         System.out.println(" 4 Bestelling menu  ");  
-        System.out.println(" 5 Medewerkers  menu t"); 
+        System.out.println(" 5 Medewerkers  menu"); 
         System.out.println(" 6 Accounts gegevens menu ");    
         System.out.println(" 7 Factuur gegevens menu ");  
-        System.out.println(" 8 Bestelling regel menu ");
-        System.out.println(" 0: quit");
+        System.out.println(" 8 Bestelregel menu ");
+        System.out.println(" 0: Stoppen");
         System.out.println("=========================");
 System.out.println("Vul het cijfer in wat u wilt doen");
 System.out.println("en druk dan op enter.");
@@ -53,14 +53,14 @@ cijfer = input.nextInt();
 if (cijfer == 0){ System.out.println("Einde");}
 else if (cijfer <= 8 && cijfer >0){
     switch (cijfer){
-        case 1: System.out.println(" 1 Producten menu, het bestaat");  productmenu(); break;
-        case 2: System.out.println(" 2 Klanten menu bestaat "); klantenmenu();   break;
-        case 3: System.out.println(" 3 Adres gegevens menu bestaat ");  adressenmenu(); break;
+        case 1: System.out.println(" 1 Producten menu, het bestaat");  ProductMenu productmenu = new ProductMenu(); productmenu.productmenu(); break;
+        case 2: System.out.println(" 2 Klanten menu bestaat "); KlantMenu klantmenu = new KlantMenu(); klantmenu.klantenmenu();   break;
+        case 3: System.out.println(" 3 Adres gegevens menu bestaat ");  AdresMenu adresmenu = new AdresMenu(); adresmenu.adressenmenu(); break;
         case 4: System.out.println(" 4 Bestelling menu bestaat ");  BestellingMenu bestellingmenu = new BestellingMenu(); bestellingmenu.bestellingenmenu(); break;
-        case 5: System.out.println(" 5 Medewerkers maken menu bestaat nog niet");  medewerkersmenu(); break;
+        case 5: System.out.println(" 5 Medewerkers maken menu bestaat nog niet");  MedewerkerMenu medewerkersmenu = new MedewerkerMenu(); medewerkersmenu.medewerkersmenu(); break;
         case 6: System.out.println(" 6 Accounts gegevens menu bestaat ");  AccountMenu am = new AccountMenu(); am.accountsmenu(); break;
-        case 7: System.out.println(" 7 Factuur gegevens menu bestaat nog niet");   facturenmenu(); break;
-        case 8: System.out.println(" 8 Bestelling regel menu bestaat nog niet"); bestellingregelmenu(); break;
+        case 7: System.out.println(" 7 Factuur gegevens menu bestaat nog niet");   FactuurMenu factuurmenu = new FactuurMenu(); factuurmenu.facturenmenu(); break;
+        case 8: System.out.println(" 8 Bestelling regel menu bestaat nog niet"); BestelregelMenu bestelregelmenu = new BestelregelMenu(); bestelregelmenu.bestelregelmenu(); break;
      
     }
 }
