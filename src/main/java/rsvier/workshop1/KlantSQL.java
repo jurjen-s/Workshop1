@@ -11,12 +11,16 @@ import java.util.List;
 import java.sql.*;
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 /**
  *
  * @author Frank
  */
 public class KlantSQL implements KlantDAO {
     
+    
+     private static final Logger LOGGER = LogManager.getLogger(KlantSQL.class);
     //specifieke connectie open laten.
     private Connection connectie;
     
@@ -113,6 +117,7 @@ public class KlantSQL implements KlantDAO {
 
     @Override
     public Klant findBijID(int klantenid) {
+        LOGGER.debug("input bij findBijID is {}",klantenid);
          String query = "SELECT * FROM klanten WHERE klanten_id = " + klantenid;
         Klant klant = new Klant();
         try (
@@ -155,6 +160,7 @@ public class KlantSQL implements KlantDAO {
 
     @Override
     public Klant findBijNaam(String voornaam, String tussenvoegsel, String achternaam) {
+           LOGGER.debug("input bij findBijNaam is {}{}{}",voornaam, tussenvoegsel,achternaam);
        String query = "SELECT * FROM klanten WHERE voornaam = '" + voornaam + "' AND achternaam = '" + achternaam + "' AND tussenvoegsel = '" + tussenvoegsel + "'       ";
         Klant klant = new Klant();
         try (
@@ -197,6 +203,7 @@ public class KlantSQL implements KlantDAO {
 
     @Override
     public Klant findBijVoornaam(String voornaam) {
+           LOGGER.debug("input bij findBijVoornaam is {}",voornaam);
        String query = "SELECT * FROM klanten WHERE voornaam = '" + voornaam + "'";
         Klant klant = new Klant();
         try (
