@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
@@ -16,6 +18,8 @@ import java.sql.SQLException;
  */
 public class BestelregelSQL implements BestelregelDAO {
 
+    private static final Logger LOGGER = LogManager.getLogger(AdresSQL.class);
+    
     private Connection bestelregelconnectie;
     
     public BestelregelSQL() {
@@ -29,6 +33,7 @@ public class BestelregelSQL implements BestelregelDAO {
     
     @Override
     public boolean toevoegenBestelregel(Bestelregel bestelregel) {
+        LOGGER.debug("Toevoegen bestelregel: {}", bestelregel.toString());
         try (PreparedStatement stmt = bestelregelconnectie.prepareStatement(
             "INSERT INTO bestelregels" +
             "(FK_bestelregels_bestellingen_id," +
@@ -40,7 +45,7 @@ public class BestelregelSQL implements BestelregelDAO {
             stmt.executeUpdate();
         } catch (SQLException ex) {
             System.out.print(ex.getMessage());
-            System.out.println("Er ging iets mis bij het updaten van de bestelregel.");
+            LOGGER.error("Het volgende ging verkeerd bij toevoegen: {}", ex.getMessage());            
             return false;
         }
         return true;
@@ -48,6 +53,7 @@ public class BestelregelSQL implements BestelregelDAO {
 
     @Override
     public Bestelregel findBestelregelById(int bestelregelId) {
+        LOGGER.debug("Zoeken bestelregel op id: {}", bestelregelId);
         String query = "SELECT * FROM bestelregels WHERE bestelregels_id = ?";
         Bestelregel bestelregel = new Bestelregel();
         try (PreparedStatement stmt = bestelregelconnectie.prepareStatement(query)) {
@@ -62,14 +68,15 @@ public class BestelregelSQL implements BestelregelDAO {
                                                      .build();
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het zoeken van een bestelregel op bestelregelId");
+            LOGGER.error("Het volgende ging verkeerd bij zoeken: {}", ex.getMessage());            
         }
+        LOGGER.debug("Output zoeken: {}", bestelregel.toString());
         return bestelregel;
     }
 
     @Override
     public Bestelregel findBestelregelByBestellingId(int bestellingId) {
+        LOGGER.debug("Zoeken bestelregel op bestellingId: {}", bestellingId);
         String query = "SELECT * FROM bestelregels WHERE FK_bestelregels_bestellingen_id = ?";
         Bestelregel bestelregel = new Bestelregel();
         try (PreparedStatement stmt = bestelregelconnectie.prepareStatement(query)) {
@@ -84,14 +91,15 @@ public class BestelregelSQL implements BestelregelDAO {
                                                      .build();
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het zoeken van een bestelregel op bestellingId");
+            LOGGER.error("Het volgende ging verkeerd bij zoeken: {}", ex.getMessage());            
         }
+        LOGGER.debug("Output zoeken op bestellingId: {}", bestelregel.toString());
         return bestelregel;
     }
 
     @Override
     public Bestelregel findBestelregelByProductId(int productId) {
+        LOGGER.debug("Zoeken bestelregel op productId: {}", productId);
         String query = "SELECT * FROM bestelregels WHERE FK_bestelregels_producten_id = ?";
         Bestelregel bestelregel = new Bestelregel();
         try (PreparedStatement stmt = bestelregelconnectie.prepareStatement(query)) {
@@ -106,14 +114,15 @@ public class BestelregelSQL implements BestelregelDAO {
                                                      .build();
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het zoeken van een bestelregel op productId");
+            LOGGER.error("Het volgende ging verkeerd bij zoeken: {}", ex.getMessage());            
         }
+        LOGGER.debug("Output zoeken op productId: {}", bestelregel.toString());
         return bestelregel;
     }
 
     @Override
     public Bestelregel findBestelregelByHoeveelheid(int hoeveelheid) {
+        LOGGER.debug("Zoeken bestelregel op hoeveelheid: {}", hoeveelheid);
         String query = "SELECT * FROM bestelregels WHERE hoeveelheid = ?";
         Bestelregel bestelregel = new Bestelregel();
         try (PreparedStatement stmt = bestelregelconnectie.prepareStatement(query)) {
@@ -128,20 +137,20 @@ public class BestelregelSQL implements BestelregelDAO {
                                                      .build();
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het zoeken van een bestelregel op hoeveelheid");
+            LOGGER.error("Het volgende ging verkeerd bij zoeken: {}", ex.getMessage());            
         }
+        LOGGER.debug("Output zoeken op hoeveelheid: {}", bestelregel.toString());
         return bestelregel;
     }
 
     @Override
     public boolean updateBestelregelBestellingId(int bestelregelId, int bestellingId) {
+        LOGGER.debug("Update bestellingId van bestelregel: {}", bestelregelId);
         String query = "UPDATE bestelregels SET FK_bestelregels_bestellingen_id = ? WHERE bestelregels_id = bestelregelId";
         try (PreparedStatement stmt = bestelregelconnectie.prepareStatement(query)) {
             stmt.setInt(1, bestellingId);
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het update van bestelregel op bestellingId.");
+            LOGGER.error("Het volgende ging verkeerd bij updaten: {}", ex.getMessage());            
             return false;
         }
         return true;
@@ -149,12 +158,12 @@ public class BestelregelSQL implements BestelregelDAO {
 
     @Override
     public boolean updateBestelregelProductId(int bestelregelId, int productId) {
+        LOGGER.debug("Update productId van bestelregel: {}", bestelregelId);
         String query = "UPDATE bestelregels SET FK_bestelregels_producten_id = ? WHERE bestelregels_id = bestelregelId";
         try (PreparedStatement stmt = bestelregelconnectie.prepareStatement(query)) {
             stmt.setInt(1, productId);
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het update van bestelregel op productId.");
+            LOGGER.error("Het volgende ging verkeerd bij updaten: {}", ex.getMessage());
             return false;
         }
         return true;
@@ -162,12 +171,12 @@ public class BestelregelSQL implements BestelregelDAO {
     
     @Override
     public boolean updateBestelregelHoeveelheid(int bestelregelId, int hoeveelheid) {
+        LOGGER.debug("Update hoeveelheid van bestelregel: {}", bestelregelId);
         String query = "UPDATE bestelregels SET hoeveelheid = ? WHERE bestelregels_id = bestelregelId";
         try (PreparedStatement stmt = bestelregelconnectie.prepareStatement(query)) {
             stmt.setInt(1, hoeveelheid);
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het update van bestelregel op hoeveelheid.");
+            LOGGER.error("Het volgende ging verkeerd bij updaten: {}", ex.getMessage());
             return false;
         }
         return true;
@@ -175,14 +184,14 @@ public class BestelregelSQL implements BestelregelDAO {
     
     @Override
     public boolean deleteBestelregel(int bestelregelId) {
+        LOGGER.debug("Verwijder bestelregel: {}", bestelregelId);
         String query = "DELETE FROM bestelregel WHERE bestelregels_id = ?";
         try (PreparedStatement stmt = bestelregelconnectie.prepareStatement(query)) {
         stmt.setInt(1, bestelregelId);
         stmt.executeUpdate();
         stmt.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis met het verwijderen van de bestelregel.");
+            LOGGER.error("Het volgende ging verkeerd bij verwijderen: {}", ex.getMessage());
             return false;
         }        
         return true;
