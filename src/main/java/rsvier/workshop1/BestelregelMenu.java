@@ -54,7 +54,7 @@ public class BestelregelMenu {
         System.out.println("U gaat een bestelregel zoeken op bestelregel ID.");
         System.out.println("Vul ID in en druk op enter.");
         int bestelregelId = TextIO.getlnInt();
-        (bestelregelController.findBestelregelById(bestelregelId)).toString();
+        System.out.println(bestelregelController.findBestelregelById(bestelregelId).toString());
         bestelregelmenu();    
     }
     
@@ -62,7 +62,7 @@ public class BestelregelMenu {
         System.out.println("U gaat een bestelregel zoeken op bestelling ID.");
         System.out.println("Vul ID in en druk op enter.");
         int bestellingId = TextIO.getlnInt();
-        (bestelregelController.findBestelregelByBestellingId(bestellingId)).toString();
+        System.out.println(bestelregelController.findBestelregelByBestellingId(bestellingId).toString());
         bestelregelmenu();
     }
 
@@ -70,7 +70,7 @@ public class BestelregelMenu {
         System.out.println("U gaat een bestelregel zoeken op product ID.");
         System.out.println("Vul ID in en druk op enter.");
         int productId = TextIO.getlnInt();
-        (bestelregelController.findBestelregelByProductId(productId)).toString();
+        System.out.println(bestelregelController.findBestelregelByProductId(productId).toString());
         bestelregelmenu(); 
     }
 
@@ -78,7 +78,7 @@ public class BestelregelMenu {
         System.out.println("U gaat een bestelregel zoeken op hoeveelheid.");
         System.out.println("Vul ID in en druk op enter.");
         int hoeveelheid = TextIO.getlnInt();
-        (bestelregelController.findBestelregelByHoeveelheid(hoeveelheid)).toString();
+        System.out.println(bestelregelController.findBestelregelByHoeveelheid(hoeveelheid).toString());
         bestelregelmenu();  
     }
 

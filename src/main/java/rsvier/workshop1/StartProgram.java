@@ -5,10 +5,9 @@
  */
 package rsvier.workshop1;
 
-
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 
 /**
  *
@@ -24,8 +23,13 @@ public class StartProgram {
     
     public static void main(String[] args){
         
+         Logger logger = LogManager.getLogger(StartProgram.class);
         
-       
+        logger.info("Programma runt ");
+        
+        logger.error("logger moet opslaan!");
+        
+        
         
     
         System.out.println("Eerst inloggen");

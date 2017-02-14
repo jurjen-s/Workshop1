@@ -74,12 +74,9 @@ public class BestellingMenu {
         System.out.println("Vul ID in en druk op enter.");
         int klantId = TextIO.getlnInt();
         List<Bestelling> zoekresultaat = bestellingController.findBestellingByKlant(klantId);
-        System.out.println("Print manier 1: ");
         for (Bestelling bestelling:zoekresultaat) {
             bestelling.toString();
         }
-        System.out.println("Print manier 2: ");
-        System.out.println(Arrays.toString(zoekresultaat.toArray()));
         bestellingenmenu();
 
     }

@@ -224,7 +224,7 @@ public class FactuurMenu {
         System.out.println("U gaat een factuur zoeken mbv bestelling id");
         System.out.println("Vul een bestelling id (int) in en druk op enter.");
         int bestellingId = TextIO.getlnInt();
-        (factuurController.findFactuurByBestellingId(bestellingId)).toString();
+        System.out.println(factuurController.findFactuurByBestellingId(bestellingId).toString());
         facturenmenu();
     }
     
@@ -232,7 +232,7 @@ public class FactuurMenu {
         System.out.println("U gaat een factuur zoeken mbv adress id");
         System.out.println("Vul adress id (int) in en druk op enter.");
         int adresId = TextIO.getlnInt();
-        (factuurController.findFactuurByAdresId(adresId)).toString();
+        System.out.println(factuurController.findFactuurByAdresId(adresId).toString());
         facturenmenu();
     }
     
@@ -240,7 +240,7 @@ public class FactuurMenu {
         System.out.println("U gaat een factuur zoeken mbv klanten id");
         System.out.println("Vul klant id (int) in en druk op enter.");
         int klantId = TextIO.getlnInt();
-        (factuurController.findFactuurByKlantId(klantId)).toString();
+        System.out.println(factuurController.findFactuurByKlantId(klantId).toString());
         facturenmenu();
     }
     
@@ -248,7 +248,7 @@ public class FactuurMenu {
         System.out.println("U gaat een factuur zoeken mbv  id");
         System.out.println("Vul factuur id (int) in en druk op enter.");
         int factuurId = TextIO.getlnInt();
-        (factuurController.findFactuurById(factuurId)).toString();
+        System.out.println(factuurController.findFactuurById(factuurId).toString());
         facturenmenu();
     }
     

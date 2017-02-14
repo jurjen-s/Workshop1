@@ -61,7 +61,9 @@ public class ProductMenu {
         System.out.println("U gaat een product zoeken op ID.");
         System.out.println("Vul ID in en druk op enter.");
         int productId = TextIO.getlnInt();
-        (productController.findProductById(productId)).toString();
+        System.out.println(productController.findProductById(productId).toString());
+        //Product gevondenProduct = productController.findProductById(productId);
+        //gevondenProduct.toString();
         productmenu();
         
     }

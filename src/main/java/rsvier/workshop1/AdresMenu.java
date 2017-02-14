@@ -64,7 +64,7 @@ public class AdresMenu {
         System.out.println("U gaat een adres zoeken op ID.");
         System.out.println("Vul ID in en druk op enter.");
         int adresId = TextIO.getlnInt();
-        (adresController.findAdresById(adresId)).toString();
+        System.out.println(adresController.findAdresById(adresId).toString());
         adressenmenu();
     }
     
@@ -145,7 +145,7 @@ public class AdresMenu {
                                .postcode(postcode)
                                .land(land)
                                .build();
-        (adresController.toevoegenAdres(adres)).toString();
+        System.out.println(adresController.toevoegenAdres(adres).toString());
         adressenmenu();
     }
 

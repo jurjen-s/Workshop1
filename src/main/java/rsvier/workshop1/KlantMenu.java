@@ -192,7 +192,7 @@ public void klantenmenuV(){
    int Telefoonnr = TextIO.getlnInt(); 
     
    
-    klantController.updateKlant(accountidvanklant,  VN, Heefttussenvoegsel, TV, AN, Telefoonnr).toString();
+    System.out.println(klantController.updateKlant(accountidvanklant,  VN, Heefttussenvoegsel, TV, AN, Telefoonnr).toString());
     
     klantenmenu();
 }

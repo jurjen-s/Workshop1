@@ -1,0 +1,14 @@
+2017-02-14 17:21:08,337 INFO r.w.StartProgram [main] Programma runt 
+2017-02-14 17:21:08,345 ERROR r.w.StartProgram [main] logger moet opslaan!
+2017-02-14 17:21:19,395 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
+2017-02-14 17:21:19,488 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
+2017-02-14 17:21:38,106 DEBUG r.w.BestellingSQL [main] Zoek bestelling op id 1
+2017-02-14 17:21:38,267 DEBUG r.w.BestellingSQL [main] Output zoeken op bestellingId: Bestelling 1, behorende bij klant 1 en adres 1, heeft 0 artikelen met een totaalprijs van null Euro.
+2017-02-14 17:22:48,052 INFO r.w.StartProgram [main] Programma runt 
+2017-02-14 17:22:48,064 ERROR r.w.StartProgram [main] logger moet opslaan!
+2017-02-14 17:23:31,156 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
+2017-02-14 17:23:31,184 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
+2017-02-14 17:27:05,436 INFO r.w.StartProgram [main] Programma runt 
+2017-02-14 17:27:05,449 ERROR r.w.StartProgram [main] logger moet opslaan!
+2017-02-14 17:27:12,140 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
+2017-02-14 17:27:12,173 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
