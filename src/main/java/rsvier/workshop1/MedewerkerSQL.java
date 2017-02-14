@@ -9,13 +9,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 /**
  *
  * @author Frank
  */
 public class MedewerkerSQL implements MedewerkerDAO{
     
+    private static final Logger LOGGER = LogManager.getLogger(MedewerkerSQL.class);
     
      private Connection medewerkerconnectie;
     
@@ -25,7 +27,7 @@ public class MedewerkerSQL implements MedewerkerDAO{
 
     @Override
     public boolean deleteMedewerker(int id) {
-        
+        LOGGER.debug("MedewerkerId in deleteMedewerker is {}",id);
         // String query = "DELETE FROM klant_has_adres (=NAAM TUSSEN TABLE! ) WHERE Klant_klant_id (NAAM=FK ALS DIE ER IS) = " + klant.getKlantID(); 
        
         String query = "DELETE FROM medewerkers WHERE medewerkers_id = " + id;        
@@ -41,16 +43,18 @@ public class MedewerkerSQL implements MedewerkerDAO{
             
             System.out.println("Account gegevens zijn succesvol verwijderd");
         }
-        catch (SQLException foutmedewerkerdelete){
-         System.out.println(foutmedewerkerdelete.getMessage());
+        catch (SQLException ex){
+         System.out.println(ex.getMessage());
+         LOGGER.error("Er gaat iets mis met het deleteMedewerker{}", ex.getMessage());
               return false;  
         } 
-        
+        LOGGER.debug("output deleteMedewerker is true");
         return true;
     }
 
     @Override
     public Medewerker findMedewerkerByID(int id) {
+         LOGGER.debug("Id in findMedewerkerByID is {}",id);
         String query = "SELECT * FROM medewerkers WHERE medewerkers_id = '" + id + "'";
         Medewerker medewerker = new Medewerker();
         try (
@@ -73,16 +77,16 @@ public class MedewerkerSQL implements MedewerkerDAO{
              }//einde if
         } //einde try
         catch (SQLException ex2) {
-       	System.out.println(ex2.getMessage());
+       	LOGGER.error("Er gaat iets mis met het findMedewerkerByID{}", ex2.getMessage());
         }
-        
+        LOGGER.debug("output findMedewerkerByID is :{}", medewerker.getView2());
         return medewerker;    
     }
 
     @Override
     public Medewerker createMedewerker(int medewerkerAccountID, String email, String voornaam, String tussenvoegsel, String achternaam) {
         
-         
+          LOGGER.debug("Input in createMedewerker is {}{}{}{}{}",medewerkerAccountID,email,voornaam,tussenvoegsel,achternaam);
         Medewerker medewerker = new Medewerker();
         
         
@@ -131,15 +135,16 @@ public class MedewerkerSQL implements MedewerkerDAO{
         
         }
         catch(SQLException ex){
-        System.out.println(ex.getMessage());
+       	LOGGER.error("Er gaat iets mis met het maken van een medewerker{}", ex.getMessage());
                 }
             
-         
+         LOGGER.debug("output createMedewerker is :{}", medewerker.getView2());
         return medewerker;
     }
 
     @Override
     public Medewerker findMedewerkerByVoornaam(String voornaam) {
+        LOGGER.debug("Input in findMedewerkerByVoornaam is {}", voornaam);
         String query = "SELECT * FROM medewerkers WHERE voornaam = '" + voornaam + "'";
         Medewerker medewerker = new Medewerker();
         try (
@@ -162,15 +167,16 @@ public class MedewerkerSQL implements MedewerkerDAO{
              }//einde if
         } //einde try
         catch (SQLException ex2) {
-       	System.out.println(ex2.getMessage());
+            	LOGGER.error("Er gaat iets mis met het findMedewerkerByVoornaam{}", ex2.getMessage());
+       	
         }
-        
+        LOGGER.debug("output findMedewerkerByVoornaam is :{}", medewerker.getView2());
         return medewerker;    
     }
 
     @Override
     public Medewerker updateMedewerker(int medewerkerID, int medewerkerAccountID, String email, String voornaam, String tussenvoegsel, String achternaam) {
-         
+          LOGGER.debug("Input in updateMedewerker is {}{}{}{}{}",medewerkerAccountID,email,voornaam,tussenvoegsel,achternaam);
         Medewerker medewerker = new Medewerker();
         
         
@@ -213,10 +219,11 @@ public class MedewerkerSQL implements MedewerkerDAO{
          
         }
         catch(SQLException ex){
-        System.out.println(ex.getMessage());
+            	LOGGER.error("Er gaat iets mis met het updaten van MedewerkerBy{}", ex.getMessage());
+        
                 }
             
-         
+         LOGGER.debug("output updateMedewerkerByID is :{}", medewerker.getView2());
         return medewerker;
     }
 /*
@@ -252,6 +259,7 @@ public class MedewerkerSQL implements MedewerkerDAO{
 */
     @Override
     public Medewerker findMedewerkerByAchternaam(String achternaam) {
+        LOGGER.debug("Input in findMedewerkerByAchternaam is {}", achternaam);
          String query = "SELECT * FROM medewerkers WHERE achternaam = '" + achternaam + "'";
         Medewerker medewerker = new Medewerker();
         try (
@@ -274,15 +282,16 @@ public class MedewerkerSQL implements MedewerkerDAO{
              }//einde if
         } //einde try
         catch (SQLException ex2) {
-       	System.out.println(ex2.getMessage());
+       	LOGGER.error("Er gaat iets mis met het findMedewerkerByAchternaam{}", ex2.getMessage());
         }
-        
+        LOGGER.debug("output findMedewerkerByAchternaam is :{}", medewerker.getView2());
         return medewerker;    
     }
 
 
     @Override
     public Medewerker findMedewerkerByEmail(String email) {
+        LOGGER.debug("Input in findMedewerkerByEmail is {}", email);
          String query = "SELECT * FROM medewerkers WHERE email = '" + email + "'";
         Medewerker medewerker = new Medewerker();
         try (
@@ -305,9 +314,10 @@ public class MedewerkerSQL implements MedewerkerDAO{
              }//einde if
         } //einde try
         catch (SQLException ex2) {
-       	System.out.println(ex2.getMessage());
+            	LOGGER.error("Er gaat iets mis met het findMedewerkerByEmail {}", ex2.getMessage());
+       	
         }
-        
+        LOGGER.debug("output findMedewerkerByEmail is :{}", medewerker.getView2());
         return medewerker;    
     }
     

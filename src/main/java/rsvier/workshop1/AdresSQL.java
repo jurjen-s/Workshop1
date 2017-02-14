@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 /**
  *
  * @author Frank
@@ -28,6 +30,7 @@ import java.util.List;
  */
 public class AdresSQL implements AdresDAO {
 
+    private static final Logger LOGGER = LogManager.getLogger(AdresSQL.class);
     
      private Connection adresconnectie;
     
@@ -45,6 +48,7 @@ public class AdresSQL implements AdresDAO {
     
     @Override
     public Adres findAdresById(int adresId) {
+         LOGGER.debug("Input  in findAdresById is {}",adresId);
         String query = "SELECT * FROM adressen WHERE adressen_id = '" + adresId + "'";
         
         Adres adres = new Adres();
@@ -71,14 +75,16 @@ public class AdresSQL implements AdresDAO {
              }//einde if
         } //einde try
         catch (SQLException ex) {
-       	System.out.println(ex.getMessage());
+            LOGGER.error("Er gaat iets mis met het zoeken van een adres op AdresID{}", ex.getMessage());
+       
         }
-        
+        LOGGER.debug("output findAdresByID :" +  adres.toString());
         return adres;    
     }
 
     @Override
     public List findAdresByType(int adresType) {
+         LOGGER.debug("Input  in findAdresByType is {}",adresType);
         // @@Controleren of klantId bestaat in database
         List<Adres> zoekresultaat = new ArrayList<>();
         //adresconnectie kan fout zijn!
@@ -115,14 +121,17 @@ public class AdresSQL implements AdresDAO {
             }
             resultset.close();
         } catch (SQLException ex) {
-            System.out.println("Er ging iets mis bij het zoeken van een adres op type.");
-            ex.getMessage();
+            LOGGER.error("Er gaat iets mis met het zoeken van een adres op type {}", ex.getMessage());
+        
+           
         }
+         LOGGER.debug("output findAdresByID :" +  zoekresultaat.toString());
         return zoekresultaat;
     }
 
     @Override
     public List findAdresByKlantId(int klantId) {
+         LOGGER.debug("Input  in findAdresByKlant is {}",klantId);
         // @@Controleren of klantId bestaat in database
         List<Adres> zoekresultaat = new ArrayList<>();
         //adresconnectie kan fout zijn!
@@ -159,14 +168,16 @@ public class AdresSQL implements AdresDAO {
             }
             resultset.close();
         } catch (SQLException ex) {
-            System.out.println("Er ging iets mis bij het zoeken van een adres op klant id.");
-            ex.getMessage();
+            LOGGER.error("Er gaat iets mis met het zoeken van een adres op klantID{}", ex.getMessage());
+           
         }
+         LOGGER.debug("output findAdresByKlantID :" +  zoekresultaat.toString());
         return zoekresultaat;
     }
 
     @Override
     public List findAdresByPostcode(String postcode) {
+         LOGGER.debug("Input  in findAdresByPostcode is {}",postcode);
       
         // @@Controleren of klantId bestaat in database
         List<Adres> zoekresultaat = new ArrayList<>();
@@ -204,14 +215,16 @@ public class AdresSQL implements AdresDAO {
             }
             resultset.close();
         } catch (SQLException ex) {
-            System.out.println("Er ging iets mis bij het zoeken van een adres op postcode.");
-            ex.getMessage();
+            LOGGER.error("Er gaat iets mis met het zoeken van een adres op postcode{}", ex.getMessage());
+          
         }
+         LOGGER.debug("output findAdresByPostcode :" +  zoekresultaat.toString());
         return zoekresultaat;
     }
 
     @Override
     public List findAdresByLand(String land) {
+         LOGGER.debug("Input  in findAdresByLand is {}",land);
        
         // @@Controleren of klantId bestaat in database
         List<Adres> zoekresultaat = new ArrayList<>();
@@ -249,14 +262,16 @@ public class AdresSQL implements AdresDAO {
             }
             resultset.close();
         } catch (SQLException ex) {
-            System.out.println("Er ging iets mis bij het zoeken van een adres mbv land.");
-            ex.getMessage();
+            LOGGER.error("Er gaat iets mis met het zoeken van een adres op land {}", ex.getMessage());
+          
         }
+        LOGGER.debug("output findAdresByLand :" +  zoekresultaat.toString());
         return zoekresultaat;
     }
 
     @Override
     public Adres toevoegenAdres(Adres adres) {
+         LOGGER.debug("Input  in toevoegenAdres is {}",adres.toString());
       
 
     
@@ -279,9 +294,9 @@ public class AdresSQL implements AdresDAO {
             stmt.executeUpdate();
             adres.setAdresId(AdresId);
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het toevoegen van de bestelling.");
+            LOGGER.error("Er gaat iets mis met het toevoegen van een adres {}", ex.getMessage());
         }
+     LOGGER.debug("output toevoegenAdres :" +  adres.toString());
         return adres;
     
     }
@@ -292,12 +307,13 @@ public class AdresSQL implements AdresDAO {
     
     @Override
     public boolean updateAdresType(int adresId, int adresType) {
+         LOGGER.debug("Input  in updateAdresType is {}{}", adresId,adresType);
         String query = "UPDATE adressen SET adressen_type = adresType WHERE adressen_id = adresId";
         try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het updaten van het adres.");
+            LOGGER.error("Er gaat iets mis met het aanpassen van een adres op Type", ex.getMessage());
+           
             return false;
         }
         return true;
@@ -305,12 +321,13 @@ public class AdresSQL implements AdresDAO {
 
     @Override
     public boolean updateAdresStraatnaam(int adresId, String straatnaam) {
+         LOGGER.debug("Input  in updateAdresStraatnaam is {}{}",adresId,straatnaam);
         String query = "UPDATE adressen SET straatnaam = straatnaam WHERE adressen_id = adresId";
         try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het updaten van het adres.");
+            LOGGER.error("Er gaat iets mis met het aanpassen van een adres op Straatnaam", ex.getMessage());
+            
             return false;
         }
         return true;
@@ -318,12 +335,13 @@ public class AdresSQL implements AdresDAO {
 
     @Override
     public boolean updateAdresHuisnummer(int adresId, int huisnummer) {
+         LOGGER.debug("Input  in updateAdresHuisnummer is {}{}",adresId,huisnummer);
         String query = "UPDATE adressen SET huisnummer = huisnummer WHERE adressen_id = adresId";
         try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het updaten van het adres.");
+            LOGGER.error("Er gaat iets mis met het aanpassen van een adres op Huisnummer", ex.getMessage());
+            
             return false;
         }
         return true;
@@ -331,12 +349,13 @@ public class AdresSQL implements AdresDAO {
 
     @Override
     public boolean updateAdresHeeftHuisnrToevoeging(int adresId, int heeftHuisnrToevoeging) {
+         LOGGER.debug("Input  in updateAdresHeeftHuisnrToevoeging is {}{}",adresId,heeftHuisnrToevoeging);
         String query = "UPDATE adressen SET heeft_huisnr_toevoeging = heeftHuisnrToevoeging WHERE adressen_id = adresId";
         try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het updaten van het adres.");
+            LOGGER.error("Er gaat iets mis met het aanpassen van een adres op heeftHuisnummerToevoeging", ex.getMessage());
+           
             return false;
         }
         return true;
@@ -344,12 +363,13 @@ public class AdresSQL implements AdresDAO {
 
     @Override
     public boolean updateAdresHuisnrToevoeging(int adresId, String huisnrToevoeging) {
+         LOGGER.debug("Input  in updateAdresHuisnrToevoeging is {}{}",adresId,huisnrToevoeging);
         String query = "UPDATE adressen SET huisnummer_toevoeging = huisnrToevoeging WHERE adressen_id = adresId";
         try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het updaten van het adres.");
+            LOGGER.error("Er gaat iets mis met het aanpassen van een adres op huisnummerToevoeging", ex.getMessage());
+           
             return false;
         }
         return true;
@@ -357,12 +377,13 @@ public class AdresSQL implements AdresDAO {
 
     @Override
     public boolean updateAdresPostcode(int adresId, String postcode) {
+         LOGGER.debug("Input  in updateAdresPostcode is {]{}",adresId,postcode);
         String query = "UPDATE adressen SET postcode = postcode WHERE adressen_id = adresId";
         try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het updaten van het adres.");
+            LOGGER.error("Er gaat iets mis met het aanpassen van een adres op postcode", ex.getMessage());
+           
             return false;
         }
         return true;
@@ -370,12 +391,13 @@ public class AdresSQL implements AdresDAO {
 
     @Override
     public boolean updateAdresLand(int adresId, String land) {
+        LOGGER.debug("Input  in updateAdresLand is {]{}",adresId,land);
         String query = "UPDATE adressen SET land = land WHERE adressen_id = adresId";
         try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het updaten van het adres.");
+            LOGGER.error("Er gaat iets mis met het aanpassen van een adres op land", ex.getMessage());
+           
             return false;
         }
         return true;
@@ -384,7 +406,7 @@ public class AdresSQL implements AdresDAO {
     
     @Override
     public boolean deleteAdres(int AdresID){
-        
+        LOGGER.debug("Input  in deleteAdres is {}",AdresID);
           String query = "DELETE FROM accounts WHERE accounts_id = " + AdresID;        
         try (
                 //PreparedStatement stmt  = connectie.prepareStatement(query);
@@ -398,8 +420,9 @@ public class AdresSQL implements AdresDAO {
             
             System.out.println("Adres gegevens zijn succesvol verwijderd");
         }
-        catch (SQLException foutaccountdelete){
-         System.out.println(foutaccountdelete.getMessage());
+        catch (SQLException ex){
+            LOGGER.error("Er gaat iets mis met het verwijderen van een adres", ex.getMessage());
+         
               return false;  
         } 
         

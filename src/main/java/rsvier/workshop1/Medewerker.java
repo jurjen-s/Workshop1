@@ -79,6 +79,14 @@ public class Medewerker {
        System.out.println(" medewerker id : " + this.medewerker_id + " account id: " +this.medewerker_account_id+ " emai: "+this.email+" naam : " +this.voornaam  + " "+this.tussenvoegsel+" "+this.achternaam);
    }
    
-    
+    public String getView2(){
+       String view = medewerker_id + "\t\t" +
+                         medewerker_account_id + "\t\t" +
+                         email + "\t\t" +
+                         voornaam + "\t\t" +
+                         tussenvoegsel + "\t\t" +
+                         achternaam ;
+               return view;                  
+    }
     
 }

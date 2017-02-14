@@ -13,12 +13,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  *
  * @author jurjen
  */
 public class ProductSQL implements ProductDAO {
     
+     private static final Logger LOGGER = LogManager.getLogger(MedewerkerSQL.class);
     // Functies:
     // 1: Om producten te zoeken:
     //      1.1: findProductByID(int productId); - returns Product object als zoekresultaat
@@ -46,6 +50,7 @@ public class ProductSQL implements ProductDAO {
     
     @Override
     public Product findProductById(int productId) {
+        LOGGER.debug("Input  in findProductById is {}",productId);
         Product zoekresultaat = new Product();
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
                 "SELECT * " +
@@ -62,17 +67,20 @@ public class ProductSQL implements ProductDAO {
                                                     .prijs(rs.getBigDecimal("prijs"))
                                                     .voorraad(rs.getInt("voorraad"))
                                                     .build();
+               zoekresultaat = gevondenProduct;
             }
             rs.close();
         } catch (SQLException ex) {
-            System.out.print(ex.getMessage());
-            System.out.println("Er ging iets mis bij het zoeken van een product op productID.");
+            LOGGER.error("Er gaat iets mis met het zoeken van een product op productID{}", ex.getMessage());
+            
         }
+         LOGGER.debug("output findProductById :" +  zoekresultaat.toString());
         return zoekresultaat;
     } // einde findProductByID(int productId)
     
     @Override
     public List findProductBySoort(String soort) {
+         LOGGER.debug("Input  in findProductBySoort is {}",soort);
         List<Product> zoekresultaat = new ArrayList<>();
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
                 "SELECT * " +
@@ -93,17 +101,19 @@ public class ProductSQL implements ProductDAO {
             }
             rs.close();
         } catch (SQLException ex) {
-            System.out.print(ex.getMessage());
-            System.out.println("Er ging iets mis bij het zoeken van een product op soort.");        
+            LOGGER.error("Er gaat iets mis met het zoeken van een product op soort{}", ex.getMessage());
+                
         }
         if (zoekresultaat.isEmpty()) {
             System.out.println("Geen zoekresultaten.");
         } 
+         LOGGER.debug("output findProductBySoort is :" +  zoekresultaat.toString());
         return zoekresultaat;
     } // einde findProductBySoort(String soort)
     
     @Override
     public List findProductByPrijs(BigDecimal prijs) {
+         LOGGER.debug("Input  in findProductByPrijs is {}",prijs);
         List<Product> zoekresultaat = new ArrayList<>();
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
                 "SELECT * " +
@@ -124,17 +134,19 @@ public class ProductSQL implements ProductDAO {
             }
             rs.close();
         } catch (SQLException ex) {
-            System.out.print(ex.getMessage());
-            System.out.println("Er ging iets mis bij het zoeken van een product op prijs.");
+            LOGGER.error("Er gaat iets mis met het zoeken van een product op prijs{}", ex.getMessage());
+            
         }
         if (zoekresultaat.isEmpty()) {
             System.out.println("Geen zoekresultaten.");
         } 
+        LOGGER.debug("output findProductByPrijs is :" +  zoekresultaat.toString());
         return zoekresultaat;
     } // einde findProductByPrijs(BigDecimal Prijs)
     
     @Override
     public List findProductByVoorraad(int voorraad) {
+         LOGGER.debug("Input  in findProductByVoorraad is {}",voorraad);
         List<Product> zoekresultaat = new ArrayList<>();
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
                 "SELECT * " +
@@ -155,17 +167,19 @@ public class ProductSQL implements ProductDAO {
             }
             rs.close();
         } catch (SQLException ex) {
-            System.out.print(ex.getMessage());
-            System.out.println("Er ging iets mis bij het zoeken van een product op voorraad.");
+            LOGGER.error("Er gaat iets mis met het zoeken van een product op voorraad{}", ex.getMessage());
+           
         }
         if (zoekresultaat.isEmpty()) {
             System.out.println("Geen zoekresultaten.");
         } 
+        LOGGER.debug("output findProductByVoorraad is :" +  zoekresultaat.toString());
         return zoekresultaat;
     } // einde findProductByVoorraad(int voorraad)
     
     @Override
     public boolean toevoegenProduct(Product product) {
+         LOGGER.debug("Input  in toevoegenProduct is {}",product.toString());
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
                 "INSERT into producten (omschrijving, soort, prijs, voorraad) "+
                 "VALUES (?, ?, ?, ?)")) {
@@ -175,15 +189,17 @@ public class ProductSQL implements ProductDAO {
             stmt.setInt(4, product.getVoorraad());
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het toevoegen van het product.");
+            LOGGER.error("Er gaat iets mis met het toevoegen van het product {}", ex.getMessage());
+           
             return false;
         }
+        LOGGER.debug("output toevoegenProduct is  true");
         return true;
     } // einde toevoegenProduct(Product product)
     
     @Override
     public boolean updateProductOmschrijving(int productId, String omschrijving) {
+         LOGGER.debug("Input  in updateProductOmschrijving is {}{}",productId ,omschrijving);
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
                 "UPDATE producten" +
                 "SET omschrijving = ?" +
@@ -191,15 +207,17 @@ public class ProductSQL implements ProductDAO {
             stmt.setString(1, omschrijving);
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het updaten van de productomschrijving.");
+            LOGGER.error("Er gaat iets mis met het updaten van de productomschrijving {}", ex.getMessage());
+           
             return false;
         }
+        LOGGER.debug("output updateProductOmschrijving is true");
         return true;
     } // einde updateProductOmschrijving(int productId, String omschrijving)
     
     @Override
     public boolean updateProductSoort(int productId, String soort) {
+         LOGGER.debug("Input  in updateProductBySoort is {}{}",productId,soort);
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
                 "UPDATE producten" +
                 "SET soort = ?" +
@@ -207,15 +225,17 @@ public class ProductSQL implements ProductDAO {
             stmt.setString(1, soort);
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het updaten van de productsoort.");
+              LOGGER.error("Er gaat iets mis met het updaten van de productsoort {}", ex.getMessage());
+           
             return false;
         }
+        LOGGER.debug("output findProductBySoort is true");
         return true;
     } // einde updateProductSoort(int productId, String soort)
     
     @Override
     public boolean updateProductPrijs(int productId, BigDecimal prijs)  {
+         LOGGER.debug("Input  in updateProductPrijs is {}{}",productId,prijs);
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
                 "UPDATE producten" +
                 "SET prijs = ?" +
@@ -223,15 +243,17 @@ public class ProductSQL implements ProductDAO {
             stmt.setBigDecimal(1, prijs);
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het updaten van de productprijs.");
+              LOGGER.error("Er gaat iets mis met het updaten van de productprijs {}", ex.getMessage());
+            
             return false;
         }
+        LOGGER.debug("output findProductPrijs is true ");
         return true;
     } // einde updateProductPrijs(int productId, BigDecimal prijs)
     
     @Override
     public boolean updateProductVoorraad(int productId, int voorraad) {
+         LOGGER.debug("Input  in updateProductVoorraad is {}{}",productId,voorraad);
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
                 "UPDATE producten" +
                 "SET voorraad = ?" +
@@ -239,15 +261,17 @@ public class ProductSQL implements ProductDAO {
             stmt.setInt(1, voorraad);
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het updaten van de productvoorraad.");
+              LOGGER.error("Er gaat iets mis met het updaten van de productovoorraad {}", ex.getMessage());
+            
             return false;
         }
+        LOGGER.debug("output updateProductVoorraad is true");
         return true;
     } // einde updateProductVoorraad(int productId, int voorraad)
     
     @Override
     public boolean deleteProduct(int productId) {
+         LOGGER.debug("Input  in deleteProduct is {}",productId);
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
                 "DELETE FROM producten" +
                 "WHERE productId = ?")) {
@@ -255,10 +279,11 @@ public class ProductSQL implements ProductDAO {
             stmt.executeUpdate();
             stmt.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het verwijderen van het product.");
+              LOGGER.error("Er gaat iets mis met het verwijderen van het product {}", ex.getMessage());
+           
             return false;
-        }        
+        }  
+        LOGGER.debug("output deleteProdcut is true");
     return true;
     } // einde verwijderenProduct(int productId)
 
