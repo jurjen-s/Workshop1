@@ -25,7 +25,7 @@ public class SQLConnection {
             String userPass = "admin";
             // Try to load the driver
             try {                
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException e) {
 		System.out.println("MySQL JDBC Driver niet gevonden.");
 		e.printStackTrace();
