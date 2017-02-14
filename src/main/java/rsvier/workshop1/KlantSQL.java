@@ -36,7 +36,7 @@ public class KlantSQL implements KlantDAO {
     
      
      
-//onzin
+//onzin <--------------------------------
     @Override
     public List<Klant> klantlijst() {
         
@@ -74,8 +74,8 @@ public class KlantSQL implements KlantDAO {
                 */
                 klanten.add(klant);
             } 
-        } catch (SQLException exklantenlijst) {
-        	//"gaat iets mis");
+        } catch (SQLException ex) {
+        	
         }     
         //"Klanten gevonden");
         return klanten;
@@ -151,9 +151,9 @@ public class KlantSQL implements KlantDAO {
             
          //einde try   
         } catch (SQLException ex) { System.out.println(ex.getMessage());
-        	
+        	 LOGGER.error("Er gaat iets mis met het bekijken van een klanten op klantID{}", ex.getMessage());
         }
-        
+        LOGGER.debug("output bij findBijID is "+ klant.getStringKlant());
         return klant;
        
     }
@@ -193,11 +193,10 @@ public class KlantSQL implements KlantDAO {
                 
             }//einde if
                 } //einde try
-                 catch(SQLException foutfindbijnaam)  
-                 { System.out.println(    foutfindbijnaam.getMessage()   );
-               	
-                 }
-        
+                 catch(SQLException ex)  {
+                     LOGGER.error("Er gaat iets mis met het bekijken van een klanten op naam : {}", ex.getMessage());
+                      }
+        LOGGER.debug("output bij findBijNaam is "+ klant.getStringKlant());
         return klant;
     }
 
@@ -244,10 +243,10 @@ public class KlantSQL implements KlantDAO {
                 
             }//einde if
         } //einde try
-        catch (SQLException exfoutbijvoornaam) {
-       	System.out.println(exfoutbijvoornaam.getMessage());
+        catch (SQLException ex) {
+       	LOGGER.error("Er gaat iets mis met het bekijken van een klanten op voornaam {}", ex.getMessage());
         }
-        
+        LOGGER.debug("output bij findBijVoornaam is "+ klant.getStringKlant());
         return klant;        
     } 
     
@@ -262,7 +261,7 @@ public class KlantSQL implements KlantDAO {
     
     @Override
     public Klant findBijLastName(String achternaam) {
-        
+        LOGGER.debug("input bij findBijLastName is {}",achternaam);
          String query = "SELECT * FROM klanten WHERE achternaam = '" + achternaam + "'";
         Klant klant = new Klant();
        try (
@@ -283,10 +282,10 @@ public class KlantSQL implements KlantDAO {
                 
             }//einde if
         } //einde try
-        catch (SQLException exfoutbijachternaam) {
-       	System.out.println(exfoutbijachternaam.getMessage());
+        catch (SQLException ex) {
+       	LOGGER.error("Er gaat iets mis met het bekijken van een klanten op achternaam {}", ex.getMessage());
         }
-        
+        LOGGER.debug("output bij findBijAchternaam is "+ klant.getStringKlant());
         return klant;        
         
         
@@ -295,7 +294,7 @@ public class KlantSQL implements KlantDAO {
 
     @Override
        public Klant createKlant( int accountidvanklant,  String VN, int Heefttussenvoegsel, String TV, String AN, int Telefoonnr) {
-        
+        LOGGER.debug("input bij create klant is {}{}{}{}{}{}",accountidvanklant,VN,Heefttussenvoegsel,TV,AN,Telefoonnr);
         Klant klant = new Klant();
             
             
@@ -334,10 +333,10 @@ public class KlantSQL implements KlantDAO {
          
         }
         catch(SQLException ex){
-        System.out.println(ex.getMessage());
+        LOGGER.error("Er gaat iets mis met het maken van een klant {}", ex.getMessage());
                 }
         
-      
+      LOGGER.debug("output bij create klant  is "+ klant.getStringKlant());
         return klant;
         
         }
@@ -348,7 +347,7 @@ public class KlantSQL implements KlantDAO {
 
     @Override
     public Klant updateKlant(int accountidvanklant,  String VN, int Heefttussenvoegsel, String TV, String AN, int Telefoonnr) {
-        
+        LOGGER.debug("input bij update klant is {}{}{}{}{}{}",accountidvanklant,VN,Heefttussenvoegsel,TV,AN,Telefoonnr);
         Klant klant = new Klant();
         
         
@@ -390,16 +389,16 @@ public class KlantSQL implements KlantDAO {
          
         }
         catch(SQLException exV){
-        System.out.println(exV.getMessage());
+       LOGGER.error("Er gaat iets mis met het updaten van een klant {}", exV.getMessage());
                 }
            	
-        
+        LOGGER.debug("output bij update klant is "+ klant.getStringKlant());
         return klant;
     }
 
     @Override
     public boolean deleteKlant(int klantid) {
-        
+        LOGGER.debug("input bij delete klant is {}",klantid);
         String query2 = "DELETE FROM klanten WHERE klanten_id = " + klantid ;        
         try (
                 //PreparedStatement stmt  = connectie.prepareStatement(query);
@@ -412,8 +411,8 @@ public class KlantSQL implements KlantDAO {
             // Klant verwijderd, zie query
             
             System.out.println("Klant gegevens zijn succesvol verwijderd");
-        } catch (SQLException foutdelete) {
-        	
+        } catch (SQLException et) {
+        	LOGGER.error("Er gaat iets mis met het verwijderen van een klant {}", et.getMessage());
             return true;    
         }    return true;
     }

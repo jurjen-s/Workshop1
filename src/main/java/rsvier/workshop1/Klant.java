@@ -52,7 +52,10 @@ System.out.println("klanten id: " +this.klanten_id +" "+ this.voornaam +" "+ thi
 
 
         
-    
+    public String getStringKlant(){
+        String klantenString = "klanten id : "+ klanten_id +" voornaam is "+ voornaam +" tussenvoegsel is"+ tussenvoegsel +" achternaam is :"+ achternaam +" telnr. "+ telefoonnummer+" account id"+ FK_accounts_id+ " ";
+        return klantenString;
+    }
 
 
 

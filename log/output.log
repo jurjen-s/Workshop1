@@ -12,3 +12,9 @@
 2017-02-14 17:27:05,449 ERROR r.w.StartProgram [main] logger moet opslaan!
 2017-02-14 17:27:12,140 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
 2017-02-14 17:27:12,173 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
+2017-02-14 17:48:08,544 INFO r.w.StartProgram [main] Programma runt 
+2017-02-14 17:48:08,553 ERROR r.w.StartProgram [main] logger moet opslaan!
+2017-02-14 17:48:21,246 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
+2017-02-14 17:48:21,261 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
+2017-02-14 17:48:28,871 DEBUG r.w.ProductSQL [main] Input  in findProductById is 1
+2017-02-14 17:48:28,892 DEBUG r.w.ProductSQL [main] output findProductById :1		Dure Kaas		Gouden Kaas		1000.00		3.
