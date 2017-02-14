@@ -11,12 +11,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 /**
  *
  * @author Frank
  */
 public class AccountSQL implements AccountDAO {
 
+    private static final Logger LOGGER = LogManager.getLogger(AccountMenu.class);
     
      private Connection accountconnectie;
     
@@ -24,14 +27,12 @@ public class AccountSQL implements AccountDAO {
         this.accountconnectie = connectie;
     }
     
-    
-    
     //aangepast 
 
     @Override
     public Account findAccountByID(int id) {
        
-       
+    LOGGER.debug("Account zoeken. Zoekterm: accountId {}", id);   
         
        String query = "SELECT * FROM accounts WHERE accounts_id = '" + id + "'";
         Account account = new Account();
@@ -54,9 +55,12 @@ public class AccountSQL implements AccountDAO {
              }//einde if
         } //einde try
         catch (SQLException ex2) {
-       	System.out.println(ex2.getMessage());
+            LOGGER.error("Het volgende ging mis bij zoeken account op accountId: {}", ex2.getMessage());
         }
-        
+        if (account.getAccountId() == 0) {
+            LOGGER.error("Er is geen matchend accountId gevonden.");
+        }
+        LOGGER.debug("Zoekresultaat account op accountId: {}", account.toString());
         return account;    
     } 
 
@@ -65,7 +69,7 @@ public class AccountSQL implements AccountDAO {
         
         Account account = new Account();
         
-        
+      LOGGER.debug("Aanmaken account met type {} en wachtwoord.", type);
         
       String query = "INSERT INTO accounts (accounts_type, wachtwoord) VALUES (?, ? ) ";
        
@@ -80,7 +84,7 @@ public class AccountSQL implements AccountDAO {
             
            // ResultSet resultset =
          
-        int operatie = stmt.executeUpdate();
+        stmt.executeUpdate();
         
         ResultSet rs = stmt2.executeQuery();
           
@@ -92,13 +96,16 @@ public class AccountSQL implements AccountDAO {
                 account.setType(rs.getInt("accounts_type"));
                 account.setWachtwoord(rs.getString("wachtwoord"));
         }
-        
+        LOGGER.info("Account gegevens zijn succesvol aangemaakt.");
          
         }
-        catch(SQLException ex){
-        System.out.println(ex.getMessage());
-                }
-            
+        catch (SQLException ex) {
+            LOGGER.debug("Het volgende ging mis bij het aanmaken van een account: {}", ex.getMessage());
+        }
+        finally {
+            //rs.close(); // moet ResultSet buiten try block geinitialiseerd worden?
+        }
+        LOGGER.debug("Resultaat aanmaken account: {}", account.toString());
          
         return account;
         }
@@ -109,7 +116,7 @@ public class AccountSQL implements AccountDAO {
        
          
        // String query = "DELETE FROM klant_has_adres (=NAAM TUSSEN TABLE! ) WHERE Klant_klant_id (NAAM=FK ALS DIE ER IS) = " + klant.getKlantID(); 
-       
+       LOGGER.debug("Account met id {} verwijderen", id);
         String query = "DELETE FROM accounts WHERE accounts_id = " + id;        
         try (
                 //PreparedStatement stmt  = connectie.prepareStatement(query);
@@ -122,9 +129,10 @@ public class AccountSQL implements AccountDAO {
           
             
             System.out.println("Account gegevens zijn succesvol verwijderd");
+            LOGGER.info("Account gegevens zijn succesvol verwijderd");
         }
-        catch (SQLException foutaccountdelete){
-         System.out.println(foutaccountdelete.getMessage());
+        catch (SQLException ex){
+         LOGGER.error("Het volgende ging verkeerd bij het verwijderen van de account: {}", ex.getMessage());
               return false;  
         } 
         
@@ -137,7 +145,7 @@ public class AccountSQL implements AccountDAO {
     @Override
     public boolean updateAccountType(int id, int type) {
         
-                
+        LOGGER.debug("Account met id {} wijzigen naar type {}", id, type)        ;
             String regel = " UPDATE accounts SET accounts_type = ? WHERE accounts_id = ? " ;
           
                     
@@ -152,9 +160,10 @@ public class AccountSQL implements AccountDAO {
        
          
         System.out.println("Account type is succesvol veranderd");
+        LOGGER.info("Account type is succesvol veranderd");
         }
-        catch (SQLException foutaccounttype){
-         System.out.println(foutaccounttype.getMessage());
+        catch (SQLException ex){
+         LOGGER.error("Het volgende ging mis bij het aanpassen van het accounttype: {}", ex.getMessage());
               return false;  
         } 
         
@@ -165,7 +174,7 @@ public class AccountSQL implements AccountDAO {
      @Override
     public boolean updateAccountWachtwoord(int id, String wachtwoord) {
         
-        
+       LOGGER.debug("Wachtwoord van account {} wijzigen.", id) ;
         
         
        try (PreparedStatement stmt = accountconnectie.prepareStatement(
@@ -178,9 +187,10 @@ public class AccountSQL implements AccountDAO {
          stmt.executeUpdate();
          
         System.out.println("Account wachtwoord is succesvol veranderd");
+        LOGGER.info("Account wachtwoord is succesvol veranderd");
         }
-        catch (SQLException foutaccountwachtwoord){
-         System.out.println(foutaccountwachtwoord.getMessage());
+        catch (SQLException ex){
+         LOGGER.error("Het volgende ging mis bij het aanpassen van het wachtwoord: {}", ex.getMessage());
               return false;  
         } 
         
@@ -200,7 +210,7 @@ public class AccountSQL implements AccountDAO {
             
             String query = "SELECT * FROM accounts WHERE accounts_id = ? AND wachtwoord = ?";
             
-            
+            LOGGER.debug("Controleer wachtwoord en id van accountId: {}", accountId);
             
     try (PreparedStatement stmt = accountconnectie.prepareStatement(query)){
         stmt.setInt(1, accountId);
@@ -208,13 +218,14 @@ public class AccountSQL implements AccountDAO {
         ResultSet rs = stmt.executeQuery();
         
         
+        
         if(rs.next()){correct=true;} 
         else { correct = false;        
         }
+        LOGGER.info("Het inloggen is gelukt.");
             } catch (SQLException ex) { 
                 correct = false;
-                System.out.println(ex.getMessage());
-                System.out.println("Er ging iets mis bij het zoeken naar de account.");
+                LOGGER.error("Het volgende ging mis bij het controleren van het wachtwoord: {}", ex.getMessage());
                   }
     return correct;
 }

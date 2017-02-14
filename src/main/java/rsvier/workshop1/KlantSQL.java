@@ -41,8 +41,8 @@ public class KlantSQL implements KlantDAO {
         Klant klant;
         String query = "SELECT * FROM klanten";
         try (
-        		PreparedStatement stmt = connectie.prepareStatement(query);
-        		ResultSet resultset = stmt.executeQuery();){
+        		PreparedStatement stmt = connectie.prepareStatement(query)) {
+        		ResultSet resultset = stmt.executeQuery();
         	
 
             while(resultset.next()) {

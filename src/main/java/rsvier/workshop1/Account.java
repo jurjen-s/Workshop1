@@ -52,6 +52,12 @@ public class Account {
         
     }
     
+    @Override 
+    public String toString() {
+        String account ="id: " + this.accountId +" type : " + this.type + " wachtwoord: " + this.wachtwoord;
+        return account;
+    }
+    
     
 }
 

@@ -15,6 +15,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
@@ -44,7 +46,7 @@ public class BestellingSQL implements BestellingDAO {
     // 4: Om bestellingen te verwijderen:
     //      // De functie hieronder heeft een bestellingId (of Bestelling Object? nog niet geimplementeerd) nodig
     //      4.1: verwijderenBestelling(int bestellingId);
-    
+    private static final Logger LOGGER = LogManager.getLogger(BestellingSQL.class);
    
     private Connection bestellingenconnectie;
     
@@ -61,6 +63,7 @@ public class BestellingSQL implements BestellingDAO {
     
     @Override
     public Bestelling findBestellingById(int bestellingId) {
+        LOGGER.debug("Zoek bestelling op id {}", bestellingId);
         // @@Controleren of bestellingId bestaat in de db
         Bestelling zoekresultaat = new Bestelling();
         String query = "SELECT * FROM bestellingen WHERE bestellingen_id = ?";
@@ -89,14 +92,15 @@ public class BestellingSQL implements BestellingDAO {
             }
             rs.close();
         } catch (SQLException ex) {
-            System.out.println(ex);
-            System.out.println("Er ging iets mis bij het zoeken van een bestelling op bestellingId.");
+            LOGGER.error("Het volgende ging verkeerd bij het zoeken op bestellingId: {}", ex.getMessage());
         }
+        LOGGER.debug("Output zoeken op bestellingId: {}", zoekresultaat.toString());
         return zoekresultaat;
     } // einde zoekBestelling(int bestellingId)
     
     @Override
     public List findBestellingByKlantId(int klantId) {
+        LOGGER.debug("Zoek bestelling op klantId {}", klantId);
         // @@Controleren of klantId bestaat in database
         List<Bestelling> zoekresultaat = new ArrayList<>();
         try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
@@ -122,14 +126,15 @@ public class BestellingSQL implements BestellingDAO {
             }
             rs.close();
         } catch (SQLException ex) {
-            System.out.println("Er ging iets mis bij het zoeken van een bestelling op klantId.");
-            ex.getMessage();
+            LOGGER.error("Het volgende ging verkeerd bij het zoeken op klantId: {}", ex.getMessage());
         }
+        LOGGER.debug("Output zoeken op klantId: {}", zoekresultaat.toString());
         return zoekresultaat;
     } // einde findBestellingByKlant(int klantId)
    
     @Override
     public List findBestellingByAdresId(int adresId) {
+        LOGGER.debug("Zoek bestelling op adresId {}", adresId);
         List<Bestelling> zoekresultaat = new ArrayList<>();
         try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
                 "SELECT * " +
@@ -149,14 +154,15 @@ public class BestellingSQL implements BestellingDAO {
             }
             rs.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het zoeken van een bestelling op adresId.");
+            LOGGER.error("Het volgende ging verkeerd bij het zoeken op adresId: {}", ex.getMessage());
         }
+        LOGGER.debug("Output zoeken op adresId: {}", zoekresultaat.toString());
         return zoekresultaat;
     } // einde zoekBestellingByAdres()
     
     @Override
     public List findBestellingByAantalArtikelen(int aantalArtikelen) {
+        LOGGER.debug("Zoek bestelling op aantalArtikelen {}", aantalArtikelen);
         List<Bestelling> zoekresultaat = new ArrayList<>();
         try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
                 "SELECT * " +
@@ -176,14 +182,15 @@ public class BestellingSQL implements BestellingDAO {
             }
             rs.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het zoeken van een bestelling op aantal artikelen.");        
-        }                        
+            LOGGER.error("Het volgende ging verkeerd bij het zoeken op aantalArtikelen: {}", ex.getMessage());
+        }                    
+        LOGGER.debug("Output zoeken op aantalArtikelen: {}", zoekresultaat.toString());
         return zoekresultaat;
     } // einde findBestellingByAantalArtikelen()
     
     @Override
     public List findBestellingByTotaalprijs(BigDecimal totaalprijs) {
+        LOGGER.debug("Zoek bestelling op totaalprijs {}", totaalprijs);
         List<Bestelling> zoekresultaat = new ArrayList<>();
         try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
                 "SELECT * " +
@@ -203,14 +210,15 @@ public class BestellingSQL implements BestellingDAO {
             }
             rs.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het zoeken van een bestelling op totaalprijs.");        
-        }                        
+            LOGGER.error("Het volgende ging verkeerd bij het zoeken op totaalprijs: {}", ex.getMessage());  
+        }
+        LOGGER.debug("Output zoeken op totaalprijs: {}", zoekresultaat.toString());
         return zoekresultaat;
     } // einde findBestellingByTotaalprijs(BigDecimal totaalprijs)
 
     @Override
     public Bestelling toevoegenBestelling(Bestelling opgegevenBestelling) {
+        LOGGER.debug("Toevoegen bestelling {}", opgegevenBestelling.toString());
         try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
                 "INSERT INTO bestellingen (FK_bestellingen_klanten_id, FK_bestellingen_adres_id, aantal_artikelen, totaalprijs)" +
                 "VALUES ?, ?, ?, ?")) {
@@ -223,14 +231,15 @@ public class BestellingSQL implements BestellingDAO {
             stmt.executeUpdate();
             opgegevenBestelling.setBestellingId(bestellingId);
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het toevoegen van de bestelling.");
+            LOGGER.error("Het volgende ging verkeerd bij het toevoegen: {}", ex.getMessage());  
         }
+        LOGGER.debug("Output toevoegen: {}", opgegevenBestelling.toString());
         return opgegevenBestelling;
     } // einde toevoegenBestelling(Bestelling opgegevenBestelling)
     
     @Override
     public boolean updateBestellingKlantId(int bestellingId, int klantId) {
+        LOGGER.debug("Pas klantId van bestelling {} aan", bestellingId);
         try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
                 "UPDATE bestellingen" +
                 "SET FK_bestellingen_klanten_id = ?" +
@@ -239,15 +248,16 @@ public class BestellingSQL implements BestellingDAO {
         stmt.setInt(2, bestellingId);
         stmt.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis met het aanpassen van het klantId van de bestelling.");
+            LOGGER.error("Het volgende ging verkeerd bij aanpassen: {}", ex.getMessage());  
             return false;
         }
+        LOGGER.debug("Output toevoegen: {}", true);
         return true;
     } // einde updateBestellingKlantId(int bestellingId, int klantId)
     
     @Override
     public boolean updateBestellingAdresId(int bestellingId, int adresId) {
+        LOGGER.debug("Pas adresId van bestelling {} aan", bestellingId);
         try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
                 "UPDATE bestellingen" +
                 "SET FK_bestellingen_adressen_id = ?" +
@@ -256,15 +266,16 @@ public class BestellingSQL implements BestellingDAO {
         stmt.setInt(2, bestellingId);
         stmt.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis met het aanpassen van het adresId van de bestelling.");
+            LOGGER.error("Het volgende ging verkeerd bij aanpassen: {}", ex.getMessage());  
             return false;
         }
+        LOGGER.debug("Output toevoegen: {}", true);
         return true;
     } // einde updateBestellingAdresId(int bestellingId, int adresId)
 
     @Override
     public boolean updateBestellingAantalArtikelen(int bestellingId, int aantalArtikelen) {
+        LOGGER.debug("Pas aantalArtikelen van bestelling {} aan", bestellingId);
         try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
                 "UPDATE bestellingen" +
                 "SET aantal_artikelen = ?" +
@@ -273,15 +284,16 @@ public class BestellingSQL implements BestellingDAO {
         stmt.setInt(2, bestellingId);
         stmt.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis met het aanpassen van het aantal artikelen van de bestelling.");
+            LOGGER.error("Het volgende ging verkeerd bij aanpassen: {}", ex.getMessage());  
             return false;
         }
+        LOGGER.debug("Output toevoegen: {}", true);
         return true;
     } // einde updateBestellingAantalArtikelen(int bestellingId, int aantalArtikelen)
 
     @Override
     public boolean updateBestellingTotaalprijs(int bestellingId, BigDecimal totaalprijs) {
+        LOGGER.debug("Pas totaalprijs van bestelling {} aan", bestellingId);
         try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
                 "UPDATE bestellingen" +
                 "SET totaalprijs = ?" +
@@ -290,15 +302,16 @@ public class BestellingSQL implements BestellingDAO {
         stmt.setInt(2, bestellingId);
         stmt.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis met het aanpassen van de totaalprijs van de bestelling.");
+            LOGGER.error("Het volgende ging verkeerd bij aanpassen: {}", ex.getMessage());  
             return false;
         }
+        LOGGER.debug("Output toevoegen: {}", true);
         return true;
     } // einde updateBestellingTotaalprijs(int bestellingId, BigDecimal totaalprijs)
 
     @Override
     public boolean deleteBestelling(int bestellingId) {
+        LOGGER.debug("Verwijder bestelling {} ", bestellingId);
         try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
                     "DELETE FROM bestellingen" +
                     "WHERE bestellingen_id = ?")) {
@@ -306,15 +319,16 @@ public class BestellingSQL implements BestellingDAO {
         stmt.executeUpdate();
         stmt.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis met het verwijderen van de bestelling.");
+            LOGGER.error("Het volgende ging verkeerd bij verwijderen: {}", ex.getMessage());  
             return false;
         }        
+        LOGGER.debug("Verwijder bestelling {} ", bestellingId);
         return true;
     } // einde verwijderenBestelling(int bestellingId)
     
     @Override
     public void bekijkBestelling(int bestellingId) {
+        LOGGER.debug("Bekijk bestelling {} ", bestellingId);
         List<Product> zoekresultaat = new ArrayList<>();
         Map<Product, Integer> test = new HashMap<Product, Integer>();
         try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
@@ -356,11 +370,9 @@ public class BestellingSQL implements BestellingDAO {
                 
                 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Er ging iets mis bij het bekijken van de bestelling.");
-            
-        }  
-                
+            LOGGER.error("Het volgende ging verkeerd bij verwijderen: {}", ex.getMessage());            
+        }
+        
                 
                 
                 /*
