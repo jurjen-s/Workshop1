@@ -311,12 +311,13 @@ public class AdresSQL implements AdresDAO {
         String query = "UPDATE adressen SET adressen_type = adresType WHERE adressen_id = adresId";
         try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
             stmt.executeUpdate();
+            return true;
         } catch (SQLException ex) {
-            LOGGER.error("Er gaat iets mis met het aanpassen van een adres op Type", ex.getMessage());
+            LOGGER.error("Er gaat iets mis met het aanpassen van een adres op Type{}", ex.getMessage());
            
             return false;
         }
-        return true;
+        
     }
 
     @Override
@@ -325,12 +326,13 @@ public class AdresSQL implements AdresDAO {
         String query = "UPDATE adressen SET straatnaam = straatnaam WHERE adressen_id = adresId";
         try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
             stmt.executeUpdate();
+             return true;
         } catch (SQLException ex) {
-            LOGGER.error("Er gaat iets mis met het aanpassen van een adres op Straatnaam", ex.getMessage());
+            LOGGER.error("Er gaat iets mis met het aanpassen van een adres op Straatnaam{}", ex.getMessage());
             
             return false;
         }
-        return true;
+       
     }
 
     @Override
@@ -339,12 +341,13 @@ public class AdresSQL implements AdresDAO {
         String query = "UPDATE adressen SET huisnummer = huisnummer WHERE adressen_id = adresId";
         try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
             stmt.executeUpdate();
+            return true;
         } catch (SQLException ex) {
-            LOGGER.error("Er gaat iets mis met het aanpassen van een adres op Huisnummer", ex.getMessage());
+            LOGGER.error("Er gaat iets mis met het aanpassen van een adres op Huisnummer{}", ex.getMessage());
             
             return false;
         }
-        return true;
+        
     }
 
     @Override
@@ -396,12 +399,13 @@ public class AdresSQL implements AdresDAO {
         String query = "UPDATE adressen SET land = land WHERE adressen_id = adresId";
         try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
             stmt.executeUpdate();
+              return true;
         } catch (SQLException ex) {
-            LOGGER.error("Er gaat iets mis met het aanpassen van een adres op land", ex.getMessage());
+            LOGGER.error("Er gaat iets mis met het aanpassen van een adres op land{}", ex.getMessage());
            
             return false;
         }
-        return true;
+      
     }
    
     
@@ -420,14 +424,15 @@ public class AdresSQL implements AdresDAO {
           
             
             System.out.println("Adres gegevens zijn succesvol verwijderd");
+             return true;
         }
         catch (SQLException ex){
-            LOGGER.error("Er gaat iets mis met het verwijderen van een adres", ex.getMessage());
+            LOGGER.error("Er gaat iets mis met het verwijderen van een adres{}", ex.getMessage());
          
               return false;  
         } 
         
-        return true;
+       
         
         
         
