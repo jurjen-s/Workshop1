@@ -274,31 +274,45 @@ public class AdresSQL implements AdresDAO {
     public Adres toevoegenAdres(Adres adres) {
          LOGGER.debug("Input  in toevoegenAdres is {}",adres.toString());
       
-
+String query = "INSERT INTO adressen (adressen_type,FK_adressen_klanten_id,straatnaam,huisnummer,heeft_huisnr_toevoeging,huisnummer_toevoeging,postcode,land) VALUES (?, ?, ?, ?, ? , ? , ? ,? )";
     
-     try (PreparedStatement stmt = adresconnectie.prepareStatement(
-                "INSERT INTO adressen (adressen_type,FK_adressen_klanten_id,straatnaam,huisnummer,heeft_huisnummer_toevoeging,huisnummer_toevoeging_postcode_land)" +
-                "VALUES ?, ?, ?, ?, ? , ? , ? ,? ")) {
-            ResultSet resultset = stmt.executeQuery("SELECT LAST_INSERT_ID()");
-            int AdresId = resultset.getInt(1);
-            
-           stmt.setInt(1,   adres.getAdresType());
-           stmt.setInt(2,   adres.getKlantId());
-           stmt.setString(3,   adres.getStraatnaam());
-           stmt.setInt(4,   adres.getHuisnummer());
-           stmt.setString(5,   adres.getHuisnrToevoeging());
-           stmt.setString(6,   adres.getPostcode());
-           stmt.setString(7,   adres.getLand());
+     try (PreparedStatement stmt = adresconnectie.prepareStatement( query ) ) {
           
+           stmt.setInt(1,adres.getAdresType());
+           stmt.setInt(2,adres.getKlantId());
+           stmt.setString(3,adres.getStraatnaam());
+           stmt.setInt(4,adres.getHuisnummer());
+           stmt.setBoolean(5,adres.getHeeftHuisnrToevoeging());
+           stmt.setString(6,adres.getHuisnrToevoeging());
+           stmt.setString(7,adres.getPostcode());
+           stmt.setString(8,adres.getLand());
          
+           stmt.executeUpdate();
+           
             
-            stmt.executeUpdate();
-            adres.setAdresId(AdresId);
+            
+             ResultSet rs = stmt.getGeneratedKeys();
+          if (rs.next()) {
+          int newId = rs.getInt(1);
+           adres.setAdresId(newId);
+}
+                    
+                          
+                //adres.setAdresId(resultset.getInt("adressen_id")); 
+            
+            
+           
+            
+             
+            
+            
+            
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             LOGGER.error("Er gaat iets mis met het toevoegen van een adres {}", ex.getMessage());
         }
      LOGGER.debug("output toevoegenAdres :" +  adres.toString());
-        return adres;
+     return adres;
     
     }
     

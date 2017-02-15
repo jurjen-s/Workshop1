@@ -124,12 +124,12 @@ public class AdresMenu {
         System.out.println("U gaat een adres toevoegen.");
         System.out.println("Vul het adres type toe");
         int adresType = TextIO.getlnInt();
-        System.out.println("Vul het AdressklantenID toe");
+        System.out.println("Vul het klantenID toe");
         int klantId = TextIO.getlnInt();
         System.out.println("Vul het straatnaam toe");
         String straatnaam = TextIO.getln();
         System.out.println("Vul het huisnummer toe");
-        String huisnummer = TextIO.getln();
+        int huisnummer = TextIO.getlnInt();
         System.out.println("Heeft het een huisnummertoevoeging? 1 = ja, 0 = nee");
         boolean heeftHuisnrToevoeging = TextIO.getlnBoolean();
         String huisnrToevoeging = "";
@@ -152,7 +152,7 @@ public class AdresMenu {
                                .adresType(adresType)
                                .klantId(klantId)
                                .straatnaam(straatnaam)
-                               .huisnummer(klantId)
+                               .huisnummer(huisnummer)
                                .heeftHuisnrToevoeging(heeftHuisnrToevoeging)
                                .huisnrToevoeging(huisnrToevoeging)
                                .postcode(postcode)

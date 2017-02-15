@@ -82,13 +82,13 @@ public class Adres {
     
     @Override
     public String toString() {
-        String adres = adresId + "\t\t" +
-                       adresType  + "\t\t" +
-                       klantId + "\t\t" +
-                       straatnaam + "\t\t" +
-                       huisnummer + "\t\t" +
-                       huisnrToevoeging + "\t\t" +
-                       postcode + "\t\t" +
+        String adres = "adresId is: "+ adresId + "\t\t" +
+                       "adrestype is: " + adresType  + "\t\t" +
+                       "klantId is: "+ klantId + "\t\t" +
+                       "straatnaam is : " +straatnaam + "\t\t" +
+                       "huisnummer is : " +huisnummer + "\t\t" +
+                       "huisnummertoevoeging is: "+huisnrToevoeging + "\t\t" +
+                       "postcode is : "+postcode + "\t\t" +
                        land;
         return adres;
     }
