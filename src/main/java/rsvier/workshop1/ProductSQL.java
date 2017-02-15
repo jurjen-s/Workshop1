@@ -22,30 +22,14 @@ import org.apache.logging.log4j.Logger;
  */
 public class ProductSQL implements ProductDAO {
     
-     private static final Logger LOGGER = LogManager.getLogger(MedewerkerSQL.class);
-    // Functies:
-    // 1: Om producten te zoeken:
-    //      1.1: findProductByID(int productId); - returns Product object als zoekresultaat
-    //      1.2: findProductBySoort(String soort); - returns List<Product> met zoekresultaten
-    //      1.3: findProductByPrijs(BigDecimal Prijs); - returns List<Product> met zoekresultaten
-    //      1.4: findProductByVoorraad(int voorraad); - returns List<Product> met zoekresultaten
-    // 2: Om producten toe te voegen:
-    //      // De functie bij 2.1 heeft een in de view aangemaakt Product Object nodig
-    //      2.1: toevoegenProduct(Product product) - returns succes of mislukt (of return: vernieuwd product?)
-    // 3: Om producten aan te passen:
-    //      // De functies hieronder hebben een productId (of Product Object? nog niet geimplementeerd) nodig
-    //      3.1: updateProductOmschrijving(int productId, String omschrijving); - returns succes of mislukt (of return: vernieuwd product?)
-    //      3.2: updateProductSoort(int productId, String soort); - returns succes of mislukt (of return: vernieuwd product?)
-    //      3.3: updateProductPrijs(int productId, BigDecimal prijs); - returns succes of mislukt (of return: vernieuwd product?)
-    //      3.4: updateProductVoorraad(int productId, int voorraad); - returns succes of mislukt (of return: vernieuwd product?)
-    // 4: Om producten te verwijderen:
-    //      // De functie hieronder heeft een productId (of Product Object? nog niet geimplementeerd) nodig
-    //      4.1: verwijderenProduct(int productId); - returns succes of mislukt (of return: vernieuwd product?)
     
+    //logger maken
+    private static final Logger LOGGER = LogManager.getLogger(MedewerkerSQL.class);
+    
+    //connectie maken
     private Connection productenconnectie;
-    
     public ProductSQL(Connection connectie) {
-        this.productenconnectie = connectie;
+    this.productenconnectie = connectie;
     }
     
     @Override
@@ -97,18 +81,21 @@ public class ProductSQL implements ProductDAO {
                                                     .prijs(rs.getBigDecimal("prijs"))
                                                     .voorraad(rs.getInt("voorraad"))
                                                     .build();
-                zoekresultaat.add(gevondenProduct);
-            }
-            rs.close();
-        } catch (SQLException ex) {
-            LOGGER.error("Er gaat iets mis met het zoeken van een product op soort{}", ex.getMessage());
+            zoekresultaat.add(gevondenProduct);
+            }//einde while
+            
+        rs.close();
+        }//einde try
+                catch (SQLException ex) {
+                LOGGER.error("Er gaat iets mis met het zoeken van een product op soort{}", ex.getMessage());
                 
-        }
+                }//einde catch
+        
         if (zoekresultaat.isEmpty()) {
             System.out.println("Geen zoekresultaten.");
         } 
          LOGGER.debug("output findProductBySoort is :" +  zoekresultaat.toString());
-        return zoekresultaat;
+         return zoekresultaat;
     } // einde findProductBySoort(String soort)
     
     @Override
@@ -130,18 +117,23 @@ public class ProductSQL implements ProductDAO {
                                                     .prijs(rs.getBigDecimal("prijs"))
                                                     .voorraad(rs.getInt("voorraad"))
                                                     .build();
-                zoekresultaat.add(gevondenProduct);
-            }
-            rs.close();
-        } catch (SQLException ex) {
-            LOGGER.error("Er gaat iets mis met het zoeken van een product op prijs{}", ex.getMessage());
+            zoekresultaat.add(gevondenProduct);
+            }//einde while
             
-        }
+        rs.close();
+        }//einde try
+                catch (SQLException ex) {
+                LOGGER.error("Er gaat iets mis met het zoeken van een product op prijs{}", ex.getMessage());
+            
+                }//einde catch
+        
         if (zoekresultaat.isEmpty()) {
             System.out.println("Geen zoekresultaten.");
         } 
+        
         LOGGER.debug("output findProductByPrijs is :" +  zoekresultaat.toString());
         return zoekresultaat;
+        
     } // einde findProductByPrijs(BigDecimal Prijs)
     
     @Override
@@ -164,17 +156,20 @@ public class ProductSQL implements ProductDAO {
                                                     .voorraad(rs.getInt("voorraad"))
                                                     .build();
                 zoekresultaat.add(gevondenProduct);
-            }
-            rs.close();
-        } catch (SQLException ex) {
-            LOGGER.error("Er gaat iets mis met het zoeken van een product op voorraad{}", ex.getMessage());
+            }//einde while
+        rs.close();
+        }//einde try
+                catch (SQLException ex) {
+                LOGGER.error("Er gaat iets mis met het zoeken van een product op voorraad{}", ex.getMessage());
            
-        }
+                }//einde catch
+        
         if (zoekresultaat.isEmpty()) {
             System.out.println("Geen zoekresultaten.");
         } 
-        LOGGER.debug("output findProductByVoorraad is :" +  zoekresultaat.toString());
-        return zoekresultaat;
+        
+    LOGGER.debug("output findProductByVoorraad is :" +  zoekresultaat.toString());
+    return zoekresultaat;
     } // einde findProductByVoorraad(int voorraad)
     
     @Override
@@ -188,13 +183,17 @@ public class ProductSQL implements ProductDAO {
             stmt.setBigDecimal(3, product.getPrijs());
             stmt.setInt(4, product.getVoorraad());
             stmt.executeUpdate();
-        } catch (SQLException ex) {
-            LOGGER.error("Er gaat iets mis met het toevoegen van het product {}", ex.getMessage());
+            LOGGER.debug("output toevoegenProduct is  true");
+            return true;
+        }//einde try
+        
+                catch (SQLException ex) {
+                LOGGER.error("Er gaat iets mis met het toevoegen van het product {}", ex.getMessage());
            
-            return false;
-        }
-        LOGGER.debug("output toevoegenProduct is  true");
-        return true;
+                return false;
+                }//einde catch
+        
+        
     } // einde toevoegenProduct(Product product)
     
     @Override
@@ -206,13 +205,16 @@ public class ProductSQL implements ProductDAO {
                 "WHERE producten_id = productId")) {
             stmt.setString(1, omschrijving);
             stmt.executeUpdate();
-        } catch (SQLException ex) {
+            LOGGER.debug("output updateProductOmschrijving is true");
+            return true;
+        }//einde try
+        
+            catch (SQLException ex) {
             LOGGER.error("Er gaat iets mis met het updaten van de productomschrijving {}", ex.getMessage());
            
             return false;
-        }
-        LOGGER.debug("output updateProductOmschrijving is true");
-        return true;
+            }//einde catch
+        
     } // einde updateProductOmschrijving(int productId, String omschrijving)
     
     @Override
@@ -224,31 +226,36 @@ public class ProductSQL implements ProductDAO {
                 "WHERE producten_id = productId")) {
             stmt.setString(1, soort);
             stmt.executeUpdate();
-        } catch (SQLException ex) {
-              LOGGER.error("Er gaat iets mis met het updaten van de productsoort {}", ex.getMessage());
+            LOGGER.debug("output findProductBySoort is true");
+            return true;
+        }//einde try
+                catch (SQLException ex) {
+                LOGGER.error("Er gaat iets mis met het updaten van de productsoort {}", ex.getMessage());
            
-            return false;
-        }
-        LOGGER.debug("output findProductBySoort is true");
-        return true;
+                return false;
+                }//einde catch
+        
     } // einde updateProductSoort(int productId, String soort)
     
     @Override
     public boolean updateProductPrijs(int productId, BigDecimal prijs)  {
-         LOGGER.debug("Input  in updateProductPrijs is {}{}",productId,prijs);
+    LOGGER.debug("Input  in updateProductPrijs is {}{}",productId,prijs);
+    
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
                 "UPDATE producten" +
                 "SET prijs = ?" +
                 "WHERE producten_id = productId")) {
             stmt.setBigDecimal(1, prijs);
             stmt.executeUpdate();
-        } catch (SQLException ex) {
-              LOGGER.error("Er gaat iets mis met het updaten van de productprijs {}", ex.getMessage());
+            LOGGER.debug("output findProductPrijs is true ");
+            return true;
+            }
+                catch (SQLException ex) {
+                LOGGER.error("Er gaat iets mis met het updaten van de productprijs {}", ex.getMessage());
             
-            return false;
-        }
-        LOGGER.debug("output findProductPrijs is true ");
-        return true;
+                return false;
+                }//einde catch
+        
     } // einde updateProductPrijs(int productId, BigDecimal prijs)
     
     @Override
@@ -260,13 +267,15 @@ public class ProductSQL implements ProductDAO {
                 "WHERE producten_id = productId")) {
             stmt.setInt(1, voorraad);
             stmt.executeUpdate();
-        } catch (SQLException ex) {
-              LOGGER.error("Er gaat iets mis met het updaten van de productovoorraad {}", ex.getMessage());
+            LOGGER.debug("output updateProductVoorraad is true");
+            return true;
+        }//einde try
+                catch (SQLException ex) {
+                LOGGER.error("Er gaat iets mis met het updaten van de productovoorraad {}", ex.getMessage());
             
-            return false;
-        }
-        LOGGER.debug("output updateProductVoorraad is true");
-        return true;
+                return false;
+                }//einde catch
+        
     } // einde updateProductVoorraad(int productId, int voorraad)
     
     @Override
@@ -278,13 +287,16 @@ public class ProductSQL implements ProductDAO {
             stmt.setInt(1, productId);
             stmt.executeUpdate();
             stmt.close();
-        } catch (SQLException ex) {
-              LOGGER.error("Er gaat iets mis met het verwijderen van het product {}", ex.getMessage());
+            LOGGER.debug("output deleteProdcut is true");
+            return true;
+        }
+                catch (SQLException ex) {
+                LOGGER.error("Er gaat iets mis met het verwijderen van het product {}", ex.getMessage());
            
-            return false;
-        }  
-        LOGGER.debug("output deleteProdcut is true");
-    return true;
+                return false;
+                }  //einde catch
+        
     } // einde verwijderenProduct(int productId)
 
+    
 } // einde ProductSQL

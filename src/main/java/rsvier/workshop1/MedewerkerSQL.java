@@ -11,19 +11,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+
+
 /**
- *
  * @author Frank
  */
+
+
 public class MedewerkerSQL implements MedewerkerDAO{
     
+    //logger aanmaken
     private static final Logger LOGGER = LogManager.getLogger(MedewerkerSQL.class);
     
-     private Connection medewerkerconnectie;
-    
-    public MedewerkerSQL(Connection connectie) {
+        //connectie aanmaken
+        private Connection medewerkerconnectie;
+        public MedewerkerSQL(Connection connectie) {
         this.medewerkerconnectie = connectie;
-    }
+        }
 
     @Override
     public boolean deleteMedewerker(int id) {
@@ -34,22 +39,20 @@ public class MedewerkerSQL implements MedewerkerDAO{
         try (
                 //PreparedStatement stmt  = connectie.prepareStatement(query);
         	PreparedStatement stmt = medewerkerconnectie.prepareStatement(query)
-        	)
-                {
-        	
+        	){
         
             stmt.executeUpdate();
           
-            
             System.out.println("Account gegevens zijn succesvol verwijderd");
+            LOGGER.debug("output deleteMedewerker is true");
+            return true;
         }
-        catch (SQLException ex){
-         System.out.println(ex.getMessage());
-         LOGGER.error("Er gaat iets mis met het deleteMedewerker{}", ex.getMessage());
-              return false;  
-        } 
-        LOGGER.debug("output deleteMedewerker is true");
-        return true;
+            catch (SQLException ex){
+            System.out.println(ex.getMessage());
+            LOGGER.error("Er gaat iets mis met het deleteMedewerker{}", ex.getMessage());
+            return false;  
+            } 
+            
     }
 
     @Override
@@ -58,13 +61,11 @@ public class MedewerkerSQL implements MedewerkerDAO{
         String query = "SELECT * FROM medewerkers WHERE medewerkers_id = '" + id + "'";
         Medewerker medewerker = new Medewerker();
         try (
-        		PreparedStatement stmt = medewerkerconnectie.prepareStatement(query);
-        		ResultSet resultset = stmt.executeQuery();){
+        PreparedStatement stmt = medewerkerconnectie.prepareStatement(query);
+        ResultSet resultset = stmt.executeQuery();){
         
             ///geef alle data naar java toe met de gevonden voornaam.
             if (resultset.next()) {
-                
-                
                 
                 medewerker.setMedewerkerID(resultset.getInt("medewerkers_id"));
                 medewerker.setMedewerkerAccountID(resultset.getInt("FK_medewerkers_accounts_id"));
@@ -73,21 +74,22 @@ public class MedewerkerSQL implements MedewerkerDAO{
                 medewerker.setMedewerkerTussenvoegsel(resultset.getString("tussenvoegsel"));
                 medewerker.setMedewerkerAchternaam(resultset.getString("achternaam"));
         
-        
-             }//einde if
+               
+              }//einde if
+             
         } //einde try
-        catch (SQLException ex2) {
-       	LOGGER.error("Er gaat iets mis met het findMedewerkerByID{}", ex2.getMessage());
-        }
-        LOGGER.debug("output findMedewerkerByID is :{}", medewerker.getView2());
-        return medewerker;    
+                    catch (SQLException ex2) {
+                    LOGGER.error("Er gaat iets mis met het findMedewerkerByID{}", ex2.getMessage());
+                    } //einde catch
+         LOGGER.debug("output findMedewerkerByID is :{}", medewerker.getView2());
+         return medewerker;  
     }
 
     @Override
     public Medewerker createMedewerker(int medewerkerAccountID, String email, String voornaam, String tussenvoegsel, String achternaam) {
         
           LOGGER.debug("Input in createMedewerker is {}{}{}{}{}",medewerkerAccountID,email,voornaam,tussenvoegsel,achternaam);
-        Medewerker medewerker = new Medewerker();
+          Medewerker medewerker = new Medewerker();
         
         
       String query = "INSERT INTO medewerkers (FK_medewerkers_accounts_id, email , voornaam,tussenvoegsel,achternaam) VALUES ( ? , ? , ? , ? , ? ) ";
@@ -107,23 +109,22 @@ public class MedewerkerSQL implements MedewerkerDAO{
             
            // ResultSet resultset =
          
-         int operatie = stmt.executeUpdate();
+            int operatie = stmt.executeUpdate();
         
+            ResultSet rs = stmt2.executeQuery();
         
-         ResultSet rs = stmt2.executeQuery();
-        
-        while (rs.next()){
+            while (rs.next()){
             
-      //System.out.println(rs.getInt("medewerkers_id")); System.out.print("is uw medewerkers id");
+                System.out.println(rs.getInt("medewerkers_id")); System.out.print("is uw medewerkers id");
                 System.out.println("medewerker id is :");
                 System.out.println(rs.getString(1));System.out.print(" ");
                 System.out.print(rs.getString(2));System.out.print(" ");
-                  System.out.print(rs.getString(3));System.out.print(" ");
-                    System.out.print(rs.getString(4));System.out.print(" ");
-                    System.out.print(rs.getString(5));System.out.print(" ");
-                    System.out.print(rs.getString(6));System.out.print(" ");
+                System.out.print(rs.getString(3));System.out.print(" ");
+                System.out.print(rs.getString(4));System.out.print(" ");
+                System.out.print(rs.getString(5));System.out.print(" ");
+                System.out.print(rs.getString(6));System.out.print(" ");
                   
-                  System.out.println(" ");
+                System.out.println(" ");
                   
                 medewerker.setMedewerkerID(rs.getInt("medewerkers_id"));
                 medewerker.setMedewerkerAccountID(rs.getInt("FK_medewerkers_accounts_id"));
@@ -131,12 +132,12 @@ public class MedewerkerSQL implements MedewerkerDAO{
                 medewerker.setMedewerkerVoornaam(rs.getString("voornaam"));
                 medewerker.setMedewerkerTussenvoegsel(rs.getString("tussenvoegsel"));
                 medewerker.setMedewerkerAchternaam(rs.getString("achternaam"));
-        }
+            }//einde while
         
-        }
-        catch(SQLException ex){
-       	LOGGER.error("Er gaat iets mis met het maken van een medewerker{}", ex.getMessage());
-                }
+        }//einde try
+            catch(SQLException ex){
+       	    LOGGER.error("Er gaat iets mis met het maken van een medewerker{}", ex.getMessage());
+            } //einde catch
             
          LOGGER.debug("output createMedewerker is :{}", medewerker.getView2());
         return medewerker;
@@ -166,17 +167,17 @@ public class MedewerkerSQL implements MedewerkerDAO{
         
              }//einde if
         } //einde try
-        catch (SQLException ex2) {
-            	LOGGER.error("Er gaat iets mis met het findMedewerkerByVoornaam{}", ex2.getMessage());
-       	
-        }
+                    catch (SQLException ex2) {
+            	    LOGGER.error("Er gaat iets mis met het findMedewerkerByVoornaam{}", ex2.getMessage());
+       	            } //einde catch.
+        
         LOGGER.debug("output findMedewerkerByVoornaam is :{}", medewerker.getView2());
         return medewerker;    
     }
 
     @Override
     public Medewerker updateMedewerker(int medewerkerID, int medewerkerAccountID, String email, String voornaam, String tussenvoegsel, String achternaam) {
-          LOGGER.debug("Input in updateMedewerker is {}{}{}{}{}",medewerkerAccountID,email,voornaam,tussenvoegsel,achternaam);
+        LOGGER.debug("Input in updateMedewerker is {}{}{}{}{}",medewerkerAccountID,email,voornaam,tussenvoegsel,achternaam);
         Medewerker medewerker = new Medewerker();
         
         
@@ -198,14 +199,14 @@ public class MedewerkerSQL implements MedewerkerDAO{
             
            // ResultSet resultset =
          
-         stmt.executeUpdate();
+            stmt.executeUpdate();
         
-        ResultSet rs = stmt2.executeQuery();
+            ResultSet rs = stmt2.executeQuery();
           
         
-        while (rs.next()){
+                while (rs.next()){
             
-      System.out.println(rs.getInt("medewerkers_id"));
+                System.out.println(rs.getInt("medewerkers_id"));
                 
                 
                 medewerker.setMedewerkerID(rs.getInt("medewerkers_id"));
@@ -214,60 +215,31 @@ public class MedewerkerSQL implements MedewerkerDAO{
                 medewerker.setMedewerkerVoornaam(rs.getString("voornaam"));
                 medewerker.setMedewerkerTussenvoegsel(rs.getString("tussenvoegsel"));
                 medewerker.setMedewerkerAchternaam(rs.getString("achternaam"));
-        }
+                }//einde while
         
          
-        }
-        catch(SQLException ex){
-            	LOGGER.error("Er gaat iets mis met het updaten van MedewerkerBy{}", ex.getMessage());
-        
-                }
+        }//einde try
+            catch(SQLException ex){
+            LOGGER.error("Er gaat iets mis met het updaten van MedewerkerBy{}", ex.getMessage());
+            } //einde catch
             
-         LOGGER.debug("output updateMedewerkerByID is :{}", medewerker.getView2());
+        LOGGER.debug("output updateMedewerkerByID is :{}", medewerker.getView2());
         return medewerker;
     }
-/*
-    @Override
-    public Medewerker findMedewerkerByVoornaam(String voornaam) {
-        String query = "SELECT * FROM medewerkers WHERE voornaam = '" + voornaam + "'";
-        Medewerker medewerker = new Medewerker();
-        try (
-        		PreparedStatement stmt = medewerkerconnectie.prepareStatement(query);
-        		ResultSet resultset = stmt.executeQuery();){
-        
-            ///geef alle data naar java toe met de gevonden voornaam.
-            if (resultset.next()) {
-                
-                
-                
-                medewerker.setMedewerkerID(resultset.getInt("medewerkers_id"));
-                medewerker.setMedewerkerAccountID(resultset.getInt("FK_medewerkers_accounts_id"));
-                medewerker.setMedewerkerEmail(resultset.getString("email"));
-                medewerker.setMedewerkerVoornaam(resultset.getString("voornaam"));
-                medewerker.setMedewerkerTussenvoegsel(resultset.getString("tussenvoegsel"));
-                medewerker.setMedewerkerAchternaam(resultset.getString("achternaam"));
-        
-        
-             }//einde if
-        } //einde try
-        catch (SQLException ex2) {
-       	System.out.println(ex2.getMessage());
-        }
-        
-        return medewerker;    
-    }
-*/
+
+    
+    
     @Override
     public Medewerker findMedewerkerByAchternaam(String achternaam) {
         LOGGER.debug("Input in findMedewerkerByAchternaam is {}", achternaam);
-         String query = "SELECT * FROM medewerkers WHERE achternaam = '" + achternaam + "'";
+        String query = "SELECT * FROM medewerkers WHERE achternaam = '" + achternaam + "'";
         Medewerker medewerker = new Medewerker();
         try (
         		PreparedStatement stmt = medewerkerconnectie.prepareStatement(query);
         		ResultSet resultset = stmt.executeQuery();){
         
             ///geef alle data naar java toe met de gevonden voornaam.
-            if (resultset.next()) {
+                if (resultset.next()) {
                 
                 
                 
@@ -279,11 +251,12 @@ public class MedewerkerSQL implements MedewerkerDAO{
                 medewerker.setMedewerkerAchternaam(resultset.getString("achternaam"));
         
         
-             }//einde if
+                }//einde if
         } //einde try
-        catch (SQLException ex2) {
-       	LOGGER.error("Er gaat iets mis met het findMedewerkerByAchternaam{}", ex2.getMessage());
-        }
+            catch (SQLException ex2) {
+            LOGGER.error("Er gaat iets mis met het findMedewerkerByAchternaam{}", ex2.getMessage());
+            }//einde catch
+        
         LOGGER.debug("output findMedewerkerByAchternaam is :{}", medewerker.getView2());
         return medewerker;    
     }
@@ -292,14 +265,14 @@ public class MedewerkerSQL implements MedewerkerDAO{
     @Override
     public Medewerker findMedewerkerByEmail(String email) {
         LOGGER.debug("Input in findMedewerkerByEmail is {}", email);
-         String query = "SELECT * FROM medewerkers WHERE email = '" + email + "'";
+        String query = "SELECT * FROM medewerkers WHERE email = '" + email + "'";
         Medewerker medewerker = new Medewerker();
         try (
         		PreparedStatement stmt = medewerkerconnectie.prepareStatement(query);
         		ResultSet resultset = stmt.executeQuery();){
         
-            ///geef alle data naar java toe met de gevonden voornaam.
-            if (resultset.next()) {
+                ///geef alle data naar java toe met de gevonden voornaam.
+                if (resultset.next()) {
                 
                 
                 
@@ -311,19 +284,15 @@ public class MedewerkerSQL implements MedewerkerDAO{
                 medewerker.setMedewerkerAchternaam(resultset.getString("achternaam"));
         
         
-             }//einde if
+                }//einde if
         } //einde try
-        catch (SQLException ex2) {
-            	LOGGER.error("Er gaat iets mis met het findMedewerkerByEmail {}", ex2.getMessage());
-       	
-        }
+            catch (SQLException ex2) {
+            LOGGER.error("Er gaat iets mis met het findMedewerkerByEmail {}", ex2.getMessage());
+            }
+        
         LOGGER.debug("output findMedewerkerByEmail is :{}", medewerker.getView2());
         return medewerker;    
     }
     
     
-    
-    
-    
-    
-}
+} //einde clas

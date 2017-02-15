@@ -32,7 +32,7 @@ public class AdresSQL implements AdresDAO {
 
     private static final Logger LOGGER = LogManager.getLogger(AdresSQL.class);
     
-     private Connection adresconnectie;
+    private Connection adresconnectie;
     
     public AdresSQL(Connection connectie) {
         this.adresconnectie = connectie;
@@ -92,6 +92,7 @@ public class AdresSQL implements AdresDAO {
             "SELECT * " +
             "FROM adressen " +
             "WHERE adressen_type = ?")) {
+            
             stmt.setInt(1, adresType);
             ResultSet resultset = stmt.executeQuery();
             int     nul = resultset.getInt("adressen_id");
@@ -372,10 +373,11 @@ public class AdresSQL implements AdresDAO {
             stmt.setInt(2, adresId);
             stmt.executeUpdate();
             return true;
-        } catch (SQLException ex) {
-           LOGGER.error("Er gaat iets mis met het aanpassen van een adres op huisnummerToevoeging {}", ex.getMessage());
-           return false;
-        }
+        } 
+             catch (SQLException ex) {
+             LOGGER.error("Er gaat iets mis met het aanpassen van een adres op huisnummerToevoeging {}", ex.getMessage());
+             return false;
+             }
     }
 
     @Override

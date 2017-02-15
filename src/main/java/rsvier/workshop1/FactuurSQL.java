@@ -22,17 +22,17 @@ import org.apache.logging.log4j.Logger;
  */
 public class FactuurSQL implements FactuurDAO {
 
+   //logger aanmaken
    private static final Logger LOGGER = LogManager.getLogger(FactuurSQL.class);
     
     
     
     
-    
-    private Connection factuurconnectie;
-    
-    public FactuurSQL(Connection connectie) {
+        //connectie aanmaken
+        private Connection factuurconnectie;
+        public FactuurSQL(Connection connectie) {
         this.factuurconnectie = connectie;
-    }
+        }
     
     @Override
     public boolean maakFactuur(Factuur factuur) {
@@ -46,24 +46,31 @@ public class FactuurSQL implements FactuurDAO {
             stmt.setBigDecimal(4, factuur.getTotaalprijs());
             stmt.setBoolean(5, factuur.getStatus());
             stmt.executeUpdate();
-        } catch (SQLException ex) {
-            LOGGER.error("Er gaat iets mis met het aanmaken van een factuur{}", ex.getMessage());
             
+            LOGGER.debug("output maakFactuur: true");
+            return true;
+            
+        }//einde try
+        
+        
+            catch (SQLException ex) {
+            LOGGER.error("Er gaat iets mis met het aanmaken van een factuur{}", ex.getMessage());
             return false;
-        }
-        LOGGER.debug("output maakFactuur: true");
-        return true;
+            }
+       
+        
     }
 
-    // Dit is volgens mij hetzelfde als findFactuurById
+    // Dit is volgens mij hetzelfde als findFactuurById overbodig.
     public Factuur bekijkFactuur(int factuurId) {
         LOGGER.debug("factuurID in bekijkFactuur is {}", factuurId);
         Factuur zoekresultaat = new Factuur();
         String query = "SELECT * FROM facturen WHERE facturen_id = factuurId";
         try (PreparedStatement stmt = factuurconnectie.prepareStatement(query)) {
             ResultSet rs = stmt.executeQuery();
+            
             while (rs.next()) {
-                zoekresultaat = new Factuur.FactuurBuilder()
+            zoekresultaat = new Factuur.FactuurBuilder()
                                            .factuurId(factuurId)
                                            .bestellingId(rs.getInt("FK_facturen_bestellingen_id"))
                                            .adresId(rs.getInt("FK_facturen_adressen_id"))
@@ -71,14 +78,17 @@ public class FactuurSQL implements FactuurDAO {
                                            .totaalprijs(rs.getBigDecimal("totaalprijs"))
                                            .status(rs.getBoolean("status"))
                                            .build();
-            }
+            }//einde while
             rs.close();
-        } catch (SQLException ex) {
             
-             LOGGER.error("Er gaat iets mis met het bekijken van een factuur{}", ex.getMessage());
-        }
-         LOGGER.debug("output bekijkFactuur :" +  zoekresultaat.toString());
+            }//einde try
+            catch (SQLException ex) {
+            LOGGER.error("Er gaat iets mis met het bekijken van een factuur{}", ex.getMessage());
+            } //einde catch
+        
+        LOGGER.debug("output bekijkFactuur :" +  zoekresultaat.toString());
         return zoekresultaat;
+        
     }
 
     @Override
@@ -87,12 +97,13 @@ public class FactuurSQL implements FactuurDAO {
         String query = "UPDATE facturen SET status = 1 WHERE facturen_id = factuurId";
         try (PreparedStatement stmt = factuurconnectie.prepareStatement(query)) {
             stmt.executeUpdate();
-        } catch (SQLException ex) {
+        } //einde try
+            catch (SQLException ex) {
             LOGGER.error("Er gaat iets mis met bekijkFactuur {}", ex.getMessage());
-            
-         
+           
             return false;
-        }
+            }//einde catch
+        
         LOGGER.debug("output bekijkFactuur is true");
         return true;
     }
@@ -105,7 +116,7 @@ public class FactuurSQL implements FactuurDAO {
         try (PreparedStatement stmt = factuurconnectie.prepareStatement(query)) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                zoekresultaat = new Factuur.FactuurBuilder()
+             zoekresultaat = new Factuur.FactuurBuilder()
                                            .factuurId(factuurId)
                                            .bestellingId(rs.getInt("FK_facturen_bestellingen_id"))
                                            .adresId(rs.getInt("FK_facturen_adressen_id"))
@@ -115,10 +126,12 @@ public class FactuurSQL implements FactuurDAO {
                                            .build();
             }
             rs.close();
-        } catch (SQLException ex) {
-            LOGGER.error("Er gaat iets mis met findFactuurById {}", ex.getMessage());
-           
-        }
+        }//einde if
+                catch (SQLException ex) {
+                LOGGER.error("Er gaat iets mis met findFactuurById {}", ex.getMessage());
+                }//einde catch
+        
+        
         LOGGER.debug("output findFactuurById :" +  zoekresultaat.toString());
         return zoekresultaat;
     }
@@ -131,7 +144,7 @@ public class FactuurSQL implements FactuurDAO {
         try (PreparedStatement stmt = factuurconnectie.prepareStatement(query)) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                zoekresultaat = new Factuur.FactuurBuilder()
+            zoekresultaat = new Factuur.FactuurBuilder()
                                            .factuurId(rs.getInt("facturen_id"))
                                            .bestellingId(rs.getInt("FK_facturen_bestellingen_id"))
                                            .adresId(rs.getInt("FK_facturen_adressen_id"))
@@ -139,12 +152,13 @@ public class FactuurSQL implements FactuurDAO {
                                            .totaalprijs(rs.getBigDecimal("totaalprijs"))
                                            .status(rs.getBoolean("status"))
                                            .build();
-            }
-            rs.close();
-        } catch (SQLException ex) {
-            LOGGER.error("Er gaat iets fout met findFactuurByBestellingId{}", ex.getMessage());
-         
-        }
+            }//einde while
+        rs.close();
+        } //einde try
+                catch (SQLException ex) {
+                   LOGGER.error("Er gaat iets fout met findFactuurByBestellingId{}", ex.getMessage());
+                   } //einde catch
+        
         LOGGER.debug("output findFactuurByBestellingId :" +  zoekresultaat.toString());
         return zoekresultaat;
     }
@@ -157,7 +171,7 @@ public class FactuurSQL implements FactuurDAO {
         try (PreparedStatement stmt = factuurconnectie.prepareStatement(query)) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                Factuur gevondenFactuur = new Factuur.FactuurBuilder()
+            Factuur gevondenFactuur = new Factuur.FactuurBuilder()
                                            .factuurId(rs.getInt("facturen_id"))
                                            .bestellingId(rs.getInt("FK_facturen_bestellingen_id"))
                                            .adresId(rs.getInt("FK_facturen_adressen_id"))
@@ -165,14 +179,15 @@ public class FactuurSQL implements FactuurDAO {
                                            .totaalprijs(rs.getBigDecimal("totaalprijs"))
                                            .status(rs.getBoolean("status"))
                                            .build();
-                zoekresultaat.add(gevondenFactuur);
-            }
-            rs.close();
-        } catch (SQLException ex) {
-            LOGGER.error("Er gaat iets fout met findFactuurByKlant {}", ex.getMessage());
-            
-            
-        }
+            zoekresultaat.add(gevondenFactuur);
+            }//einde while
+        rs.close();
+        }//einde try
+                catch (SQLException ex) {
+                LOGGER.error("Er gaat iets fout met findFactuurByKlant {}", ex.getMessage());
+           
+                } //einde catch
+        
         LOGGER.debug("output findFactuurByKlantId :" +  zoekresultaat.toString());
         return zoekresultaat;
     }
@@ -185,7 +200,7 @@ public class FactuurSQL implements FactuurDAO {
         try (PreparedStatement stmt = factuurconnectie.prepareStatement(query)) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                Factuur gevondenFactuur = new Factuur.FactuurBuilder()
+            Factuur gevondenFactuur = new Factuur.FactuurBuilder()
                                            .factuurId(rs.getInt("facturen_id"))
                                            .bestellingId(rs.getInt("FK_facturen_bestellingen_id"))
                                            .adresId(rs.getInt("FK_facturen_adressen_id"))
@@ -193,14 +208,16 @@ public class FactuurSQL implements FactuurDAO {
                                            .totaalprijs(rs.getBigDecimal("totaalprijs"))
                                            .status(rs.getBoolean("status"))
                                            .build();
-                zoekresultaat.add(gevondenFactuur);
-            }
-            rs.close();
-        } catch (SQLException ex) {
-            LOGGER.error("Er gaat iets fout met findFactuurByAdress {}", ex.getMessage());
+            zoekresultaat.add(gevondenFactuur);
+            }//einde while
+        rs.close();
+        } //einde try
+                catch (SQLException ex) {
+                LOGGER.error("Er gaat iets fout met findFactuurByAdress {}", ex.getMessage());
             
             
-        }
+                } //einde catch
+        
         LOGGER.debug("output findFactuurByAdresId :" +  zoekresultaat.toString());
         return zoekresultaat;
     }
@@ -213,7 +230,7 @@ public class FactuurSQL implements FactuurDAO {
         try (PreparedStatement stmt = factuurconnectie.prepareStatement(query)) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                Factuur gevondenFactuur = new Factuur.FactuurBuilder()
+            Factuur gevondenFactuur = new Factuur.FactuurBuilder()
                                            .factuurId(rs.getInt("facturen_id"))
                                            .bestellingId(rs.getInt("FK_facturen_bestellingen_id"))
                                            .adresId(rs.getInt("FK_facturen_adressen_id"))
@@ -221,14 +238,16 @@ public class FactuurSQL implements FactuurDAO {
                                            .totaalprijs(rs.getBigDecimal("totaalprijs"))
                                            .status(rs.getBoolean("status"))
                                            .build();
-                zoekresultaat.add(gevondenFactuur);
-            }
-            rs.close();
-        } catch (SQLException ex) {
-           LOGGER.error("Er gaat iets fout met findFactuurByTotaalPrijs {}", ex.getMessage());
+            zoekresultaat.add(gevondenFactuur);
+            } //einde while
+        rs.close();
+        }//einde try
+                catch (SQLException ex) {
+                LOGGER.error("Er gaat iets fout met findFactuurByTotaalPrijs {}", ex.getMessage());
            
             
-        }
+                }//einde catch
+        
         LOGGER.debug("output findFactuurByTotaalprijs :" +  zoekresultaat.toString());
         return zoekresultaat;
     }
@@ -241,7 +260,7 @@ public class FactuurSQL implements FactuurDAO {
         try (PreparedStatement stmt = factuurconnectie.prepareStatement(query)) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                Factuur gevondenFactuur = new Factuur.FactuurBuilder()
+            Factuur gevondenFactuur = new Factuur.FactuurBuilder()
                                            .factuurId(rs.getInt("facturen_id"))
                                            .bestellingId(rs.getInt("FK_facturen_bestellingen_id"))
                                            .adresId(rs.getInt("FK_facturen_adressen_id"))
@@ -249,14 +268,16 @@ public class FactuurSQL implements FactuurDAO {
                                            .totaalprijs(rs.getBigDecimal("totaalprijs"))
                                            .status(rs.getBoolean("status"))
                                            .build();
-                zoekresultaat.add(gevondenFactuur);
-            }
-            rs.close();
-        } catch (SQLException ex) {
-            LOGGER.error("Er gaat iets fout met findFactuurByStatus {}", ex.getMessage());
-           
+            zoekresultaat.add(gevondenFactuur);
+            }//einde while
             
-        }
+        rs.close();
+        }//einde try
+                catch (SQLException ex) {
+                LOGGER.error("Er gaat iets fout met findFactuurByStatus {}", ex.getMessage());
+           
+                } //einde catch
+        
         LOGGER.debug("output findFactuurByStatus :" +  zoekresultaat.toString());
         return zoekresultaat;
     }
@@ -267,13 +288,18 @@ public class FactuurSQL implements FactuurDAO {
         String query = "DELETE FROM facturen WHERE facturen_id = factuurId";
         try (PreparedStatement stmt = factuurconnectie.prepareStatement(query)) {
             stmt.executeUpdate();
-        } catch (SQLException ex) {
+            
+            LOGGER.debug("output deleteFactuur is true");
+            return true;
+            
+            
+        }//einde try
+            catch (SQLException ex) {
             System.out.println(ex.getMessage());
-           LOGGER.error("Er gaat iets fout met deleteFactuur {}", ex.getMessage());
+             LOGGER.error("Er gaat iets fout met deleteFactuur {}", ex.getMessage());
             return false;
-        }
-        LOGGER.debug("output deleteFactuur is true");
-        return true;
+            }//einde catch
+        
     }
     
 }
