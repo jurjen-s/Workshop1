@@ -14,6 +14,7 @@ import java.util.List;
 public class AdresMenu {
     
     private AdresController adresController = new AdresController();
+    private Validator validator = new Validator();
     
     public  void  adressenmenu(){
    
@@ -70,8 +71,14 @@ public class AdresMenu {
     
     public  void adressenmenuDoPc(){
         System.out.println("U gaat een adres zoeken op postcode.");
-        System.out.println("Vul het postcode ###### (1111AA) in en druk op enter.");
-        String postcode = TextIO.getln();
+        String postcode = "";
+        do {
+            System.out.println("Wat is de postcode? Geef in het formaat \'1234 AZ\'.");
+            postcode = TextIO.getln();
+            if (validator.validatePostcode(postcode)) {
+                break;
+            }  
+        } while (true);
         List<Adres> zoekresultaat = adresController.findAdresByPostcode(postcode);
         for (Adres adres:zoekresultaat) {
             adres.toString();
@@ -130,8 +137,14 @@ public class AdresMenu {
             System.out.println("Vul het huisnummer toevoeging toe");
             huisnrToevoeging = TextIO.getln();
         }
-        System.out.println("Vul de postcode in en druk op enter.");
-        String postcode = TextIO.getln();
+        String postcode = "";        
+        do {
+            System.out.println("Vul de postcode in. Geef in het formaat \'1234 AZ\'.");
+            postcode = TextIO.getln();
+            if (validator.validatePostcode(postcode)) {
+                break;
+            }  
+        } while (true);
         System.out.println("Vul het Land in en druk op enter.");
         String land = TextIO.getln();
         // Maak adres met de opgegeven waardes
@@ -150,7 +163,7 @@ public class AdresMenu {
     }
 
     public  void adressenmenuVT(){
-        System.out.println("U gaat een adres typen veranderen.");
+        System.out.println("U gaat een adres type veranderen.");
         System.out.println("Vul het adres id in en druk op enter.");
         int adresId = TextIO.getlnInt();
         System.out.println("vul de nieuwe type (0 of 1) in en druk op enter");
@@ -209,9 +222,15 @@ public class AdresMenu {
         System.out.println("U gaat een adres postcode veranderen.");
         System.out.println("Vul het adres id in en druk op enter.");
         int adresId = TextIO.getlnInt();
-        System.out.println("vul de nieuwe postcode (string) in en druk op enter");
-        String postcode = TextIO.getln();
-        if (adresController.updateAdresPostcode(adresId,postcode) == true) {
+        String postcode = "";
+        do {
+            System.out.println("Vul de postcode in. Geef in het formaat \'1234 AZ\'.");
+            postcode = TextIO.getln();
+            if (validator.validatePostcode(postcode)) {
+                break;
+            }  
+        } while (true);
+        if (adresController.updateAdresPostcode(adresId, postcode) == true) {
                 System.out.println("Het updaten is gelukt.");
             } else {
                 System.out.println("het updaten is mislukt.");

@@ -22,16 +22,25 @@ public class StartProgram {
     
     
     public static void main(String[] args){
-        
+    /*    
          Logger logger = LogManager.getLogger(StartProgram.class);
         
         logger.info("Programma runt ");
         
         logger.error("logger moet opslaan!");
         
+        Validator validator = new Validator();
+        boolean valid = validator.validateEmail("test@blabla.com");
+        System.out.println(valid);
         
-        
-    
+        do {
+            System.out.println("Wat is uw postcode? Geef in het formaat \'1234 AZ\'.");
+            String postcode = TextIO.getln();
+            if (validator.validatePostcode(postcode)) {
+                break;
+            }  
+        } while (true);
+    */
         System.out.println("Eerst inloggen");
         
         Inlogmenu inlogmenu= new Inlogmenu();

@@ -12,9 +12,68 @@
 2017-02-14 17:27:05,449 ERROR r.w.StartProgram [main] logger moet opslaan!
 2017-02-14 17:27:12,140 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
 2017-02-14 17:27:12,173 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
-2017-02-14 17:48:08,544 INFO r.w.StartProgram [main] Programma runt 
-2017-02-14 17:48:08,553 ERROR r.w.StartProgram [main] logger moet opslaan!
-2017-02-14 17:48:21,246 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
-2017-02-14 17:48:21,261 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
-2017-02-14 17:48:28,871 DEBUG r.w.ProductSQL [main] Input  in findProductById is 1
-2017-02-14 17:48:28,892 DEBUG r.w.ProductSQL [main] output findProductById :1		Dure Kaas		Gouden Kaas		1000.00		3.
+2017-02-14 17:40:22,708 INFO r.w.StartProgram [main] Programma runt 
+2017-02-14 17:40:22,730 ERROR r.w.StartProgram [main] logger moet opslaan!
+2017-02-14 17:41:01,003 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
+2017-02-14 17:41:01,034 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
+2017-02-14 17:41:10,252 DEBUG r.w.ProductSQL [main] Input  in findProductById is 1
+2017-02-14 17:41:10,260 DEBUG r.w.ProductSQL [main] output findProductById :0		null		null		null		0.
+2017-02-14 17:41:22,832 DEBUG r.w.KlantSQL [main] input bij findBijID is 1
+2017-02-15 09:47:10,832 INFO r.w.StartProgram [main] Programma runt 
+2017-02-15 09:47:10,863 ERROR r.w.StartProgram [main] logger moet opslaan!
+2017-02-15 10:49:44,870 INFO r.w.StartProgram [main] Programma runt 
+2017-02-15 10:49:44,937 ERROR r.w.StartProgram [main] logger moet opslaan!
+2017-02-15 11:07:10,549 INFO r.w.StartProgram [main] Programma runt 
+2017-02-15 11:07:10,648 ERROR r.w.StartProgram [main] logger moet opslaan!
+2017-02-15 11:14:55,844 INFO r.w.StartProgram [main] Programma runt 
+2017-02-15 11:14:55,896 ERROR r.w.StartProgram [main] logger moet opslaan!
+2017-02-15 11:28:23,124 INFO r.w.StartProgram [main] Programma runt 
+2017-02-15 11:28:23,237 ERROR r.w.StartProgram [main] logger moet opslaan!
+2017-02-15 11:28:47,933 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
+2017-02-15 11:28:48,485 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
+2017-02-15 11:29:53,970 DEBUG r.w.AdresSQL [main] Input  in updateAdresPostcode is {]1
+2017-02-15 11:29:54,073 ERROR r.w.AdresSQL [main] Er gaat iets mis met het aanpassen van een adres op postcode
+2017-02-15 11:32:15,434 DEBUG r.w.AdresSQL [main] Input  in updateAdresPostcode is {]1
+2017-02-15 11:32:15,496 ERROR r.w.AdresSQL [main] Er gaat iets mis met het aanpassen van een adres op postcode
+2017-02-15 11:32:52,977 INFO r.w.StartProgram [main] Programma runt 
+2017-02-15 11:32:53,002 ERROR r.w.StartProgram [main] logger moet opslaan!
+2017-02-15 11:33:06,971 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
+2017-02-15 11:33:07,096 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
+2017-02-15 11:33:18,364 DEBUG r.w.AdresSQL [main] Input  in updateAdresPostcode is 1 2000 BB
+2017-02-15 11:33:18,406 ERROR r.w.AdresSQL [main] Er gaat iets mis met het aanpassen van een adres op postcode
+2017-02-15 11:35:21,367 INFO r.w.StartProgram [main] Programma runt 
+2017-02-15 11:35:21,392 ERROR r.w.StartProgram [main] logger moet opslaan!
+2017-02-15 11:35:33,500 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
+2017-02-15 11:35:33,568 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
+2017-02-15 11:37:18,540 DEBUG r.w.AdresSQL [main] Input  in updateAdresPostcode is 2000 1234 AA
+2017-02-15 11:37:18,627 ERROR r.w.AdresSQL [main] Er gaat iets mis met het aanpassen van een adres op postcode: Unknown column 'adresId' in 'where clause'
+2017-02-15 11:39:06,158 INFO r.w.StartProgram [main] Programma runt 
+2017-02-15 11:39:06,219 ERROR r.w.StartProgram [main] logger moet opslaan!
+2017-02-15 11:39:21,127 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
+2017-02-15 11:39:21,235 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
+2017-02-15 11:39:28,991 DEBUG r.w.AdresSQL [main] Input  in updateAdresPostcode is 1 2000 BB
+2017-02-15 11:42:57,773 INFO r.w.StartProgram [main] Programma runt 
+2017-02-15 11:42:57,784 ERROR r.w.StartProgram [main] logger moet opslaan!
+2017-02-15 11:43:07,222 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
+2017-02-15 11:43:07,328 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
+2017-02-15 11:43:15,629 DEBUG r.w.AdresSQL [main] Input  in updateAdresPostcode is 1 2000 BB
+2017-02-15 11:47:54,999 INFO r.w.StartProgram [main] Programma runt 
+2017-02-15 11:47:55,035 ERROR r.w.StartProgram [main] logger moet opslaan!
+2017-02-15 11:48:06,623 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
+2017-02-15 11:48:06,680 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
+2017-02-15 11:48:24,792 DEBUG r.w.AdresSQL [main] Input  in updateAdresHuisnrToevoeging is 1a
+2017-02-15 11:48:24,846 ERROR r.w.AdresSQL [main] Er gaat iets mis met het aanpassen van een adres op huisnummerToevoeging
+2017-02-15 11:50:02,319 INFO r.w.StartProgram [main] Programma runt 
+2017-02-15 11:50:02,343 ERROR r.w.StartProgram [main] logger moet opslaan!
+2017-02-15 11:50:14,210 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
+2017-02-15 11:50:14,324 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
+2017-02-15 11:50:25,704 DEBUG r.w.AdresSQL [main] Input  in updateAdresHuisnrToevoeging is 1a
+2017-02-15 11:50:25,741 ERROR r.w.AdresSQL [main] Er gaat iets mis met het aanpassen van een adres op huisnummerToevoeging Unknown column 'adresId' in 'where clause'
+2017-02-15 11:52:07,952 INFO r.w.StartProgram [main] Programma runt 
+2017-02-15 11:52:07,979 ERROR r.w.StartProgram [main] logger moet opslaan!
+2017-02-15 11:52:33,314 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
+2017-02-15 11:52:33,610 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
+2017-02-15 11:52:40,577 DEBUG r.w.AdresSQL [main] Input  in updateAdresHuisnrToevoeging is 1a
+2017-02-15 11:56:26,827 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
+2017-02-15 11:56:26,960 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
+2017-02-15 11:56:31,067 DEBUG r.w.AdresSQL [main] Input  in updateAdresHuisnrToevoeging is 1a

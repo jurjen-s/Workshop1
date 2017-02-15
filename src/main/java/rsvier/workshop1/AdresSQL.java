@@ -352,41 +352,42 @@ public class AdresSQL implements AdresDAO {
          LOGGER.debug("Input  in updateAdresHeeftHuisnrToevoeging is {}{}",adresId,heeftHuisnrToevoeging);
         String query = "UPDATE adressen SET heeft_huisnr_toevoeging = heeftHuisnrToevoeging WHERE adressen_id = adresId";
         try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
-            stmt.executeUpdate();
+           stmt.executeUpdate();
+           return true;
         } catch (SQLException ex) {
-            LOGGER.error("Er gaat iets mis met het aanpassen van een adres op heeftHuisnummerToevoeging", ex.getMessage());
-           
-            return false;
+           LOGGER.error("Er gaat iets mis met het aanpassen van een adres op heeftHuisnummerToevoeging {}", ex.getMessage());
+           return false;
         }
-        return true;
     }
 
     @Override
     public boolean updateAdresHuisnrToevoeging(int adresId, String huisnrToevoeging) {
          LOGGER.debug("Input  in updateAdresHuisnrToevoeging is {}{}",adresId,huisnrToevoeging);
-        String query = "UPDATE adressen SET huisnummer_toevoeging = huisnrToevoeging WHERE adressen_id = adresId";
+        String query = "UPDATE adressen SET huisnummer_toevoeging = ? WHERE adressen_id = ?";
         try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
+            stmt.setString(1, huisnrToevoeging);
+            stmt.setInt(2, adresId);
             stmt.executeUpdate();
+            return true;
         } catch (SQLException ex) {
-            LOGGER.error("Er gaat iets mis met het aanpassen van een adres op huisnummerToevoeging", ex.getMessage());
-           
-            return false;
+           LOGGER.error("Er gaat iets mis met het aanpassen van een adres op huisnummerToevoeging {}", ex.getMessage());
+           return false;
         }
-        return true;
     }
 
     @Override
     public boolean updateAdresPostcode(int adresId, String postcode) {
-         LOGGER.debug("Input  in updateAdresPostcode is {]{}",adresId,postcode);
-        String query = "UPDATE adressen SET postcode = postcode WHERE adressen_id = adresId";
+        LOGGER.debug("Input  in updateAdresPostcode is {} {}",adresId,postcode);
+        String query = "UPDATE adressen SET postcode = ? WHERE adressen_id = ?";
         try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
-            stmt.executeUpdate();
+           stmt.setString(1, postcode);
+           stmt.setInt(2, adresId);
+           stmt.executeUpdate();
+           return true;
         } catch (SQLException ex) {
-            LOGGER.error("Er gaat iets mis met het aanpassen van een adres op postcode", ex.getMessage());
-           
-            return false;
+           LOGGER.error("Er gaat iets mis met het aanpassen van een adres op postcode: {}", ex.getMessage());
+           return false;
         }
-        return true;
     }
 
     @Override

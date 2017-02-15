@@ -27,10 +27,13 @@ public class SQLConnection {
             try {                
                 Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException e) {
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                } catch (ClassNotFoundException ex) {
 		System.out.println("MySQL JDBC Driver niet gevonden.");
-		e.printStackTrace();
+		ex.printStackTrace();
+                }
             }
-            System.out.println("MySQL JDBC Driver geladen.");
             // Try to establish connection
             try {
                 sqlconnectie = DriverManager.getConnection(host, userName, userPass);
