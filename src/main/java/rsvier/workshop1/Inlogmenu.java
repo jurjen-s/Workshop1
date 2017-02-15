@@ -45,6 +45,16 @@ else{ System.out.println("foute cijfer waarde probeer opnieuw"); inlogMenu(); }
       
    public void inlogControle(){
        
+       /*
+       Voor referentie:
+       0: GEEN MD5 OF SHA-1 HASH!
+       1: The user creates an account.
+       2: Their password is hashed and stored in the database. At no point is the plain-text (unencrypted) password ever written to the hard drive.
+       3: When the user attempts to login, the hash of the password they entered is checked against the hash of their real password (retrieved from the database).
+       4: If the hashes match, the user is granted access. If not, the user is told they entered invalid login credentials.
+       5: Steps 3 and 4 repeat everytime someone tries to login to their account.
+
+       */
        
        System.out.println("vul account id in");
         int AcId = TextIO.getlnInt();
