@@ -165,45 +165,49 @@ public class KlantSQL implements KlantDAO {
 
     @Override
     public Klant findBijNaam(String voornaam, String tussenvoegsel, String achternaam) {
-           LOGGER.debug("input bij findBijNaam is {} {} {}",voornaam, tussenvoegsel,achternaam);
-       String query = "SELECT * FROM klanten WHERE voornaam = ? AND achternaam = ? AND tussenvoegsel = ?";
-        Klant klant = new Klant();
-        try (
-        		PreparedStatement stmt = connectie.prepareStatement(query)) {
-                        stmt.setString(1, voornaam);
-                        stmt.setString(2, tussenvoegsel);
-                        stmt.setString(3, achternaam);
-        		ResultSet resultset = stmt.executeQuery();
-        
-        
-                  ///maak klant en set de gegevens er in    (je wilt er mee werken uiteindelijk)       
-            if (resultset.next()) {
-                
-                klant.setKlantenID(resultset.getInt("klanten_id"));
-                klant.setVoornaam(resultset.getString("voornaam"));
-                klant.setAchternaam(resultset.getString("achternaam"));
-                klant.setTussenvoegsel(resultset.getString("tussenvoegsel"));
-                klant.setTelefoonnummer(resultset.getInt("telefoonnummer"));
-                klant.setFKaccountsID(resultset.getInt("FK_klanten_accounts_id"));
-                klant.setHeeftTusv(resultset.getInt("heeft_tussenvoegsel"));
-                
-                /**
-                klant.setBezorghuisnummer(resultset.getInt("Bezorghuisnummer"));
-                klant.setBezorgHuisnummertoevoeging(resultset.getString("BezorghuisnummerToevoeging"));
-                klant.setBezorgPostcode(resultset.getString("BezorgPostcode"));
-                klant.setFactuurPostcode(resultset.getString("FactuurPostcode"));
-                klant.setFactuurhuisnummer(resultset.getInt("FactuurHuisnummer"));
-                klant.setFactuurHuisnummertoevoeging(resultset.getString("FactuurHuisnummerToevoeging"));
-                klant.setLand(resultset.getString("Land"));
-                klant.setMedewerkerID(resultset.getInt("Medewerker_idMedewerker"));
-                */
-                
-                
-            }//einde if
-                } //einde try
-                 catch(SQLException ex)  {
-                     LOGGER.error("Er gaat iets mis met het bekijken van een klanten op naam : {}", ex.getMessage());
-                      }
+       LOGGER.debug("input bij findBijNaam is {} {} {}",voornaam, tussenvoegsel,achternaam);
+       Klant klant = new Klant();
+       //Onderscheid maken tussen namen met en zonder tussenvoegsel
+        if (tussenvoegsel.equals("")) {
+           String query = "SELECT * FROM klanten WHERE voornaam = ? AND achternaam = ?";
+           try (PreparedStatement stmt = connectie.prepareStatement(query)) {
+           stmt.setString(1, voornaam);
+           stmt.setString(2, achternaam);
+           ResultSet rs = stmt.executeQuery();
+           ///maak klant en set de gegevens er in    (je wilt er mee werken uiteindelijk)   
+                while (rs.next()) {
+                klant.setKlantenID(rs.getInt("klanten_id"));
+                klant.setVoornaam(rs.getString("voornaam"));
+                klant.setAchternaam(rs.getString("achternaam"));
+                klant.setTussenvoegsel(rs.getString("tussenvoegsel"));
+                klant.setTelefoonnummer(rs.getInt("telefoonnummer"));
+                klant.setFKaccountsID(rs.getInt("FK_klanten_accounts_id"));
+                klant.setHeeftTusv(rs.getInt("heeft_tussenvoegsel"));
+                }
+           } catch(SQLException ex)  {
+                LOGGER.error("Er gaat iets mis met het bekijken van een klanten op naam : {}", ex.getMessage());
+           }
+        } else {
+            String query = "SELECT * FROM klanten WHERE voornaam = ? AND achternaam = ? AND tussenvoegsel = ?";
+            try (PreparedStatement stmt = connectie.prepareStatement(query)) {
+                stmt.setString(1, voornaam);
+                stmt.setString(2, achternaam);
+                stmt.setString(3, tussenvoegsel);
+                ResultSet rs = stmt.executeQuery();
+                ///maak klant en set de gegevens er in    (je wilt er mee werken uiteindelijk)   
+                while (rs.next()) {
+                    klant.setKlantenID(rs.getInt("klanten_id"));
+                    klant.setVoornaam(rs.getString("voornaam"));
+                    klant.setAchternaam(rs.getString("achternaam"));
+                    klant.setTussenvoegsel(rs.getString("tussenvoegsel"));
+                    klant.setTelefoonnummer(rs.getInt("telefoonnummer"));
+                    klant.setFKaccountsID(rs.getInt("FK_klanten_accounts_id"));
+                    klant.setHeeftTusv(rs.getInt("heeft_tussenvoegsel"));
+                }
+            } catch(SQLException ex)  {
+                LOGGER.error("Er gaat iets mis met het bekijken van een klanten op naam : {}", ex.getMessage());
+            }
+        }
         LOGGER.debug("output bij findBijNaam is "+ klant.getStringKlant());
         return klant;
     }
@@ -364,7 +368,7 @@ public class KlantSQL implements KlantDAO {
         Klant klant = new Klant();
         
         
-         String query = "UPDATE klant SET FK_klanten_account_id = ?, voornaam = ?, tussenvoegsel = ?, achternaam = ?, telefoonnummer = ?,  heeft_tussenvoegsel = ? ";
+         String query = "UPDATE klanten SET FK_klanten_accounts_id = ?, voornaam = ?, tussenvoegsel = ?, achternaam = ?, telefoonnummer = ?,  heeft_tussenvoegsel = ? ";
          
          String query2 = "SELECT * FROM klanten WHERE FK_klanten_accounts_id = ?";
         
