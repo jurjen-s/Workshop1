@@ -34,21 +34,17 @@ public class BestelregelSQL implements BestelregelDAO {
     @Override
     public boolean toevoegenBestelregel(Bestelregel bestelregel) {
         LOGGER.debug("Toevoegen bestelregel: {}", bestelregel.toString());
-        try (PreparedStatement stmt = bestelregelconnectie.prepareStatement(
-            "INSERT INTO bestelregels" +
-            "(FK_bestelregels_bestellingen_id," +
-            "FK_bestelregels_producten_id, hoeveelheid)" +
-            "VALUES (?, ?, ?")) {
+        String query = "INSERT INTO bestelregels (FK_bestelregels_bestellingen_id, FK_bestelregels_producten_id, hoeveelheid) VALUES (?, ?, ?";
+        try (PreparedStatement stmt = bestelregelconnectie.prepareStatement(query)) {
             stmt.setInt(1, bestelregel.getBestellingId());
             stmt.setInt(2, bestelregel.getProductId());
             stmt.setInt(3, bestelregel.getHoeveelheid());
             stmt.executeUpdate();
+            return true;
         } catch (SQLException ex) {
-            System.out.print(ex.getMessage());
             LOGGER.error("Het volgende ging verkeerd bij toevoegen: {}", ex.getMessage());            
             return false;
         }
-        return true;
     }  
 
     @Override
@@ -149,11 +145,11 @@ public class BestelregelSQL implements BestelregelDAO {
         String query = "UPDATE bestelregels SET FK_bestelregels_bestellingen_id = ? WHERE bestelregels_id = bestelregelId";
         try (PreparedStatement stmt = bestelregelconnectie.prepareStatement(query)) {
             stmt.setInt(1, bestellingId);
+            return true;
         } catch (SQLException ex) {
             LOGGER.error("Het volgende ging verkeerd bij updaten: {}", ex.getMessage());            
             return false;
         }
-        return true;
     }
 
     @Override
@@ -162,11 +158,11 @@ public class BestelregelSQL implements BestelregelDAO {
         String query = "UPDATE bestelregels SET FK_bestelregels_producten_id = ? WHERE bestelregels_id = bestelregelId";
         try (PreparedStatement stmt = bestelregelconnectie.prepareStatement(query)) {
             stmt.setInt(1, productId);
+            return true;
         } catch (SQLException ex) {
             LOGGER.error("Het volgende ging verkeerd bij updaten: {}", ex.getMessage());
             return false;
         }
-        return true;
     }
     
     @Override
@@ -175,11 +171,11 @@ public class BestelregelSQL implements BestelregelDAO {
         String query = "UPDATE bestelregels SET hoeveelheid = ? WHERE bestelregels_id = bestelregelId";
         try (PreparedStatement stmt = bestelregelconnectie.prepareStatement(query)) {
             stmt.setInt(1, hoeveelheid);
+            return true;
         } catch (SQLException ex) {
             LOGGER.error("Het volgende ging verkeerd bij updaten: {}", ex.getMessage());
             return false;
         }
-        return true;
     }
     
     @Override
@@ -187,13 +183,13 @@ public class BestelregelSQL implements BestelregelDAO {
         LOGGER.debug("Verwijder bestelregel: {}", bestelregelId);
         String query = "DELETE FROM bestelregel WHERE bestelregels_id = ?";
         try (PreparedStatement stmt = bestelregelconnectie.prepareStatement(query)) {
-        stmt.setInt(1, bestelregelId);
-        stmt.executeUpdate();
-        stmt.close();
+            stmt.setInt(1, bestelregelId);
+            stmt.executeUpdate();
+            stmt.close();        
+            return true;
         } catch (SQLException ex) {
             LOGGER.error("Het volgende ging verkeerd bij verwijderen: {}", ex.getMessage());
             return false;
-        }        
-        return true;
+        }
     }
 }

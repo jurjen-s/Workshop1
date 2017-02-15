@@ -75,7 +75,7 @@ public class KlantSQL implements KlantDAO {
                 klanten.add(klant);
             } 
         } catch (SQLException ex) {
-        	
+            LOGGER.debug("Het volgende ging mis bij het maken van een klantlijst: {}", ex.getMessage());
         }     
         //"Klanten gevonden");
         return klanten;
@@ -88,6 +88,7 @@ public class KlantSQL implements KlantDAO {
     //onzin
     @Override
     public Klant findKlant(Klant bestaandeKlant) {
+        LOGGER.debug("Input findKlant: {}", bestaandeKlant.toString());
         int    klantID            = bestaandeKlant.getKlantenID();
         String klantVoornaam      = bestaandeKlant.getVoornaam();
         String klantAchternaam    = bestaandeKlant.getAchternaam();
@@ -95,22 +96,25 @@ public class KlantSQL implements KlantDAO {
         
         if (klantID != 0) {
 //id was niet null, klant zoeken op idKlant            
-        	
+        	LOGGER.debug("Zoeken op klantId.");
         	return findBijID(klantID);
         	}        
         
         else if (klantVoornaam != null && klantVoornaam.length() >= 1 && klantAchternaam.length() >= 1) {
         	//klant zoeken op voor en tussenvoegsel en achternaam
+                LOGGER.debug("Zoeken op volledige naam.");
         	return findBijNaam(klantVoornaam,klantTussenvoegsel, klantAchternaam);
         }
         
         else if (klantVoornaam != null && klantVoornaam.length() >= 1) {
         	//klant zoeken op voornaam en voornaam was groter dan 0");
+                LOGGER.debug("Zoeken op voornaam.");
         	return findBijVoornaam(klantVoornaam);
         	}
         
         else {
         	System.out.println("Niks gevonden");
+                LOGGER.error("Geen klant gevonden.");
         	return null;
         }
     } 
@@ -118,11 +122,12 @@ public class KlantSQL implements KlantDAO {
     @Override
     public Klant findBijID(int klantenid) {
         LOGGER.debug("input bij findBijID is {}",klantenid);
-         String query = "SELECT * FROM klanten WHERE klanten_id = " + klantenid;
+         String query = "SELECT * FROM klanten WHERE klanten_id = ?";
         Klant klant = new Klant();
         try (
-        		PreparedStatement stmt = connectie.prepareStatement(query);
-        		ResultSet resultset = stmt.executeQuery();){
+        		PreparedStatement stmt = connectie.prepareStatement(query)) {
+                        stmt.setInt(1, klantenid);
+        		ResultSet resultset = stmt.executeQuery();
         	
             ///maak java klant       
             if (resultset.next()) {                
@@ -151,7 +156,7 @@ public class KlantSQL implements KlantDAO {
             
          //einde try   
         } catch (SQLException ex) { System.out.println(ex.getMessage());
-        	 LOGGER.error("Er gaat iets mis met het bekijken van een klanten op klantID{}", ex.getMessage());
+        	 LOGGER.error("Er gaat iets mis met het bekijken van een klanten op klantID: {}", ex.getMessage());
         }
         LOGGER.debug("output bij findBijID is "+ klant.getStringKlant());
         return klant;
@@ -160,14 +165,17 @@ public class KlantSQL implements KlantDAO {
 
     @Override
     public Klant findBijNaam(String voornaam, String tussenvoegsel, String achternaam) {
-           LOGGER.debug("input bij findBijNaam is {}{}{}",voornaam, tussenvoegsel,achternaam);
-       String query = "SELECT * FROM klanten WHERE voornaam = '" + voornaam + "' AND achternaam = '" + achternaam + "' AND tussenvoegsel = '" + tussenvoegsel + "'       ";
+           LOGGER.debug("input bij findBijNaam is {} {} {}",voornaam, tussenvoegsel,achternaam);
+       String query = "SELECT * FROM klanten WHERE voornaam = ? AND achternaam = ? AND tussenvoegsel = ?";
         Klant klant = new Klant();
         try (
-        		PreparedStatement stmt = connectie.prepareStatement(query);
-        		ResultSet resultset = stmt.executeQuery();)
+        		PreparedStatement stmt = connectie.prepareStatement(query)) {
+                        stmt.setString(1, voornaam);
+                        stmt.setString(2, tussenvoegsel);
+                        stmt.setString(3, achternaam);
+        		ResultSet resultset = stmt.executeQuery();
         
-        {
+        
                   ///maak klant en set de gegevens er in    (je wilt er mee werken uiteindelijk)       
             if (resultset.next()) {
                 
@@ -203,11 +211,12 @@ public class KlantSQL implements KlantDAO {
     @Override
     public Klant findBijVoornaam(String voornaam) {
            LOGGER.debug("input bij findBijVoornaam is {}",voornaam);
-       String query = "SELECT * FROM klanten WHERE voornaam = '" + voornaam + "'";
+       String query = "SELECT * FROM klanten WHERE voornaam = ?";
         Klant klant = new Klant();
         try (
-        		PreparedStatement stmt = connectie.prepareStatement(query);
-        		ResultSet resultset = stmt.executeQuery();){
+        		PreparedStatement stmt = connectie.prepareStatement(query)) {
+                        stmt.setString(1, voornaam);
+            ResultSet resultset = stmt.executeQuery();
         
             ///geef alle data naar java toe met de gevonden voornaam.
             if (resultset.next()) {
@@ -262,11 +271,12 @@ public class KlantSQL implements KlantDAO {
     @Override
     public Klant findBijLastName(String achternaam) {
         LOGGER.debug("input bij findBijLastName is {}",achternaam);
-         String query = "SELECT * FROM klanten WHERE achternaam = '" + achternaam + "'";
+         String query = "SELECT * FROM klanten WHERE achternaam = ?";
         Klant klant = new Klant();
        try (
-        		PreparedStatement stmt = connectie.prepareStatement(query);
-        		ResultSet resultset = stmt.executeQuery();){
+        		PreparedStatement stmt = connectie.prepareStatement(query)) {
+        		stmt.setString(1, achternaam);
+                        ResultSet resultset = stmt.executeQuery();
         
             ///geef alle data naar java toe met de gevonden achternaam.
             if (resultset.next()) {
@@ -294,13 +304,13 @@ public class KlantSQL implements KlantDAO {
 
     @Override
        public Klant createKlant( int accountidvanklant,  String VN, int Heefttussenvoegsel, String TV, String AN, int Telefoonnr) {
-        LOGGER.debug("input bij create klant is {}{}{}{}{}{}",accountidvanklant,VN,Heefttussenvoegsel,TV,AN,Telefoonnr);
+        LOGGER.debug("input bij create klant is {} {} {} {} {} {}",accountidvanklant,VN,Heefttussenvoegsel,TV,AN,Telefoonnr);
         Klant klant = new Klant();
             
             
          String query = "INSERT INTO klanten (FK_klanten_accounts_id,voornaam,heeft_tussenvoegsel,tussenvoegsel,achternaam,telefoonnummer) VALUES (? , ? , ? , ? , ? , ?  ) ";
        
-        String query2 = "SELECT * FROM klanten WHERE FK_klanten_accounts_id = ' "+ accountidvanklant +" ' AND achternaam = '"+ AN +"' ";
+        String query2 = "SELECT * FROM klanten WHERE FK_klanten_accounts_id = ? AND achternaam = ?";
       
       
         try (PreparedStatement stmt = connectie.prepareStatement(query);
@@ -312,6 +322,9 @@ public class KlantSQL implements KlantDAO {
             stmt.setString(4, TV);
             stmt.setString(5, AN);
             stmt.setInt(6,Telefoonnr);
+            
+            stmt2.setInt(1, accountidvanklant);
+            stmt2.setString(2, AN);
             
                     
          stmt.executeUpdate();
@@ -347,28 +360,26 @@ public class KlantSQL implements KlantDAO {
 
     @Override
     public Klant updateKlant(int accountidvanklant,  String VN, int Heefttussenvoegsel, String TV, String AN, int Telefoonnr) {
-        LOGGER.debug("input bij update klant is {}{}{}{}{}{}",accountidvanklant,VN,Heefttussenvoegsel,TV,AN,Telefoonnr);
+        LOGGER.debug("input bij update klant is {} {} {} {} {} {}",accountidvanklant,VN,Heefttussenvoegsel,TV,AN,Telefoonnr);
         Klant klant = new Klant();
         
         
          String query = "UPDATE klant SET FK_klanten_account_id = ?, voornaam = ?, tussenvoegsel = ?, achternaam = ?, telefoonnummer = ?,  heeft_tussenvoegsel = ? ";
          
-         String query2 = "SELECT * FROM klanten WHERE FK_klanten_accounts_id = ' " + accountidvanklant +" ";
+         String query2 = "SELECT * FROM klanten WHERE FK_klanten_accounts_id = ?";
         
          try (PreparedStatement stmt = connectie.prepareStatement(query);
-             PreparedStatement stmt2 = connectie.prepareStatement(query2)){	
+             PreparedStatement stmt2 = connectie.prepareStatement(query2)) {	
 
             stmt.setInt(1, accountidvanklant);
             stmt.setString(2,VN);
             stmt.setString(3, TV);
             stmt.setString(4, AN);
-            stmt.setInt(5, Telefoonnr);
-           
+            stmt.setInt(5, Telefoonnr);           
             stmt.setInt(6, Heefttussenvoegsel);
-           
-            
             stmt.executeUpdate();
-                 
+            
+            stmt2.setInt(1, accountidvanklant);
              ResultSet rs = stmt2.executeQuery();
           
                 while (rs.next()){
@@ -399,22 +410,23 @@ public class KlantSQL implements KlantDAO {
     @Override
     public boolean deleteKlant(int klantid) {
         LOGGER.debug("input bij delete klant is {}",klantid);
-        String query2 = "DELETE FROM klanten WHERE klanten_id = " + klantid ;        
+        String query2 = "DELETE FROM klanten WHERE klanten_id = ?";        
         try (
                 //PreparedStatement stmt  = connectie.prepareStatement(query);
-        	PreparedStatement stmt2 = connectie.prepareStatement(query2);
-        		){
+        	PreparedStatement stmt2 = connectie.prepareStatement(query2))   {
         	
            // stmt.executeUpdate();
             //Klant verwijdert uit tussen tabel mocht die er zijn.
+            stmt2.setInt(1, klantid);
             stmt2.executeUpdate();
             // Klant verwijderd, zie query
             
             System.out.println("Klant gegevens zijn succesvol verwijderd");
+            return true;
         } catch (SQLException et) {
         	LOGGER.error("Er gaat iets mis met het verwijderen van een klant {}", et.getMessage());
             return true;    
-        }    return true;
+        }    
     }
 
     

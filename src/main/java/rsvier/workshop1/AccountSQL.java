@@ -34,11 +34,12 @@ public class AccountSQL implements AccountDAO {
        
     LOGGER.debug("Account zoeken. Zoekterm: accountId {}", id);   
         
-       String query = "SELECT * FROM accounts WHERE accounts_id = '" + id + "'";
+       String query = "SELECT * FROM accounts WHERE accounts_id = ?";
         Account account = new Account();
         try (
-        		PreparedStatement stmt = accountconnectie.prepareStatement(query);
-        		ResultSet resultset = stmt.executeQuery();){
+          PreparedStatement stmt = accountconnectie.prepareStatement(query)) {
+          stmt.setInt(1, id)  ;
+          ResultSet resultset = stmt.executeQuery();
         
             ///geef alle data naar java toe met de gevonden voornaam.
             if (resultset.next()) {
@@ -73,7 +74,7 @@ public class AccountSQL implements AccountDAO {
         
       String query = "INSERT INTO accounts (accounts_type, wachtwoord) VALUES (?, ? ) ";
        
-      String query2 = "SELECT * FROM accounts WHERE accounts_type = ' "+ type +  "' AND wachtwoord = '"+ wachtwoord + " ' ";
+      String query2 = "SELECT * FROM accounts WHERE accounts_type = ? AND wachtwoord = ?";
       
       
         try (PreparedStatement stmt = accountconnectie.prepareStatement(query);
@@ -81,6 +82,8 @@ public class AccountSQL implements AccountDAO {
             
             stmt.setInt(1, type);
             stmt.setString(2, wachtwoord);
+            stmt2.setInt(1, type);
+            stmt2.setString(2, wachtwoord);
             
            // ResultSet resultset =
          
@@ -117,26 +120,23 @@ public class AccountSQL implements AccountDAO {
          
        // String query = "DELETE FROM klant_has_adres (=NAAM TUSSEN TABLE! ) WHERE Klant_klant_id (NAAM=FK ALS DIE ER IS) = " + klant.getKlantID(); 
        LOGGER.debug("Account met id {} verwijderen", id);
-        String query = "DELETE FROM accounts WHERE accounts_id = " + id;        
+        String query = "DELETE FROM accounts WHERE accounts_id = ?";        
         try (
                 //PreparedStatement stmt  = connectie.prepareStatement(query);
-        	PreparedStatement stmt2 = accountconnectie.prepareStatement(query)
-        	)
-                {
+        	PreparedStatement stmt2 = accountconnectie.prepareStatement(query)) {
+            stmt2.setInt(1, id);
         	
         
             stmt2.executeUpdate();
-          
-            
-            System.out.println("Account gegevens zijn succesvol verwijderd");
             LOGGER.info("Account gegevens zijn succesvol verwijderd");
+            return true;
         }
         catch (SQLException ex){
          LOGGER.error("Het volgende ging verkeerd bij het verwijderen van de account: {}", ex.getMessage());
               return false;  
         } 
         
-        return true;
+        
         
         
         
@@ -150,7 +150,7 @@ public class AccountSQL implements AccountDAO {
           
                     
                     
-       try (PreparedStatement stmt = accountconnectie.prepareStatement(regel)){
+       try (PreparedStatement stmt = accountconnectie.prepareStatement(regel))  {
        stmt.setInt(1, type);
        stmt.setInt(2, id);       
                
@@ -159,15 +159,16 @@ public class AccountSQL implements AccountDAO {
        
        
          
-        System.out.println("Account type is succesvol veranderd");
+        
         LOGGER.info("Account type is succesvol veranderd");
+        return true;
         }
         catch (SQLException ex){
          LOGGER.error("Het volgende ging mis bij het aanpassen van het accounttype: {}", ex.getMessage());
               return false;  
         } 
         
-        return true;
+        
         
     }
     
@@ -186,51 +187,38 @@ public class AccountSQL implements AccountDAO {
         
          stmt.executeUpdate();
          
-        System.out.println("Account wachtwoord is succesvol veranderd");
         LOGGER.info("Account wachtwoord is succesvol veranderd");
+        return true;
         }
         catch (SQLException ex){
          LOGGER.error("Het volgende ging mis bij het aanpassen van het wachtwoord: {}", ex.getMessage());
               return false;  
         } 
         
-        return true;
+        
         
     }
     
-    
-    
-    
-    
-
     @Override
-        public boolean loginCheckAccount(int accountId, String wachtwoord) {
-            
-            boolean correct;
-            
-            String query = "SELECT * FROM accounts WHERE accounts_id = ? AND wachtwoord = ?";
-            
-            LOGGER.debug("Controleer wachtwoord en id van accountId: {}", accountId);
-            
-    try (PreparedStatement stmt = accountconnectie.prepareStatement(query)){
+    public boolean loginCheckAccount(int accountId, String wachtwoord) {
+        String query = "SELECT * FROM accounts WHERE accounts_id = ? AND wachtwoord = ?";
+        LOGGER.debug("Controleer wachtwoord en id van accountId: {}", accountId);
+        try (PreparedStatement stmt = accountconnectie.prepareStatement(query)) {
         stmt.setInt(1, accountId);
         stmt.setString(2, wachtwoord);
         ResultSet rs = stmt.executeQuery();
-        
-        
-        
-        if(rs.next()){correct=true;} 
-        else { correct = false;        
+        if (rs.next()) {
+            LOGGER.info("Het inloggen is gelukt.");
+            return true;
+        } else { 
+            return false;        
         }
-        LOGGER.info("Het inloggen is gelukt.");
-            } catch (SQLException ex) { 
-                correct = false;
-                LOGGER.error("Het volgende ging mis bij het controleren van het wachtwoord: {}", ex.getMessage());
-                  }
-    return correct;
-}
-    
+        } catch (SQLException ex) { 
+        LOGGER.error("Het volgende ging mis bij het controleren van het wachtwoord: {}", ex.getMessage());
+        return false;
+        }
     }
+}
         
         
         

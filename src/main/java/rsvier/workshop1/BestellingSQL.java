@@ -67,10 +67,6 @@ public class BestellingSQL implements BestellingDAO {
         // @@Controleren of bestellingId bestaat in de db
         Bestelling zoekresultaat = new Bestelling();
         String query = "SELECT * FROM bestellingen WHERE bestellingen_id = ?";
-        /*try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
-            "SELECT * " +
-            "FROM bestellingen" +
-            "WHERE bestellingen_id = ?")) {*/
         try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(query)) {
             stmt.setInt(1, bestellingId);
             ResultSet rs = stmt.executeQuery();
@@ -94,7 +90,7 @@ public class BestellingSQL implements BestellingDAO {
         } catch (SQLException ex) {
             LOGGER.error("Het volgende ging verkeerd bij het zoeken op bestellingId: {}", ex.getMessage());
         }
-        LOGGER.debug("Output zoeken op bestellingId: {}", zoekresultaat.toString());
+        LOGGER.debug("Output zoeken op bestellingId: " + zoekresultaat.toString());
         return zoekresultaat;
     } // einde zoekBestelling(int bestellingId)
     
@@ -103,10 +99,8 @@ public class BestellingSQL implements BestellingDAO {
         LOGGER.debug("Zoek bestelling op klantId {}", klantId);
         // @@Controleren of klantId bestaat in database
         List<Bestelling> zoekresultaat = new ArrayList<>();
-        try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
-            "SELECT * " +
-            "FROM bestellingen " +
-            "WHERE FK_bestellingen_klanten_id = ?")) {
+        String query = "SELECT * FROM bestellingen WHERE FK_bestellingen_klanten_id = ?";
+        try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(query)) {
             stmt.setInt(1, klantId);
             ResultSet rs = stmt.executeQuery();
             int bestellingId = rs.getInt("bestellingen_id");
@@ -128,7 +122,7 @@ public class BestellingSQL implements BestellingDAO {
         } catch (SQLException ex) {
             LOGGER.error("Het volgende ging verkeerd bij het zoeken op klantId: {}", ex.getMessage());
         }
-        LOGGER.debug("Output zoeken op klantId: {}", zoekresultaat.toString());
+        LOGGER.debug("Output zoeken op klantId: " + zoekresultaat.toString());
         return zoekresultaat;
     } // einde findBestellingByKlant(int klantId)
    
@@ -136,10 +130,8 @@ public class BestellingSQL implements BestellingDAO {
     public List findBestellingByAdresId(int adresId) {
         LOGGER.debug("Zoek bestelling op adresId {}", adresId);
         List<Bestelling> zoekresultaat = new ArrayList<>();
-        try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
-                "SELECT * " +
-                "FROM bestellingen" +
-                "WHERE FK_bestellingen_adressen_id = ?")) {
+        String query = "SELECT * FROM bestellingen WHERE FK_bestellingen_adressen_id = ?";
+        try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(query)) {
             stmt.setInt(1, adresId);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -156,7 +148,7 @@ public class BestellingSQL implements BestellingDAO {
         } catch (SQLException ex) {
             LOGGER.error("Het volgende ging verkeerd bij het zoeken op adresId: {}", ex.getMessage());
         }
-        LOGGER.debug("Output zoeken op adresId: {}", zoekresultaat.toString());
+        LOGGER.debug("Output zoeken op adresId: " + zoekresultaat.toString());
         return zoekresultaat;
     } // einde zoekBestellingByAdres()
     
@@ -164,10 +156,8 @@ public class BestellingSQL implements BestellingDAO {
     public List findBestellingByAantalArtikelen(int aantalArtikelen) {
         LOGGER.debug("Zoek bestelling op aantalArtikelen {}", aantalArtikelen);
         List<Bestelling> zoekresultaat = new ArrayList<>();
-        try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
-                "SELECT * " +
-                "FROM bestellingen" +
-                "WHERE aantal_artikelen = ?")) {
+        String query = "SELECT * FROM bestellingen WHERE aantal_artikelen = ?";
+        try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(query)) {
             stmt.setInt(1, aantalArtikelen);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -184,7 +174,7 @@ public class BestellingSQL implements BestellingDAO {
         } catch (SQLException ex) {
             LOGGER.error("Het volgende ging verkeerd bij het zoeken op aantalArtikelen: {}", ex.getMessage());
         }                    
-        LOGGER.debug("Output zoeken op aantalArtikelen: {}", zoekresultaat.toString());
+        LOGGER.debug("Output zoeken op aantalArtikelen: " + zoekresultaat.toString());
         return zoekresultaat;
     } // einde findBestellingByAantalArtikelen()
     
@@ -192,10 +182,8 @@ public class BestellingSQL implements BestellingDAO {
     public List findBestellingByTotaalprijs(BigDecimal totaalprijs) {
         LOGGER.debug("Zoek bestelling op totaalprijs {}", totaalprijs);
         List<Bestelling> zoekresultaat = new ArrayList<>();
-        try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
-                "SELECT * " +
-                "FROM bestellingen" +
-                "WHERE totaalprijs = ?")) {
+        String query = "SELECT * FROM bestellingen WHERE totaalprijs = ?";
+        try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(query)) {
             stmt.setBigDecimal(1, totaalprijs);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -212,16 +200,15 @@ public class BestellingSQL implements BestellingDAO {
         } catch (SQLException ex) {
             LOGGER.error("Het volgende ging verkeerd bij het zoeken op totaalprijs: {}", ex.getMessage());  
         }
-        LOGGER.debug("Output zoeken op totaalprijs: {}", zoekresultaat.toString());
+        LOGGER.debug("Output zoeken op totaalprijs: " + zoekresultaat.toString());
         return zoekresultaat;
     } // einde findBestellingByTotaalprijs(BigDecimal totaalprijs)
 
     @Override
     public Bestelling toevoegenBestelling(Bestelling opgegevenBestelling) {
         LOGGER.debug("Toevoegen bestelling {}", opgegevenBestelling.toString());
-        try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
-                "INSERT INTO bestellingen (FK_bestellingen_klanten_id, FK_bestellingen_adres_id, aantal_artikelen, totaalprijs)" +
-                "VALUES ?, ?, ?, ?")) {
+        String query = "INSERT INTO bestellingen (FK_bestellingen_klanten_id, FK_bestellingen_adres_id, aantal_artikelen, totaalprijs) VALUES ?, ?, ?, ?";
+        try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(query)) {
             ResultSet rs = stmt.executeQuery("SELECT LAST_INSERT_ID()");
             int bestellingId = rs.getInt(1);
             stmt.setInt(1, opgegevenBestelling.getKlantId());
@@ -233,104 +220,95 @@ public class BestellingSQL implements BestellingDAO {
         } catch (SQLException ex) {
             LOGGER.error("Het volgende ging verkeerd bij het toevoegen: {}", ex.getMessage());  
         }
-        LOGGER.debug("Output toevoegen: {}", opgegevenBestelling.toString());
+        LOGGER.debug("Output toevoegen: " + opgegevenBestelling.toString());
         return opgegevenBestelling;
     } // einde toevoegenBestelling(Bestelling opgegevenBestelling)
     
     @Override
     public boolean updateBestellingKlantId(int bestellingId, int klantId) {
         LOGGER.debug("Pas klantId van bestelling {} aan", bestellingId);
-        try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
-                "UPDATE bestellingen" +
-                "SET FK_bestellingen_klanten_id = ?" +
-                "WHERE bestellingen_id = ?")) {
-        stmt.setInt(1, klantId);
-        stmt.setInt(2, bestellingId);
-        stmt.executeUpdate();
+        String query = "UPDATE bestellingen SET FK_bestellingen_klanten_id = ? WHERE bestellingen_id = ?";
+        try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(query)) {
+            stmt.setInt(1, klantId);
+            stmt.setInt(2, bestellingId);
+            stmt.executeUpdate();
+            LOGGER.debug("Output toevoegen: {}", true);
+            return true;
         } catch (SQLException ex) {
             LOGGER.error("Het volgende ging verkeerd bij aanpassen: {}", ex.getMessage());  
             return false;
         }
-        LOGGER.debug("Output toevoegen: {}", true);
-        return true;
     } // einde updateBestellingKlantId(int bestellingId, int klantId)
     
     @Override
     public boolean updateBestellingAdresId(int bestellingId, int adresId) {
         LOGGER.debug("Pas adresId van bestelling {} aan", bestellingId);
-        try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
-                "UPDATE bestellingen" +
-                "SET FK_bestellingen_adressen_id = ?" +
-                "WHERE bestellingen_id = ?")) {
-        stmt.setInt(1, adresId);
-        stmt.setInt(2, bestellingId);
-        stmt.executeUpdate();
+        String query = "UPDATE bestellingen SET FK_bestellingen_adressen_id = ? WHERE bestellingen_id = ?";
+        try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(query)) {
+            stmt.setInt(1, adresId);
+            stmt.setInt(2, bestellingId);
+            stmt.executeUpdate();
+            LOGGER.debug("Output toevoegen: {}", true);
+            return true;
         } catch (SQLException ex) {
             LOGGER.error("Het volgende ging verkeerd bij aanpassen: {}", ex.getMessage());  
             return false;
         }
-        LOGGER.debug("Output toevoegen: {}", true);
-        return true;
     } // einde updateBestellingAdresId(int bestellingId, int adresId)
 
     @Override
     public boolean updateBestellingAantalArtikelen(int bestellingId, int aantalArtikelen) {
         LOGGER.debug("Pas aantalArtikelen van bestelling {} aan", bestellingId);
-        try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
-                "UPDATE bestellingen" +
-                "SET aantal_artikelen = ?" +
-                "WHERE bestellingen_id = ?")) {
-        stmt.setInt(1, aantalArtikelen);
-        stmt.setInt(2, bestellingId);
-        stmt.executeUpdate();
+        String query = "UPDATE bestellingen SET aantal_artikelen = ? WHERE bestellingen_id = ?";
+        try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(query)) {
+            stmt.setInt(1, aantalArtikelen);
+            stmt.setInt(2, bestellingId);
+            stmt.executeUpdate();
+            LOGGER.debug("Output toevoegen: {}", true);
+            return true;
         } catch (SQLException ex) {
             LOGGER.error("Het volgende ging verkeerd bij aanpassen: {}", ex.getMessage());  
             return false;
         }
-        LOGGER.debug("Output toevoegen: {}", true);
-        return true;
     } // einde updateBestellingAantalArtikelen(int bestellingId, int aantalArtikelen)
 
     @Override
     public boolean updateBestellingTotaalprijs(int bestellingId, BigDecimal totaalprijs) {
         LOGGER.debug("Pas totaalprijs van bestelling {} aan", bestellingId);
-        try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
-                "UPDATE bestellingen" +
-                "SET totaalprijs = ?" +
-                "WHERE bestellingen_id = ?")) {
-        stmt.setBigDecimal(1, totaalprijs);
-        stmt.setInt(2, bestellingId);
-        stmt.executeUpdate();
+        String query = "UPDATE bestellingen SET totaalprijs = ? WHERE bestellingen_id = ?";
+        try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(query)) {
+            stmt.setBigDecimal(1, totaalprijs);
+            stmt.setInt(2, bestellingId);
+            stmt.executeUpdate();
+            LOGGER.debug("Output toevoegen: {}", true);
+            return true;
         } catch (SQLException ex) {
             LOGGER.error("Het volgende ging verkeerd bij aanpassen: {}", ex.getMessage());  
             return false;
         }
-        LOGGER.debug("Output toevoegen: {}", true);
-        return true;
     } // einde updateBestellingTotaalprijs(int bestellingId, BigDecimal totaalprijs)
 
     @Override
     public boolean deleteBestelling(int bestellingId) {
         LOGGER.debug("Verwijder bestelling {} ", bestellingId);
-        try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
-                    "DELETE FROM bestellingen" +
-                    "WHERE bestellingen_id = ?")) {
-        stmt.setInt(1, bestellingId);
-        stmt.executeUpdate();
-        stmt.close();
+        String query = "DELETE FROM bestellingen WHERE bestellingen_id = ?";
+        try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(query)) {
+            stmt.setInt(1, bestellingId);
+            stmt.executeUpdate();
+            stmt.close();        
+            LOGGER.debug("Verwijder bestelling {} ", bestellingId);
+            return true;
         } catch (SQLException ex) {
             LOGGER.error("Het volgende ging verkeerd bij verwijderen: {}", ex.getMessage());  
             return false;
-        }        
-        LOGGER.debug("Verwijder bestelling {} ", bestellingId);
-        return true;
+        }
     } // einde verwijderenBestelling(int bestellingId)
     
     @Override
     public void bekijkBestelling(int bestellingId) {
         LOGGER.debug("Bekijk bestelling {} ", bestellingId);
-        List<Product> zoekresultaat = new ArrayList<>();
-        Map<Product, Integer> test = new HashMap<Product, Integer>();
+        //List<Product> zoekresultaat = new ArrayList<>();
+        Map<Product, Integer> test = new HashMap<>();
         try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(
                 // bestelling heeft klant, adres, product+hoeveelheid+prijs, totaal aantal artikelen en totaalprijs
                 // aantal artikelen is gelijk aan het aantal matchende bestelregels
