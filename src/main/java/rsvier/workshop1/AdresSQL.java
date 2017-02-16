@@ -39,30 +39,14 @@ public class AdresSQL implements AdresDAO {
         this.adresconnectie = connectie;
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
     @Override
     public Adres findAdresById(int adresId) {
-         LOGGER.debug("Input  in findAdresById is {}",adresId);
+        LOGGER.debug("Input  in findAdresById is {}",adresId);
         String query = "SELECT * FROM adressen WHERE adressen_id = '" + adresId + "'";
-        
         Adres adres = new Adres();
-        //adresconnectie kan fout zijn!
-        try (
-        		PreparedStatement stmt = adresconnectie.prepareStatement(query);
-        		ResultSet resultset = stmt.executeQuery();){
-        
-            ///geef alle data naar java toe met de gevonden voornaam.
+        try (PreparedStatement stmt = adresconnectie.prepareStatement(query);
+            ResultSet resultset = stmt.executeQuery())    {
             if (resultset.next()) {
-                
-                
-                
                 adres.setAdresId(resultset.getInt("adressen_id"));
                 adres.setAdresType(resultset.getInt("adressen_type"));
                 adres.setKlantId(resultset.getInt("FK_adressen_klanten_id"));
@@ -71,13 +55,10 @@ public class AdresSQL implements AdresDAO {
                 adres.setHuisnrToevoeging(resultset.getString("huisnummer_toevoeging"));
                 adres.setPostcode(resultset.getString("postcode"));
                 adres.setLand(resultset.getString("land"));
-                
-                
-             }//einde if
-        } //einde try
+            }
+        }
         catch (SQLException ex) {
-            LOGGER.error("Er gaat iets mis met het zoeken van een adres op AdresID{}", ex.getMessage());
-       
+            LOGGER.error("Er gaat iets mis met het zoeken van een adres op AdresID: {}", ex.getMessage());
         }
         LOGGER.debug("output findAdresByID :" +  adres.toString());
         return adres;    
@@ -85,15 +66,10 @@ public class AdresSQL implements AdresDAO {
 
     @Override
     public List findAdresByType(int adresType) {
-         LOGGER.debug("Input  in findAdresByType is {}",adresType);
-        // @@Controleren of klantId bestaat in database
+        LOGGER.debug("Input  in findAdresByType is {}",adresType);
         List<Adres> zoekresultaat = new ArrayList<>();
-        //adresconnectie kan fout zijn!
-        try (PreparedStatement stmt = adresconnectie.prepareStatement(
-            "SELECT * " +
-            "FROM adressen " +
-            "WHERE adressen_type = ?")) {
-            
+        String query = "SELECT * FROM adressen WHERE adressen_type = ?";
+        try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
             stmt.setInt(1, adresType);
             ResultSet resultset = stmt.executeQuery();
             int     nul = resultset.getInt("adressen_id");
@@ -105,42 +81,34 @@ public class AdresSQL implements AdresDAO {
             String x = resultset.getString("huisnummer_toevoeging");
             String  zes = resultset.getString("postcode");
             String  zeven =resultset.getString("land");
-            
-            // Laat alle bestellingen met het opgegeven klantId zien
             while (resultset.next()) {
-            Adres gevondenAdres = new Adres.AdresBuilder()
-        .adresId(nul)
-        .adresType(een)
-        .klantId(twee)
-        .straatnaam(drie)
-        .huisnummer(vier)
-        .heeftHuisnrToevoeging(vijf)
-        .huisnrToevoeging(x)
-        .postcode(zes)
-        .land(zeven)
-        .build();
-            zoekresultaat.add(gevondenAdres);
+                Adres gevondenAdres = new Adres.AdresBuilder()
+                                               .adresId(nul)
+                                               .adresType(een)
+                                               .klantId(twee)
+                                               .straatnaam(drie)
+                                               .huisnummer(vier)
+                                               .heeftHuisnrToevoeging(vijf)
+                                               .huisnrToevoeging(x)
+                                               .postcode(zes)
+                                               .land(zeven)
+                                               .build();
+                zoekresultaat.add(gevondenAdres);
             }
             resultset.close();
         } catch (SQLException ex) {
             LOGGER.error("Er gaat iets mis met het zoeken van een adres op type {}", ex.getMessage());
-        
-           
         }
-         LOGGER.debug("output findAdresByID :" +  zoekresultaat.toString());
+        LOGGER.debug("output findAdresByID :" +  zoekresultaat.toString());
         return zoekresultaat;
     }
 
     @Override
     public List findAdresByKlantId(int klantId) {
          LOGGER.debug("Input  in findAdresByKlant is {}",klantId);
-        // @@Controleren of klantId bestaat in database
         List<Adres> zoekresultaat = new ArrayList<>();
-        //adresconnectie kan fout zijn!
-        try (PreparedStatement stmt = adresconnectie.prepareStatement(
-            "SELECT * " +
-            "FROM adressen " +
-            "WHERE FK_adressen_klanten_id = ?")) {
+        String query = "SELECT * from adressen WHERE FK_adressen_klanten_id = ?";
+        try (PreparedStatement stmt = adresconnectie.prepareStatement(query)) {
             stmt.setInt(1, klantId);
             ResultSet resultset = stmt.executeQuery();
             int     nul = (resultset.getInt("adressen_id"));
@@ -155,18 +123,18 @@ public class AdresSQL implements AdresDAO {
             
             // Laat alle bestellingen met het opgegeven klantId zien
             while (resultset.next()) {
-            Adres gevondenAdres = new Adres.AdresBuilder()
-        .adresId(nul)
-        .adresType(een)
-        .klantId(twee)
-        .straatnaam(drie)
-        .huisnummer(vier)
-        .heeftHuisnrToevoeging(vijf)
-        .huisnrToevoeging(x)
-        .postcode(zes)
-        .land(zeven)
-        .build();
-            zoekresultaat.add(gevondenAdres);
+                Adres gevondenAdres = new Adres.AdresBuilder()
+                                                .adresId(nul)
+                                                .adresType(een)
+                                                .klantId(twee)
+                                                .straatnaam(drie)
+                                                .huisnummer(vier)
+                                                .heeftHuisnrToevoeging(vijf)
+                                                .huisnrToevoeging(x)
+                                                .postcode(zes)
+                                                .land(zeven)
+                                                .build();
+                zoekresultaat.add(gevondenAdres);
             }
             resultset.close();
         } catch (SQLException ex) {

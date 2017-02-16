@@ -6,6 +6,7 @@
 package rsvier.workshop1;
    
 
+import java.sql.SQLException;
 import java.util.List;
 
 // hier mist misschien nog wat imports.
