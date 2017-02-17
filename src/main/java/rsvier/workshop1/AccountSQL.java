@@ -19,17 +19,12 @@ import org.mindrot.jbcrypt.BCrypt;
  * @author Frank
  */
 public class AccountSQL implements AccountDAO {
-
     private static final Logger LOGGER = LogManager.getLogger(AccountMenu.class);
-    
-     private Connection accountconnectie;
-    
+    private Connection accountconnectie;
     public AccountSQL(Connection connectie) {
         this.accountconnectie = connectie;
     }
     
-    //aangepast 
-
     @Override
     public Account findAccountByID(int id) {
        

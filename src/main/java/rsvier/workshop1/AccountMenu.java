@@ -85,13 +85,13 @@ public void accountsmenuAT() {
           System.out.println("U gaat een account toevoegen.");
     
     
-    System.out.println("Vul een type in druk enter.");
+    System.out.println("Geef het type op (1: klant, 2: medewerker): ");
     int type = TextIO.getlnInt();
     
     
      //int Bid = TextIO.getlnInt();
      
-      System.out.println("Vul een wachtwoord (max 45chars) in druk enter.");
+      System.out.println("Vul een wachtwoord in en druk enter.");
    String Aw8 = TextIO.getln();
    
    System.out.println( accountController.createAccount(type,Aw8).toString());
