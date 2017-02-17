@@ -6,6 +6,7 @@
 package rsvier.workshop1;
 
 import java.sql.Connection;
+import java.util.List;
 
 /**
  *
@@ -18,8 +19,8 @@ public class Controller {
         SQLConnection sqlConnectie = new SQLConnection();
         Connection connectie = sqlConnectie.getSQLConnection();
         KlantDAO klantDAO = new KlantSQL(connectie);
-        Klant klant = klantDAO.findBijID(klantId);
-        if (klant.getKlantenID() == 0) {
+        List<Klant> klantlijst = klantDAO.findBijID(klantId);
+        if (klantlijst.get(1).getKlantenID() == 0) {
             return false;
         } else {
             return true;

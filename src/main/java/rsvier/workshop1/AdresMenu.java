@@ -139,24 +139,24 @@ public class AdresMenu {
         System.out.println("Geef het adres type (1: woonadres, 2: bezorgadres, 3: factuuradres): ");
         int adresType = TextIO.getlnInt();
         adres.setAdresType(adresType);
-        int keuze = -1;
-        do {
-            System.out.println("Geef het bijbehorende klantenID: ");
-            int klantId = TextIO.getlnInt();
-            adres.setKlantId(klantId);
             //Controleren op foreign key constraints
-            boolean existsKlantId = controller.existsKlantId(klantId);
-            if (!existsKlantId) {
-                System.out.println("Opgegeven klantId bestaat niet.");
-                System.out.println("1: Ander klantId opgeven.");
-                System.out.println("2: Terug naar adresmenu.");
-                System.out.println("Geef uw keuze: ");
-                keuze = TextIO.getlnInt();
+            int keuze = -1;
+            do {
+                System.out.println("Geef het bijbehorende klantenID: ");
+                int klantId = TextIO.getlnInt();
+                adres.setKlantId(klantId);
+                boolean existsKlantId = controller.existsKlantId(klantId);
+                if (!existsKlantId) {
+                    System.out.println("Opgegeven klantId bestaat niet.");
+                    System.out.println("1: Ander klantId opgeven.");
+                    System.out.println("2: Terug naar adresmenu.");
+                    System.out.println("Geef uw keuze: ");
+                    keuze = TextIO.getlnInt();
+                }
+            } while (keuze == 1);
+            if (keuze == 2) {
+                adressenmenu();
             }
-        } while (keuze == 1);
-        if (keuze == 2) {
-            adressenmenu();
-        }
         System.out.println("Geef de straatnaam: ");
         String straatnaam = TextIO.getln();
         adres.setStraatnaam(straatnaam);
@@ -189,10 +189,27 @@ public class AdresMenu {
     }
 
     public  void adressenmenuVT(){
-        System.out.println("U gaat een adres type veranderen.");
-        System.out.println("Vul het adres id in en druk op enter.");
-        int adresId = TextIO.getlnInt();
-        controleerAdresId(adresId);
+        System.out.println("U gaat een adres type veranderen."); // idealiter laat deze gegevens aan te passen adres zien
+        int adresId = -1;
+            //Controleren op foreign key constraints
+            int keuze = -1;
+            do {
+                System.out.println("Geef het bijbehorende adresId: ");
+                adresId = TextIO.getlnInt();
+                boolean existsAdresId = controller.existsAdresId(adresId);
+                if (!existsAdresId) {
+                    System.out.println("-------------------------------");
+                    System.out.println("Opgegeven adresId bestaat niet.");
+                    System.out.println("1: Ander adresId opgeven.");
+                    System.out.println("2: Terug naar adresmenu.");
+                    System.out.println("-------------------------------");
+                    System.out.println("Geef uw keuze: ");
+                    keuze = TextIO.getlnInt();
+                }
+            } while (keuze == 1);
+            if (keuze == 2) {
+                adressenmenu();
+            }
         System.out.println("vul het nieuwe type (1: woonadres, 2: bezorgadres, 3: factuuradres) in en druk op enter");
         int adresType = TextIO.getlnInt();
         if (adresController.updateAdresType(adresId,adresType) == true) {
