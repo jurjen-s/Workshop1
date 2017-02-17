@@ -166,3 +166,62 @@
 2017-02-15 17:07:32,254 DEBUG r.w.AdresSQL [main] Input  in toevoegenAdres is adresId is: 0		adrestype is: 1		klantId is: 3		straatnaam is : str		huisnummer is : 343		huisnummertoevoeging is: E		postcode is : 7777 FG		NL
 2017-02-15 17:07:32,387 ERROR r.w.AdresSQL [main] Er gaat iets mis met het toevoegen van een adres Generated keys not requested. You need to specify Statement.RETURN_GENERATED_KEYS to Statement.executeUpdate(), Statement.executeLargeUpdate() or Connection.prepareStatement().
 2017-02-15 17:07:32,388 DEBUG r.w.AdresSQL [main] output toevoegenAdres :adresId is: 0		adrestype is: 1		klantId is: 3		straatnaam is : str		huisnummer is : 343		huisnummertoevoeging is: E		postcode is : 7777 FG		NL
+2017-02-15 17:18:37,172 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
+2017-02-15 17:18:37,196 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
+2017-02-15 17:19:02,263 DEBUG r.w.AdresSQL [main] Input  in toevoegenAdres is adresId is: 0		adrestype is: 1		klantId is: 1		straatnaam is : str		huisnummer is : 443		huisnummertoevoeging is: R		postcode is : 3333 EW		NL
+2017-02-15 17:19:02,272 ERROR r.w.AdresSQL [main] Er gaat iets mis met het toevoegen van een adres You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?, ?, ?, ?, ? , ? , ? ,? )' at line 1
+2017-02-15 17:19:02,273 DEBUG r.w.AdresSQL [main] output toevoegenAdres :adresId is: 0		adrestype is: 1		klantId is: 1		straatnaam is : str		huisnummer is : 443		huisnummertoevoeging is: R		postcode is : 3333 EW		NL
+2017-02-15 17:20:59,908 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
+2017-02-15 17:20:59,934 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
+2017-02-15 17:21:19,977 DEBUG r.w.AdresSQL [main] Input  in toevoegenAdres is adresId is: 0		adrestype is: 1		klantId is: 1		straatnaam is : rij		huisnummer is : 44		huisnummertoevoeging is: E		postcode is : 4566 FF		NL
+2017-02-15 17:21:19,986 ERROR r.w.AdresSQL [main] Er gaat iets mis met het toevoegen van een adres You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?, ?, ?, ?, ? , ? , ? ,? )' at line 1
+2017-02-15 17:21:19,986 DEBUG r.w.AdresSQL [main] output toevoegenAdres :adresId is: 0		adrestype is: 1		klantId is: 1		straatnaam is : rij		huisnummer is : 44		huisnummertoevoeging is: E		postcode is : 4566 FF		NL
+2017-02-15 17:44:48,640 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
+2017-02-15 17:44:48,662 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
+2017-02-15 17:45:16,429 DEBUG r.w.AdresSQL [main] Input  in toevoegenAdres is adresId is: 0		adrestype is: 1		klantId is: 3		straatnaam is : rij		huisnummer is : 33		huisnummertoevoeging is: D		postcode is : 6666 GG		NL
+2017-02-15 17:45:16,547 ERROR r.w.AdresSQL [main] Er gaat iets mis met het toevoegen van een adres Generated keys not requested. You need to specify Statement.RETURN_GENERATED_KEYS to Statement.executeUpdate(), Statement.executeLargeUpdate() or Connection.prepareStatement().
+2017-02-15 17:45:16,548 DEBUG r.w.AdresSQL [main] output toevoegenAdres :adresId is: 0		adrestype is: 1		klantId is: 3		straatnaam is : rij		huisnummer is : 33		huisnummertoevoeging is: D		postcode is : 6666 GG		NL
+2017-02-15 17:50:21,351 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
+2017-02-15 17:50:21,365 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
+2017-02-15 17:50:49,754 DEBUG r.w.AdresSQL [main] Input  in toevoegenAdres is adresId is: 0		adrestype is: 1		klantId is: 3		straatnaam is : rijtje		huisnummer is : 467786		huisnummertoevoeging is: R		postcode is : 6564 WW		BUL
+2017-02-15 17:50:49,763 ERROR r.w.AdresSQL [main] Er gaat iets mis met het toevoegen van een adres You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Statement.RETURN_GENERATED_KEYS' at line 1
+2017-02-15 17:50:49,764 DEBUG r.w.AdresSQL [main] output toevoegenAdres :adresId is: 0		adrestype is: 1		klantId is: 3		straatnaam is : rijtje		huisnummer is : 467786		huisnummertoevoeging is: R		postcode is : 6564 WW		BUL
+2017-02-15 17:57:13,539 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 3
+2017-02-15 17:57:13,566 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
+2017-02-15 17:57:36,127 DEBUG r.w.AdresSQL [main] Input  in toevoegenAdres is adresId is: 0		adrestype is: 1		klantId is: 3		straatnaam is : rij		huisnummer is : 495		huisnummertoevoeging is: W		postcode is : 9999 ZZ		NL
+2017-02-15 17:57:36,194 DEBUG r.w.AdresSQL [main] output toevoegenAdres :adresId is: 0		adrestype is: 1		klantId is: 3		straatnaam is : rij		huisnummer is : 495		huisnummertoevoeging is: W		postcode is : 9999 ZZ		NL
+2017-02-15 17:59:32,600 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
+2017-02-15 17:59:32,626 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
+2017-02-15 17:59:50,163 DEBUG r.w.AdresSQL [main] Input  in toevoegenAdres is adresId is: 0		adrestype is: 1		klantId is: 1		straatnaam is : d		huisnummer is : 45		huisnummertoevoeging is: E		postcode is : 4444 UU		BELGIE
+2017-02-15 17:59:50,220 DEBUG r.w.AdresSQL [main] output toevoegenAdres :adresId is: 7		adrestype is: 1		klantId is: 1		straatnaam is : d		huisnummer is : 45		huisnummertoevoeging is: E		postcode is : 4444 UU		BELGIE
+2017-02-15 18:02:46,233 DEBUG r.w.AccountSQL [main] Controleer wachtwoord en id van accountId: 1
+2017-02-15 18:02:46,260 INFO r.w.AccountSQL [main] Het inloggen is gelukt.
+2017-02-15 18:03:18,570 DEBUG r.w.AdresSQL [main] Input  in toevoegenAdres is adresId is: 0		adrestype is: 1		klantId is: 3		straatnaam is : De beste straat van iedereen		huisnummer is : 1		huisnummertoevoeging is: A		postcode is : 7321 XC		Nederland
+2017-02-15 18:03:18,631 DEBUG r.w.AdresSQL [main] output toevoegenAdres :adresId is: 8		adrestype is: 1		klantId is: 3		straatnaam is : De beste straat van iedereen		huisnummer is : 1		huisnummertoevoeging is: A		postcode is : 7321 XC		Nederland
+2017-02-17 09:27:22,564 DEBUG r.w.Inlogmenu [main] In inputs waren wachtwoord: test123 , en type 1 
+2017-02-17 09:27:22,566 DEBUG r.w.AccountSQL [main] In inputs waren wachtwoord: test123 , en type 1 
+2017-02-17 09:27:22,727 DEBUG r.w.AccountSQL [main] In inputs waren workload: 20 , en salt $2a$20$CyYZwhTKG.tHiPrZDv/Fqu 
+2017-02-17 09:29:33,945 DEBUG r.w.AccountSQL [main] Aanmaken account met type 1 en wachtwoordtest123 en salt $2a$20$CyYZwhTKG.tHiPrZDv/Fqu.
+2017-02-17 09:29:34,098 DEBUG r.w.AccountSQL [main] Het volgende ging mis bij het aanmaken van een account: Data truncation: Data too long for column 'wachtwoord' at row 1
+2017-02-17 09:29:34,099 DEBUG r.w.AccountSQL [main] Resultaat aanmaken account: id: 0 type : 0 wachtwoord: null
+2017-02-17 09:29:47,027 DEBUG r.w.Inlogmenu [main] In inputs waren wachtwoord: test123 , en type 1 
+2017-02-17 09:29:47,032 DEBUG r.w.AccountSQL [main] In inputs waren wachtwoord: test123 , en type 1 
+2017-02-17 09:29:47,174 DEBUG r.w.AccountSQL [main] In inputs waren workload: 20 , en salt $2a$20$i.5tprcChq2JZC8fnsprbu 
+2017-02-17 09:31:46,839 DEBUG r.w.AccountSQL [main] In outputs waren hashed_password: $2a$20$i.5tprcChq2JZC8fnsprbuUjV9SGmAwy7iEe80BnzjWLemMt0GSBa 
+2017-02-17 09:31:46,839 DEBUG r.w.AccountSQL [main] Aanmaken account met type 1 en wachtwoordtest123 en salt $2a$20$i.5tprcChq2JZC8fnsprbu.
+2017-02-17 09:31:46,883 DEBUG r.w.AccountSQL [main] Het volgende ging mis bij het aanmaken van een account: Data truncation: Data too long for column 'wachtwoord' at row 1
+2017-02-17 09:31:46,883 DEBUG r.w.AccountSQL [main] Resultaat aanmaken account: id: 0 type : 0 wachtwoord: null
+2017-02-17 09:33:40,304 DEBUG r.w.Inlogmenu [main] In inputs waren wachtwoord: test123 , en type 1 
+2017-02-17 09:33:40,306 DEBUG r.w.AccountSQL [main] In inputs waren wachtwoord: test123 , en type 1 
+2017-02-17 09:33:40,466 DEBUG r.w.AccountSQL [main] In inputs waren workload: 12 , en salt $2a$12$g8TaIKpeGL/.AxjzMGTgee 
+2017-02-17 09:33:40,939 DEBUG r.w.AccountSQL [main] In outputs waren hashed_password: $2a$12$g8TaIKpeGL/.AxjzMGTgeeXd.j9/cKYpUFcEi8zaw7TYrFAhQ2fge 
+2017-02-17 09:33:40,939 DEBUG r.w.AccountSQL [main] Aanmaken account met type 1 en wachtwoordtest123 en salt $2a$12$g8TaIKpeGL/.AxjzMGTgee.
+2017-02-17 09:33:40,963 DEBUG r.w.AccountSQL [main] Het volgende ging mis bij het aanmaken van een account: Data truncation: Data too long for column 'wachtwoord' at row 1
+2017-02-17 09:33:40,964 DEBUG r.w.AccountSQL [main] Resultaat aanmaken account: id: 0 type : 0 wachtwoord: null
+2017-02-17 09:35:41,719 DEBUG r.w.Inlogmenu [main] In inputs waren wachtwoord: test321 , en type 1 
+2017-02-17 09:35:41,721 DEBUG r.w.AccountSQL [main] In inputs waren wachtwoord: test321 , en type 1 
+2017-02-17 09:35:41,883 DEBUG r.w.AccountSQL [main] In inputs waren workload: 16 , en salt $2a$16$qTsuN7TBgA3o0cR5MZufse 
+2017-02-17 09:35:49,319 DEBUG r.w.AccountSQL [main] In outputs waren hashed_password: $2a$16$qTsuN7TBgA3o0cR5MZufsed6.66yAKBXPdP1WnrLMsFJZeYoz7nY. 
+2017-02-17 09:35:49,321 DEBUG r.w.AccountSQL [main] Aanmaken account met type 1 en wachtwoordtest321 en salt $2a$16$qTsuN7TBgA3o0cR5MZufse.
+2017-02-17 09:35:49,364 DEBUG r.w.AccountSQL [main] Het volgende ging mis bij het aanmaken van een account: Data truncation: Data too long for column 'wachtwoord' at row 1
+2017-02-17 09:35:49,364 DEBUG r.w.AccountSQL [main] Resultaat aanmaken account: id: 0 type : 0 wachtwoord: null

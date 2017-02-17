@@ -6,12 +6,20 @@
 package rsvier.workshop1;
 
 import java.sql.Connection;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+
+
+
 
 /**
  *
  * @author Frank
  */
 public class Inlogmenu {
+    
+ private static final Logger LOGGER = LogManager.getLogger(AccountMenu.class);
     
  private AccountController accountController = new AccountController();  
     
@@ -101,6 +109,8 @@ else{ System.out.println("foute cijfer waarde probeer opnieuw"); inlogMenu(); }
        int type = TextIO.getlnInt();
        
         System.out.println("uw id is: ");
+        
+        LOGGER.debug("In inputs waren wachtwoord: {} , en type {} ", wachtwoord, type);
                 
                 
        accountController.createAccount(type, wachtwoord);

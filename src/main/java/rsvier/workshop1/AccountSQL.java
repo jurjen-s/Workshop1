@@ -13,6 +13,7 @@ import java.util.List;
 import java.math.BigDecimal;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.mindrot.jbcrypt.BCrypt;
 /**
  *
  * @author Frank
@@ -68,11 +69,31 @@ public class AccountSQL implements AccountDAO {
     @Override
     public Account createAccount(int type, String wachtwoord) {
         
+         LOGGER.debug("In inputs waren wachtwoord: {} , en type {} ", wachtwoord, type);
+        
         Account account = new Account();
+        int workload = 16;
         
-      LOGGER.debug("Aanmaken account met type {} en wachtwoord.", type);
         
-      String query = "INSERT INTO accounts (accounts_type, wachtwoord) VALUES (?, ? ) ";
+       // public static String hashPassword(String password_plaintext) {
+		String salt = BCrypt.gensalt(workload);
+                
+                
+                 LOGGER.debug("In inputs waren workload: {} , en salt {} ", workload, salt);
+                
+                String hashed_password = BCrypt.hashpw(wachtwoord, salt);
+		
+		LOGGER.debug("In outputs waren hashed_password: {} ", hashed_password);
+        
+        
+        
+        
+        
+        
+        
+      LOGGER.debug("Aanmaken account met type {} en wachtwoord{} en salt {}.", type, wachtwoord , salt);
+        
+      String query = "INSERT INTO accounts (accounts_type, wachtwoord, zout) VALUES (?, ? , ? ) ";
        
       String query2 = "SELECT * FROM accounts WHERE accounts_type = ? AND wachtwoord = ?";
       
@@ -81,9 +102,10 @@ public class AccountSQL implements AccountDAO {
              PreparedStatement stmt2 = accountconnectie.prepareStatement(query2)){	
             
             stmt.setInt(1, type);
-            stmt.setString(2, wachtwoord);
+            stmt.setString(2, hashed_password);
+            stmt.setString(3, salt);
             stmt2.setInt(1, type);
-            stmt2.setString(2, wachtwoord);
+            stmt2.setString(2, hashed_password);
             
            // ResultSet resultset =
          
@@ -95,9 +117,9 @@ public class AccountSQL implements AccountDAO {
         while (rs.next()){
             
       System.out.println(rs.getInt("accounts_id"));
-                account.setAccountId(rs.getInt("accounts_id"));
-                account.setType(rs.getInt("accounts_type"));
-                account.setWachtwoord(rs.getString("wachtwoord"));
+           //     account.setAccountId(rs.getInt("accounts_id"));
+            //    account.setType(rs.getInt("accounts_type"));
+            //    account.setWachtwoord(rs.getString("wachtwoord"));
         }
         LOGGER.info("Account gegevens zijn succesvol aangemaakt.");
          
@@ -201,6 +223,39 @@ public class AccountSQL implements AccountDAO {
     
     @Override
     public boolean loginCheckAccount(int accountId, String wachtwoord) {
+        
+        
+        
+        String queryh = "SELECT * FROM accounts WHERE accounts_id = ?";
+        
+        LOGGER.debug("Haal hashedwachtwoord terug via id van accountId: {}", accountId);
+       
+        
+        try (PreparedStatement stmt0 = accountconnectie.prepareStatement(queryh)){
+             boolean test = false;
+            stmt0.setInt(1, accountId);
+            ResultSet rs1 = stmt0.executeQuery();
+            if (rs1.next()){
+                
+                String hashedwachtwoord = rs1.getString("wachtwoord");
+                
+                //Dit is een boolean goed is true, fout is false.
+                test = checkPassword( wachtwoord,hashedwachtwoord);
+                
+            }
+            return test;
+        }         
+            catch(SQLException ex0){
+                LOGGER.error("Het volgende ging mis bij het controleren van het zout: {}", ex0.getMessage());
+                return false;
+             }
+        
+    }
+    
+        
+        /*
+        oude code
+        
         String query = "SELECT * FROM accounts WHERE accounts_id = ? AND wachtwoord = ?";
         LOGGER.debug("Controleer wachtwoord en id van accountId: {}", accountId);
         try (PreparedStatement stmt = accountconnectie.prepareStatement(query)) {
@@ -217,7 +272,28 @@ public class AccountSQL implements AccountDAO {
         LOGGER.error("Het volgende ging mis bij het controleren van het wachtwoord: {}", ex.getMessage());
         return false;
         }
-    }
+*/
+    
+
+    
+    
+    public static boolean checkPassword(String password_plaintext, String stored_hash) {
+		boolean password_verified = false;
+
+		if(null == stored_hash || !stored_hash.startsWith("$2a$"))
+			throw new java.lang.IllegalArgumentException("Invalid hash provided for comparison");
+
+		password_verified = BCrypt.checkpw(password_plaintext, stored_hash);
+
+		return(password_verified);
+	}
+    
+    
+    
+    
+    
+    
+    
 }
         
         
