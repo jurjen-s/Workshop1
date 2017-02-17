@@ -108,7 +108,7 @@ else{ System.out.println("foute cijfer waarde probeer opnieuw"); inlogMenu(); }
           
        int type = TextIO.getlnInt();
        
-        System.out.println("uw id is: ");
+        System.out.print("uw nieuwe account id is: ");
         
         LOGGER.debug("In inputs waren wachtwoord: {} , en type {} ", wachtwoord, type);
                 
@@ -122,7 +122,7 @@ else{ System.out.println("foute cijfer waarde probeer opnieuw"); inlogMenu(); }
                   
           System.out.println("uw type is : "+ type );
          
-          System.out.println("uw wachtwoord is : "+ wachtwoord);
+          //System.out.println("uw wachtwoord is : "+ wachtwoord);
           
         
          // data in sql opslaan en id terug weergeven!!

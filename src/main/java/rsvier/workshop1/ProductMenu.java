@@ -49,8 +49,8 @@ public class ProductMenu {
                 case 6: System.out.println(" 6 Verander Product Omschrijving met behulp van product id"); productmenuVPO(); break;
                 case 7: System.out.println(" 7 Verander Soort product met behulp van product id"); productmenuVPS(); break;
                 case 8: System.out.println(" 8 Verander Prijs product met behulp van product id"); productmenuVPP() ;break;
-                case 9: System.out.println(" 9 Verander Voorraad product met behulp van product id");productmenu() ; break;
-                case 10: System.out.println(" 10 Verwijder product met behulp van product id"); productmenu() ; break;
+                case 9: System.out.println(" 9 Verander Voorraad product met behulp van product id");productmenuVPV() ; break;
+                case 10: System.out.println(" 10 Verwijder product met behulp van product id"); productmenuDELETE() ; break;
                 case 0: Menu menu = new Menu(); menu.hoofdmenu(); break;
                 default: System.out.println("Verkeerde invoer."); productmenu();
         }
@@ -75,7 +75,7 @@ public class ProductMenu {
         String soort = TextIO.getln();
         List<Product> zoekresultaat = productController.findProductBySoort(soort);
         for (Product product:zoekresultaat) {
-            product.toString();
+           System.out.println( product.toString());
         }
         productmenu();
         
@@ -88,7 +88,7 @@ public class ProductMenu {
         BigDecimal prijs = new BigDecimal(TextIO.getln());
         List<Product> zoekresultaat = productController.findProductByPrijs(prijs);
         for (Product product:zoekresultaat) {
-            product.toString();
+           System.out.println( product.toString());
         }
         productmenu();
         
@@ -101,7 +101,7 @@ public class ProductMenu {
         int voorraad = TextIO.getlnInt();
         List<Product> zoekresultaat = productController.findProductByVoorraad(voorraad);
         for (Product product:zoekresultaat) {
-            product.toString();
+            System.out.println(product.toString());
         }
         productmenu();
     }
@@ -135,7 +135,7 @@ public class ProductMenu {
         System.out.println("U gaat een product omschrijving veranderen.");
         System.out.println("Vul het product id en dan enter.");
         int productId = TextIO.getlnInt();
-        System.out.println("Vul hierna de omschrijving in en druk enter.");
+        System.out.println("Vul hierna de nieuwe omschrijving in en druk enter.");
         String omschrijving = TextIO.getln();
         if (productController.updateProductOmschrijving(productId,omschrijving) == true) {
             System.out.println("Het toevoegen is gelukt.");
@@ -151,7 +151,7 @@ public class ProductMenu {
         System.out.println("U gaat een product soort veranderen.");
         System.out.println("Vul het product id en dan enter.");
         int productId = TextIO.getlnInt();
-        System.out.println("Vul hierna het soort in en druk enter.");
+        System.out.println("Vul hierna het nieuwe soort in en druk enter.");
         String soort = TextIO.getln();
         if (productController.updateProductSoort(productId,soort) == true) {
             System.out.println("Het toevoegen is gelukt.");
@@ -196,9 +196,9 @@ public class ProductMenu {
         System.out.println("Vul het product id en dan enter.");
         int productId = TextIO.getlnInt();
         if (productController.deleteProduct(productId) == true) {
-            System.out.println("Het toevoegen is gelukt.");
+            System.out.println("Het verwijderen is gelukt.");
         } else {
-            System.out.println("Het toevoegen is mislukt.");
+            System.out.println("Het verwijderen is mislukt.");
         }
         productmenu();
     }

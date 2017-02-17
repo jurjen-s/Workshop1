@@ -66,10 +66,8 @@ public class ProductSQL implements ProductDAO {
     public List findProductBySoort(String soort) {
          LOGGER.debug("Input  in findProductBySoort is {}",soort);
         List<Product> zoekresultaat = new ArrayList<>();
-        try (PreparedStatement stmt = productenconnectie.prepareStatement(
-                "SELECT * " +
-                " FROM producten " +
-                " WHERE soort = ?")) {
+        String query = "SELECT * FROM producten WHERE soort = ? ";
+        try (PreparedStatement stmt = productenconnectie.prepareStatement(query)) {
             stmt.setString(1, soort);
             ResultSet rs = stmt.executeQuery();
             // Laat alle producten met de opgegeven soort zien
@@ -95,7 +93,9 @@ public class ProductSQL implements ProductDAO {
             System.out.println("Geen zoekresultaten.");
         } 
          LOGGER.debug("output findProductBySoort is :" +  zoekresultaat.toString());
+        
          return zoekresultaat;
+         
     } // einde findProductBySoort(String soort)
     
     @Override
@@ -198,12 +198,11 @@ public class ProductSQL implements ProductDAO {
     
     @Override
     public boolean updateProductOmschrijving(int productId, String omschrijving) {
-         LOGGER.debug("Input  in updateProductOmschrijving is {}{}",productId ,omschrijving);
-        try (PreparedStatement stmt = productenconnectie.prepareStatement(
-                "UPDATE producten" +
-                "SET omschrijving = ?" +
-                "WHERE producten_id = productId")) {
+         LOGGER.debug("Input  in  product id is : {} en updateProductOmschrijving is : {} ",productId ,omschrijving);
+         String query = " UPDATE producten SET omschrijving = ? WHERE producten_id = ? ";
+        try (PreparedStatement stmt = productenconnectie.prepareStatement( query)) {
             stmt.setString(1, omschrijving);
+            stmt.setInt(2,productId);
             stmt.executeUpdate();
             LOGGER.debug("output updateProductOmschrijving is true");
             return true;
@@ -219,12 +218,11 @@ public class ProductSQL implements ProductDAO {
     
     @Override
     public boolean updateProductSoort(int productId, String soort) {
-         LOGGER.debug("Input  in updateProductBySoort is {}{}",productId,soort);
-        try (PreparedStatement stmt = productenconnectie.prepareStatement(
-                "UPDATE producten" +
-                "SET soort = ?" +
-                "WHERE producten_id = productId")) {
+         LOGGER.debug("Input  in updateProductBySoort is id : {} en soort is : {}",productId,soort);
+         String query = "UPDATE producten SET soort = ? WHERE producten_id = ?";
+        try (PreparedStatement stmt = productenconnectie.prepareStatement(query)) {
             stmt.setString(1, soort);
+            stmt.setInt(2,productId);
             stmt.executeUpdate();
             LOGGER.debug("output findProductBySoort is true");
             return true;
@@ -239,13 +237,11 @@ public class ProductSQL implements ProductDAO {
     
     @Override
     public boolean updateProductPrijs(int productId, BigDecimal prijs)  {
-    LOGGER.debug("Input  in updateProductPrijs is {}{}",productId,prijs);
-    
-        try (PreparedStatement stmt = productenconnectie.prepareStatement(
-                "UPDATE producten" +
-                "SET prijs = ?" +
-                "WHERE producten_id = productId")) {
+    LOGGER.debug("Input  in updateProductPrijs is id :  {} en prijs : {}",productId,prijs);
+    String query = "UPDATE producten SET prijs = ? WHERE producten_id = ?";
+        try (PreparedStatement stmt = productenconnectie.prepareStatement(query)) {
             stmt.setBigDecimal(1, prijs);
+            stmt.setInt(2,productId);
             stmt.executeUpdate();
             LOGGER.debug("output findProductPrijs is true ");
             return true;
@@ -261,11 +257,10 @@ public class ProductSQL implements ProductDAO {
     @Override
     public boolean updateProductVoorraad(int productId, int voorraad) {
          LOGGER.debug("Input  in updateProductVoorraad is {}{}",productId,voorraad);
-        try (PreparedStatement stmt = productenconnectie.prepareStatement(
-                "UPDATE producten" +
-                "SET voorraad = ?" +
-                "WHERE producten_id = productId")) {
+         String query = "UPDATE producten SET voorraad = ? WHERE producten_id = ?";
+        try (PreparedStatement stmt = productenconnectie.prepareStatement(query)) {
             stmt.setInt(1, voorraad);
+            stmt.setInt(2, productId);
             stmt.executeUpdate();
             LOGGER.debug("output updateProductVoorraad is true");
             return true;

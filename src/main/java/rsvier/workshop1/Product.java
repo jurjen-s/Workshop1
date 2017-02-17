@@ -54,11 +54,7 @@ public class Product {
     
     @Override
     public String toString() {
-        String product =  productId + "\t\t"
-                        + omschrijving + "\t\t"
-                        + soort + "\t\t"
-                        + prijs + "\t\t"
-                        + voorraad + ".";
+        String product = " Product Id is : " + productId + " omschrijving is : " + omschrijving + " soort is : "  + soort + " prijs is : " +  prijs + " voorraad aantal is : "  + voorraad + ".";
         return product;
     }
     
