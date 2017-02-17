@@ -6,16 +6,75 @@
 package rsvier.workshop1;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.List;
-import rsvier.workshop1.ProductDAO;
-import rsvier.workshop1.ProductSQL;
 
 /**
  *
  * @author jurjen
  */
+
+public class Controller {
+    
+    public boolean existsKlantId(int klantId) {
+        SQLConnection sqlConnectie = new SQLConnection();
+        Connection connectie = sqlConnectie.getSQLConnection();
+        KlantDAO klantDAO = new KlantSQL(connectie);
+        Klant klant = klantDAO.findBijID(klantId);
+        if (klant.getKlantenID() == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    public boolean existsAdresId(int adresId) {
+        SQLConnection sqlConnectie = new SQLConnection();
+        Connection connectie = sqlConnectie.getSQLConnection();
+        AdresDAO adresDAO = new AdresSQL(connectie);
+        Adres adres = adresDAO.findAdresById(adresId);
+        if (adres.getAdresId() == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    public boolean existsProductId(int productId) {
+        SQLConnection sqlConnectie = new SQLConnection();
+        Connection connectie = sqlConnectie.getSQLConnection();
+        ProductDAO productDAO = new ProductSQL(connectie);
+        Product product = productDAO.findProductById(productId);
+        if (product.getProductId() == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    public boolean existsBestellingId(int bestellingId) {
+        SQLConnection sqlConnectie = new SQLConnection();
+        Connection connectie = sqlConnectie.getSQLConnection();
+        BestellingDAO bestellingDAO = new BestellingSQL(connectie);
+        Bestelling bestelling = bestellingDAO.findBestellingById(bestellingId);
+        if (bestelling.getBestellingId() == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    public boolean existsAccountId(int accountId) {
+        SQLConnection sqlConnectie = new SQLConnection();
+        Connection connectie = sqlConnectie.getSQLConnection();
+        AccountDAO accountDAO = new AccountSQL(connectie);
+        Account account = accountDAO.findAccountByID(accountId);
+        if (account.getAccountId() == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+}
 
 // CLASS is op dit moment niet in gebruik
 // Hieronder volgen voorbeelden van error handling die nog naar de juiste DAO's moeten

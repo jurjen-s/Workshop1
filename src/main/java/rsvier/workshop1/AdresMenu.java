@@ -5,6 +5,7 @@
  */
 package rsvier.workshop1;
 
+import java.sql.Connection;
 import java.util.List;
 
 /**
@@ -13,6 +14,7 @@ import java.util.List;
  */
 public class AdresMenu {
     
+    private Controller controller = new Controller();
     private AdresController adresController = new AdresController();
     private Validator validator = new Validator();
     
@@ -46,7 +48,7 @@ public class AdresMenu {
                 case 1:    System.out.println("1: Doorzoek op adresID."); adressenmenuDoAid(); break;
                 case 2: System.out.println("2: Doorzoek op postcode.");adressenmenuDoPc(); break;
                 case 3:  System.out.println("3: Doorzoek op adrestype.");adressenmenuDoT(); break;
-                case 4: System.out.println("4: Doorzoek op klantIDadress.");adressenmenuDoK(); break;
+                case 4: System.out.println("4: Doorzoek op klantID.");adressenmenuDoK(); break;
                 case 5: System.out.println("5: Doorzoek op land");adressenmenuDoL(); break;
                 case 6: System.out.println("6: Adres toevoegen");adressenmenuTA(); break;
                 case 7 :System.out.println("7: verander type");adressenmenuVT(); break;
@@ -65,7 +67,12 @@ public class AdresMenu {
         System.out.println("U gaat een adres zoeken op ID.");
         System.out.println("Vul ID in en druk op enter.");
         int adresId = TextIO.getlnInt();
-        System.out.println(adresController.findAdresById(adresId).toString());
+        Adres gevondenAdres = adresController.findAdresById(adresId);
+        if (gevondenAdres.getAdresId() == 0) {
+            System.out.println("Er is geen adres met het opgegeven adresId gevonden.");
+        } else {
+            System.out.println(gevondenAdres.toString());
+        }
         adressenmenu();
     }
     
@@ -80,8 +87,10 @@ public class AdresMenu {
             }  
         } while (true);
         List<Adres> zoekresultaat = adresController.findAdresByPostcode(postcode);
-        for (Adres adres:zoekresultaat) {
-            adres.toString();
+        if (zoekresultaat.isEmpty()) {
+            System.out.println("Geen zoekresultaten.");
+        } else {
+            System.out.println(zoekresultaat.toString());
         }
         adressenmenu();
     }
@@ -91,21 +100,24 @@ public class AdresMenu {
         System.out.println("Vul het type in en druk op enter.");
         int type = TextIO.getlnInt();
         List<Adres> zoekresultaat = adresController.findAdresByType(type);
-            for (Adres adres:zoekresultaat) {
-                adres.toString();
-            }
+        if (zoekresultaat.isEmpty()) {
+            System.out.println("Geen zoekresultaten.");
+        } else {
+            System.out.println(zoekresultaat.toString());
+        }
         adressenmenu();
     }
     
     public  void adressenmenuDoK(){
-        System.out.println("U gaat een adres zoeken op klantid.");
-        System.out.println("Vul de adress klant id in en druk op enter.");
+        System.out.println("U gaat een adres zoeken op klantID.");
+        System.out.println("Vul het klantID in en druk op enter.");
         int klantId = TextIO.getlnInt();
         List<Adres> zoekresultaat = adresController.findAdresByKlantId(klantId);
-                for (Adres adres:zoekresultaat) {
-                    adres.toString();
-                }
-            adressenmenu();
+        if (zoekresultaat.isEmpty()) {
+            System.out.println("Geen zoekresultaten.");
+        } else {
+            System.out.println(zoekresultaat.toString());
+        }
         adressenmenu();
     }
     
@@ -114,50 +126,64 @@ public class AdresMenu {
         System.out.println("Vul het Land in en druk op enter.");
         String land = TextIO.getln();
         List<Adres> zoekresultaat = adresController.findAdresByLand(land);
-                for (Adres adres:zoekresultaat) {
-                    adres.toString();
-                }
-            adressenmenu();
+        if (zoekresultaat.isEmpty()) {
+            System.out.println("Geen zoekresultaten.");
+        } else {
+            System.out.println(zoekresultaat.toString());
+        }
         adressenmenu();
     }
     public  void adressenmenuTA(){
         System.out.println("U gaat een adres toevoegen.");
-        System.out.println("Vul het adres type toe");
+        Adres adres = new Adres();
+        System.out.println("Geef het adres type (1: woonadres, 2: bezorgadres, 3: factuuradres): ");
         int adresType = TextIO.getlnInt();
-        System.out.println("Vul het klantenID toe");
-        int klantId = TextIO.getlnInt();
-        System.out.println("Vul het straatnaam toe");
+        adres.setAdresType(adresType);
+        int keuze = -1;
+        do {
+            System.out.println("Geef het bijbehorende klantenID: ");
+            int klantId = TextIO.getlnInt();
+            adres.setKlantId(klantId);
+            //Controleren op foreign key constraints
+            boolean existsKlantId = controller.existsKlantId(klantId);
+            if (!existsKlantId) {
+                System.out.println("Opgegeven klantId bestaat niet.");
+                System.out.println("1: Ander klantId opgeven.");
+                System.out.println("2: Terug naar adresmenu.");
+                System.out.println("Geef uw keuze: ");
+                keuze = TextIO.getlnInt();
+            }
+        } while (keuze == 1);
+        if (keuze == 2) {
+            adressenmenu();
+        }
+        System.out.println("Geef de straatnaam: ");
         String straatnaam = TextIO.getln();
-        System.out.println("Vul het huisnummer toe");
+        adres.setStraatnaam(straatnaam);
+        System.out.println("Geef het huisnummer: ");
         int huisnummer = TextIO.getlnInt();
+        adres.setHuisnummer(huisnummer);
         System.out.println("Heeft het een huisnummertoevoeging? 1 = ja, 0 = nee");
         boolean heeftHuisnrToevoeging = TextIO.getlnBoolean();
+        adres.setHeeftHuisnrToevoeging(heeftHuisnrToevoeging);
         String huisnrToevoeging = "";
         if (heeftHuisnrToevoeging) {
-            System.out.println("Vul het huisnummer toevoeging toe");
+            System.out.println("Geef de huisnummertoevoeging: ");
             huisnrToevoeging = TextIO.getln();
+            adres.setHuisnrToevoeging(huisnrToevoeging);
         }
         String postcode = "";        
         do {
-            System.out.println("Vul de postcode in. Geef in het formaat \'1234 AZ\'.");
+            System.out.println("Geef de postcode, in het formaat \'1234 AZ\': ");
             postcode = TextIO.getln();
             if (validator.validatePostcode(postcode)) {
                 break;
             }  
         } while (true);
-        System.out.println("Vul het Land in en druk op enter.");
+        adres.setPostcode(postcode);
+        System.out.println("Geef het land: ");
         String land = TextIO.getln();
-        // Maak adres met de opgegeven waardes
-        Adres adres = new Adres.AdresBuilder()
-                               .adresType(adresType)
-                               .klantId(klantId)
-                               .straatnaam(straatnaam)
-                               .huisnummer(huisnummer)
-                               .heeftHuisnrToevoeging(heeftHuisnrToevoeging)
-                               .huisnrToevoeging(huisnrToevoeging)
-                               .postcode(postcode)
-                               .land(land)
-                               .build();
+        adres.setLand(land);
         System.out.println(adresController.toevoegenAdres(adres).toString());
         adressenmenu();
     }
@@ -166,7 +192,8 @@ public class AdresMenu {
         System.out.println("U gaat een adres type veranderen.");
         System.out.println("Vul het adres id in en druk op enter.");
         int adresId = TextIO.getlnInt();
-        System.out.println("vul de nieuwe type (0 of 1) in en druk op enter");
+        controleerAdresId(adresId);
+        System.out.println("vul het nieuwe type (1: woonadres, 2: bezorgadres, 3: factuuradres) in en druk op enter");
         int adresType = TextIO.getlnInt();
         if (adresController.updateAdresType(adresId,adresType) == true) {
             System.out.println("Het updaten is gelukt.");
@@ -262,5 +289,21 @@ public class AdresMenu {
             System.out.println("het updaten is mislukt.");
         }
         adressenmenu();
+    }
+
+    private void controleerKlantId(int klantId) {
+        
+    }
+
+    private void controleerAdresId(int adresId) {
+        SQLConnection sqlConnectie = new SQLConnection();
+        Connection connectie = sqlConnectie.getSQLConnection();
+        AdresDAO adresDAO = new AdresSQL(connectie);
+        Adres adres = adresDAO.findAdresById(adresId);
+        if (adres.getAdresId()== 0) {
+            System.out.println("Opgegeven adres bestaat niet. U keert terug naar het adresmenu.");
+            AdresMenu adresMenu = new AdresMenu();
+            adresMenu.adressenmenu();
+        }
     }
 }

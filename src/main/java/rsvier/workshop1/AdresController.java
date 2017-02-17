@@ -20,6 +20,7 @@ public class AdresController {
     Adres findAdresById(int adresId) {
         return adresDAO.findAdresById(adresId);
     }
+    
     List findAdresByType(int adresType) {
         return adresDAO.findAdresByType(adresType);
     }

@@ -8,11 +8,15 @@ package rsvier.workshop1;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 /**
  *
  * @author jurjen
  */
 public class SQLConnection {
+    
+    private static final Logger LOGGER = LogManager.getLogger(SQLConnection.class);
     
     public static Connection getSQLConnection() {       
     // nieuwe connectie aanmaken met try-with-resources: 
@@ -30,7 +34,7 @@ public class SQLConnection {
                 try {
                     Class.forName("com.mysql.jdbc.Driver");
                 } catch (ClassNotFoundException ex) {
-		System.out.println("MySQL JDBC Driver niet gevonden.");
+		LOGGER.error("MySQL Driver niet gevonden.");
 		ex.printStackTrace();
                 }
             }
@@ -38,10 +42,10 @@ public class SQLConnection {
             try {
                 sqlconnectie = DriverManager.getConnection(host, userName, userPass);
             } catch (SQLException ex) {
-                System.out.println("Geen verbinding met de MySQL database verkregen.");
+                LOGGER.error("Geen verbinding met de MySQL database verkregen.");
                 ex.getMessage();
             }
-            System.out.println("Verbonden met de MySQL database.");
+            LOGGER.info("Verbonden met de MySQL database.");
         return sqlconnectie;
         }
 }
