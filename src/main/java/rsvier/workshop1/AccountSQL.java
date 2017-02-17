@@ -72,7 +72,7 @@ public class AccountSQL implements AccountDAO {
          LOGGER.debug("In inputs waren wachtwoord: {} , en type {} ", wachtwoord, type);
         
         Account account = new Account();
-        int workload = 16;
+        int workload = 14;
         
         
        // public static String hashPassword(String password_plaintext) {
@@ -117,9 +117,9 @@ public class AccountSQL implements AccountDAO {
         while (rs.next()){
             
       System.out.println(rs.getInt("accounts_id"));
-           //     account.setAccountId(rs.getInt("accounts_id"));
-            //    account.setType(rs.getInt("accounts_type"));
-            //    account.setWachtwoord(rs.getString("wachtwoord"));
+                account.setAccountId(rs.getInt("accounts_id"));
+                account.setType(rs.getInt("accounts_type"));
+                account.setWachtwoord(rs.getString("wachtwoord"));
         }
         LOGGER.info("Account gegevens zijn succesvol aangemaakt.");
          

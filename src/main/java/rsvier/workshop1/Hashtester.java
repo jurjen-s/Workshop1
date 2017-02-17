@@ -225,7 +225,6 @@ Constructor that takes
 
 		return(hashed_password);
 	}
-
 	/**
 	 * This method can be used to verify a computed hash from a plaintext (e.g. during a login
 	 * request) with that of a stored hash from a database. The password hash from the database
