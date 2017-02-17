@@ -46,14 +46,15 @@ System.out.println(klanten_id + voornaam + tussenvoegsel + achternaam + telefoon
 
 public void getAll (Klant klant){
 
-System.out.println("klanten id: " +this.klanten_id +" "+ this.voornaam +" "+ this.tussenvoegsel +" "+ this.achternaam + " tel: "+ this.telefoonnummer + "account id: "+this.FK_accounts_id );
+System.out.println("klanten id: " +this.klanten_id +" Naam :  "+ this.voornaam +"  "+ this.tussenvoegsel +"  "+ this.achternaam + " tel: "+ this.telefoonnummer + " 7"
+        + "account id: "+this.FK_accounts_id );
 
 }
 
 
         
     public String getStringKlant(){
-        String klantenString = "klanten id : "+ klanten_id +" voornaam is "+ voornaam +" tussenvoegsel is"+ tussenvoegsel +" achternaam is :"+ achternaam +" telnr. "+ telefoonnummer+" account id"+ FK_accounts_id+ " ";
+        String klantenString = "klanten id : "+ klanten_id +" voornaam is "+ voornaam +" tussenvoegsel is"+ tussenvoegsel +" achternaam is :"+ achternaam +" telnr. "+ telefoonnummer+ " account id"+ FK_accounts_id+ " ";
         return klantenString;
     }
 

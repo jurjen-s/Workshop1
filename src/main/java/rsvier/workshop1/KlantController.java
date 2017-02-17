@@ -30,28 +30,28 @@ public class KlantController {
     public Klant findKlant(Klant bestaandeKlant);
    
     */
-    public Klant findBijID(int idKlant) {
-        Klant klantNaarMenu = new Klant();
-        klantNaarMenu = klantDAO.findBijID(idKlant);
-        return klantNaarMenu;
+    public List findBijID(int idKlant) {
+        
+        List<Klant> zoekresultaat = klantDAO.findBijID(idKlant);
+        return zoekresultaat;
     }
     
-    public Klant findBijNaam(String voornaam,String tussenvoegsel, String achternaam) {
-        Klant klantNaarMenu2 = new Klant();
-        klantNaarMenu2 = klantDAO.findBijNaam(voornaam, tussenvoegsel, achternaam);
-        return klantNaarMenu2;
+    public List findBijNaam(String voornaam,String tussenvoegsel, String achternaam) {
+        
+        List<Klant> zoekresultaat = klantDAO.findBijNaam(voornaam, tussenvoegsel, achternaam);
+        return zoekresultaat;
     }
    
-    public Klant findBijVoornaam(String voornaam) {
-        Klant klantNaarMenu3 = new Klant();
-        klantNaarMenu3 = klantDAO.findBijVoornaam(voornaam);
-        return klantNaarMenu3;
+    public List findBijVoornaam(String voornaam) {
+        
+        List<Klant> zoekresultaat = klantDAO.findBijVoornaam(voornaam);
+        return zoekresultaat;
     }
     
-    public Klant findBijLastName(String achternaam) {
-        Klant klantNaarMenu4 = new Klant();
-        klantNaarMenu4 = klantDAO.findBijLastName(achternaam);
-        return klantNaarMenu4;
+    public List findBijLastName(String achternaam) {
+        
+        List<Klant> zoekresultaat = klantDAO.findBijLastName(achternaam);
+        return zoekresultaat;
     }
     
     public Klant createKlant( int accountidvanklant, String VN, int Heefttussenvoegsel, String TV, String AN, int Telefoonnr) {
@@ -70,6 +70,13 @@ public class KlantController {
         boolean klantNaarMenuX;
         klantNaarMenuX = klantDAO.deleteKlant(kid);
         return klantNaarMenuX;
+    }
+    
+    public List ShowAllKlant(){
+        
+        List<Klant> results = klantDAO.klantlijst();
+        return results;
+        
     }
     
     

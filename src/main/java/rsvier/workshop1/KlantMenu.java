@@ -7,6 +7,10 @@ package rsvier.workshop1;
 
 //import java.util.Scanner;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 
 /**
  *
@@ -57,7 +61,7 @@ else if(waarde <= 8 && waarde >0){
                 case 3: System.out.println(" 3 klant zoeken op klant achternaam");  klantenmenuZoAN(); break;
                 case 4: System.out.println(" 4 klant zoeken op volledige naam");  klantenmenuZoN(); break;
                 case 5: System.out.println(" 5 klant gegevens aanpassen");  klantenmenuV(); break;
-                case 6: System.out.println(" 6 Laat klant zien");  klantenmenuShow(); break;
+                case 6: System.out.println(" 6 Laat alle klanten zien");  klantenmenuShow(); break;
                 case 7: System.out.println(" 7 Maak een klant"); klantenmenuT(); break;
                 case 8: System.out.println(" 8 klant verwijderen");  klantenmenuDELETE(); break;
                
@@ -76,22 +80,18 @@ klantenmenu();
 public void klantenmenuZoKid(){
     
     System.out.println("U gaat een klant zoeken.");
-    System.out.println("Vul ID in en druk op enter.");
+    System.out.println("Vul klant id in en druk op enter.");
     
     int klantId = TextIO.getlnInt();
     
-    Klant klantresult = new Klant();
+    List<Klant> zoekresultaat = new ArrayList<Klant>();
    
-     klantresult = klantController.findBijID(klantId);
-   
-   //AF
+      zoekresultaat = klantController.findBijID(klantId);
+        for (Klant foreachklant : zoekresultaat) {
+            foreachklant.getAll(foreachklant);
+        }
     
-    klantresult.getAll(klantresult);
     
-    
-
-
-
     klantenmenu();
 }
 public void klantenmenuZoVN(){
@@ -100,18 +100,14 @@ public void klantenmenuZoVN(){
     
     String VN = TextIO.getln();
     
-
-    Klant klantresult = new Klant();
+ List<Klant> zoekresultaat = new ArrayList<Klant>();
    
-     klantresult = klantController.findBijVoornaam(VN);
-   
-   //AF
-    
-    klantresult.getAll(klantresult);
-    
+      zoekresultaat = klantController.findBijVoornaam(VN);
+        for (Klant foreachklant : zoekresultaat) {
+            foreachklant.getAll(foreachklant);
+        }
     
     
-
 
     klantenmenu();
 }
@@ -121,13 +117,12 @@ public  void klantenmenuZoAN(){
     
     String AN = TextIO.getln();
     
- Klant klantresult1 = new Klant();
+  List<Klant> zoekresultaat = new ArrayList<Klant>();
    
-     klantresult1 = klantController.findBijLastName(AN);
-   
-   //AF
-    
-    klantresult1.getAll(klantresult1);
+      zoekresultaat = klantController.findBijLastName(AN);
+        for (Klant foreachklant : zoekresultaat) {
+            foreachklant.getAll(foreachklant);
+        }
 
 
     klantenmenu();
@@ -147,17 +142,14 @@ public  void klantenmenuZoN(){
     String AN = TextIO.getln();
     
     
-    Klant klantresult2 = new Klant();
+     List<Klant> zoekresultaat = new ArrayList<Klant>();
    
-     klantresult2 = klantController.findBijNaam(VN,T,AN);
-   
-   //AF
+      zoekresultaat = klantController.findBijNaam(VN, AN, AN);
+        for (Klant foreachklant : zoekresultaat) {
+            foreachklant.getAll(foreachklant);
+        }
     
-    klantresult2.getAll(klantresult2);
     
-    
-
-
 
     klantenmenu();
 }
@@ -197,7 +189,16 @@ public void klantenmenuV(){
     klantenmenu();
 }
 public void klantenmenuShow(){
-     System.out.println("deze klantenDAO is nog niet goed");
+     
+    List<Klant> zoekresultaat = new ArrayList<Klant>();
+   
+      zoekresultaat = klantController.ShowAllKlant();
+        for (Klant foreachklant : zoekresultaat) {
+            foreachklant.getAll(foreachklant);
+        }
+    
+    
+    
     klantenmenu();
 }
 public  void klantenmenuT(){

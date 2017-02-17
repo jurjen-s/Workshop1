@@ -25,7 +25,7 @@ public class KlantSQL implements KlantDAO {
     private Connection connectie;
     
     
-     // public List<Klant> klantlijst = new ArrayList<>();
+    
     
     
     
@@ -36,91 +36,54 @@ public class KlantSQL implements KlantDAO {
     
      
      
-//onzin <--------------------------------
+
     @Override
-    public List<Klant> klantlijst() {
+    public List klantlijst() {
         
-        //Maakt een klanten lijst
-        List<Klant> klanten = new ArrayList<>();
-        Klant klant;
+        
+        
+        
         String query = "SELECT * FROM klanten";
+        List<Klant> klantenl = new ArrayList<Klant>();
         try (
         		PreparedStatement stmt = connectie.prepareStatement(query)) {
         		ResultSet resultset = stmt.executeQuery();
         	
-
+            
+            
             while(resultset.next()) {
+               
                 //stop klant object in klanten List
-                klant = new Klant();
+                Klant klant = new Klant();
                 
                 klant.setKlantenID(resultset.getInt("klanten_id"));
                 klant.setVoornaam(resultset.getString("voornaam"));
                 klant.setAchternaam(resultset.getString("achternaam"));
                 klant.setTussenvoegsel(resultset.getString("tussenvoegsel"));
                 klant.setTelefoonnummer(resultset.getInt("telefoonnummer"));
-                klant.setFKaccountsID (resultset.getInt("FK_accounts_id"));
+                klant.setFKaccountsID (resultset.getInt("FK_klanten_accounts_id"));
                 
+                klantenl.add(klant);
                 
+              
                 
-                /**
-                klant.setBezorghuisnummer(resultset.getInt("Bezorghuisnummer"));
-                klant.setBezorgHuisnummertoevoeging(resultset.getString("BezorghuisnummerToevoeging"));
-                klant.setBezorgPostcode(resultset.getString("BezorgPostcode"));
-                klant.setFactuurPostcode(resultset.getString("FactuurPostcode"));
-                klant.setFactuurhuisnummer(resultset.getInt("FactuurHuisnummer"));
-                klant.setFactuurHuisnummertoevoeging(resultset.getString("FactuurHuisnummerToevoeging"));
-                klant.setLand(resultset.getString("Land"));
-                klant.setMedewerkerID(resultset.getInt("Medewerker_idMedewerker"));
-                */
-                klanten.add(klant);
             } 
+            return klantenl;
         } catch (SQLException ex) {
             LOGGER.debug("Het volgende ging mis bij het maken van een klantlijst: {}", ex.getMessage());
         }     
         //"Klanten gevonden");
-        return klanten;
+        return klantenl;
     }
     
     
     
     
-    
-    //onzin
-    @Override
-    public Klant findKlant(Klant bestaandeKlant) {
-        LOGGER.debug("Input findKlant: {}", bestaandeKlant.toString());
-        int    klantID            = bestaandeKlant.getKlantenID();
-        String klantVoornaam      = bestaandeKlant.getVoornaam();
-        String klantAchternaam    = bestaandeKlant.getAchternaam();
-        String klantTussenvoegsel = bestaandeKlant.getTussenvoegsel();
-        
-        if (klantID != 0) {
-//id was niet null, klant zoeken op idKlant            
-        	LOGGER.debug("Zoeken op klantId.");
-        	return findBijID(klantID);
-        	}        
-        
-        else if (klantVoornaam != null && klantVoornaam.length() >= 1 && klantAchternaam.length() >= 1) {
-        	//klant zoeken op voor en tussenvoegsel en achternaam
-                LOGGER.debug("Zoeken op volledige naam.");
-        	return findBijNaam(klantVoornaam,klantTussenvoegsel, klantAchternaam);
-        }
-        
-        else if (klantVoornaam != null && klantVoornaam.length() >= 1) {
-        	//klant zoeken op voornaam en voornaam was groter dan 0");
-                LOGGER.debug("Zoeken op voornaam.");
-        	return findBijVoornaam(klantVoornaam);
-        	}
-        
-        else {
-        	System.out.println("Niks gevonden");
-                LOGGER.error("Geen klant gevonden.");
-        	return null;
-        }
-    } 
+  
 
     @Override
-    public Klant findBijID(int klantenid) {
+    public List findBijID(int klantenid) {
+        List<Klant> zoekresultaat = new ArrayList<>();
         LOGGER.debug("input bij findBijID is {}",klantenid);
          String query = "SELECT * FROM klanten WHERE klanten_id = ?";
         Klant klant = new Klant();
@@ -130,17 +93,18 @@ public class KlantSQL implements KlantDAO {
         		ResultSet resultset = stmt.executeQuery();
         	
             ///maak java klant       
-            if (resultset.next()) {                
-                
-                klant.setKlantenID(resultset.getInt("klanten_id"));
-                klant.setVoornaam(resultset.getString("voornaam"));
-                klant.setAchternaam(resultset.getString("achternaam"));
-                klant.setTussenvoegsel(resultset.getString("tussenvoegsel"));
-                klant.setTelefoonnummer(resultset.getInt("telefoonnummer"));
-                klant.setFKaccountsID(resultset.getInt("FK_klanten_accounts_id"));
+            while (resultset.next()) {                
+                Klant klantnext = new Klant();
+                klantnext.setKlantenID(resultset.getInt("klanten_id"));
+                klantnext.setVoornaam(resultset.getString("voornaam"));
+                klantnext.setAchternaam(resultset.getString("achternaam"));
+                klantnext.setTussenvoegsel(resultset.getString("tussenvoegsel"));
+                klantnext.setTelefoonnummer(resultset.getInt("telefoonnummer"));
+                klantnext.setFKaccountsID(resultset.getInt("FK_klanten_accounts_id"));
                // klant.setFKadressenKlant(resultset.getInt("FK_adressen_klant"));
-                klant.setHeeftTusv(resultset.getInt("heeft_tussenvoegsel"));
+                klantnext.setHeeftTusv(resultset.getInt("heeft_tussenvoegsel"));
                 
+                zoekresultaat.add(klantnext);
                 /**
                 klant.setBezorghuisnummer(resultset.getInt("Bezorghuisnummer"));
                 klant.setBezorgHuisnummertoevoeging(resultset.getString("BezorghuisnummerToevoeging"));
@@ -152,19 +116,20 @@ public class KlantSQL implements KlantDAO {
                 klant.setMedewerkerID(resultset.getInt("Medewerker_idMedewerker"));;
                 */
                 
-            } //eindeif
+            } //while
             
          //einde try   
         } catch (SQLException ex) { System.out.println(ex.getMessage());
         	 LOGGER.error("Er gaat iets mis met het bekijken van een klanten op klantID: {}", ex.getMessage());
         }
         LOGGER.debug("output bij findBijID is "+ klant.getStringKlant());
-        return klant;
+        return zoekresultaat;
        
     }
 
     @Override
-    public Klant findBijNaam(String voornaam, String tussenvoegsel, String achternaam) {
+    public List findBijNaam(String voornaam, String tussenvoegsel, String achternaam) {
+        List<Klant> zoekresultaat = new ArrayList<>();
        LOGGER.debug("input bij findBijNaam is {} {} {}",voornaam, tussenvoegsel,achternaam);
        Klant klant = new Klant();
        //Onderscheid maken tussen namen met en zonder tussenvoegsel
@@ -196,24 +161,28 @@ public class KlantSQL implements KlantDAO {
                 ResultSet rs = stmt.executeQuery();
                 ///maak klant en set de gegevens er in    (je wilt er mee werken uiteindelijk)   
                 while (rs.next()) {
-                    klant.setKlantenID(rs.getInt("klanten_id"));
-                    klant.setVoornaam(rs.getString("voornaam"));
-                    klant.setAchternaam(rs.getString("achternaam"));
-                    klant.setTussenvoegsel(rs.getString("tussenvoegsel"));
-                    klant.setTelefoonnummer(rs.getInt("telefoonnummer"));
-                    klant.setFKaccountsID(rs.getInt("FK_klanten_accounts_id"));
-                    klant.setHeeftTusv(rs.getInt("heeft_tussenvoegsel"));
+                    Klant klantnext = new Klant();
+                    klantnext.setKlantenID(rs.getInt("klanten_id"));
+                    klantnext.setVoornaam(rs.getString("voornaam"));
+                    klantnext.setAchternaam(rs.getString("achternaam"));
+                    klantnext.setTussenvoegsel(rs.getString("tussenvoegsel"));
+                    klantnext.setTelefoonnummer(rs.getInt("telefoonnummer"));
+                    klantnext.setFKaccountsID(rs.getInt("FK_klanten_accounts_id"));
+                    klantnext.setHeeftTusv(rs.getInt("heeft_tussenvoegsel"));
+                    zoekresultaat.add(klantnext);
+                    
                 }
             } catch(SQLException ex)  {
                 LOGGER.error("Er gaat iets mis met het bekijken van een klanten op naam : {}", ex.getMessage());
             }
         }
         LOGGER.debug("output bij findBijNaam is "+ klant.getStringKlant());
-        return klant;
+        return zoekresultaat;
     }
 
     @Override
-    public Klant findBijVoornaam(String voornaam) {
+    public List findBijVoornaam(String voornaam) {
+        List<Klant> zoekresultaat = new ArrayList<>();
            LOGGER.debug("input bij findBijVoornaam is {}",voornaam);
        String query = "SELECT * FROM klanten WHERE voornaam = ?";
         Klant klant = new Klant();
@@ -223,15 +192,15 @@ public class KlantSQL implements KlantDAO {
             ResultSet resultset = stmt.executeQuery();
         
             ///geef alle data naar java toe met de gevonden voornaam.
-            if (resultset.next()) {
-                
-                klant.setKlantenID(resultset.getInt("klanten_id"));
-                klant.setVoornaam(resultset.getString("voornaam"));
-                klant.setAchternaam(resultset.getString("achternaam"));
-                klant.setTussenvoegsel(resultset.getString("tussenvoegsel"));
-                klant.setTelefoonnummer(resultset.getInt("telefoonnummer"));
-                klant.setFKaccountsID(resultset.getInt("FK_klanten_accounts_id"));
-               
+            while (resultset.next()) {
+                Klant klantnext = new Klant();
+                klantnext.setKlantenID(resultset.getInt("klanten_id"));
+                klantnext.setVoornaam(resultset.getString("voornaam"));
+                klantnext.setAchternaam(resultset.getString("achternaam"));
+                klantnext.setTussenvoegsel(resultset.getString("tussenvoegsel"));
+                klantnext.setTelefoonnummer(resultset.getInt("telefoonnummer"));
+                klantnext.setFKaccountsID(resultset.getInt("FK_klanten_accounts_id"));
+               zoekresultaat.add(klantnext);
                 
                 
                 
@@ -260,7 +229,7 @@ public class KlantSQL implements KlantDAO {
        	LOGGER.error("Er gaat iets mis met het bekijken van een klanten op voornaam {}", ex.getMessage());
         }
         LOGGER.debug("output bij findBijVoornaam is "+ klant.getStringKlant());
-        return klant;        
+        return zoekresultaat;        
     } 
     
     
@@ -273,7 +242,8 @@ public class KlantSQL implements KlantDAO {
     
     
     @Override
-    public Klant findBijLastName(String achternaam) {
+    public List findBijLastName(String achternaam) {
+        List<Klant> zoekresultaat = new ArrayList<>();
         LOGGER.debug("input bij findBijLastName is {}",achternaam);
          String query = "SELECT * FROM klanten WHERE achternaam = ?";
         Klant klant = new Klant();
@@ -283,16 +253,19 @@ public class KlantSQL implements KlantDAO {
                         ResultSet resultset = stmt.executeQuery();
         
             ///geef alle data naar java toe met de gevonden achternaam.
-            if (resultset.next()) {
-                klant.setKlantenID(resultset.getInt("klanten_id"));
-                klant.setVoornaam(resultset.getString("voornaam"));
-                klant.setAchternaam(resultset.getString("achternaam"));
-                klant.setTussenvoegsel(resultset.getString("tussenvoegsel"));
-                klant.setTelefoonnummer(resultset.getInt("telefoonnummer"));
+            while (resultset.next()) {
+                Klant klantnext = new Klant();
                 
-                klant.setHeeftTusv(resultset.getInt("heeft_tussenvoegsel"));
-                klant.setFKaccountsID(resultset.getInt("FK_klanten_accounts_id"));
+                klantnext.setKlantenID(resultset.getInt("klanten_id"));
+                klantnext.setVoornaam(resultset.getString("voornaam"));
+                klantnext.setAchternaam(resultset.getString("achternaam"));
+                klantnext.setTussenvoegsel(resultset.getString("tussenvoegsel"));
+                klantnext.setTelefoonnummer(resultset.getInt("telefoonnummer"));
                 
+                klantnext.setHeeftTusv(resultset.getInt("heeft_tussenvoegsel"));
+                klantnext.setFKaccountsID(resultset.getInt("FK_klanten_accounts_id"));
+                
+                zoekresultaat.add(klantnext);
                 
             }//einde if
         } //einde try
@@ -300,7 +273,7 @@ public class KlantSQL implements KlantDAO {
        	LOGGER.error("Er gaat iets mis met het bekijken van een klanten op achternaam {}", ex.getMessage());
         }
         LOGGER.debug("output bij findBijAchternaam is "+ klant.getStringKlant());
-        return klant;        
+        return zoekresultaat;        
         
         
        
@@ -432,6 +405,9 @@ public class KlantSQL implements KlantDAO {
             return true;    
         }    
     }
+
+    
+   
 
     
     

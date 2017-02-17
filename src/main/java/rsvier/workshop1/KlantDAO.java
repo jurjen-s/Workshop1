@@ -20,16 +20,16 @@ public interface KlantDAO {
 
 //de list heet Klant.
 
-    public List<Klant> klantlijst();
+    public List klantlijst();
     
     
     //finders
-    public Klant findKlant(Klant bestaandeKlant);
     
-    public Klant findBijID(int idKlant);
-    public Klant findBijNaam(String voornaam,String tussenvoegsel, String achternaam);
-    public Klant findBijVoornaam(String voornaam);
-    public Klant findBijLastName(String achternaam);
+    
+    public List findBijID(int idKlant);
+    public List findBijNaam(String voornaam,String tussenvoegsel, String achternaam);
+    public List findBijVoornaam(String voornaam);
+    public List findBijLastName(String achternaam);
     
     public Klant createKlant( int accountidvanklant,  String VN, int Heefttussenvoegsel, String TV, String AN, int telefoonnr);
     
