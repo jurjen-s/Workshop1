@@ -57,7 +57,7 @@ public class AdresMenu {
                 case 10: System.out.println("10: verander huisnummertoevoeging");adressenmenuVHnrT(); break;
                 case 11: System.out.println("11: verander postcode");adressenmenuVPC(); break;
                 case 12: System.out.println("12: verander land");adressenmenuVL(); break;
-                case 13:System.out.println("13: Adres verwijderen");adressenmenu(); break;
+                case 13:System.out.println("13: Adres verwijderen");adressenmenuDELETE(); break;
                 case 0: Menu menu = new Menu(); menu.hoofdmenu(); break;
                 default: System.out.println("Verkeerde invoer."); adressenmenu();
         }
@@ -110,8 +110,12 @@ public class AdresMenu {
     
     public  void adressenmenuDoK(){
         System.out.println("U gaat een adres zoeken op klantID.");
-        System.out.println("Vul het klantID in en druk op enter.");
-        int klantId = TextIO.getlnInt();
+        //Controleren op FK constraints
+        int klantId = -1;
+        do {
+            System.out.println("Vul klantID in en druk op enter.");
+            klantId = TextIO.getlnInt();
+        } while (!controller.existsKlantId(klantId));
         List<Adres> zoekresultaat = adresController.findAdresByKlantId(klantId);
         if (zoekresultaat.isEmpty()) {
             System.out.println("Geen zoekresultaten.");
@@ -139,24 +143,13 @@ public class AdresMenu {
         System.out.println("Geef het adres type (1: woonadres, 2: bezorgadres, 3: factuuradres): ");
         int adresType = TextIO.getlnInt();
         adres.setAdresType(adresType);
-            //Controleren op foreign key constraints
-            int keuze = -1;
-            do {
-                System.out.println("Geef het bijbehorende klantenID: ");
-                int klantId = TextIO.getlnInt();
-                adres.setKlantId(klantId);
-                boolean existsKlantId = controller.existsKlantId(klantId);
-                if (!existsKlantId) {
-                    System.out.println("Opgegeven klantId bestaat niet.");
-                    System.out.println("1: Ander klantId opgeven.");
-                    System.out.println("2: Terug naar adresmenu.");
-                    System.out.println("Geef uw keuze: ");
-                    keuze = TextIO.getlnInt();
-                }
-            } while (keuze == 1);
-            if (keuze == 2) {
-                adressenmenu();
-            }
+        //Controleren op foreign key constraints
+        int klantId = -1;
+        do {
+            System.out.println("Geef het bijbehorende klantenID: ");
+            klantId = TextIO.getlnInt();
+            adres.setKlantId(klantId);
+        } while (!controller.existsKlantId(klantId));
         System.out.println("Geef de straatnaam: ");
         String straatnaam = TextIO.getln();
         adres.setStraatnaam(straatnaam);
@@ -190,26 +183,12 @@ public class AdresMenu {
 
     public  void adressenmenuVT(){
         System.out.println("U gaat een adres type veranderen."); // idealiter laat deze gegevens aan te passen adres zien
+        //Controleren op foreign key constraints
         int adresId = -1;
-            //Controleren op foreign key constraints
-            int keuze = -1;
-            do {
-                System.out.println("Geef het bijbehorende adresId: ");
-                adresId = TextIO.getlnInt();
-                boolean existsAdresId = controller.existsAdresId(adresId);
-                if (!existsAdresId) {
-                    System.out.println("-------------------------------");
-                    System.out.println("Opgegeven adresId bestaat niet.");
-                    System.out.println("1: Ander adresId opgeven.");
-                    System.out.println("2: Terug naar adresmenu.");
-                    System.out.println("-------------------------------");
-                    System.out.println("Geef uw keuze: ");
-                    keuze = TextIO.getlnInt();
-                }
-            } while (keuze == 1);
-            if (keuze == 2) {
-                adressenmenu();
-            }
+        do {
+            System.out.println("Geef het bijbehorende adresId: ");
+            adresId = TextIO.getlnInt();
+        } while (!controller.existsAdresId(adresId));
         System.out.println("vul het nieuwe type (1: woonadres, 2: bezorgadres, 3: factuuradres) in en druk op enter");
         int adresType = TextIO.getlnInt();
         if (adresController.updateAdresType(adresId,adresType) == true) {
@@ -223,21 +202,31 @@ public class AdresMenu {
     public  void adressenmenuVS(){
     System.out.println("U gaat een adres straatnaam veranderen.");
     System.out.println("Vul het adres id in en druk op enter.");
-    int adresId = TextIO.getlnInt();
-    System.out.println("vul de nieuwe straatnaam (string) in en druk op enter");
-    String straatnaam = TextIO.getln();
-    if (adresController.updateAdresStraatnaam(adresId,straatnaam) == true) {
-            System.out.println("Het updaten is gelukt.");
-        } else {
-            System.out.println("het updaten is mislukt.");
-        }
-    adressenmenu();
+    //Controleren op foreign key constraints
+        int adresId = -1;
+        do {
+            System.out.println("Geef het bijbehorende adresId: ");
+            adresId = TextIO.getlnInt();
+        } while (!controller.existsAdresId(adresId));
+        System.out.println("vul de nieuwe straatnaam in en druk op enter");
+        String straatnaam = TextIO.getln();
+        if (adresController.updateAdresStraatnaam(adresId,straatnaam) == true) {
+                System.out.println("Het updaten is gelukt.");
+            } else {
+                System.out.println("het updaten is mislukt.");
+            }
+        adressenmenu();
     }
 
     public  void adressenmenuVHnr(){
         System.out.println("U gaat een adres huisnummer veranderen.");
         System.out.println("Vul het adres id in en druk op enter.");
-        int adresId = TextIO.getlnInt();
+        //Controleren op foreign key constraints
+        int adresId = -1;
+        do {
+            System.out.println("Geef het bijbehorende adresId: ");
+            adresId = TextIO.getlnInt();
+        } while (!controller.existsAdresId(adresId));
         System.out.println("vul het nieuwe huisnummer in en druk op enter");
         int huisnummer = TextIO.getlnInt();
         if (adresController.updateAdresHuisnummer(adresId,huisnummer) == true) {
@@ -251,9 +240,19 @@ public class AdresMenu {
     public  void adressenmenuVHnrT(){
         System.out.println("U gaat een adres huisnummer toevoeging veranderen.");
         System.out.println("Vul het adres id in en druk op enter.");
-        int adresId = TextIO.getlnInt();
-        System.out.println("vul de nieuwe toevoeging in en druk op enter");
+        //Controleren op foreign key constraints
+        int adresId = -1;
+        do {
+            System.out.println("Geef het bijbehorende adresId: ");
+            adresId = TextIO.getlnInt();
+        } while (!controller.existsAdresId(adresId));
+        System.out.println("Geef de nieuwe toevoeging of laat leeg om een toevoeging te verwijderen:");
         String huisnummerToevoeging = TextIO.getln();
+        if (huisnummerToevoeging.equals("")) {
+            adresController.updateAdresHeeftHuisnrToevoeging(adresId, 0);
+        } else {
+            adresController.updateAdresHeeftHuisnrToevoeging(adresId, 1);
+        }
         if (adresController.updateAdresHuisnrToevoeging(adresId,huisnummerToevoeging) == true) {
                 System.out.println("Het updaten is gelukt.");
             } else {
@@ -265,7 +264,12 @@ public class AdresMenu {
     public  void adressenmenuVPC(){
         System.out.println("U gaat een adres postcode veranderen.");
         System.out.println("Vul het adres id in en druk op enter.");
-        int adresId = TextIO.getlnInt();
+        //Controleren op foreign key constraints
+        int adresId = -1;
+        do {
+            System.out.println("Geef het bijbehorende adresId: ");
+            adresId = TextIO.getlnInt();
+        } while (!controller.existsAdresId(adresId));
         String postcode = "";
         do {
             System.out.println("Vul de postcode in. Geef in het formaat \'1234 AZ\'.");
@@ -285,8 +289,13 @@ public class AdresMenu {
     public  void adressenmenuVL(){
         System.out.println("U gaat een adres Land veranderen.");
         System.out.println("Vul het adres id in en druk op enter.");
-        int adresId = TextIO.getlnInt();
-        System.out.println("vul de nieuwe Land (string) in en druk op enter");
+        //Controleren op foreign key constraints
+        int adresId = -1;
+        do {
+            System.out.println("Geef het bijbehorende adresId: ");
+            adresId = TextIO.getlnInt();
+        } while (!controller.existsAdresId(adresId));
+        System.out.println("Geef het nieuwe land op: ");
         String land = TextIO.getln();
         if (adresController.updateAdresLand(adresId,land) == true) {
                 System.out.println("Het updaten is gelukt.");
@@ -299,28 +308,17 @@ public class AdresMenu {
     public  void adressenmenuDELETE(){
         System.out.println("U gaat een adres verwijderen.");
         System.out.println("Vul het adres id in en druk op enter.");
-        int adresId = TextIO.getlnInt();
+        //Controleren op foreign key constraints
+        int adresId = -1;
+        do {
+            System.out.println("Geef het bijbehorende adresId: ");
+            adresId = TextIO.getlnInt();
+        } while (!controller.existsAdresId(adresId));
         if (adresController.deleteAdres(adresId) == true) {
-            System.out.println("Het updaten is gelukt.");
+            System.out.println("Adres gegevens zijn succesvol verwijderd.");
         } else {
-            System.out.println("het updaten is mislukt.");
+            System.out.println("Adres gegevens zijn niet verwijderd.");
         }
         adressenmenu();
-    }
-
-    private void controleerKlantId(int klantId) {
-        
-    }
-
-    private void controleerAdresId(int adresId) {
-        SQLConnection sqlConnectie = new SQLConnection();
-        Connection connectie = sqlConnectie.getSQLConnection();
-        AdresDAO adresDAO = new AdresSQL(connectie);
-        Adres adres = adresDAO.findAdresById(adresId);
-        if (adres.getAdresId()== 0) {
-            System.out.println("Opgegeven adres bestaat niet. U keert terug naar het adresmenu.");
-            AdresMenu adresMenu = new AdresMenu();
-            adresMenu.adressenmenu();
-        }
     }
 }

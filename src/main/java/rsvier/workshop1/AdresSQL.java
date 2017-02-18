@@ -366,7 +366,6 @@ public class AdresSQL implements AdresDAO {
         String query = "DELETE FROM accounts WHERE accounts_id = " + AdresID;        
         try (PreparedStatement stmt2 = adresconnectie.prepareStatement(query))  {
             stmt2.executeUpdate();
-            System.out.println("Adres gegevens zijn succesvol verwijderd");
             return true;
         }   catch (SQLException ex){
             LOGGER.error("Er gaat iets mis met het verwijderen van een adres{}", ex.getMessage());

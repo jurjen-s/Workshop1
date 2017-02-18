@@ -54,6 +54,7 @@ public class AdresController {
         return adresDAO.updateAdresHeeftHuisnrToevoeging(adresId, heeftHuisnrToevoeging);
     }
     boolean updateAdresHuisnrToevoeging(int adresId, String huisnrToevoeging) {
+        //adresDAO.updateAdresHeeftHuisnrToevoeging(adresId, 1);
         return adresDAO.updateAdresHuisnrToevoeging(adresId, huisnrToevoeging);
     }
     boolean updateAdresPostcode(int adresId, String postcode) {

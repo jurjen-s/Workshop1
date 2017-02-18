@@ -20,7 +20,8 @@ public class Controller {
         Connection connectie = sqlConnectie.getSQLConnection();
         KlantDAO klantDAO = new KlantSQL(connectie);
         List<Klant> klantlijst = klantDAO.findBijID(klantId);
-        if (klantlijst.get(1).getKlantenID() == 0) {
+        if (klantlijst.isEmpty()) {
+            System.out.println("Opgegeven klantId niet gevonden.");
             return false;
         } else {
             return true;
@@ -33,6 +34,7 @@ public class Controller {
         AdresDAO adresDAO = new AdresSQL(connectie);
         Adres adres = adresDAO.findAdresById(adresId);
         if (adres.getAdresId() == 0) {
+            System.out.println("Opgegeven adresId niet gevonden.");
             return false;
         } else {
             return true;
@@ -45,6 +47,7 @@ public class Controller {
         ProductDAO productDAO = new ProductSQL(connectie);
         Product product = productDAO.findProductById(productId);
         if (product.getProductId() == 0) {
+            System.out.println("Opgegeven productId niet gevonden.");
             return false;
         } else {
             return true;
@@ -57,6 +60,7 @@ public class Controller {
         BestellingDAO bestellingDAO = new BestellingSQL(connectie);
         Bestelling bestelling = bestellingDAO.findBestellingById(bestellingId);
         if (bestelling.getBestellingId() == 0) {
+            System.out.println("Opgegeven bestellingId niet gevonden.");
             return false;
         } else {
             return true;
@@ -69,6 +73,7 @@ public class Controller {
         AccountDAO accountDAO = new AccountSQL(connectie);
         Account account = accountDAO.findAccountByID(accountId);
         if (account.getAccountId() == 0) {
+            System.out.println("Opgegeven accountId niet gevonden.");
             return false;
         } else {
             return true;

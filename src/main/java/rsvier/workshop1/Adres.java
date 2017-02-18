@@ -82,14 +82,19 @@ public class Adres {
     
     @Override
     public String toString() {
-        String adres = "adresId is: "+ adresId + "\t\t" +
-                       "adrestype is: " + adresType  + "\t\t" +
-                       "klantId is: "+ klantId + "\t\t" +
-                       "straatnaam is : " +straatnaam + "\t\t" +
-                       "huisnummer is : " +huisnummer + "\t\t" +
-                       "huisnummertoevoeging is: "+huisnrToevoeging + "\t\t" +
-                       "postcode is : "+postcode + "\t\t" +
-                       land;
+        String typeAdres = "";
+        switch (adresType) {
+            case 1: typeAdres = "woonadres";
+            case 2: typeAdres = "bezorgadres";
+            case 3: typeAdres = "factuuradres";
+        }
+        String deelAdres = "Adres " + adresId + ", " + typeAdres + " van klant " + klantId + ": " + straatnaam + " " + huisnummer;
+        String adres;
+        if (heeftHuisnrToevoeging) {
+            adres = deelAdres + huisnrToevoeging + " " + postcode + " " + land + ".\n";
+        } else {
+            adres = deelAdres + " " + postcode + " " + land + ".\n";
+        }
         return adres;
     }
     

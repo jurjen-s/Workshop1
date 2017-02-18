@@ -103,12 +103,12 @@ public class BestellingSQL implements BestellingDAO {
         try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(query)) {
             stmt.setInt(1, klantId);
             ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
             int bestellingId = rs.getInt("bestellingen_id");
             int adresId = rs.getInt("FK_bestellingen_adressen_id");
             int aantalArtikelen = rs.getInt("aantal_artikelen");
             BigDecimal totaalprijs = rs.getBigDecimal("totaalprijs");
             // Laat alle bestellingen met het opgegeven klantId zien
-            while (rs.next()) {
             Bestelling gevondenBestelling = new Bestelling.BestellingBuilder()
                                                .bestellingId(bestellingId)
                                                .klantId(klantId)
@@ -207,16 +207,19 @@ public class BestellingSQL implements BestellingDAO {
     @Override
     public Bestelling toevoegenBestelling(Bestelling opgegevenBestelling) {
         LOGGER.debug("Toevoegen bestelling {}", opgegevenBestelling.toString());
-        String query = "INSERT INTO bestellingen (FK_bestellingen_klanten_id, FK_bestellingen_adres_id, aantal_artikelen, totaalprijs) VALUES ?, ?, ?, ?";
+        String query = "INSERT INTO bestellingen (FK_bestellingen_klanten_id, FK_bestellingen_adressen_id, aantal_artikelen, totaalprijs) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stmt = bestellingenconnectie.prepareStatement(query)) {
-            ResultSet rs = stmt.executeQuery("SELECT LAST_INSERT_ID()");
-            int bestellingId = rs.getInt(1);
             stmt.setInt(1, opgegevenBestelling.getKlantId());
             stmt.setInt(2, opgegevenBestelling.getAdresId());
             stmt.setInt(3, opgegevenBestelling.getAantalArtikelen());
             stmt.setBigDecimal(4, opgegevenBestelling.getTotaalprijs());
             stmt.executeUpdate();
-            opgegevenBestelling.setBestellingId(bestellingId);
+            ResultSet rs = stmt.executeQuery("select last_insert_id()");
+            if (rs.next()) {
+                int bestellingId = rs.getInt(1);
+                opgegevenBestelling.setBestellingId(bestellingId);
+            }
+            rs.close();
         } catch (SQLException ex) {
             LOGGER.error("Het volgende ging verkeerd bij het toevoegen: {}", ex.getMessage());  
         }

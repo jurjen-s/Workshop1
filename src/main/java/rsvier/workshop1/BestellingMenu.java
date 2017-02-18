@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class BestellingMenu {
     
+    private Controller controller = new Controller();
     private BestellingController bestellingController = new BestellingController();
     
     public  void bestellingenmenu(){
@@ -22,7 +23,7 @@ public class BestellingMenu {
         System.out.println("Welkom in het bestellingenmenu ");
         System.out.println("Wat wilt u doen?");
         System.out.println("=========================");
-        System.out.println("Doorzoek producten");
+        System.out.println("Doorzoek bestellingen");
         System.out.println("-------------------------");
         System.out.println("1: Doorzoek bestelling op bestellingId.");
         System.out.println("2: Doorzoek bestelling op klantId.");
@@ -59,75 +60,101 @@ public class BestellingMenu {
     }
 
     public void bestellingenmenuDbi(){
-
         System.out.println("U gaat een bestelling zoeken op bestelling ID.");
-        System.out.println("Vul ID in en druk op enter.");
+        System.out.println("Vul bestellingID in en druk op enter.");
         int bestellingId = TextIO.getlnInt();
-        System.out.println(bestellingController.findBestellingById(bestellingId).toString());
+        Bestelling bestelling = bestellingController.findBestellingById(bestellingId);
+        if (bestelling.getBestellingId() == 0) {
+            System.out.println("Geen zoekresultaten.");
+        } else {
+            System.out.println(bestelling);
+        }
         bestellingenmenu();
-
     }
 
     public  void bestellingenmenuDbk(){
-
         System.out.println("U gaat een bestelling zoeken mbv klant ID.");
-        System.out.println("Vul ID in en druk op enter.");
-        int klantId = TextIO.getlnInt();
+        //Controleren op FK constraints
+        int klantId = -1;
+        do {
+            System.out.println("Vul klantID in en druk op enter.");
+            klantId = TextIO.getlnInt();
+        } while (!controller.existsKlantId(klantId));
         List<Bestelling> zoekresultaat = bestellingController.findBestellingByKlant(klantId);
-        for (Bestelling bestelling:zoekresultaat) {
-            bestelling.toString();
+        if (zoekresultaat.isEmpty()) {
+            System.out.println("Geen zoekresultaten.");
+        } else {
+            for (Bestelling bestelling : zoekresultaat) {
+            System.out.println(bestelling);
+            }
         }
         bestellingenmenu();
-
     }
 
     public  void bestellingenmenuDbA(){
-
         System.out.println("U gaat een bestelling zoeken op Adres id.");
-        System.out.println("Vul ID in en druk op enter.");
-        int adresId = TextIO.getlnInt();
+        //Controleren op FK constraints
+        int adresId = -1;
+        do {
+            System.out.println("Vul adresId in en druk op enter.");
+            adresId = TextIO.getlnInt();
+        } while (!controller.existsAdresId(adresId));
         List<Bestelling> zoekresultaat = bestellingController.findBestellingByAdres(adresId);
-        for (Bestelling bestelling:zoekresultaat) {
-            bestelling.toString();
+        if (zoekresultaat.isEmpty()) {
+            System.out.println("Geen zoekresultaten.");
+        } else {
+            for (Bestelling bestelling:zoekresultaat) {
+            System.out.println(bestelling);
+            }
         }
         bestellingenmenu();
-
     }
 
     public  void bestellingenmenuDbAA(){
-
         System.out.println("U gaat een bestelling zoeken op Aantal artikelen.");
         System.out.println("Vul het aantal in en druk op enter.");
         int aantal = TextIO.getlnInt();
         List<Bestelling> zoekresultaat = bestellingController.findBestellingByAantalArtikelen(aantal);
-        for (Bestelling bestelling:zoekresultaat) {
-            bestelling.toString();
+        if (zoekresultaat.isEmpty()) {
+            System.out.println("Geen zoekresultaten.");
+        } else {
+            for (Bestelling bestelling:zoekresultaat) {
+            System.out.println(bestelling);
+            }
         }
         bestellingenmenu();
-
     }
 
     public  void bestellingenmenuDoTP(){
-
         System.out.println("U gaat een bestelling zoeken op Totaal prijs.");
         System.out.println("Vul het totaal in en druk op enter.");
         BigDecimal pPrijs = new BigDecimal(TextIO.getln());
         List<Bestelling> zoekresultaat = bestellingController.findBestellingTotaalprijs(pPrijs);
-        for (Bestelling bestelling:zoekresultaat) {
-            bestelling.toString();
+        if (zoekresultaat.isEmpty()) {
+            System.out.println("Geen zoekresultaten.");
+        } else {
+            for (Bestelling bestelling:zoekresultaat) {
+            System.out.println(bestelling);
+            }
         }
         bestellingenmenu();
-
     }
 
     public  void bestellingenmenuTB() {
-
         System.out.println("U gaat een bestelling toevoegen.");
-        System.out.println("Vul de klant id  in en druk op enter.");
-        int klantId = TextIO.getlnInt();
-        System.out.println("Vul het adres id en druk op enter");
-        int adresId = TextIO.getlnInt();
-        System.out.println("Vult aantal artikelen in en druk op enter");
+        //Controleren op FK constraints
+        int klantId = -1;
+        do {
+            System.out.println("Vul klantId in en druk op enter.");
+            klantId = TextIO.getlnInt();
+        } while (!controller.existsKlantId(klantId));
+        //Controleren op FK constraints
+        int adresId = -1;
+        do {
+            System.out.println("Vul adresId in en druk op enter.");
+            adresId = TextIO.getlnInt();
+        } while (!controller.existsAdresId(adresId));
+        System.out.println("Vul aantal artikelen in en druk op enter");
         int aantalArtikelen = TextIO.getlnInt();
         System.out.println("Vul totaalprijs in en druk op enter");
         BigDecimal totaalprijs = new BigDecimal(TextIO.getln());
@@ -137,6 +164,7 @@ public class BestellingMenu {
                                               .aantalArtikelen(aantalArtikelen)
                                               .totaalprijs(totaalprijs)
                                               .build();
+        System.out.println("Input: " + bestelling.toString());
         Bestelling zoekresultaat = bestellingController.toevoegenBestelling(bestelling);
         if (zoekresultaat.getBestellingId() != 0) {
             System.out.println("Het toevoegen van de bestelling is gelukt.");
@@ -144,85 +172,101 @@ public class BestellingMenu {
             System.out.println("Het toevoegen van de bestelling is mislukt.");
         }
         bestellingenmenu();
-
     }
 
     public  void bestellingenmenuVki(){
-
         System.out.println("U gaat een bestelling klant id veranderen.");
-        System.out.println("Vul bestellingid in druk enter.");
-        int bestellingId = TextIO.getlnInt();
-        System.out.println("Vul het klant id en dan enter.");
-        int klantId = TextIO.getlnInt();    
+        //Controleren op FK constraints
+        int bestellingId = -1;
+        do {
+            System.out.println("Vul bestellingId in en druk op enter.");
+            bestellingId = TextIO.getlnInt();
+        } while (!controller.existsBestellingId(bestellingId));
+        //Controleren op FK constraints
+        int klantId = -1;
+        do {
+            System.out.println("Vul het nieuwe klantId in en druk op enter.");
+            klantId = TextIO.getlnInt();
+        } while (!controller.existsKlantId(klantId));   
         if (bestellingController.updateBestellingKlantID(bestellingId, klantId) == true) {
-            System.out.println("Het toevoegen van de bestelling is gelukt.");
+            System.out.println("Het veranderen van de bestelling is gelukt.");
         } else {
-            System.out.println("Het toevoegen van de bestelling is mislukt.");
+            System.out.println("Het veranderen van de bestelling is mislukt.");
         }
         bestellingenmenu();
-
     }
 
     public  void bestellingenmenuVAi(){
-
         System.out.println("U gaat een bestelling Adres id veranderen.");
-        System.out.println("Vul bestellingid in druk enter.");
-        int bestellingId = TextIO.getlnInt();
-        System.out.println("Vul het Adres id en dan enter.");
-        int adresId = TextIO.getlnInt();   
+        //Controleren op FK constraints
+        int bestellingId = -1;
+        do {
+            System.out.println("Vul bestellingId in en druk op enter.");
+            bestellingId = TextIO.getlnInt();
+        } while (!controller.existsBestellingId(bestellingId));
+        //Controleren op FK constraints
+        int adresId = -1;
+        do {
+            System.out.println("Vul het nieuwe adresId in en druk op enter.");
+            adresId = TextIO.getlnInt();
+        } while (!controller.existsAdresId(adresId));
         if (bestellingController.updateBestellingAdresID(bestellingId, adresId) == true) {
-            System.out.println("Het toevoegen van de bestelling is gelukt.");
+            System.out.println("Het veranderen van de bestelling is gelukt.");
         } else {
-            System.out.println("Het toevoegen van de bestelling is mislukt.");
+            System.out.println("Het veranderen van de bestelling is mislukt.");
         }
         bestellingenmenu();
-
     }
 
     public  void bestellingenmenuVAA(){
-
         System.out.println("U gaat het aantal artikelen in een bestelling veranderen.");
-        System.out.println("Vul bestellingid in druk enter.");
-        int bestellingId = TextIO.getlnInt();
-        System.out.println("Vul het aantalartikelen in  en dan enter.");
+        //Controleren op FK constraints
+        int bestellingId = -1;
+        do {
+            System.out.println("Vul bestellingId in en druk op enter.");
+            bestellingId = TextIO.getlnInt();
+        } while (!controller.existsBestellingId(bestellingId));
+        System.out.println("Vul het nieuwe aantal artikelen in en dan enter.");
         int aantalArtikelen = TextIO.getlnInt();
         if (bestellingController.updateBestellingAantalArtikelen(bestellingId, aantalArtikelen) == true) {
-            System.out.println("Het toevoegen van de bestelling is gelukt.");
+            System.out.println("Het veranderen van de bestelling is gelukt.");
         } else {
-            System.out.println("Het toevoegen van de bestelling is mislukt.");
+            System.out.println("Het veranderen van de bestelling is mislukt.");
         }
         bestellingenmenu();   
-
     }
 
     public  void bestellingenmenuVTP(){
-
-        System.out.println("U gaat het totaal prijs in een bestelling veranderen.");
-        System.out.println("Vul bestellingid in druk enter.");
-        int bestellingId = TextIO.getlnInt();
-        System.out.println("Vul het totaal prijs in  en dan enter.");
+        System.out.println("U gaat de totaalprijs in een bestelling veranderen.");
+        //Controleren op FK constraints
+        int bestellingId = -1;
+        do {
+            System.out.println("Vul bestellingId in en druk op enter.");
+            bestellingId = TextIO.getlnInt();
+        } while (!controller.existsBestellingId(bestellingId));
+        System.out.println("Vul de nieuwe totaalprijs in en dan enter.");
         BigDecimal totaalprijs = new BigDecimal(TextIO.getlnInt());
         if (bestellingController.updateBestellingTotaalprijs(bestellingId, totaalprijs) == true) {
-            System.out.println("Het toevoegen van de bestelling is gelukt.");
+            System.out.println("Het veranderen van de bestelling is gelukt.");
         } else {
-            System.out.println("Het toevoegen van de bestelling is mislukt.");
+            System.out.println("Het veranderen van de bestelling is mislukt.");
         }
         bestellingenmenu();
-
     }
 
     public  void bestellingenmenuDELETE(){
-
         System.out.println("U gaat een bestelling verwijderen");
-        System.out.println("Vul bestellingid in druk enter.");
-        int bestellingId = TextIO.getlnInt();
+        //Controleren op FK constraints
+        int bestellingId = -1;
+        do {
+            System.out.println("Vul bestellingId in en druk op enter.");
+            bestellingId = TextIO.getlnInt();
+        } while (!controller.existsBestellingId(bestellingId));
         if (bestellingController.deleteBestelling(bestellingId) == true) {
-            System.out.println("Het toevoegen van de bestelling is gelukt.");
+            System.out.println("Het verwijderen van de bestelling is gelukt.");
         } else {
-            System.out.println("Het toevoegen van de bestelling is mislukt.");
+            System.out.println("Het verwijderen van de bestelling is mislukt.");
         }
         bestellingenmenu();
-
     }
-
 }

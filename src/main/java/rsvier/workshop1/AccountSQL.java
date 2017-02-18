@@ -67,7 +67,7 @@ public class AccountSQL implements AccountDAO {
          LOGGER.debug("In inputs waren wachtwoord: {} , en type {} ", wachtwoord, type);
         
         Account account = new Account();
-        int workload = 14;
+        int workload = 13;
         
         
        // public static String hashPassword(String password_plaintext) {
