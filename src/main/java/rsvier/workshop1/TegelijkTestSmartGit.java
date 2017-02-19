@@ -17,11 +17,12 @@ public class TegelijkTestSmartGit {
     
     //bla bla bla , bla bla
     //dit werkt als mijn 2de zin
+    //derde zin 
     
     
     public void Boe(){
     
-    System.out.println("sdg235dasg");
+    System.out.println("boeEKJRHF");
     
     }
     
