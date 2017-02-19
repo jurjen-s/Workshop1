@@ -35,4 +35,20 @@ public class Validator {
             return false;
         }
     }
+    
+    public boolean validateTelefoonnummer( String telefoonnummer){
+       String regexStr = "^[0-9\\-]*$" ;
+       
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(regexStr);
+        java.util.regex.Matcher m = p.matcher(telefoonnummer);
+        if (m.matches()){
+            return true;
+        }else{
+             System.out.println("telefoonnummer is niet in het juiste formaat ingevoerd.");
+             return false;
+        }
+       
+    }
+    
+    
 }
