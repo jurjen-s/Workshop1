@@ -126,8 +126,8 @@ public class BestellingMenu {
     }
 
     public  void bestellingenmenuDoTP(){
-        System.out.println("U gaat een bestelling zoeken op Totaal prijs.");
-        System.out.println("Vul het totaal in en druk op enter.");
+        System.out.println("U gaat een bestelling zoeken op totaalprijs.");
+        System.out.println("Vul de totaalprijs in en druk op enter.");
         BigDecimal pPrijs = new BigDecimal(TextIO.getln());
         List<Bestelling> zoekresultaat = bestellingController.findBestellingTotaalprijs(pPrijs);
         if (zoekresultaat.isEmpty()) {

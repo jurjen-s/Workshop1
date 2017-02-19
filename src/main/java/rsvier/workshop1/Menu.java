@@ -50,7 +50,7 @@ System.out.println("en druk dan op enter.");
 
 
 cijfer = input.nextInt();
-if (cijfer == 0){ System.out.println("Einde");}
+if (cijfer == 0){ System.out.println("Einde"); System.exit(0); }
 else if (cijfer <= 8 && cijfer >0){
     switch (cijfer){
         case 1: System.out.println(" 1 Producten menu ");  ProductMenu productmenu = new ProductMenu(); productmenu.productmenu(); break;

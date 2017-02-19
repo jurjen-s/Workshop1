@@ -15,6 +15,7 @@ import java.util.List;
 
 public class Controller {
     
+    // Foreign keys
     public boolean existsKlantId(int klantId) {
         SQLConnection sqlConnectie = new SQLConnection();
         Connection connectie = sqlConnectie.getSQLConnection();
@@ -80,6 +81,20 @@ public class Controller {
         }
     }
     
+    // Overige checks
+    public boolean existsFactuurId(int factuurId) {
+        SQLConnection sqlConnectie = new SQLConnection();
+        Connection connectie = sqlConnectie.getSQLConnection();
+        FactuurDAO factuurDAO = new FactuurSQL(connectie);
+        Factuur factuur = factuurDAO.findFactuurById(factuurId);
+        System.out.println(factuur.getFactuurId());
+        if (factuur.getFactuurId() == 0) {
+            System.out.println("Opgegeven factuurId niet gevonden.");
+            return false;
+        } else {
+            return true;
+        }
+    }    
 }
 
 // CLASS is op dit moment niet in gebruik

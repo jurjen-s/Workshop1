@@ -58,12 +58,18 @@ public class Factuur {
     
     @Override
     public String toString() {
-        String factuur = factuurId + "\t\t" +
-                         bestellingId + "\t\t" +
-                         adresId + "\t\t" +
-                         klantId + "\t\t" +
-                         totaalprijs + "\t\t" +
-                         status;
+        String betaalStatus = "";
+        if (status) {
+            betaalStatus = "betaald.";
+        } else {
+            betaalStatus = "nog niet betaald.";
+        }
+        String factuur = "Factuur " + factuurId + 
+                         ", behorende bij bestelling " + bestellingId +
+                         " en klant " + klantId +
+                         ", heeft een totaalprijs van: " + totaalprijs +
+                         " Euro en wordt verzonden naar adres " +adresId +".\n" +         
+                         "De factuur is " + betaalStatus;                         
         return factuur;
     }
     

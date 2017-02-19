@@ -19,7 +19,6 @@ import org.apache.logging.log4j.Logger;
 public class BestelregelSQL implements BestelregelDAO {
 
     private static final Logger LOGGER = LogManager.getLogger(AdresSQL.class);
-    
     private Connection bestelregelconnectie;
     
     public BestelregelSQL() {
@@ -34,7 +33,7 @@ public class BestelregelSQL implements BestelregelDAO {
     @Override
     public boolean toevoegenBestelregel(Bestelregel bestelregel) {
         LOGGER.debug("Toevoegen bestelregel: {}", bestelregel.toString());
-        String query = "INSERT INTO bestelregels (FK_bestelregels_bestellingen_id, FK_bestelregels_producten_id, hoeveelheid) VALUES (?, ?, ?";
+        String query = "INSERT INTO bestelregels (FK_bestelregels_bestellingen_id, FK_bestelregels_producten_id, hoeveelheid) VALUES (?, ?, ?)";
         try (PreparedStatement stmt = bestelregelconnectie.prepareStatement(query)) {
             stmt.setInt(1, bestelregel.getBestellingId());
             stmt.setInt(2, bestelregel.getProductId());
