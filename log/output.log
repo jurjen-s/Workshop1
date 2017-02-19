@@ -883,3 +883,47 @@ Testlaan 1 1234 AA Nederland.
 2017-02-19 15:17:51,378 DEBUG r.w.ProductSQL [main] Input  in findProductBySoort is GENE
 2017-02-19 15:17:51,384 DEBUG r.w.ProductSQL [main] output findProductBySoort is :[ Product Id is : 1 omschrijving is : groen gele kaas soort is : Gene prijs is : 20.99 voorraad aantal is : 300.,  Product Id is : 2 omschrijving is : blauwe kaas soort is : Gene prijs is : 33.00 voorraad aantal is : 230.,  Product Id is : 3 omschrijving is : Gele kaas soort is : Gene prijs is : 12.00 voorraad aantal is : 488.,  Product Id is : 6 omschrijving is : roze kaas soort is : GENE prijs is : 4.99 voorraad aantal is : 3934.]
 2017-02-19 15:18:22,702 INFO r.w.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-19 16:48:56,303 INFO r.w.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-19 16:48:59,870 DEBUG r.w.AccountSQL [main] Haal hashedwachtwoord terug via id van accountId: 1
+2017-02-19 16:49:06,574 INFO r.w.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-19 16:49:14,317 DEBUG r.w.AdresSQL [main] Input  in findAdresById is 1
+2017-02-19 16:49:14,568 DEBUG r.w.AdresSQL [main] output findAdresByID :Adres 0,  van klant 0: null 0 null null.
+
+2017-02-19 16:49:29,623 INFO r.w.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-19 16:49:29,629 DEBUG r.w.KlantSQL [main] input bij findBijID is 1
+2017-02-19 16:49:29,698 DEBUG r.w.KlantSQL [main] output bij findBijID is klanten id : 0 voornaam is null tussenvoegsel isnull achternaam is :null telnr. null account id0 
+2017-02-19 16:50:03,093 DEBUG r.w.AdresSQL [main] Input  in toevoegenAdres is Adres 0, factuuradres van klant 1: Lange Straat 111A 1234 EE Nederland.
+
+2017-02-19 16:50:03,166 INFO r.w.AdresSQL [main] Nieuw adres aangemaakt met ID:1
+2017-02-19 16:50:03,166 DEBUG r.w.AdresSQL [main] output toevoegenAdres :Adres 1, factuuradres van klant 1: Lange Straat 111A 1234 EE Nederland.
+
+2017-02-19 16:50:14,985 INFO r.w.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-19 16:50:23,726 INFO r.w.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-19 16:51:05,201 DEBUG r.w.KlantSQL [main] input bij create klant is 1 Buzz 1 de Telefoon 06-12312311
+2017-02-19 16:51:05,232 ERROR r.w.KlantSQL [main] Er gaat iets mis met het maken van een klant Data truncated for column 'telefoonnummer' at row 1
+2017-02-19 16:51:05,232 DEBUG r.w.KlantSQL [main] output bij create klant  is klanten id : 0 voornaam is null tussenvoegsel isnull achternaam is :null telnr. null account id0 
+2017-02-19 16:56:22,439 INFO r.w.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-19 16:56:28,675 DEBUG r.w.Inlogmenu [main] In inputs waren wachtwoord: 1 , en type 1 
+2017-02-19 16:56:28,676 DEBUG r.w.AccountSQL [main] In inputs waren wachtwoord: 1 , en type 1 
+2017-02-19 16:56:28,796 DEBUG r.w.AccountSQL [main] In inputs waren workload: 13 , en salt $2a$13$fzrmSt2WSbOfZBIxnP.80O 
+2017-02-19 16:56:29,577 DEBUG r.w.AccountSQL [main] In outputs waren hashed_password: $2a$13$fzrmSt2WSbOfZBIxnP.80OP7jD4ch.UYMnzSwBGSSw3Lm79b352P. 
+2017-02-19 16:56:29,578 DEBUG r.w.AccountSQL [main] Aanmaken account met type 1 en wachtwoord1 en salt $2a$13$fzrmSt2WSbOfZBIxnP.80O.
+2017-02-19 16:56:29,597 DEBUG r.w.AccountSQL [main] Het volgende ging mis bij het aanmaken van een account: Unknown column 'zout' in 'field list'
+2017-02-19 16:56:29,597 DEBUG r.w.AccountSQL [main] Resultaat aanmaken account: id: 0 type : 0 wachtwoord: null
+2017-02-19 16:56:34,084 DEBUG r.w.AccountSQL [main] Haal hashedwachtwoord terug via id van accountId: 1
+2017-02-19 16:58:43,752 INFO r.w.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-19 16:58:48,903 DEBUG r.w.Inlogmenu [main] In inputs waren wachtwoord: 1 , en type 1 
+2017-02-19 16:58:48,904 DEBUG r.w.AccountSQL [main] In inputs waren wachtwoord: 1 , en type 1 
+2017-02-19 16:58:48,999 DEBUG r.w.AccountSQL [main] In inputs waren workload: 13 , en salt $2a$13$eT2Ec0xmRhi54fXo9rdn5O 
+2017-02-19 16:58:49,780 DEBUG r.w.AccountSQL [main] In outputs waren hashed_password: $2a$13$eT2Ec0xmRhi54fXo9rdn5OWgS5HCPOlZo.tWiJ8SUnzdhrz.S3auG 
+2017-02-19 16:58:49,780 DEBUG r.w.AccountSQL [main] Aanmaken account met type 1 en wachtwoord1 en salt $2a$13$eT2Ec0xmRhi54fXo9rdn5O.
+2017-02-19 16:58:49,856 INFO r.w.AccountSQL [main] Account gegevens zijn succesvol aangemaakt.
+2017-02-19 16:58:49,856 DEBUG r.w.AccountSQL [main] Resultaat aanmaken account: id: 1 type : 1 wachtwoord: $2a$13$eT2Ec0xmRhi54fXo9rdn5OWgS5HCPOlZo.tWiJ8SUnzdhrz.S3auG
+2017-02-19 16:58:56,536 DEBUG r.w.AccountSQL [main] Haal hashedwachtwoord terug via id van accountId: 1
+2017-02-19 16:59:01,372 INFO r.w.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-19 16:59:31,261 DEBUG r.w.KlantSQL [main] input bij create klant is 1 Buzz 1 de Telefoon 06-32132188
+2017-02-19 16:59:31,332 DEBUG r.w.KlantSQL [main] output bij create klant  is klanten id : 1 voornaam is Buzz tussenvoegsel isde achternaam is :Telefoon telnr. 06-32132188 account id1 
+2017-02-19 17:00:34,776 DEBUG r.w.KlantSQL [main] input bij create klant is 1 Bling 0 0 Ting 06-55566611
+2017-02-19 17:00:34,866 DEBUG r.w.KlantSQL [main] output bij create klant  is klanten id : 2 voornaam is Bling tussenvoegsel is0 achternaam is :Ting telnr. 06-55566611 account id1 
+2017-02-19 17:01:21,740 DEBUG r.w.KlantSQL [main] input bij update klant is 1 Buss 0  Tely 06-22255544
+2017-02-19 17:01:21,831 DEBUG r.w.KlantSQL [main] output bij update klant is klanten id : 2 voornaam is Buss tussenvoegsel is achternaam is :Tely telnr. 06-22255544 account id1 

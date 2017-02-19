@@ -88,7 +88,7 @@ public class AccountSQL implements AccountDAO {
         
       LOGGER.debug("Aanmaken account met type {} en wachtwoord{} en salt {}.", type, wachtwoord , salt);
         
-      String query = "INSERT INTO accounts (accounts_type, wachtwoord, zout) VALUES (?, ? , ? ) ";
+      String query = "INSERT INTO accounts (accounts_type, wachtwoord) VALUES (?, ?  ) ";
        
       String query2 = "SELECT * FROM accounts WHERE accounts_type = ? AND wachtwoord = ?";
       
@@ -98,7 +98,7 @@ public class AccountSQL implements AccountDAO {
             
             stmt.setInt(1, type);
             stmt.setString(2, hashed_password);
-            stmt.setString(3, salt);
+           
             stmt2.setInt(1, type);
             stmt2.setString(2, hashed_password);
             
