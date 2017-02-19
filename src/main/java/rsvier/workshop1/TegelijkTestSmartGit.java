@@ -12,7 +12,7 @@ package rsvier.workshop1;
 public class TegelijkTestSmartGit {
     
     public void blabla() {
-        System.out.println("blabla");
+        System.out.println("oasflhkasfl");
     }
     
     //bla bla bla , bla bla
@@ -21,7 +21,7 @@ public class TegelijkTestSmartGit {
     
     public void Boe(){
     
-    System.out.println("boe");
+    System.out.println("sdg235dasg");
     
     }
     
