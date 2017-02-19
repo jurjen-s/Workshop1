@@ -14,14 +14,14 @@ public class Klant  {
     
     //PRIVATE
     
-private int klanten_id, telefoonnummer,FK_accounts_id, heeft_tussenvoegsel;
+private int klanten_id, FK_accounts_id, heeft_tussenvoegsel;
         //Bezorghuisnummer, Factuurhuisnummer, idMedewerker;
-private String Land, voornaam,tussenvoegsel, achternaam;
+private String Land, voornaam,tussenvoegsel, achternaam, telefoonnummer;
         //BezorgPostcode,FactuurPostcode,BezorgHuisnummerToevoeging, FactuurHuisnummerToevoeging;
 
 
 
-public void setALL( String vnaam, int heeft, String tv, String anaam, int tel,int FKAI, int FKAK, int FKAT){
+public void setALL( String vnaam, int heeft, String tv, String anaam, String tel,int FKAI, int FKAK, int FKAT){
         //int BHnr, String BHnrT, String BPc, String FBPc, int FHnr, String FHnrT, String L){
 
 this.voornaam = vnaam;
@@ -46,7 +46,7 @@ System.out.println(klanten_id + voornaam + tussenvoegsel + achternaam + telefoon
 
 public void getAll (Klant klant){
 
-System.out.println("klanten id: " +this.klanten_id +" Naam :  "+ this.voornaam +"  "+ this.tussenvoegsel +"  "+ this.achternaam + " tel: "+ this.telefoonnummer + " 7"
+System.out.println("klanten id: " +this.klanten_id +" Naam :  "+ this.voornaam +"  "+ this.tussenvoegsel +"  "+ this.achternaam + " tel: "+ this.telefoonnummer + " "
         + "account id: "+this.FK_accounts_id );
 
 }
@@ -138,11 +138,11 @@ System.out.println("klanten id: " +this.klanten_id +" Naam :  "+ this.voornaam +
 
 */
     
-    public int getTelefoonnummer() {
+    public String getTelefoonnummer() {
         return telefoonnummer;
     }
 
-    public void setTelefoonnummer(int telefoonnummer) {
+    public void setTelefoonnummer(String telefoonnummer) {
         this.telefoonnummer = telefoonnummer;
     }
     

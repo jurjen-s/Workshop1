@@ -31,9 +31,9 @@ public interface KlantDAO {
     public List findBijVoornaam(String voornaam);
     public List findBijLastName(String achternaam);
     
-    public Klant createKlant( int accountidvanklant,  String VN, int Heefttussenvoegsel, String TV, String AN, int telefoonnr);
+    public Klant createKlant( int accountidvanklant,  String VN, int Heefttussenvoegsel, String TV, String AN, String telefoonnr);
     
-    public Klant updateKlant(int accountidvanklant, String VN, int Heefttussenvoegsel,String TV , String AN, int Telefoonnr);
+    public Klant updateKlant(int accountidvanklant, String VN, int Heefttussenvoegsel,String TV , String AN, String Telefoonnr);
     
     public boolean deleteKlant(int klantid);
 }

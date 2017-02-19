@@ -54,13 +54,13 @@ public class KlantController {
         return zoekresultaat;
     }
     
-    public Klant createKlant( int accountidvanklant, String VN, int Heefttussenvoegsel, String TV, String AN, int Telefoonnr) {
+    public Klant createKlant( int accountidvanklant, String VN, int Heefttussenvoegsel, String TV, String AN, String Telefoonnr) {
         Klant klantinfo = new Klant();
         klantinfo = klantDAO.createKlant(accountidvanklant,  VN, Heefttussenvoegsel, TV, AN, Telefoonnr);
         return klantinfo;
     }
         
-    public Klant updateKlant(int accountidvanklant, String VN, int Heefttussenvoegsel, String TV , String AN, int Telefoonnr) {
+    public Klant updateKlant(int accountidvanklant, String VN, int Heefttussenvoegsel, String TV , String AN, String Telefoonnr) {
         Klant klantNaarMenu4 = new Klant();
         klantNaarMenu4 = klantDAO.updateKlant(accountidvanklant,VN,Heefttussenvoegsel, TV ,AN,Telefoonnr);
         return klantNaarMenu4;

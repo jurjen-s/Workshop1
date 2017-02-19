@@ -60,7 +60,7 @@ public class KlantSQL implements KlantDAO {
                 klant.setVoornaam(resultset.getString("voornaam"));
                 klant.setAchternaam(resultset.getString("achternaam"));
                 klant.setTussenvoegsel(resultset.getString("tussenvoegsel"));
-                klant.setTelefoonnummer(resultset.getInt("telefoonnummer"));
+                klant.setTelefoonnummer(resultset.getString("telefoonnummer"));
                 klant.setFKaccountsID (resultset.getInt("FK_klanten_accounts_id"));
                 
                 klantenl.add(klant);
@@ -99,7 +99,7 @@ public class KlantSQL implements KlantDAO {
                 klantnext.setVoornaam(resultset.getString("voornaam"));
                 klantnext.setAchternaam(resultset.getString("achternaam"));
                 klantnext.setTussenvoegsel(resultset.getString("tussenvoegsel"));
-                klantnext.setTelefoonnummer(resultset.getInt("telefoonnummer"));
+                klantnext.setTelefoonnummer(resultset.getString("telefoonnummer"));
                 klantnext.setFKaccountsID(resultset.getInt("FK_klanten_accounts_id"));
                // klant.setFKadressenKlant(resultset.getInt("FK_adressen_klant"));
                 klantnext.setHeeftTusv(resultset.getInt("heeft_tussenvoegsel"));
@@ -145,7 +145,7 @@ public class KlantSQL implements KlantDAO {
                 klant.setVoornaam(rs.getString("voornaam"));
                 klant.setAchternaam(rs.getString("achternaam"));
                 klant.setTussenvoegsel(rs.getString("tussenvoegsel"));
-                klant.setTelefoonnummer(rs.getInt("telefoonnummer"));
+                klant.setTelefoonnummer(rs.getString("telefoonnummer"));
                 klant.setFKaccountsID(rs.getInt("FK_klanten_accounts_id"));
                 klant.setHeeftTusv(rs.getInt("heeft_tussenvoegsel"));
                 }
@@ -166,7 +166,7 @@ public class KlantSQL implements KlantDAO {
                     klantnext.setVoornaam(rs.getString("voornaam"));
                     klantnext.setAchternaam(rs.getString("achternaam"));
                     klantnext.setTussenvoegsel(rs.getString("tussenvoegsel"));
-                    klantnext.setTelefoonnummer(rs.getInt("telefoonnummer"));
+                    klantnext.setTelefoonnummer(rs.getString("telefoonnummer"));
                     klantnext.setFKaccountsID(rs.getInt("FK_klanten_accounts_id"));
                     klantnext.setHeeftTusv(rs.getInt("heeft_tussenvoegsel"));
                     zoekresultaat.add(klantnext);
@@ -198,7 +198,7 @@ public class KlantSQL implements KlantDAO {
                 klantnext.setVoornaam(resultset.getString("voornaam"));
                 klantnext.setAchternaam(resultset.getString("achternaam"));
                 klantnext.setTussenvoegsel(resultset.getString("tussenvoegsel"));
-                klantnext.setTelefoonnummer(resultset.getInt("telefoonnummer"));
+                klantnext.setTelefoonnummer(resultset.getString("telefoonnummer"));
                 klantnext.setFKaccountsID(resultset.getInt("FK_klanten_accounts_id"));
                zoekresultaat.add(klantnext);
                 
@@ -260,7 +260,7 @@ public class KlantSQL implements KlantDAO {
                 klantnext.setVoornaam(resultset.getString("voornaam"));
                 klantnext.setAchternaam(resultset.getString("achternaam"));
                 klantnext.setTussenvoegsel(resultset.getString("tussenvoegsel"));
-                klantnext.setTelefoonnummer(resultset.getInt("telefoonnummer"));
+                klantnext.setTelefoonnummer(resultset.getString("telefoonnummer"));
                 
                 klantnext.setHeeftTusv(resultset.getInt("heeft_tussenvoegsel"));
                 klantnext.setFKaccountsID(resultset.getInt("FK_klanten_accounts_id"));
@@ -280,7 +280,7 @@ public class KlantSQL implements KlantDAO {
     }
 
     @Override
-       public Klant createKlant( int accountidvanklant,  String VN, int Heefttussenvoegsel, String TV, String AN, int Telefoonnr) {
+       public Klant createKlant( int accountidvanklant,  String VN, int Heefttussenvoegsel, String TV, String AN, String Telefoonnr) {
         LOGGER.debug("input bij create klant is {} {} {} {} {} {}",accountidvanklant,VN,Heefttussenvoegsel,TV,AN,Telefoonnr);
         Klant klant = new Klant();
             
@@ -298,7 +298,7 @@ public class KlantSQL implements KlantDAO {
             stmt.setInt(3, Heefttussenvoegsel);
             stmt.setString(4, TV);
             stmt.setString(5, AN);
-            stmt.setInt(6,Telefoonnr);
+            stmt.setString(6,Telefoonnr);
             
             stmt2.setInt(1, accountidvanklant);
             stmt2.setString(2, AN);
@@ -317,7 +317,7 @@ public class KlantSQL implements KlantDAO {
                 klant.setVoornaam(rs.getString("voornaam"));
                 klant.setTussenvoegsel(rs.getString("tussenvoegsel"));
                 klant.setAchternaam(rs.getString("achternaam"));
-                klant.setTelefoonnummer(rs.getInt("telefoonnummer"));
+                klant.setTelefoonnummer(rs.getString("telefoonnummer"));
         }
         
          
@@ -336,7 +336,7 @@ public class KlantSQL implements KlantDAO {
     
 
     @Override
-    public Klant updateKlant(int accountidvanklant,  String VN, int Heefttussenvoegsel, String TV, String AN, int Telefoonnr) {
+    public Klant updateKlant(int accountidvanklant,  String VN, int Heefttussenvoegsel, String TV, String AN, String Telefoonnr) {
         LOGGER.debug("input bij update klant is {} {} {} {} {} {}",accountidvanklant,VN,Heefttussenvoegsel,TV,AN,Telefoonnr);
         Klant klant = new Klant();
         
@@ -352,7 +352,7 @@ public class KlantSQL implements KlantDAO {
             stmt.setString(2,VN);
             stmt.setString(3, TV);
             stmt.setString(4, AN);
-            stmt.setInt(5, Telefoonnr);           
+            stmt.setString(5, Telefoonnr);           
             stmt.setInt(6, Heefttussenvoegsel);
             stmt.executeUpdate();
             
@@ -371,7 +371,7 @@ public class KlantSQL implements KlantDAO {
                 klant.setHeeftTusv(rs.getInt("heeft_tussenvoegsel"));
                 klant.setTussenvoegsel(rs.getString("tussenvoegsel"));
                 klant.setAchternaam(rs.getString("achternaam"));
-                klant.setTelefoonnummer(rs.getInt("telefoonnummer"));
+                klant.setTelefoonnummer(rs.getString("telefoonnummer"));
         }
         
          

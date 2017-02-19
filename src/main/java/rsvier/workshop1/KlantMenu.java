@@ -24,7 +24,7 @@ public class KlantMenu {
     //om de controller te kunnen aanroepen.
     private KlantController klantController = new KlantController();
     
-    
+    private Validator validator = new Validator();
     
     public void  klantenmenu(){
    
@@ -180,8 +180,14 @@ public void klantenmenuV(){
    System.out.println("Vul de achternaam in en druk enter.");
    String AN = TextIO.getln(); 
         
-   System.out.println("Vul de telefoonnummer in en druk enter.");
-   int Telefoonnr = TextIO.getlnInt(); 
+   String Telefoonnr = "";
+        do {
+            System.out.println("Wat is de nieuwe  telefoonnummer? Geef in het formaat 06-11122233");
+            Telefoonnr = TextIO.getln();
+            if (validator.validateTelefoonnummer(Telefoonnr)) {
+                break;
+            }  
+        } while (true);
     
    
     System.out.println(klantController.updateKlant(accountidvanklant,  VN, Heefttussenvoegsel, TV, AN, Telefoonnr).toString());
@@ -234,8 +240,20 @@ public  void klantenmenuT(){
    System.out.println("Vul de achternaam in en druk enter.");
    String AN = TextIO.getln(); 
         
-   System.out.println("Vul de telefoonnummer in en druk enter.");
-   int Telefoonnr = TextIO.getlnInt(); 
+   
+   
+   
+    String Telefoonnr = "";
+        do {
+            System.out.println("Wat is de telefoonnummer? Geef in het formaat 06-11122233");
+            Telefoonnr = TextIO.getln();
+            if (validator.validateTelefoonnummer(Telefoonnr)) {
+                break;
+            }  
+        } while (true);
+   
+   
+   
    
    
     
