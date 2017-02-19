@@ -11,7 +11,9 @@ package rsvier.workshop1;
  */
 public class TegelijkTestSmartGit {
     
-    
+    public void blabla() {
+        System.out.println("blabla");
+    }
     
     
     
