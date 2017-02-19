@@ -15,9 +15,15 @@ public class TegelijkTestSmartGit {
         System.out.println("blabla");
     }
     
+    //bla bla bla , bla bla
+    //dit werkt als mijn 2de zin
     
     
+    public void Boe(){
     
+    System.out.println("boe");
+    
+    }
     
     
     
