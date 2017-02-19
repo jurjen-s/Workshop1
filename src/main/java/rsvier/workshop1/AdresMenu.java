@@ -65,7 +65,7 @@ public class AdresMenu {
  
     public  void adressenmenuDoAid(){
         System.out.println("U gaat een adres zoeken op ID.");
-        System.out.println("Vul ID in en druk op enter.");
+        System.out.println("Vul het adresID in en druk op enter.");
         int adresId = TextIO.getlnInt();
         Adres gevondenAdres = adresController.findAdresById(adresId);
         if (gevondenAdres.getAdresId() == 0) {
@@ -113,7 +113,7 @@ public class AdresMenu {
         //Controleren op FK constraints
         int klantId = -1;
         do {
-            System.out.println("Vul klantID in en druk op enter.");
+            System.out.println("Vul het klantID in en druk op enter.");
             klantId = TextIO.getlnInt();
         } while (!controller.existsKlantId(klantId));
         List<Adres> zoekresultaat = adresController.findAdresByKlantId(klantId);
@@ -126,8 +126,8 @@ public class AdresMenu {
     }
     
     public  void adressenmenuDoL(){
-        System.out.println("U gaat een adres zoeken op Land.");
-        System.out.println("Vul het Land in en druk op enter.");
+        System.out.println("U gaat een adres zoeken op land.");
+        System.out.println("Vul het land in en druk op enter.");
         String land = TextIO.getln();
         List<Adres> zoekresultaat = adresController.findAdresByLand(land);
         if (zoekresultaat.isEmpty()) {
@@ -182,7 +182,7 @@ public class AdresMenu {
     }
 
     public  void adressenmenuVT(){
-        System.out.println("U gaat een adres type veranderen."); // idealiter laat deze gegevens aan te passen adres zien
+        System.out.println("U gaat het type van een adres veranderen."); // idealiter laat deze gegevens aan te passen adres zien
         //Controleren op foreign key constraints
         int adresId = -1;
         do {
@@ -200,7 +200,7 @@ public class AdresMenu {
     }
     
     public  void adressenmenuVS(){
-    System.out.println("U gaat een adres straatnaam veranderen.");
+    System.out.println("U gaat de straatnaam van een adres veranderen.");
     System.out.println("Vul het adres id in en druk op enter.");
     //Controleren op foreign key constraints
         int adresId = -1;
@@ -219,7 +219,7 @@ public class AdresMenu {
     }
 
     public  void adressenmenuVHnr(){
-        System.out.println("U gaat een adres huisnummer veranderen.");
+        System.out.println("U gaat het huisnummer van een adres veranderen.");
         System.out.println("Vul het adres id in en druk op enter.");
         //Controleren op foreign key constraints
         int adresId = -1;
@@ -238,7 +238,7 @@ public class AdresMenu {
     }
     
     public  void adressenmenuVHnrT(){
-        System.out.println("U gaat een adres huisnummer toevoeging veranderen.");
+        System.out.println("U gaat de huisnummer toevoeging van een adres veranderen.");
         System.out.println("Vul het adres id in en druk op enter.");
         //Controleren op foreign key constraints
         int adresId = -1;
@@ -262,7 +262,7 @@ public class AdresMenu {
     }
     
     public  void adressenmenuVPC(){
-        System.out.println("U gaat een adres postcode veranderen.");
+        System.out.println("U gaat de postcode van een adres veranderen.");
         System.out.println("Vul het adres id in en druk op enter.");
         //Controleren op foreign key constraints
         int adresId = -1;
@@ -287,7 +287,7 @@ public class AdresMenu {
     }
     
     public  void adressenmenuVL(){
-        System.out.println("U gaat een adres Land veranderen.");
+        System.out.println("U gaat het land van een adres veranderen.");
         System.out.println("Vul het adres id in en druk op enter.");
         //Controleren op foreign key constraints
         int adresId = -1;

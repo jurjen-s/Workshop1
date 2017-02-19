@@ -11,14 +11,13 @@ package rsvier.workshop1;
  */
 public class BestelregelMenu {
     
+    private Controller controller = new Controller();
     private BestelregelController bestelregelController = new BestelregelController();
     
     public  void bestelregelmenu(){
-    
         System.out.println("Welkom in het bestelregelmenu ");
         System.out.println("Wat wilt u doen?");
         System.out.println("=========================");
-        System.out.println("opties productregel");
         System.out.println("-------------------------");
         System.out.println("1: Doorzoek productregel met id.");
         System.out.println("2: Doorzoek productregel met bestelling id.");
@@ -32,9 +31,7 @@ public class BestelregelMenu {
         System.out.println("0: Terug naar hoofdmenu.");
         System.out.println("=========================");
         System.out.println("Geef uw keuze : ");
-        
         int keuze = TextIO.getlnInt();
-
         switch (keuze) {
                 case 1: System.out.println("1: Doorzoek productregel met id."); bestelregelmenuZoID(); break;
                 case 2: System.out.println("2: Doorzoek productregel met bestelling id."); bestelregelmenuZoBid(); break;
@@ -50,45 +47,76 @@ public class BestelregelMenu {
         }
     }
 
-    public  void bestelregelmenuZoID(){
-        System.out.println("U gaat een bestelregel zoeken op bestelregel ID.");
-        System.out.println("Vul ID in en druk op enter.");
+    public void bestelregelmenuZoID(){
+        System.out.println("U gaat een bestelregel zoeken op bestelregelId.");
+        System.out.println("Vul het bestelregelId in en druk op enter.");
         int bestelregelId = TextIO.getlnInt();
-        System.out.println(bestelregelController.findBestelregelById(bestelregelId).toString());
+        Bestelregel zoekresultaat = bestelregelController.findBestelregelById(bestelregelId);
+        if (zoekresultaat.getBestelregelId() == 0) {
+            System.out.println("Er is geen bestelregel met het opgegeven bestelregelId gevonden.");
+        } else {
+            System.out.println("Los: " + zoekresultaat);
+            System.out.println("toString: " + zoekresultaat.toString());
+        }
         bestelregelmenu();    
     }
     
-    public  void bestelregelmenuZoBid(){
-        System.out.println("U gaat een bestelregel zoeken op bestelling ID.");
-        System.out.println("Vul ID in en druk op enter.");
+    public void bestelregelmenuZoBid(){
+        System.out.println("U gaat een bestelregel zoeken op bestellingId.");
+        System.out.println("Vul het bestellingId in en druk op enter.");
         int bestellingId = TextIO.getlnInt();
-        System.out.println(bestelregelController.findBestelregelByBestellingId(bestellingId).toString());
+        Bestelregel zoekresultaat = bestelregelController.findBestelregelByBestellingId(bestellingId);
+        if (zoekresultaat.getBestellingId() == 0) {
+            System.out.println("Er is geen bestelregel met het opgegeven bestellingId gevonden.");
+        } else {
+            System.out.println("Los: " + zoekresultaat);
+            System.out.println("toString: " + zoekresultaat.toString());
+        }
         bestelregelmenu();
     }
 
-    public  void bestelregelmenuZoPid(){
-        System.out.println("U gaat een bestelregel zoeken op product ID.");
-        System.out.println("Vul ID in en druk op enter.");
+    public void bestelregelmenuZoPid(){
+        System.out.println("U gaat een bestelregel zoeken op productId.");
+        System.out.println("Vul het productId in en druk op enter.");
         int productId = TextIO.getlnInt();
-        System.out.println(bestelregelController.findBestelregelByProductId(productId).toString());
+        Bestelregel zoekresultaat = bestelregelController.findBestelregelByProductId(productId);
+        if (zoekresultaat.getProductId() == 0) {
+            System.out.println("Er is geen bestelregel met het opgegeven productId gevonden.");
+        } else {
+            System.out.println("Los: " + zoekresultaat);
+            System.out.println("toString: " + zoekresultaat.toString());
+        }
         bestelregelmenu(); 
     }
 
-    public  void bestelregelmenuZoH(){
+    public void bestelregelmenuZoH(){
         System.out.println("U gaat een bestelregel zoeken op hoeveelheid.");
-        System.out.println("Vul ID in en druk op enter.");
+        System.out.println("Vul de hoeveelheid in en druk op enter.");
         int hoeveelheid = TextIO.getlnInt();
-        System.out.println(bestelregelController.findBestelregelByHoeveelheid(hoeveelheid).toString());
+        Bestelregel zoekresultaat = bestelregelController.findBestelregelByHoeveelheid(hoeveelheid);
+        if (zoekresultaat.getBestelregelId() == 0) {
+            System.out.println("Er is geen bestelregel met de opgegeven hoeveelheid gevonden.");
+        } else {
+            System.out.println("Los: " + zoekresultaat);
+            System.out.println("toString: " + zoekresultaat.toString());
+        }
         bestelregelmenu();  
     }
 
-    public  void bestelregelmenuT(){
-
+    public void bestelregelmenuT(){
         System.out.println("U gaat een bestelregel toevoegen.");
-        System.out.println("Vul de bestelling id  in en druk op enter.");
-        int bestellingId = TextIO.getlnInt();
-        System.out.println("Vul het producten id en druk op enter");
-        int productId = TextIO.getlnInt();
+        //Controleren op FK constraints
+        int bestellingId = -1;
+        do {
+            System.out.println("Vul het bestellingId in en druk op enter.");
+            bestellingId = TextIO.getlnInt();
+        } while (!controller.existsBestellingId(bestellingId));
+        //Controleren op FK constraints
+        int productId = -1;
+        do {
+            System.out.println("Vul het productId in en druk op enter.");
+            productId = TextIO.getlnInt();
+        } while (!controller.existsProductId(productId));   
         System.out.println("Vul de hoeveelheid van dit product in en druk op enter");
         int hoeveelheid = TextIO.getlnInt();
         Bestelregel bestelregel = new Bestelregel.BestelregelBuilder()
@@ -98,15 +126,22 @@ public class BestelregelMenu {
                                                  .build();
         bestelregelController.toevoegenBestelregel(bestelregel);
         bestelregelmenu();
-
     }
 
-    public  void bestelregelmenuVBid(){
-        System.out.println("U gaat het bestelling id van bestelregel id veranderen.");
-        System.out.println("Vul bestelregel id in druk enter.");
-        int bestelregelId = TextIO.getlnInt();
-        System.out.println("Vul bestelling id in druk enter.");
-        int bestellingId = TextIO.getlnInt();
+    public void bestelregelmenuVBid(){
+        System.out.println("U gaat het bestellingId van een bestelregel veranderen.");
+        //Controleren op FK constraints
+        int bestelregelId = -1;
+        do {
+            System.out.println("Vul het bestelregelId in en druk op enter.");
+            bestelregelId = TextIO.getlnInt();
+        } while (!controller.existsBestelregelId(bestelregelId));   
+        //Controleren op FK constraints
+        int bestellingId = -1;
+        do {
+            System.out.println("Vul het bestellingId in en druk op enter.");
+            bestellingId = TextIO.getlnInt();
+        } while (!controller.existsBestellingId(bestellingId));
         if (bestelregelController.updateBestelregelBestellingId(bestelregelId,bestellingId) == true) {
             System.out.println("Het updaten is gelukt.");
         } else {
@@ -115,12 +150,20 @@ public class BestelregelMenu {
         bestelregelmenu(); 
     }
     
-    public  void bestelregelmenuVPid(){
-       System.out.println("U gaat het product id van bestelregel id veranderen.");
-       System.out.println("Vul bestelregel id in druk enter.");
-       int bestelregelId = TextIO.getlnInt();
-       System.out.println("Vul product id in druk enter.");
-       int productId = TextIO.getlnInt();
+    public void bestelregelmenuVPid(){
+        System.out.println("U gaat het productId van een bestelregel veranderen.");
+        //Controleren op FK constraints
+        int bestelregelId = -1;
+        do {
+            System.out.println("Vul het bestelregelId in en druk op enter.");
+            bestelregelId = TextIO.getlnInt();
+        } while (!controller.existsBestelregelId(bestelregelId));   
+       //Controleren op FK constraints
+        int productId = -1;
+        do {
+            System.out.println("Vul het productId in en druk op enter.");
+            productId = TextIO.getlnInt();
+        } while (!controller.existsProductId(productId));   
        if (bestelregelController.updateBestelregelProductId(bestelregelId,productId) == true) {
            System.out.println("Het updaten is gelukt.");
        } else {
@@ -129,11 +172,15 @@ public class BestelregelMenu {
        bestelregelmenu();   
     }
 
-    public  void bestelregelmenuVH(){
-        System.out.println("U gaat de hoeveelheid van bestelregel id veranderen.");
-        System.out.println("Vul bestelregel id in druk enter.");
-        int bestelregelId = TextIO.getlnInt();
-        System.out.println("Vul de hoeveelheid in druk enter.");
+    public void bestelregelmenuVH(){
+        System.out.println("U gaat de producthoeveelheid van een bestelregel veranderen.");
+        //Controleren op FK constraints
+        int bestelregelId = -1;
+        do {
+            System.out.println("Vul het bestelregelId in en druk op enter.");
+            bestelregelId = TextIO.getlnInt();
+        } while (!controller.existsBestelregelId(bestelregelId));   
+        System.out.println("Vul de producthoeveelheid in druk enter.");
         int hoeveelheid = TextIO.getlnInt();
         if (bestelregelController.updateBestelregelHoeveelheid(bestelregelId,hoeveelheid) == true) {
            System.out.println("Het updaten is gelukt.");
@@ -143,15 +190,18 @@ public class BestelregelMenu {
         bestelregelmenu(); 
     }
     
-    public  void bestelregelmenuDELETE() {
-        System.out.println("U gaat een productregel verwijderen");
-        System.out.println("Vul productregel id in druk enter, druk 0 als u het niet wilt.");
-        int productregelId = TextIO.getlnInt();
-        if (productregelId == 0) {
-            Menu menu = new Menu();
-            menu.hoofdmenu();
-        }
-        if (bestelregelController.deleteBestelregel(productregelId) == true) {
+    public void bestelregelmenuDELETE() {
+        System.out.println("U gaat een bestelregel verwijderen.");
+        //Controleren op FK constraints
+        int bestelregelId = -1;
+        do {
+            System.out.println("Vul het bestelregelId in en druk op enter. Vul 0 in als u wilt annuleren.");
+            bestelregelId = TextIO.getlnInt();
+            if (bestelregelId == 0) {
+                bestelregelmenu();
+            }
+        } while (!controller.existsBestelregelId(bestelregelId));   
+        if (bestelregelController.deleteBestelregel(bestelregelId) == true) {
            System.out.println("Het verwijderen is gelukt.");
         } else {
            System.out.println("Het verwijderen is mislukt.");

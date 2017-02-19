@@ -94,7 +94,21 @@ public class Controller {
         } else {
             return true;
         }
-    }    
+    }
+
+    public boolean existsBestelregelId(int bestelregelId) {
+        SQLConnection sqlConnectie = new SQLConnection();
+        Connection connectie = sqlConnectie.getSQLConnection();
+        BestelregelDAO bestelregelDAO = new BestelregelSQL(connectie);
+        Bestelregel bestelregel = bestelregelDAO.findBestelregelById(bestelregelId);
+        System.out.println(bestelregel.getBestelregelId());
+        if (bestelregel.getBestelregelId() == 0) {
+            System.out.println("Opgegeven bestelregelId niet gevonden.");
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
 
 // CLASS is op dit moment niet in gebruik

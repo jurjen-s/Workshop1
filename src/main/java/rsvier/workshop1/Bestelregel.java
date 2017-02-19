@@ -40,10 +40,9 @@ public class Bestelregel {
     
     @Override
     public String toString() {
-        String bestelregel = bestelregelId + "\t\t" +
-                             bestellingId + "\t\t" +
-                             productId + "\t\t" +
-                             hoeveelheid + ".";
+        String bestelregel = "Bestelregel " + bestelregelId + 
+                             " hoort bij bestelling " + bestellingId +
+                             " en bevat " + hoeveelheid + " keer product " + productId + ".";
         return bestelregel;
     }
     public Bestelregel() {
