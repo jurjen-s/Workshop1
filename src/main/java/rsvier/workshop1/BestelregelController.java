@@ -24,21 +24,21 @@ public class BestelregelController {
         return bestelregel;
     }
     public Bestelregel findBestelregelByProductId(int productId) {
-        Bestelregel bestelregel = bestelregelDAO.findBestelregelByBestellingId(productId);
+        Bestelregel bestelregel = bestelregelDAO.findBestelregelByProductId(productId);
         return bestelregel;
     }
     public Bestelregel findBestelregelByHoeveelheid(int hoeveelheid) {
-        Bestelregel bestelregel = bestelregelDAO.findBestelregelByBestellingId(hoeveelheid);
+        Bestelregel bestelregel = bestelregelDAO.findBestelregelByHoeveelheid(hoeveelheid);
         return bestelregel;
     }
     public boolean updateBestelregelBestellingId(int bestelregelId, int bestellingId) {
         return bestelregelDAO.updateBestelregelBestellingId(bestelregelId, bestellingId);
     }
     public boolean updateBestelregelProductId(int bestelregelId, int productId) {
-        return bestelregelDAO.updateBestelregelBestellingId(bestelregelId, productId);
+        return bestelregelDAO.updateBestelregelProductId(bestelregelId, productId);
     }
     public boolean updateBestelregelHoeveelheid(int bestelregelId, int hoeveelheid) {
-        return bestelregelDAO.updateBestelregelBestellingId(bestelregelId, hoeveelheid);
+        return bestelregelDAO.updateBestelregelHoeveelheid(bestelregelId, hoeveelheid);
     }
     public boolean toevoegenBestelregel(Bestelregel bestelregel) {
         return bestelregelDAO.toevoegenBestelregel(bestelregel);

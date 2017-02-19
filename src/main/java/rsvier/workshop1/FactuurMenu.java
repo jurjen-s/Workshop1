@@ -107,20 +107,29 @@ public class FactuurMenu {
         //Controleren op FK constraints
         int klantId = -1;
         do {
-            System.out.println("Vul het klantId in en druk op enter.");
+            System.out.println("Vul het klantId in en druk op enter. Vul 0 in als u wilt annuleren.");
             klantId = TextIO.getlnInt();
+            if (klantId == 0) {
+                facturenmenu();
+            }
         } while (!controller.existsKlantId(klantId));
         //Controleren op FK constraints
         int bestellingId = -1;
         do {
-            System.out.println("Vul het bestellingId in en druk op enter.");
+            System.out.println("Vul het bestellingId in en druk op enter. Vul 0 in als u wilt annuleren.");
             bestellingId = TextIO.getlnInt();
+            if (bestellingId == 0) {
+                facturenmenu();
+            }
         } while (!controller.existsBestellingId(bestellingId));
         //Controleren op FK constraints
         int adresId = -1;
         do {
-            System.out.println("Vul het adresId in en druk op enter.");
+            System.out.println("Vul het adresId in en druk op enter. Vul 0 in als u wilt annuleren.");
             adresId = TextIO.getlnInt();
+            if (adresId == 0) {
+                facturenmenu();
+            }
         } while (!controller.existsAdresId(adresId));
         Factuur factuur = new Factuur.FactuurBuilder()
                           .klantId(klantId)
@@ -156,8 +165,11 @@ public class FactuurMenu {
         //Controleren op FK constraints
         int bestellingId = -1;
         do {
-            System.out.println("Vul het bestellingId in en druk op enter.");
+            System.out.println("Vul het bestellingId in en druk op enter. Vul 0 in als u wilt annuleren.");
             bestellingId = TextIO.getlnInt();
+            if (bestellingId == 0) {
+                facturenmenu();
+            }
         } while (!controller.existsBestellingId(bestellingId));
         Factuur zoekresultaat = factuurController.findFactuurByBestellingId(bestellingId);
         System.out.println(zoekresultaat);
@@ -169,8 +181,11 @@ public class FactuurMenu {
         //Controleren op FK constraints
         int adresId = -1;
         do {
-            System.out.println("Vul het adresId in en druk op enter.");
+            System.out.println("Vul het adresId in en druk op enter. Vul 0 in als u wilt annuleren.");
             adresId = TextIO.getlnInt();
+            if (adresId == 0) {
+                facturenmenu();
+            }
         } while (!controller.existsAdresId(adresId));
         List<Factuur> zoekresultaat = factuurController.findFactuurByAdresId(adresId);
         if (zoekresultaat.isEmpty()) {
@@ -188,8 +203,11 @@ public class FactuurMenu {
         //Controleren op FK constraints
         int klantId = -1;
         do {
-            System.out.println("Vul het nieuwe klantId in en druk op enter.");
+            System.out.println("Vul het nieuwe klantId in en druk op enter. Vul 0 in als u wilt annuleren.");
             klantId = TextIO.getlnInt();
+            if (klantId == 0) {
+                facturenmenu();
+            }
         } while (!controller.existsKlantId(klantId));
         List<Factuur> zoekresultaat = factuurController.findFactuurByKlantId(klantId);
         if (zoekresultaat.isEmpty()) {

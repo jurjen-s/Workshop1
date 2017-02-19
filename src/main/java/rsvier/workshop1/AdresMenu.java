@@ -113,8 +113,11 @@ public class AdresMenu {
         //Controleren op FK constraints
         int klantId = -1;
         do {
-            System.out.println("Vul het klantID in en druk op enter.");
+            System.out.println("Vul het klantID in en druk op enter. Vul 0 in als u wilt annuleren.");
             klantId = TextIO.getlnInt();
+            if (klantId == 0) {
+                adressenmenu();
+            }
         } while (!controller.existsKlantId(klantId));
         List<Adres> zoekresultaat = adresController.findAdresByKlantId(klantId);
         if (zoekresultaat.isEmpty()) {
@@ -146,8 +149,11 @@ public class AdresMenu {
         //Controleren op foreign key constraints
         int klantId = -1;
         do {
-            System.out.println("Geef het bijbehorende klantenID: ");
+            System.out.println("Geef het bijbehorende klantenID. Vul 0 in als u wilt annuleren.");
             klantId = TextIO.getlnInt();
+            if (klantId == 0) {
+                adressenmenu();
+            }
             adres.setKlantId(klantId);
         } while (!controller.existsKlantId(klantId));
         System.out.println("Geef de straatnaam: ");
@@ -186,8 +192,11 @@ public class AdresMenu {
         //Controleren op foreign key constraints
         int adresId = -1;
         do {
-            System.out.println("Geef het bijbehorende adresId: ");
+            System.out.println("Geef het bijbehorende adresId. Vul 0 in als u wilt annuleren.");
             adresId = TextIO.getlnInt();
+            if (adresId == 0) {
+                adressenmenu();
+            }
         } while (!controller.existsAdresId(adresId));
         System.out.println("vul het nieuwe type (1: woonadres, 2: bezorgadres, 3: factuuradres) in en druk op enter");
         int adresType = TextIO.getlnInt();
@@ -205,8 +214,11 @@ public class AdresMenu {
     //Controleren op foreign key constraints
         int adresId = -1;
         do {
-            System.out.println("Geef het bijbehorende adresId: ");
+            System.out.println("Geef het bijbehorende adresId. Vul 0 in als u wilt annuleren.");
             adresId = TextIO.getlnInt();
+            if (adresId == 0) {
+                adressenmenu();
+            }
         } while (!controller.existsAdresId(adresId));
         System.out.println("vul de nieuwe straatnaam in en druk op enter");
         String straatnaam = TextIO.getln();
@@ -224,8 +236,11 @@ public class AdresMenu {
         //Controleren op foreign key constraints
         int adresId = -1;
         do {
-            System.out.println("Geef het bijbehorende adresId: ");
+            System.out.println("Geef het bijbehorende adresId. Vul 0 in als u wilt annuleren.");
             adresId = TextIO.getlnInt();
+            if (adresId == 0) {
+                adressenmenu();
+            }
         } while (!controller.existsAdresId(adresId));
         System.out.println("vul het nieuwe huisnummer in en druk op enter");
         int huisnummer = TextIO.getlnInt();
@@ -243,8 +258,11 @@ public class AdresMenu {
         //Controleren op foreign key constraints
         int adresId = -1;
         do {
-            System.out.println("Geef het bijbehorende adresId: ");
+            System.out.println("Geef het bijbehorende adresId. Vul 0 in als u wilt annuleren.");
             adresId = TextIO.getlnInt();
+            if (adresId == 0) {
+                adressenmenu();
+            }
         } while (!controller.existsAdresId(adresId));
         System.out.println("Geef de nieuwe toevoeging of laat leeg om een toevoeging te verwijderen:");
         String huisnummerToevoeging = TextIO.getln();
@@ -267,8 +285,11 @@ public class AdresMenu {
         //Controleren op foreign key constraints
         int adresId = -1;
         do {
-            System.out.println("Geef het bijbehorende adresId: ");
+            System.out.println("Geef het bijbehorende adresId. Vul 0 in als u wilt annuleren.");
             adresId = TextIO.getlnInt();
+            if (adresId == 0) {
+                adressenmenu();
+            }
         } while (!controller.existsAdresId(adresId));
         String postcode = "";
         do {
@@ -292,8 +313,11 @@ public class AdresMenu {
         //Controleren op foreign key constraints
         int adresId = -1;
         do {
-            System.out.println("Geef het bijbehorende adresId: ");
+            System.out.println("Geef het bijbehorende adresId. Vul 0 in als u wilt annuleren.");
             adresId = TextIO.getlnInt();
+            if (adresId == 0) {
+                adressenmenu();
+            }
         } while (!controller.existsAdresId(adresId));
         System.out.println("Geef het nieuwe land op: ");
         String land = TextIO.getln();
@@ -311,8 +335,11 @@ public class AdresMenu {
         //Controleren op foreign key constraints
         int adresId = -1;
         do {
-            System.out.println("Geef het bijbehorende adresId: ");
+            System.out.println("Geef het bijbehorende adresId. Vul 0 in als u wilt annuleren.");
             adresId = TextIO.getlnInt();
+            if (adresId == 0) {
+                adressenmenu();
+            }
         } while (!controller.existsAdresId(adresId));
         if (adresController.deleteAdres(adresId) == true) {
             System.out.println("Adres gegevens zijn succesvol verwijderd.");

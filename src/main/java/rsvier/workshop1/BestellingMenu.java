@@ -77,8 +77,11 @@ public class BestellingMenu {
         //Controleren op FK constraints
         int klantId = -1;
         do {
-            System.out.println("Vul klantID in en druk op enter.");
+            System.out.println("Vul klantID in en druk op enter. Vul 0 in als u wilt annuleren.");
             klantId = TextIO.getlnInt();
+            if (klantId == 0) {
+                bestellingenmenu();
+            }
         } while (!controller.existsKlantId(klantId));
         List<Bestelling> zoekresultaat = bestellingController.findBestellingByKlant(klantId);
         if (zoekresultaat.isEmpty()) {
@@ -96,8 +99,11 @@ public class BestellingMenu {
         //Controleren op FK constraints
         int adresId = -1;
         do {
-            System.out.println("Vul adresId in en druk op enter.");
+            System.out.println("Vul adresId in en druk op enter. Vul 0 in als u wilt annuleren.");
             adresId = TextIO.getlnInt();
+            if (adresId == 0) {
+                bestellingenmenu();
+            }
         } while (!controller.existsAdresId(adresId));
         List<Bestelling> zoekresultaat = bestellingController.findBestellingByAdres(adresId);
         if (zoekresultaat.isEmpty()) {
@@ -145,14 +151,20 @@ public class BestellingMenu {
         //Controleren op FK constraints
         int klantId = -1;
         do {
-            System.out.println("Vul klantId in en druk op enter.");
+            System.out.println("Vul klantId in en druk op enter. Vul 0 in als u wilt annuleren.");
             klantId = TextIO.getlnInt();
+            if (klantId == 0) {
+                bestellingenmenu();
+            }
         } while (!controller.existsKlantId(klantId));
         //Controleren op FK constraints
         int adresId = -1;
         do {
-            System.out.println("Vul adresId in en druk op enter.");
+            System.out.println("Vul adresId in en druk op enter. Vul 0 in als u wilt annuleren.");
             adresId = TextIO.getlnInt();
+            if (adresId == 0) {
+                bestellingenmenu();
+            }
         } while (!controller.existsAdresId(adresId));
         System.out.println("Vul aantal artikelen in en druk op enter");
         int aantalArtikelen = TextIO.getlnInt();
@@ -179,14 +191,20 @@ public class BestellingMenu {
         //Controleren op FK constraints
         int bestellingId = -1;
         do {
-            System.out.println("Vul bestellingId in en druk op enter.");
+            System.out.println("Vul bestellingId in en druk op enter. Vul 0 in als u wilt annuleren.");
             bestellingId = TextIO.getlnInt();
+            if (bestellingId == 0) {
+                bestellingenmenu();
+            }
         } while (!controller.existsBestellingId(bestellingId));
         //Controleren op FK constraints
         int klantId = -1;
         do {
-            System.out.println("Vul het nieuwe klantId in en druk op enter.");
+            System.out.println("Vul het nieuwe klantId in en druk op enter. Vul 0 in als u wilt annuleren.");
             klantId = TextIO.getlnInt();
+            if (klantId == 0) {
+                bestellingenmenu();
+            }
         } while (!controller.existsKlantId(klantId));   
         if (bestellingController.updateBestellingKlantID(bestellingId, klantId) == true) {
             System.out.println("Het veranderen van de bestelling is gelukt.");
@@ -201,14 +219,20 @@ public class BestellingMenu {
         //Controleren op FK constraints
         int bestellingId = -1;
         do {
-            System.out.println("Vul bestellingId in en druk op enter.");
+            System.out.println("Vul bestellingId in en druk op enter. Vul 0 in als u wilt annuleren.");
             bestellingId = TextIO.getlnInt();
+            if (bestellingId == 0) {
+                bestellingenmenu();
+            }
         } while (!controller.existsBestellingId(bestellingId));
         //Controleren op FK constraints
         int adresId = -1;
         do {
-            System.out.println("Vul het nieuwe adresId in en druk op enter.");
+            System.out.println("Vul het nieuwe adresId in en druk op enter. Vul 0 in als u wilt annuleren.");
             adresId = TextIO.getlnInt();
+            if (adresId == 0) {
+                bestellingenmenu();
+            }
         } while (!controller.existsAdresId(adresId));
         if (bestellingController.updateBestellingAdresID(bestellingId, adresId) == true) {
             System.out.println("Het veranderen van de bestelling is gelukt.");
@@ -223,8 +247,11 @@ public class BestellingMenu {
         //Controleren op FK constraints
         int bestellingId = -1;
         do {
-            System.out.println("Vul bestellingId in en druk op enter.");
+            System.out.println("Vul bestellingId in en druk op enter. Vul 0 in als u wilt annuleren.");
             bestellingId = TextIO.getlnInt();
+            if (bestellingId == 0) {
+                bestellingenmenu();
+            }
         } while (!controller.existsBestellingId(bestellingId));
         System.out.println("Vul het nieuwe aantal artikelen in en dan enter.");
         int aantalArtikelen = TextIO.getlnInt();
@@ -241,8 +268,11 @@ public class BestellingMenu {
         //Controleren op FK constraints
         int bestellingId = -1;
         do {
-            System.out.println("Vul bestellingId in en druk op enter.");
+            System.out.println("Vul bestellingId in en druk op enter. Vul 0 in als u wilt annuleren.");
             bestellingId = TextIO.getlnInt();
+            if (bestellingId == 0) {
+                bestellingenmenu();
+            }
         } while (!controller.existsBestellingId(bestellingId));
         System.out.println("Vul de nieuwe totaalprijs in en dan enter.");
         BigDecimal totaalprijs = new BigDecimal(TextIO.getlnInt());
@@ -259,8 +289,11 @@ public class BestellingMenu {
         //Controleren op FK constraints
         int bestellingId = -1;
         do {
-            System.out.println("Vul bestellingId in en druk op enter.");
+            System.out.println("Vul bestellingId in en druk op enter. Vul 0 in als u wilt annuleren.");
             bestellingId = TextIO.getlnInt();
+            if (bestellingId == 0) {
+                bestellingenmenu();
+            }
         } while (!controller.existsBestellingId(bestellingId));
         if (bestellingController.deleteBestelling(bestellingId) == true) {
             System.out.println("Het verwijderen van de bestelling is gelukt.");
