@@ -875,3 +875,11 @@ Testlaan 1 1234 AA Nederland.
 2017-02-18 17:50:18,531 DEBUG r.w.BestellingSQL [main] Output zoeken op bestellingId: Bestelling 4, behorende bij klant 2 en adres 5, heeft 4 artikelen met een totaalprijs van 5.50 Euro.
 2017-02-18 17:50:23,658 DEBUG r.w.BestellingSQL [main] Pas totaalprijs van bestelling 4 aan
 2017-02-18 17:50:23,691 DEBUG r.w.BestellingSQL [main] Output toevoegen: true
+2017-02-19 15:17:02,263 INFO r.w.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-19 15:17:09,164 DEBUG r.w.AccountSQL [main] Haal hashedwachtwoord terug via id van accountId: 1
+2017-02-19 15:17:15,196 INFO r.w.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-19 15:17:40,660 DEBUG r.w.ProductSQL [main] Input  in toevoegenProduct is  Product Id is : 0 omschrijving is : roze kaas soort is : GENE prijs is : 4.99 voorraad aantal is : 3934.
+2017-02-19 15:17:40,958 DEBUG r.w.ProductSQL [main] output toevoegenProduct is  true
+2017-02-19 15:17:51,378 DEBUG r.w.ProductSQL [main] Input  in findProductBySoort is GENE
+2017-02-19 15:17:51,384 DEBUG r.w.ProductSQL [main] output findProductBySoort is :[ Product Id is : 1 omschrijving is : groen gele kaas soort is : Gene prijs is : 20.99 voorraad aantal is : 300.,  Product Id is : 2 omschrijving is : blauwe kaas soort is : Gene prijs is : 33.00 voorraad aantal is : 230.,  Product Id is : 3 omschrijving is : Gele kaas soort is : Gene prijs is : 12.00 voorraad aantal is : 488.,  Product Id is : 6 omschrijving is : roze kaas soort is : GENE prijs is : 4.99 voorraad aantal is : 3934.]
+2017-02-19 15:18:22,702 INFO r.w.SQLConnection [main] Verbonden met de MySQL database.
