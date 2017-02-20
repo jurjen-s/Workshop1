@@ -67,7 +67,7 @@ public class AccountSQL implements AccountDAO {
          LOGGER.debug("In inputs waren wachtwoord: {} , en type {} ", wachtwoord, type);
         
         Account account = new Account();
-        int workload = 13;
+        int workload = giveWorkload();
         
         
        // public static String hashPassword(String password_plaintext) {
@@ -194,12 +194,28 @@ public class AccountSQL implements AccountDAO {
         
        LOGGER.debug("Wachtwoord van account {} wijzigen.", id) ;
         
+       int workload = giveWorkload();
+       
+       String salt = BCrypt.gensalt(workload);
+                
+                
+                 LOGGER.debug("In inputs waren workload: {} , en salt {} ", workload, salt);
+                
+                String wachtwoordh = BCrypt.hashpw(wachtwoord, salt);
+		
+		LOGGER.debug("In outputs waren hashed_password: {} ", wachtwoordh);
+       
+       
+       
+       
+       
+       
         
        try (PreparedStatement stmt = accountconnectie.prepareStatement(
        "UPDATE   accounts "+
        "SET wachtwoord = ? " +
        "WHERE accounts_id = ?   ")){
-        stmt.setString(1, wachtwoord);
+        stmt.setString(1, wachtwoordh);
         stmt.setInt(2, id);
         
          stmt.executeUpdate();
@@ -285,6 +301,11 @@ public class AccountSQL implements AccountDAO {
     
     
     
+    
+    public static int giveWorkload(){
+        int workloadnumber = 13;
+        return workloadnumber;
+    }
     
     
     
