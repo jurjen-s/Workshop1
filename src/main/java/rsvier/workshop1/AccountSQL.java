@@ -111,7 +111,7 @@ public class AccountSQL implements AccountDAO {
         
         while (rs.next()){
             
-      System.out.println(rs.getInt("accounts_id"));
+      
                 account.setAccountId(rs.getInt("accounts_id"));
                 account.setType(rs.getInt("accounts_type"));
                 account.setWachtwoord(rs.getString("wachtwoord"));

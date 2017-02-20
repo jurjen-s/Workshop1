@@ -17,7 +17,7 @@ public class AccountMenu {
     
     private AccountController accountController = new AccountController();  
     
-    
+       private Controller controller = new Controller();
     
    public void accountsmenu(){
     
@@ -70,12 +70,27 @@ public void accountsmenuZoId() {
     System.out.println("Vul een id in druk enter.");
     
      //int Bid = TextIO.getlnInt();
-   int Acid = TextIO.getlnInt();
+   
     
+   int Acid = -1;
+        do {
+            System.out.println("Vul het Account Id in en druk op enter. Vul 0 in om te annuleren.");
+            if (Acid == 0) {
+            accountsmenu();
+            }
+            Acid = TextIO.getlnInt();
+        } while (!controller.existsAccountId(Acid));
+   
+   
+   
+   
+   
    Account accountResultaat = new Account();
    
      accountResultaat = accountController.findAccountByID(Acid);
    
+     
+   accountResultaat.setWachtwoord("");
    accountResultaat.getALL(accountResultaat);
    
    accountsmenu();
@@ -94,7 +109,7 @@ public void accountsmenuAT() {
       System.out.println("Vul een wachtwoord in en druk enter.");
    String Aw8 = TextIO.getln();
    
-   System.out.println( accountController.createAccount(type,Aw8).toString());
+   System.out.println( accountController.createAccount(type,Aw8).toStringWachtwoordloos());
    
    
 
@@ -118,18 +133,29 @@ public  void accountsmenuAAt() {
         
           System.out.println("U gaat een account type aanpassen.");
     
-    System.out.println("Vul de id van de account in die u wilt veranderen") ;
-
-    int id = TextIO.getlnInt();
+    int Acid = -1;
+        do {
+            System.out.println("Vul het Account Id in en druk op enter. Vul 0 in om te annuleren.");
+            if (Acid == 0) {
+            accountsmenu();
+            }
+            Acid = TextIO.getlnInt();
+        } while (!controller.existsAccountId(Acid));
           
     
-    System.out.println("Vul een type in druk enter.");
     
-    int type = TextIO.getlnInt();
+    
+    int type = -1;
+    do{
+        System.out.println("Vul een de nieuwe type in (1: klant 2: medewerker druk enter.");
+        type = TextIO.getlnInt();
+        
+    } while (type ==2 || type ==1);
+    
     
     
      
-    System.out.println("veranderen is gelukt : " + accountController.updateAccountType(id, type));
+    System.out.println("veranderen is gelukt : " + accountController.updateAccountType(Acid, type));
    
    //Controller.accountstypeaanpassen(type);
      
@@ -153,7 +179,7 @@ public  void accountsmenuAAw() {
    
    //Controller.accountstypeaanpassenwachtwoord(wachtwoord);
      
-    System.out.println("controller bestaat nog niet.");
+    
     accountsmenu();
     }
 
@@ -181,7 +207,7 @@ public  void accountsmenuDELETE() {
     
     //int TP = TextIO.getlnInt();
    // String pOmschrijving = TextIO.getln();
-    System.out.println("de controller klasse is nog niet af.");
+   
     
     accountsmenu();
     }

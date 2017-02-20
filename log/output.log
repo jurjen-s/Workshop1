@@ -927,3 +927,35 @@ Testlaan 1 1234 AA Nederland.
 2017-02-19 17:00:34,866 DEBUG r.w.KlantSQL [main] output bij create klant  is klanten id : 2 voornaam is Bling tussenvoegsel is0 achternaam is :Ting telnr. 06-55566611 account id1 
 2017-02-19 17:01:21,740 DEBUG r.w.KlantSQL [main] input bij update klant is 1 Buss 0  Tely 06-22255544
 2017-02-19 17:01:21,831 DEBUG r.w.KlantSQL [main] output bij update klant is klanten id : 2 voornaam is Buss tussenvoegsel is achternaam is :Tely telnr. 06-22255544 account id1 
+2017-02-19 18:18:05,981 INFO r.w.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-19 18:18:28,632 DEBUG r.w.ProductSQL [main] Input  in toevoegenProduct is  Product Id is : 0 omschrijving is : zwarte peper kaas soort is : Eastern prijs is : 50 voorraad aantal is : 20.
+2017-02-19 18:18:28,806 DEBUG r.w.ProductSQL [main] output toevoegenProduct is  true
+2017-02-19 18:18:37,942 INFO r.w.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-19 18:19:15,888 DEBUG r.w.MedewerkerSQL [main] Input in createMedewerker is 1yo@shopt.comPieterLang
+2017-02-19 18:19:16,047 DEBUG r.w.MedewerkerSQL [main] output createMedewerker is :1		1		yo@shopt.com		Pieter				Lang
+2017-02-19 18:19:37,614 DEBUG r.w.MedewerkerSQL [main] Id in findMedewerkerByID is 1
+2017-02-19 18:19:37,617 DEBUG r.w.MedewerkerSQL [main] output findMedewerkerByID is :1		1		yo@shopt.com		Pieter				Lang
+2017-02-19 18:20:03,184 DEBUG r.w.MedewerkerSQL [main] Id in findMedewerkerByID is 45
+2017-02-19 18:20:03,185 DEBUG r.w.MedewerkerSQL [main] output findMedewerkerByID is :0		0		null		null		null		null
+2017-02-19 18:23:37,416 INFO r.w.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-19 18:23:49,516 DEBUG r.w.AccountSQL [main] Haal hashedwachtwoord terug via id van accountId: 1
+2017-02-19 18:23:54,393 INFO r.w.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-19 18:23:57,749 DEBUG r.w.MedewerkerSQL [main] Id in findMedewerkerByID is 1
+2017-02-19 18:23:57,769 DEBUG r.w.MedewerkerSQL [main] output findMedewerkerByID is :1		1		yo@shopt.com		Pieter				Lang
+2017-02-19 18:24:02,063 DEBUG r.w.MedewerkerSQL [main] Id in findMedewerkerByID is 5
+2017-02-19 18:24:02,066 DEBUG r.w.MedewerkerSQL [main] output findMedewerkerByID is :0		0		null		null		null		null
+2017-02-19 18:25:13,062 DEBUG r.w.MedewerkerSQL [main] Input in findMedewerkerByEmail is yo@shopt.nl
+2017-02-19 18:25:13,064 DEBUG r.w.MedewerkerSQL [main] output findMedewerkerByEmail is :0		0		null		null		null		null
+2017-02-19 18:25:51,071 DEBUG r.w.MedewerkerSQL [main] Input in findMedewerkerByEmail is yo@shopt.com
+2017-02-19 18:25:51,072 DEBUG r.w.MedewerkerSQL [main] output findMedewerkerByEmail is :1		1		yo@shopt.com		Pieter				Lang
+2017-02-19 18:26:09,926 DEBUG r.w.MedewerkerSQL [main] Input in findMedewerkerByAchternaam is f
+2017-02-19 18:26:09,927 DEBUG r.w.MedewerkerSQL [main] output findMedewerkerByAchternaam is :0		0		null		null		null		null
+2017-02-20 11:08:46,368 INFO r.w.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-20 11:08:53,506 DEBUG r.w.AccountSQL [main] Haal hashedwachtwoord terug via id van accountId: 1
+2017-02-20 11:08:57,329 INFO r.w.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-20 11:09:05,966 DEBUG r.w.AccountSQL [main] In inputs waren wachtwoord: hoi , en type 1 
+2017-02-20 11:09:06,069 DEBUG r.w.AccountSQL [main] In inputs waren workload: 13 , en salt $2a$13$6cRlyOXTlmZvcILQrzwl/e 
+2017-02-20 11:09:06,833 DEBUG r.w.AccountSQL [main] In outputs waren hashed_password: $2a$13$6cRlyOXTlmZvcILQrzwl/eBKhl57ufX.yy8FtFjMeeFW.fJqBI1mS 
+2017-02-20 11:09:06,833 DEBUG r.w.AccountSQL [main] Aanmaken account met type 1 en wachtwoordhoi en salt $2a$13$6cRlyOXTlmZvcILQrzwl/e.
+2017-02-20 11:09:06,967 INFO r.w.AccountSQL [main] Account gegevens zijn succesvol aangemaakt.
+2017-02-20 11:09:06,967 DEBUG r.w.AccountSQL [main] Resultaat aanmaken account: id: 2 type : 1 wachtwoord: $2a$13$6cRlyOXTlmZvcILQrzwl/eBKhl57ufX.yy8FtFjMeeFW.fJqBI1mS

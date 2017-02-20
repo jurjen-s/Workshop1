@@ -109,6 +109,24 @@ public class Controller {
             return true;
         }
     }
+    
+     public boolean existsMedewerkerId(int medewerkId) {
+        SQLConnection sqlConnectie = new SQLConnection();
+        Connection connectie = sqlConnectie.getSQLConnection();
+        MedewerkerDAO medewerkerDAO = new MedewerkerSQL(connectie);
+        Medewerker m = medewerkerDAO.findMedewerkerByID(medewerkId);
+        System.out.println(m.getMedewerkerAccountID());
+        if (m.getMedewerkerAccountID() == 0) {
+            System.out.println("Opgegeven medewerker Id niet gevonden.");
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    
+    
+    
 }
 
 // CLASS is op dit moment niet in gebruik

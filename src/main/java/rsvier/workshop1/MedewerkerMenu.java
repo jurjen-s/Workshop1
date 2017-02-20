@@ -15,9 +15,9 @@ public class MedewerkerMenu {
      private MedewerkerController medewerkerController = new MedewerkerController(); 
     
     
+     private Validator validator = new Validator();
     
-    
-    
+    private Controller controller = new Controller();
     
     
     
@@ -71,20 +71,26 @@ medewerkersmenu();
 
    public void medewerkersmenuZoID(){
        
-       System.out.println("U gaat een medewerkers zoeken op ID.");
-    
-    
-    System.out.println("Vul een ID in druk enter.");
-       
-       int Midz = TextIO.getlnInt();
+       int Midz = -1;
+        do {
+            System.out.println("Vul het medewerker Id in en druk op enter. Vul 0 in om te annuleren.");
+            if (Midz == 0) {
+            medewerkersmenu();
+            }
+            Midz = TextIO.getlnInt();
+        } while (!controller.existsMedewerkerId(Midz));
        
        
        Medewerker mResultaat = new Medewerker();
    
      mResultaat = medewerkerController.MedewerkerVindBijID(Midz);
    
+     if(mResultaat.getMedewerkerAccountID()==0){
+         System.out.print("Er zijn geen medewerkers met deze id.");
+     }
+     else{
     mResultaat.getView(mResultaat);
-       
+     }
        
        
        
@@ -151,7 +157,16 @@ public  void mederwerkersmenuMT() {
      
      System.out.println("vul email adress in en druk enter");
      
-     String mail = TextIO.getln();
+     String mail = "";
+     
+     
+        do {
+            System.out.println("Vul de email in.");
+            mail = TextIO.getln();
+            if (validator.validateEmail(mail)) {
+                break;
+            }  
+        } while (true);
             
         
      System.out.println("Vul een voornaam in en druk enter");
@@ -182,9 +197,14 @@ public  void medewerkersmenuMAoId() {
         System.out.println("U gaat een medewerkers aanpassen op ID.");
     
     
-    System.out.println("Vul een  medewerkerID in druk enter.");
-    
-     int Mid = TextIO.getlnInt();   //DEZE MID moet in elke CONTROLLER als INPUT verwerkt worden!
+    int Mid = -1;
+        do {
+            System.out.println("Vul het medewerker Id in en druk op enter. Vul 0 in om te annuleren.");
+            if (Mid == 0) {
+            medewerkersmenu();
+            }
+            Mid = TextIO.getlnInt();
+        } while (!controller.existsMedewerkerId(Mid));
      
      
       System.out.println("Vul een  accountID in druk enter.");
@@ -193,8 +213,16 @@ public  void medewerkersmenuMAoId() {
      
      System.out.println("vul email adress in en druk enter");
      
-     String mail = TextIO.getln();
-            
+     String mail = "";
+     
+     
+        do {
+            System.out.println("Vul de email in.");
+            mail = TextIO.getln();
+            if (validator.validateEmail(mail)) {
+                break;
+            }  
+        } while (true);
         
      System.out.println("Vul een voornaam in en druk enter");
      
@@ -223,7 +251,17 @@ public  void medewerkersmenuDELETE() {
     
     System.out.println("Vul mederwerkerid in druk enter.");
     
-     int delmed = TextIO.getlnInt();
+    
+     int delmed = -1;
+        do {
+            System.out.println("Vul het medewerker Id in en druk op enter. Vul 0 in om te annuleren.");
+            if (delmed == 0) {
+            medewerkersmenu();
+            }
+            delmed = TextIO.getlnInt();
+        } while (!controller.existsMedewerkerId(delmed));
+    
+    
     
     
     boolean med ;
@@ -303,8 +341,16 @@ public  void medewerkersmenuMZoE() {
     
     System.out.println("Vul een email in druk enter.");
     
-     //int Bid = TextIO.getlnInt();
-     String email = TextIO.getln();
+    String email = "";
+     
+     
+        do {
+            System.out.println("Vul de email in.");
+            email = TextIO.getln();
+            if (validator.validateEmail(email)) {
+                break;
+            }  
+        } while (true);
      
    // System.out.println("Vul  Y in  en dan enter.");
     
