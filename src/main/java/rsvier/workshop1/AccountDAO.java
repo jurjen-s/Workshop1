@@ -9,6 +9,7 @@ package rsvier.workshop1;
  *
  * @author Frank
  */
+
 public interface AccountDAO {
     
     //deze 3 worden in menu gebruikt
