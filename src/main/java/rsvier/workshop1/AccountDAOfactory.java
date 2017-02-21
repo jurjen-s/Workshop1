@@ -26,11 +26,11 @@ public class AccountDAOfactory {
         
         if (type.equals("MySQL")) {
            
-           //  AccountSQL mysql = new AccountMySQLSQL();
+             AccountSQL mysql = new AccountMySQLSQL();
              
-           //  return mysql;
+             return mysql;
              //return new AccountMySQLSQL;  
-            return new AccountSQL();    
+          //  return new AccountSQL();    
         } else if (type.equals("Firebird")) {
                 return new AccountFireBirdSQL();
         }

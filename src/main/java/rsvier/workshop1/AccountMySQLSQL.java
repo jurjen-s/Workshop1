@@ -24,6 +24,11 @@ public class AccountMySQLSQL extends AccountSQL implements AccountDAO {
     public AccountMySQLSQL(Connection connectie) {
         this.accountconnectie = connectie;
     }
+
+    AccountMySQLSQL() {
+        
+        this.accountconnectie = accountconnectie;
+    }
     
     @Override
     public Account findAccountByID(int id) {
