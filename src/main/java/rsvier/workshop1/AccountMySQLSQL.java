@@ -18,10 +18,10 @@ import org.mindrot.jbcrypt.BCrypt;
  *
  * @author Frank
  */
-public class AccountSQL implements AccountDAO {
+public class AccountMySQLSQL implements AccountDAO {
     private static final Logger LOGGER = LogManager.getLogger(AccountMenu.class);
     private Connection accountconnectie;
-    public AccountSQL(Connection connectie) {
+    public AccountMySQLSQL(Connection connectie) {
         this.accountconnectie = connectie;
     }
     

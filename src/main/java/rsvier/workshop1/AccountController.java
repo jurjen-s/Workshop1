@@ -17,7 +17,7 @@ public class AccountController {
     private Connection sqlConnectie = connectie.getSQLConnection();
     
     
-    private AccountDAO accountDAO = new AccountSQL(sqlConnectie);
+    private AccountDAO accountDAO = new AccountMySQLSQL(sqlConnectie);
     
    // private AccountMenu accountmenu = new AccountMenu();
     

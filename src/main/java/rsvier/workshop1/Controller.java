@@ -71,7 +71,7 @@ public class Controller {
     public boolean existsAccountId(int accountId) {
         SQLConnection sqlConnectie = new SQLConnection();
         Connection connectie = sqlConnectie.getSQLConnection();
-        AccountDAO accountDAO = new AccountSQL(connectie);
+        AccountDAO accountDAO = new AccountMySQLSQL(connectie);
         Account account = accountDAO.findAccountByID(accountId);
         if (account.getAccountId() == 0) {
             System.out.println("Opgegeven accountId niet gevonden.");
