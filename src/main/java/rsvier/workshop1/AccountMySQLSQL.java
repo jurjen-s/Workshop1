@@ -18,7 +18,7 @@ import org.mindrot.jbcrypt.BCrypt;
  *
  * @author Frank
  */
-public class AccountMySQLSQL implements AccountDAO {
+public class AccountMySQLSQL extends AccountSQL implements AccountDAO {
     private static final Logger LOGGER = LogManager.getLogger(AccountMenu.class);
     private Connection accountconnectie;
     public AccountMySQLSQL(Connection connectie) {

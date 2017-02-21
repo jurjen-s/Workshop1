@@ -5,6 +5,8 @@
  */
 package rsvier.workshop1;
 
+import java.sql.Connection;
+
 /**
  *
  * @author Frank
@@ -14,18 +16,30 @@ package rsvier.workshop1;
 public class AccountDAOfactory {
     //Hier komt de DAO factory voor de keuze firebird of mysql.
     
-    /*
-     public static AccountDAO getAccountDAO(){
+   
+    
+    
+    
+     public static AccountSQL getAccountDAO(){
         String type = ConfigDB.getDbType();
+        //geeft de string "MySQL" of "Firebird" uit de XML bestand.
+        
         if (type.equals("MySQL")) {
-                return new AccountMySQLSQL();
+           
+           //  AccountSQL mysql = new AccountMySQLSQL();
+             
+           //  return mysql;
+             //return new AccountMySQLSQL;  
+            return new AccountSQL();    
         } else if (type.equals("Firebird")) {
                 return new AccountFireBirdSQL();
         }
-        return new MySQLAccountDAO();
+        System.out.println("geen SQL config gegeven: type Firebird of MySQL of overige");
+        return new AccountSQL();
+        
     }
     
-    */
+    
     
     
     
