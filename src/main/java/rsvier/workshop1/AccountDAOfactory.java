@@ -21,7 +21,17 @@ public class AccountDAOfactory {
     
     
      public static AccountSQL getAccountDAO(){
-        String type = ConfigDB.getDbType();
+         
+         //TESTSTRING!:
+         String type = "MySQL";
+         
+         
+         //DIT MOET NIET VERWIJDERD WORDEN
+        //String type = ConfigDB.getDbType();
+        
+        
+        
+        
         //geeft de string "MySQL" of "Firebird" uit de XML bestand.
         
         if (type.equals("MySQL")) {
