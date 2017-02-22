@@ -24,7 +24,9 @@ public class AccountDAOfactoryTest {
     public void testGetAccountDAO() {
         System.out.println("getAccountDAO");
         AccountSQL expResult = null;
-        AccountSQL result = AccountDAOfactory.getAccountDAO();
+        AccountDAOfactory factory = new AccountDAOfactory();
+        
+        AccountSQL result = factory.getAccountDAO();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

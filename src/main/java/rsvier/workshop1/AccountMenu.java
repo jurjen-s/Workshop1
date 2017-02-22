@@ -88,7 +88,16 @@ public void accountsmenuZoId() {
    Account accountResultaat = new Account();
    
     // accountResultaat = accountController.findAccountByID(Acid);
-    accountResultaat = (AccountDAOfactory.getAccountDAO()).findAccountByID(Acid);
+    
+    
+    
+    AccountDAOfactory factory = new AccountDAOfactory();
+    
+    accountResultaat = (factory.getAccountDAO()).findAccountByID(Acid);
+    
+   
+   
+   // accountResultaat = .findAccountByID(Acid);
      
    
      

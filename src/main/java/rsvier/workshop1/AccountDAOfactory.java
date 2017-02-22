@@ -16,11 +16,13 @@ import java.sql.Connection;
 public class AccountDAOfactory {
     //Hier komt de DAO factory voor de keuze firebird of mysql.
     
+   SQLConnection connectie= new SQLConnection();
+   Connection sqlconnectie = connectie.getSQLConnection();
    
     
     
     
-     public static AccountSQL getAccountDAO(){
+     public AccountSQL getAccountDAO(){
          
          //TESTSTRING!:
          //String type = "MySQL";
@@ -28,6 +30,9 @@ public class AccountDAOfactory {
          
          //DIT MOET NIET VERWIJDERD WORDEN
         
+         
+         
+         
         
         String type = Connector.getConnector().getDbType();
         System.out.println(type);
@@ -38,14 +43,14 @@ public class AccountDAOfactory {
         
         label:
         while(true){
-        if (type.equals("MySQL")) {
+        if (type.equalsIgnoreCase("MYSQL")) {
            System.out.println("MySQL is de database");
-             AccountSQL mysql = new AccountMySQLSQL();
+             AccountSQL mysql = new AccountMySQL(sqlconnectie);
              
              return mysql;
              //return new AccountMySQLSQL;  
           //  return new AccountSQL();    
-        } else if (type.equals("Firebird")) {
+        } else if (type.equalsIgnoreCase("Firebird")) {
             System.out.println("Firebird is de database");
                 return new AccountFireBirdSQL();
         }

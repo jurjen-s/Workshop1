@@ -17,7 +17,7 @@ public class MaakDummies {
     Connection dummyconnectie = new SQLConnection().getSQLConnection();
     
     public void dummyAccount() {
-        AccountDAO accountDAO = new AccountMySQLSQL(dummyconnectie);
+        AccountDAO accountDAO = new AccountMySQL(dummyconnectie);
         int accountType = 1;
         String wachtwoord = "nohashnosalt";
         accountDAO.createAccount(accountType, wachtwoord);

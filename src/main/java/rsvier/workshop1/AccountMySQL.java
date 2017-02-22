@@ -18,23 +18,28 @@ import org.mindrot.jbcrypt.BCrypt;
  *
  * @author Frank
  */
-public class AccountMySQLSQL extends AccountSQL implements AccountDAO {
+public class AccountMySQL extends AccountSQL implements AccountDAO {
+    
     private static final Logger LOGGER = LogManager.getLogger(AccountMenu.class);
+    
     private Connection accountconnectie;
-    public AccountMySQLSQL(Connection connectie) {
+    public AccountMySQL(Connection connectie) {
+        
         this.accountconnectie = connectie;
     }
 
-    AccountMySQLSQL() {
-        
-        this.accountconnectie = accountconnectie;
-    }
+   
     
     @Override
     public Account findAccountByID(int id) {
        
     LOGGER.debug("Account zoeken. Zoekterm: accountId {}", id);   
         
+     
+     
+     
+         
+     
        String query = "SELECT * FROM accounts WHERE accounts_id = ?";
         Account account = new Account();
         try (
