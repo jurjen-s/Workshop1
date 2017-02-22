@@ -42,16 +42,16 @@ public class Connector {
     private XPath xpath = xPathfactory.newXPath();
     private static Connector connector;
     
-    private Connector() {        
-    }
-    
-    public Connector getConnector() {
-        if (connector == null) {
-            connector = new Connector();
-        }
+    private Connector() {  
         Document doc = parse();
         setDatabase(doc, "");
         setConnection(doc, "");
+    }
+    
+    public static Connector getConnector() {
+        if (connector == null) {
+            connector = new Connector();
+        }        
         return connector;
     }
     
