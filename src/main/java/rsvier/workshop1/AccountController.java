@@ -13,6 +13,15 @@ import java.sql.Connection;
  */
 public class AccountController {
     
+    
+    
+    
+    
+    AccountDAOfactory factory = new AccountDAOfactory();
+    
+    
+    
+    
     private SQLConnection connectie = new SQLConnection();
     private Connection sqlConnectie = connectie.getSQLConnection();
     
@@ -29,7 +38,7 @@ public class AccountController {
       
         Account accountNaarMenu = new Account();
         
-        accountNaarMenu = accountDAO.findAccountByID(id);
+        accountNaarMenu = (factory.getAccountDAO()).findAccountByID(id);
         
         return accountNaarMenu;
         
@@ -47,7 +56,7 @@ public class AccountController {
         
        Account accountinfo = new Account();
         
-        accountinfo = accountDAO.createAccount(type, wachtwoord);
+        accountinfo = (factory.getAccountDAO()).createAccount(type, wachtwoord);
         
         return accountinfo;
         
@@ -60,7 +69,7 @@ public class AccountController {
         
         boolean accountNaarMenu2 ;
         
-        accountNaarMenu2 = accountDAO.deleteAccount(id);
+        accountNaarMenu2 = (factory.getAccountDAO()).deleteAccount(id);
         
         return accountNaarMenu2;
         
@@ -78,7 +87,7 @@ public class AccountController {
         
         boolean accountNaarMenu3;
         
-        accountNaarMenu3 = accountDAO.updateAccountType(id, type);
+        accountNaarMenu3 = (factory.getAccountDAO()).updateAccountType(id, type);
         
         return accountNaarMenu3;
         
@@ -97,7 +106,7 @@ public class AccountController {
     
     boolean accountNaarMenu3;
         
-        accountNaarMenu3 = accountDAO.updateAccountWachtwoord(id, wachtwoord);
+        accountNaarMenu3 = (factory.getAccountDAO()).updateAccountWachtwoord(id, wachtwoord);
         
         return accountNaarMenu3;
     }
@@ -109,7 +118,7 @@ public class AccountController {
     
     boolean accountNaarMenu4;
         
-        accountNaarMenu4 = accountDAO.loginCheckAccount(id, wachtwoord);
+        accountNaarMenu4 = (factory.getAccountDAO()).loginCheckAccount(id, wachtwoord);
         
         
         

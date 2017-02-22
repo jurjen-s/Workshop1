@@ -87,13 +87,17 @@ public void accountsmenuZoId() {
    
    Account accountResultaat = new Account();
    
-    // accountResultaat = accountController.findAccountByID(Acid);
+   //Controller roept DAO factory aan!
+   
+     accountResultaat = accountController.findAccountByID(Acid);
     
     
-    
+    /*
     AccountDAOfactory factory = new AccountDAOfactory();
     
     accountResultaat = (factory.getAccountDAO()).findAccountByID(Acid);
+    
+  */
     
    
    
@@ -157,11 +161,11 @@ public  void accountsmenuAAt() {
     
     
     int type = -1;
-    do{
-        System.out.println("Vul een de nieuwe type in (1: klant 2: medewerker druk enter.");
+    while(type != 2 && type != 1){
+        System.out.println("Vul een de nieuwe type in (1: klant 2: medewerker) druk enter.");
         type = TextIO.getlnInt();
-        
-    } while (type ==2 || type ==1);
+    }
+    
     
     
     
