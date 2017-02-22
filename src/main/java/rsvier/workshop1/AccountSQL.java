@@ -9,6 +9,22 @@ package rsvier.workshop1;
  *
  * @author Frank
  */
-public class AccountSQL {
+public abstract class AccountSQL {
     // de koepel tussen FireBird en MySQl en eventueel anderen.
+    
+ 
+    
+    
+    
+    abstract Account findAccountByID(int id);
+    
+    abstract Account createAccount(int type, String wachtwoord);
+    abstract boolean deleteAccount(int id);
+    abstract boolean updateAccountType(int id, int type);
+    abstract boolean updateAccountWachtwoord(int id, String wachtwoord);
+    
+    // deze alleen in log in menu.
+    abstract boolean loginCheckAccount(int id, String wachtwoord);
+    
+    
 }

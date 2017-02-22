@@ -87,7 +87,9 @@ public void accountsmenuZoId() {
    
    Account accountResultaat = new Account();
    
-     accountResultaat = accountController.findAccountByID(Acid);
+    // accountResultaat = accountController.findAccountByID(Acid);
+    accountResultaat = (AccountDAOfactory.getAccountDAO()).findAccountByID(Acid);
+     
    
      
    accountResultaat.setWachtwoord("");

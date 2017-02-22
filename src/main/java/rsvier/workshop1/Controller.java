@@ -15,6 +15,8 @@ import java.util.List;
 
 public class Controller {
     
+    private String settings = "target/classes/settings.xml";
+    
     // Foreign keys
     public boolean existsKlantId(int klantId) {
         SQLConnection sqlConnectie = new SQLConnection();

@@ -30,7 +30,7 @@ import org.xml.sax.SAXException;
  */
 public class Connector {
     
-    private String settings = "/home/jurjen/NetBeansProjects/Workshop1/target/classes/settings.xml";
+    private String settings = "target/classes/settings.xml";
     private String dbType;
     private String dbHost;
     private String dbDriver;
