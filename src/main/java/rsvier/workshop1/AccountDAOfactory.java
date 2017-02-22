@@ -30,7 +30,7 @@ public class AccountDAOfactory {
         
         
         String type = Connector.getConnector().getDbType();
-        
+        System.out.println(type);
         
         //geeft de string "MySQL" of "Firebird" uit de XML bestand.
         
