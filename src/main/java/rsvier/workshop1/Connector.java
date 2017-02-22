@@ -45,10 +45,13 @@ public class Connector {
     private Connector() {        
     }
     
-    public static Connector getConnector() {
+    public Connector getConnector() {
         if (connector == null) {
             connector = new Connector();
         }
+        Document doc = parse();
+        setDatabase(doc, "");
+        setConnection(doc, "");
         return connector;
     }
     
