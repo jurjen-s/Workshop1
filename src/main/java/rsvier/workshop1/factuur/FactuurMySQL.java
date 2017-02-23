@@ -19,12 +19,13 @@ import org.apache.logging.log4j.Logger;
  *
  * @author jurjen
  */
-public class FactuurSQL implements FactuurDAO {
+public class FactuurMySQL implements FactuurDAO {
 
-   private static final Logger LOGGER = LogManager.getLogger(FactuurSQL.class);
+   private static final Logger LOGGER = LogManager.getLogger(FactuurMySQL.class);
+   
    private Connection factuurconnectie;
    
-   public FactuurSQL(Connection connectie) {
+   public FactuurMySQL(Connection connectie) {
         this.factuurconnectie = connectie;
    }
     

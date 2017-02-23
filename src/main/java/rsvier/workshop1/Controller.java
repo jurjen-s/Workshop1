@@ -17,7 +17,7 @@ import rsvier.workshop1.klant.KlantSQL;
 import rsvier.workshop1.klant.KlantDAO;
 import rsvier.workshop1.factuur.Factuur;
 import rsvier.workshop1.factuur.FactuurDAO;
-import rsvier.workshop1.factuur.FactuurSQL;
+import rsvier.workshop1.factuur.FactuurMySQL;
 import rsvier.workshop1.bestelregel.BestelregelMySQL;
 import rsvier.workshop1.bestelregel.Bestelregel;
 import rsvier.workshop1.bestelregel.BestelregelDAO;
@@ -112,7 +112,7 @@ public class Controller {
     public boolean existsFactuurId(int factuurId) {
         SQLConnection sqlConnectie = new SQLConnection();
         Connection connectie = sqlConnectie.getSQLConnection();
-        FactuurDAO factuurDAO = new FactuurSQL(connectie);
+        FactuurDAO factuurDAO = new FactuurMySQL(connectie);
         Factuur factuur = factuurDAO.findFactuurById(factuurId);
         System.out.println(factuur.getFactuurId());
         if (factuur.getFactuurId() == 0) {

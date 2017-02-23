@@ -8,7 +8,7 @@ package rsvier.workshop1.factuur;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.util.List;
-import rsvier.workshop1.db.SQLConnection;
+import rsvier.workshop1.db.Connector;
 
 /**
  *
@@ -16,8 +16,9 @@ import rsvier.workshop1.db.SQLConnection;
  */
 public class FactuurController {
     
-    private Connection sqlConnectie = new SQLConnection().getSQLConnection();
-    private FactuurDAO factuurDAO = new FactuurSQL(sqlConnectie);
+     // Controller vraagt DAOfactory om een DAO waar Controller mee kan werken
+    FactuurDAOfactory factory = new FactuurDAOfactory();
+    FactuurDAO factuurDAO = factory.getBestellingDAO();
     
     public boolean maakFactuur(Factuur factuur) {
         return factuurDAO.maakFactuur(factuur);
