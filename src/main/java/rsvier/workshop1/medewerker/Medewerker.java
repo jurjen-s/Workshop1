@@ -76,7 +76,7 @@ public class Medewerker {
    
    
    public void getView(Medewerker medewerker){
-       System.out.println(" medewerker id : " + this.medewerker_id + " account id: " +this.medewerker_account_id+ " emai: "+this.email+" naam : " +this.voornaam  + " "+this.tussenvoegsel+" "+this.achternaam);
+       System.out.println(" medewerker id : " + this.medewerker_id + " account id: " +this.medewerker_account_id+ " email : "+this.email+" naam : " +this.voornaam  + " "+this.tussenvoegsel+" "+this.achternaam);
    }
    
     public String getView2(){
