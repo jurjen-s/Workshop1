@@ -965,3 +965,5 @@ Testlaan 1 1234 AA Nederland.
 2017-02-23 10:36:50,809 INFO r.w.d.SQLConnection [main] Verbonden met de MySQL database.
 2017-02-23 10:36:50,822 INFO r.w.d.SQLConnection [main] Verbonden met de MySQL database.
 2017-02-23 10:36:58,731 DEBUG r.w.a.AccountMySQL [main] Haal hashedwachtwoord terug via id van accountId: 1
+2017-02-23 10:40:55,799 INFO r.w.d.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-23 10:40:55,823 INFO r.w.d.SQLConnection [main] Verbonden met de MySQL database.
