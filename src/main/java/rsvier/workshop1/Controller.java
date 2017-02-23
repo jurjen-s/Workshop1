@@ -24,7 +24,7 @@ import rsvier.workshop1.bestelregel.BestelregelDAO;
 import rsvier.workshop1.bestelling.Bestelling;
 import rsvier.workshop1.bestelling.BestellingDAO;
 import rsvier.workshop1.bestelling.BestellingSQL;
-import rsvier.workshop1.adres.AdresSQL;
+import rsvier.workshop1.adres.AdresMySQL;
 import rsvier.workshop1.adres.Adres;
 import rsvier.workshop1.adres.AdresDAO;
 import rsvier.workshop1.account.AccountDAO;
@@ -59,7 +59,7 @@ public class Controller {
     public boolean existsAdresId(int adresId) {
         SQLConnection sqlConnectie = new SQLConnection();
         Connection connectie = sqlConnectie.getSQLConnection();
-        AdresDAO adresDAO = new AdresSQL(connectie);
+        AdresDAO adresDAO = new AdresMySQL(connectie);
         Adres adres = adresDAO.findAdresById(adresId);
         if (adres.getAdresId() == 0) {
             System.out.println("Opgegeven adresId niet gevonden.");

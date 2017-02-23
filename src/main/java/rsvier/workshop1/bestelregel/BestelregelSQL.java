@@ -5,7 +5,7 @@
  */
 package rsvier.workshop1.bestelregel;
 
-import rsvier.workshop1.adres.AdresSQL;
+import rsvier.workshop1.adres.AdresMySQL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +20,7 @@ import rsvier.workshop1.db.SQLConnection;
  */
 public class BestelregelSQL implements BestelregelDAO {
 
-    private static final Logger LOGGER = LogManager.getLogger(AdresSQL.class);
+    private static final Logger LOGGER = LogManager.getLogger(AdresMySQL.class);
     private Connection bestelregelconnectie;
     
     public BestelregelSQL() {

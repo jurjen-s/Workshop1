@@ -9,6 +9,6 @@ package rsvier.workshop1.adres;
  *
  * @author Frank
  */
-public class AdresSQL {
+public class AdresDAOfactory {
     
 }

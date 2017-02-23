@@ -9,7 +9,7 @@ import rsvier.workshop1.db.SQLConnection;
 import rsvier.workshop1.bestelling.Bestelling;
 import rsvier.workshop1.bestelling.BestellingDAO;
 import rsvier.workshop1.bestelling.BestellingSQL;
-import rsvier.workshop1.adres.AdresSQL;
+import rsvier.workshop1.adres.AdresMySQL;
 import rsvier.workshop1.adres.Adres;
 import rsvier.workshop1.adres.AdresDAO;
 import rsvier.workshop1.account.AccountDAO;
@@ -37,7 +37,7 @@ public class MaakDummies {
         accountDAO.deleteAccount(1);
     }
     public void dummyAdres() {
-        AdresDAO adresDAO = new AdresSQL(dummyconnectie);
+        AdresDAO adresDAO = new AdresMySQL(dummyconnectie);
         int adresType = 1;
         int klantId = 1;
         String straatnaam = "Teststraat";

@@ -16,7 +16,7 @@ import rsvier.workshop1.db.SQLConnection;
 public class AdresController {
     
     private Connection sqlConnectie = new SQLConnection().getSQLConnection();
-    private AdresDAO adresDAO = new AdresSQL(sqlConnectie);
+    private AdresDAO adresDAO = new AdresMySQL(sqlConnectie);
     
     Adres findAdresById(int adresId) {
         return adresDAO.findAdresById(adresId);
