@@ -7,18 +7,16 @@ package rsvier.workshop1.klant;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-import rsvier.workshop1.db.SQLConnection;
+import rsvier.workshop1.db.Connector;
 /**
  *
  * @author Frank
  */
 public class KlantController {
     
-    private SQLConnection connectie = new SQLConnection();
-    private Connection sqlConnectie = connectie.getSQLConnection();
-    
-    
-    private KlantDAO klantDAO = new KlantSQL(sqlConnectie);
+    // Controller vraagt DAOfactory om een DAO waar Controller mee kan werken
+    KlantDAOfactory factory = new KlantDAOfactory();
+    KlantDAO klantDAO = factory.getKlantDAO();
     
     
     

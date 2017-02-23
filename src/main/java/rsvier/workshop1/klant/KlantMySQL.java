@@ -17,20 +17,18 @@ import org.apache.logging.log4j.Logger;
  *
  * @author Frank
  */
-public class KlantSQL implements KlantDAO {
+public class KlantMySQL implements KlantDAO {
     
     
-     private static final Logger LOGGER = LogManager.getLogger(KlantSQL.class);
+     private static final Logger LOGGER = LogManager.getLogger(KlantMySQL.class);
     //specifieke connectie open laten.
+     
+     
     private Connection connectie;
     
     
     
-    
-    
-    
-    
-     public KlantSQL(Connection connectie) {
+     public KlantMySQL(Connection connectie) {
         this.connectie = connectie;
     }
     

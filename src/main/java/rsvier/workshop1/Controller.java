@@ -13,7 +13,7 @@ import rsvier.workshop1.medewerker.Medewerker;
 import rsvier.workshop1.medewerker.MedewerkerDAO;
 import rsvier.workshop1.medewerker.MedewerkerSQL;
 import rsvier.workshop1.klant.Klant;
-import rsvier.workshop1.klant.KlantSQL;
+import rsvier.workshop1.klant.KlantMySQL;
 import rsvier.workshop1.klant.KlantDAO;
 import rsvier.workshop1.factuur.Factuur;
 import rsvier.workshop1.factuur.FactuurDAO;
@@ -46,7 +46,7 @@ public class Controller {
     public boolean existsKlantId(int klantId) {
         SQLConnection sqlConnectie = new SQLConnection();
         Connection connectie = sqlConnectie.getSQLConnection();
-        KlantDAO klantDAO = new KlantSQL(connectie);
+        KlantDAO klantDAO = new KlantMySQL(connectie);
         List<Klant> klantlijst = klantDAO.findBijID(klantId);
         if (klantlijst.isEmpty()) {
             System.out.println("Opgegeven klantId niet gevonden.");
