@@ -6,7 +6,7 @@
 package rsvier.workshop1;
 
 import rsvier.workshop1.db.SQLConnection;
-import rsvier.workshop1.product.ProductSQL;
+import rsvier.workshop1.product.ProductMySQL;
 import rsvier.workshop1.product.ProductDAO;
 import rsvier.workshop1.product.Product;
 import rsvier.workshop1.medewerker.Medewerker;
@@ -72,7 +72,7 @@ public class Controller {
     public boolean existsProductId(int productId) {
         SQLConnection sqlConnectie = new SQLConnection();
         Connection connectie = sqlConnectie.getSQLConnection();
-        ProductDAO productDAO = new ProductSQL(connectie);
+        ProductDAO productDAO = new ProductMySQL(connectie);
         Product product = productDAO.findProductById(productId);
         if (product.getProductId() == 0) {
             System.out.println("Opgegeven productId niet gevonden.");
@@ -258,7 +258,7 @@ controller geeft dat door aan de juiste DAO en geeft resultaat terug aan view vo
     private SQLConnection connectie = new SQLConnection();
     private Connection sqlConnectie = connectie.getSQLConnection();
     private BestellingDAO bestellingDAO = new BestellingSQL(sqlConnectie);
-    private ProductDAO productDAO = new ProductSQL(sqlConnectie);
+    private ProductDAO productDAO = new ProductMySQL(sqlConnectie);
     private KlantInterface klantDAO = new KlantDAOinterfaceImpl(sqlConnectie);
     private Menu menu = new Menu();
  */   

@@ -21,7 +21,7 @@ import org.apache.logging.log4j.Logger;
  *
  * @author jurjen
  */
-public class ProductSQL implements ProductDAO {
+public class ProductMySQL implements ProductDAO {
     
     
     //logger maken
@@ -29,7 +29,7 @@ public class ProductSQL implements ProductDAO {
     
     //connectie maken
     private Connection productenconnectie;
-    public ProductSQL(Connection connectie) {
+    public ProductMySQL(Connection connectie) {
     this.productenconnectie = connectie;
     }
     
@@ -295,4 +295,4 @@ public class ProductSQL implements ProductDAO {
     } // einde verwijderenProduct(int productId)
 
     
-} // einde ProductSQL
+} // einde ProductMySQL

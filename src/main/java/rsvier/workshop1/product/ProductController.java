@@ -8,7 +8,7 @@ package rsvier.workshop1.product;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.util.List;
-import rsvier.workshop1.db.SQLConnection;
+import rsvier.workshop1.db.Connector;
 
 /**
  *
@@ -16,8 +16,11 @@ import rsvier.workshop1.db.SQLConnection;
  */
 public class ProductController {
     
-    private Connection sqlConnectie = new SQLConnection().getSQLConnection();
-    private ProductDAO productDAO = new ProductSQL(sqlConnectie);
+      
+   // Controller vraagt DAOfactory om een DAO waar Controller mee kan werken
+    ProductDAOfactory factory = new ProductDAOfactory();
+    ProductDAO productDAO = factory.getProductDAO();
+    
     
     public Product findProductById(int productId) {
         Product product = productDAO.findProductById(productId);
