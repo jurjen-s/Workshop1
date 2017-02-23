@@ -6,15 +6,16 @@
 package rsvier.workshop1.bestelregel;
 
 import java.sql.Connection;
-import rsvier.workshop1.db.SQLConnection;
+import rsvier.workshop1.db.Connector;
 
 /**
  *
  * @author jurjen
  */
 public class BestelregelController {
-    private Connection sqlConnectie = new SQLConnection().getSQLConnection();
-    private BestelregelDAO bestelregelDAO = new BestelregelSQL(sqlConnectie);
+    // Controller vraagt DAOfactory om een DAO waar Controller mee kan werken
+    BestelregelDAOfactory factory = new BestelregelDAOfactory();
+    BestelregelDAO bestelregelDAO = factory.getBestellingDAO();
     
     public Bestelregel findBestelregelById(int bestelregelId) {
         Bestelregel bestelregel = bestelregelDAO.findBestelregelByBestellingId(bestelregelId);

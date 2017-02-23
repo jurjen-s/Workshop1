@@ -54,7 +54,7 @@ public class Bestelregel {
     }
     
     public boolean toevoegenBestelregel(Bestelregel bestelregel) {
-        BestelregelDAO bestelregelDAO = new BestelregelSQL();
+        BestelregelDAO bestelregelDAO = new BestelregelMySQL();
         bestelregelDAO.toevoegenBestelregel(bestelregel);
         return true;
     }

@@ -18,7 +18,7 @@ import rsvier.workshop1.klant.KlantDAO;
 import rsvier.workshop1.factuur.Factuur;
 import rsvier.workshop1.factuur.FactuurDAO;
 import rsvier.workshop1.factuur.FactuurSQL;
-import rsvier.workshop1.bestelregel.BestelregelSQL;
+import rsvier.workshop1.bestelregel.BestelregelMySQL;
 import rsvier.workshop1.bestelregel.Bestelregel;
 import rsvier.workshop1.bestelregel.BestelregelDAO;
 import rsvier.workshop1.bestelling.Bestelling;
@@ -126,7 +126,7 @@ public class Controller {
     public boolean existsBestelregelId(int bestelregelId) {
         SQLConnection sqlConnectie = new SQLConnection();
         Connection connectie = sqlConnectie.getSQLConnection();
-        BestelregelDAO bestelregelDAO = new BestelregelSQL(connectie);
+        BestelregelDAO bestelregelDAO = new BestelregelMySQL(connectie);
         Bestelregel bestelregel = bestelregelDAO.findBestelregelById(bestelregelId);
         System.out.println(bestelregel.getBestelregelId());
         if (bestelregel.getBestelregelId() == 0) {

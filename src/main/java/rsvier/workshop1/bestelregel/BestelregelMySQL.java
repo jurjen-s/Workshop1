@@ -12,23 +12,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import rsvier.workshop1.db.SQLConnection;
+import rsvier.workshop1.db.Connector;
 
 /**
  *
  * @author jurjen
  */
-public class BestelregelSQL implements BestelregelDAO {
+public class BestelregelMySQL implements BestelregelDAO {
 
     private static final Logger LOGGER = LogManager.getLogger(AdresMySQL.class);
+    
+    
+    
     private Connection bestelregelconnectie;
     
-    public BestelregelSQL() {
-        SQLConnection sqlConnectie = new SQLConnection();
-        this.bestelregelconnectie = sqlConnectie.getSQLConnection();
-    }
-    public BestelregelSQL(Connection connectie) {
+    public BestelregelMySQL(Connection connectie) {
         this.bestelregelconnectie = connectie;
+    }
+
+    BestelregelMySQL() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     @Override
