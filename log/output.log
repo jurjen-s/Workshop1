@@ -975,3 +975,174 @@ Testlaan 1 1234 AA Nederland.
 2017-02-23 14:42:35,889 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
 2017-02-23 14:45:13,475 DEBUG r.w.p.ProductMySQL [main] Input  in findProductById is 1
 2017-02-23 14:45:13,569 DEBUG r.w.p.ProductMySQL [main] output findProductById : Product Id is : 1 omschrijving is : jamjamkaas soort is : romig prijs is : 4.00 voorraad aantal is : 10.
+2017-02-23 15:24:59,563 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:26:59,793 DEBUG r.w.a.Inlogmenu [main] In inputs waren wachtwoord: test123 , en type 2 
+2017-02-23 15:26:59,800 DEBUG r.w.a.AccountMySQL [main] In inputs waren wachtwoord: test123 , en type 2 
+2017-02-23 15:27:00,078 DEBUG r.w.a.AccountMySQL [main] In inputs waren workload: 13 , en salt $2a$13$MrPOkF2ZjG8gqtV5gWSf0O 
+2017-02-23 15:27:01,011 DEBUG r.w.a.AccountMySQL [main] In outputs waren hashed_password: $2a$13$MrPOkF2ZjG8gqtV5gWSf0OhX2j3RJC28NyM9C6CP21J.9Y23/5bya 
+2017-02-23 15:27:01,011 DEBUG r.w.a.AccountMySQL [main] Aanmaken account met type 2 en wachtwoordtest123 en salt $2a$13$MrPOkF2ZjG8gqtV5gWSf0O.
+2017-02-23 15:27:01,358 INFO r.w.a.AccountMySQL [main] Account gegevens zijn succesvol aangemaakt.
+2017-02-23 15:27:01,360 DEBUG r.w.a.AccountMySQL [main] Resultaat aanmaken account: id: 5 type : 2 wachtwoord: $2a$13$MrPOkF2ZjG8gqtV5gWSf0OhX2j3RJC28NyM9C6CP21J.9Y23/5bya
+2017-02-23 15:28:32,027 DEBUG r.w.a.AccountMySQL [main] Haal hashedwachtwoord terug via id van accountId: 5
+2017-02-23 15:28:51,912 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:28:52,158 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:29:41,767 DEBUG r.w.m.MedewerkerMySQL [main] Input in createMedewerker is 5help@gmail.comBoerPiet
+2017-02-23 15:29:42,186 DEBUG r.w.m.MedewerkerMySQL [main] output createMedewerker is :2		5		help@gmail.com		Boer				Piet
+2017-02-23 15:30:41,010 DEBUG r.w.m.MedewerkerMySQL [main] Id in findMedewerkerByID is 2
+2017-02-23 15:30:41,016 DEBUG r.w.m.MedewerkerMySQL [main] output findMedewerkerByID is :2		5		help@gmail.com		Boer				Piet
+2017-02-23 15:30:41,016 DEBUG r.w.m.MedewerkerMySQL [main] Id in findMedewerkerByID is 2
+2017-02-23 15:30:41,019 DEBUG r.w.m.MedewerkerMySQL [main] output findMedewerkerByID is :2		5		help@gmail.com		Boer				Piet
+2017-02-23 15:30:51,544 DEBUG r.w.m.MedewerkerMySQL [main] Id in findMedewerkerByID is 54548454
+2017-02-23 15:30:51,547 DEBUG r.w.m.MedewerkerMySQL [main] output findMedewerkerByID is :0		0		null		null		null		null
+2017-02-23 15:31:03,970 DEBUG r.w.m.MedewerkerMySQL [main] Id in findMedewerkerByID is 2
+2017-02-23 15:31:03,973 DEBUG r.w.m.MedewerkerMySQL [main] output findMedewerkerByID is :2		5		help@gmail.com		Boer				Piet
+2017-02-23 15:31:03,974 DEBUG r.w.m.MedewerkerMySQL [main] Id in findMedewerkerByID is 2
+2017-02-23 15:31:03,976 DEBUG r.w.m.MedewerkerMySQL [main] output findMedewerkerByID is :2		5		help@gmail.com		Boer				Piet
+2017-02-23 15:31:36,861 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:32:56,272 DEBUG r.w.p.ProductMySQL [main] Input  in toevoegenProduct is  Product Id is : 0 omschrijving is : Gelderse Kaas soort is : 50+ prijs is : 34.99 voorraad aantal is : 100.
+2017-02-23 15:32:56,561 DEBUG r.w.p.ProductMySQL [main] output toevoegenProduct is  true
+2017-02-23 15:33:40,689 DEBUG r.w.p.ProductMySQL [main] Input  in findProductById is 1
+2017-02-23 15:33:40,694 DEBUG r.w.p.ProductMySQL [main] output findProductById : Product Id is : 1 omschrijving is : zwarte peper kaas soort is : Eastern prijs is : 50.00 voorraad aantal is : 20.
+2017-02-23 15:33:51,018 DEBUG r.w.p.ProductMySQL [main] Input  in findProductBySoort is 50+
+2017-02-23 15:33:51,023 DEBUG r.w.p.ProductMySQL [main] output findProductBySoort is :[ Product Id is : 2 omschrijving is : Gelderse Kaas soort is : 50+ prijs is : 34.99 voorraad aantal is : 100.]
+2017-02-23 15:34:40,984 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:35:51,774 DEBUG r.w.k.KlantMySQL [main] input bij create klant is 0 0 0 0 0 0
+2017-02-23 15:35:52,056 ERROR r.w.k.KlantMySQL [main] Er gaat iets mis met het maken van een klant Cannot add or update a child row: a foreign key constraint fails (`mydb`.`klanten`, CONSTRAINT `FK_klanten_accounts_id` FOREIGN KEY (`FK_klanten_accounts_id`) REFERENCES `accounts` (`accounts_id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+2017-02-23 15:35:52,057 DEBUG r.w.k.KlantMySQL [main] output bij create klant  is klanten id : 0 voornaam is null tussenvoegsel isnull achternaam is :null telnr. null account id0 
+2017-02-23 15:37:03,534 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:37:03,548 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:37:27,904 DEBUG r.w.a.AccountMySQL [main] In inputs waren wachtwoord: test111 , en type 1 
+2017-02-23 15:37:27,906 DEBUG r.w.a.AccountMySQL [main] In inputs waren workload: 13 , en salt $2a$13$Te2JZcdTQJKor2EorB/bMO 
+2017-02-23 15:37:28,820 DEBUG r.w.a.AccountMySQL [main] In outputs waren hashed_password: $2a$13$Te2JZcdTQJKor2EorB/bMOwChbaTA4CjAyzZ.k0eF/89Q2fBGOr8u 
+2017-02-23 15:37:28,821 DEBUG r.w.a.AccountMySQL [main] Aanmaken account met type 1 en wachtwoordtest111 en salt $2a$13$Te2JZcdTQJKor2EorB/bMO.
+2017-02-23 15:37:28,926 INFO r.w.a.AccountMySQL [main] Account gegevens zijn succesvol aangemaakt.
+2017-02-23 15:37:28,927 DEBUG r.w.a.AccountMySQL [main] Resultaat aanmaken account: id: 6 type : 1 wachtwoord: $2a$13$Te2JZcdTQJKor2EorB/bMOwChbaTA4CjAyzZ.k0eF/89Q2fBGOr8u
+2017-02-23 15:37:43,248 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:38:58,060 DEBUG r.w.k.KlantMySQL [main] input bij create klant is 6 Henk 1 de Groot 06-12312311
+2017-02-23 15:38:58,130 DEBUG r.w.k.KlantMySQL [main] output bij create klant  is klanten id : 4 voornaam is Henk tussenvoegsel isde achternaam is :Groot telnr. 06-12312311 account id6 
+2017-02-23 15:39:29,752 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:39:29,780 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:39:53,004 DEBUG r.w.k.KlantMySQL [main] input bij findBijID is 15
+2017-02-23 15:39:53,007 DEBUG r.w.k.KlantMySQL [main] output bij findBijID is klanten id : 0 voornaam is null tussenvoegsel isnull achternaam is :null telnr. null account id0 
+2017-02-23 15:40:09,747 DEBUG r.w.k.KlantMySQL [main] input bij findBijID is 4
+2017-02-23 15:40:09,751 DEBUG r.w.k.KlantMySQL [main] output bij findBijID is klanten id : 0 voornaam is null tussenvoegsel isnull achternaam is :null telnr. null account id0 
+2017-02-23 15:40:30,599 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:40:30,617 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:41:06,299 DEBUG r.w.k.KlantMySQL [main] input bij findBijID is 4
+2017-02-23 15:41:06,303 DEBUG r.w.k.KlantMySQL [main] output bij findBijID is klanten id : 0 voornaam is null tussenvoegsel isnull achternaam is :null telnr. null account id0 
+2017-02-23 15:41:40,083 DEBUG r.w.a.AdresMySQL [main] Input  in toevoegenAdres is Adres 0, factuuradres van klant 4: Lindenlaan 498A 1234 ED Nederland.
+
+2017-02-23 15:41:40,198 INFO r.w.a.AdresMySQL [main] Nieuw adres aangemaakt met ID:1
+2017-02-23 15:41:40,199 DEBUG r.w.a.AdresMySQL [main] output toevoegenAdres :Adres 1, factuuradres van klant 4: Lindenlaan 498A 1234 ED Nederland.
+
+2017-02-23 15:42:41,379 DEBUG r.w.a.AdresMySQL [main] Input  in findAdresById is 1
+2017-02-23 15:42:41,385 DEBUG r.w.a.AdresMySQL [main] output findAdresByID :Adres 1, factuuradres van klant 4: Lindenlaan 498 1234 ED Nederland.
+
+2017-02-23 15:42:51,403 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:42:51,409 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:43:10,383 DEBUG r.w.k.KlantMySQL [main] input bij findBijID is 4
+2017-02-23 15:43:10,387 DEBUG r.w.k.KlantMySQL [main] output bij findBijID is klanten id : 0 voornaam is null tussenvoegsel isnull achternaam is :null telnr. null account id0 
+2017-02-23 15:43:18,907 DEBUG r.w.a.AdresMySQL [main] Input  in findAdresById is 1
+2017-02-23 15:43:18,913 DEBUG r.w.a.AdresMySQL [main] output findAdresByID :Adres 1, factuuradres van klant 4: Lindenlaan 498 1234 ED Nederland.
+
+2017-02-23 15:43:45,090 DEBUG r.w.b.BestellingMySQL [main] Toevoegen bestelling Bestelling 0, behorende bij klant 4 en adres 1, heeft 2 artikelen met een totaalprijs van 6.68 Euro.
+2017-02-23 15:43:45,452 DEBUG r.w.b.BestellingMySQL [main] Output toevoegen: Bestelling 1, behorende bij klant 4 en adres 1, heeft 2 artikelen met een totaalprijs van 6.68 Euro.
+2017-02-23 15:44:33,700 DEBUG r.w.b.BestellingMySQL [main] Zoek bestelling op id 1
+2017-02-23 15:44:33,703 DEBUG r.w.b.BestellingMySQL [main] Output zoeken op bestellingId: Bestelling 1, behorende bij klant 4 en adres 1, heeft 2 artikelen met een totaalprijs van 6.68 Euro.
+2017-02-23 15:45:13,019 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:45:13,044 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:45:24,520 DEBUG r.w.b.BestellingMySQL [main] Zoek bestelling op id 1
+2017-02-23 15:45:24,523 DEBUG r.w.b.BestellingMySQL [main] Output zoeken op bestellingId: Bestelling 1, behorende bij klant 4 en adres 1, heeft 2 artikelen met een totaalprijs van 6.68 Euro.
+2017-02-23 15:45:42,461 DEBUG r.w.p.ProductMySQL [main] Input  in findProductById is 1
+2017-02-23 15:45:42,467 DEBUG r.w.p.ProductMySQL [main] output findProductById : Product Id is : 1 omschrijving is : zwarte peper kaas soort is : Eastern prijs is : 50.00 voorraad aantal is : 20.
+2017-02-23 15:45:58,423 DEBUG r.w.b.BestelregelMySQL [main] Toevoegen bestelregel: Bestelregel 0 hoort bij bestelling 1 en bevat 2 keer product 1.
+2017-02-23 15:46:13,654 DEBUG r.w.b.BestelregelMySQL [main] Zoeken bestelregel op bestellingId: 1
+2017-02-23 15:46:13,659 ERROR r.w.b.BestelregelMySQL [main] Het volgende ging verkeerd bij zoeken: Column 'bestelregels_id' not found.
+2017-02-23 15:46:13,660 DEBUG r.w.b.BestelregelMySQL [main] Output zoeken op bestellingId: Bestelregel 0 hoort bij bestelling 0 en bevat 0 keer product 0.
+2017-02-23 15:46:26,189 DEBUG r.w.b.BestelregelMySQL [main] Zoeken bestelregel op bestellingId: 3
+2017-02-23 15:46:26,191 DEBUG r.w.b.BestelregelMySQL [main] Output zoeken op bestellingId: Bestelregel 0 hoort bij bestelling 0 en bevat 0 keer product 0.
+2017-02-23 15:46:46,651 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:46:46,664 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:47:01,383 DEBUG r.w.b.BestelregelMySQL [main] Zoeken bestelregel op bestellingId: 1
+2017-02-23 15:47:01,537 ERROR r.w.b.BestelregelMySQL [main] Het volgende ging verkeerd bij zoeken: Column 'bestelregels_id' not found.
+2017-02-23 15:47:01,538 DEBUG r.w.b.BestelregelMySQL [main] Output zoeken op bestellingId: Bestelregel 0 hoort bij bestelling 0 en bevat 0 keer product 0.
+2017-02-23 15:52:57,320 DEBUG r.w.b.BestelregelMySQL [main] Zoeken bestelregel op bestellingId: 1
+2017-02-23 15:52:57,328 DEBUG r.w.b.BestelregelMySQL [main] Output zoeken op bestellingId: Bestelregel 0 hoort bij bestelling 0 en bevat 0 keer product 0.
+2017-02-23 15:53:31,350 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:53:41,232 DEBUG r.w.a.Inlogmenu [main] In inputs waren wachtwoord: test123 , en type 2 
+2017-02-23 15:53:41,234 DEBUG r.w.a.AccountMySQL [main] In inputs waren wachtwoord: test123 , en type 2 
+2017-02-23 15:53:41,346 DEBUG r.w.a.AccountMySQL [main] In inputs waren workload: 13 , en salt $2a$13$TOoy/Nr2EjVlVtQUjxPsJu 
+2017-02-23 15:53:42,304 DEBUG r.w.a.AccountMySQL [main] In outputs waren hashed_password: $2a$13$TOoy/Nr2EjVlVtQUjxPsJugE5FByl07fhwAinoN4/1LDKnboM4a2e 
+2017-02-23 15:53:42,304 DEBUG r.w.a.AccountMySQL [main] Aanmaken account met type 2 en wachtwoordtest123 en salt $2a$13$TOoy/Nr2EjVlVtQUjxPsJu.
+2017-02-23 15:53:42,408 INFO r.w.a.AccountMySQL [main] Account gegevens zijn succesvol aangemaakt.
+2017-02-23 15:53:42,409 DEBUG r.w.a.AccountMySQL [main] Resultaat aanmaken account: id: 1 type : 2 wachtwoord: $2a$13$TOoy/Nr2EjVlVtQUjxPsJugE5FByl07fhwAinoN4/1LDKnboM4a2e
+2017-02-23 15:53:48,342 DEBUG r.w.a.AccountMySQL [main] Haal hashedwachtwoord terug via id van accountId: 1
+2017-02-23 15:53:54,464 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:53:54,477 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:54:27,746 DEBUG r.w.m.MedewerkerMySQL [main] Input in createMedewerker is 1hoi@hoi.nlBoerPiet
+2017-02-23 15:54:27,805 DEBUG r.w.m.MedewerkerMySQL [main] output createMedewerker is :1		1		hoi@hoi.nl		Boer				Piet
+2017-02-23 15:54:39,583 DEBUG r.w.m.MedewerkerMySQL [main] Id in findMedewerkerByID is 1
+2017-02-23 15:54:39,587 DEBUG r.w.m.MedewerkerMySQL [main] output findMedewerkerByID is :1		1		hoi@hoi.nl		Boer				Piet
+2017-02-23 15:54:39,587 DEBUG r.w.m.MedewerkerMySQL [main] Id in findMedewerkerByID is 1
+2017-02-23 15:54:39,590 DEBUG r.w.m.MedewerkerMySQL [main] output findMedewerkerByID is :1		1		hoi@hoi.nl		Boer				Piet
+2017-02-23 15:54:48,013 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:55:27,612 DEBUG r.w.p.ProductMySQL [main] Input  in toevoegenProduct is  Product Id is : 0 omschrijving is : Lekkere brie uit zuid Frankrijk 70+ , een beetje vettig soort is : Brie 70+ prijs is : 15 voorraad aantal is : 100.
+2017-02-23 15:55:27,642 ERROR r.w.p.ProductMySQL [main] Er gaat iets mis met het toevoegen van het product Data truncation: Data too long for column 'omschrijving' at row 1
+2017-02-23 15:56:13,336 DEBUG r.w.p.ProductMySQL [main] Input  in toevoegenProduct is  Product Id is : 0 omschrijving is : lekkere brie uit Zuid-Frankrijk soort is : Brie 70+ prijs is : 20 voorraad aantal is : 100.
+2017-02-23 15:56:13,384 DEBUG r.w.p.ProductMySQL [main] output toevoegenProduct is  true
+2017-02-23 15:56:24,468 DEBUG r.w.p.ProductMySQL [main] Input  in findProductById is 1
+2017-02-23 15:56:24,475 DEBUG r.w.p.ProductMySQL [main] output findProductById : Product Id is : 1 omschrijving is : lekkere brie uit Zuid-Frankrijk soort is : Brie 70+ prijs is : 20.00 voorraad aantal is : 100.
+2017-02-23 15:56:47,640 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:56:47,652 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:57:00,467 DEBUG r.w.a.AccountMySQL [main] In inputs waren wachtwoord: wachtwoord , en type 1 
+2017-02-23 15:57:00,467 DEBUG r.w.a.AccountMySQL [main] In inputs waren workload: 13 , en salt $2a$13$O7lfOdRYEd5BgDzQ.sKLfO 
+2017-02-23 15:57:01,407 DEBUG r.w.a.AccountMySQL [main] In outputs waren hashed_password: $2a$13$O7lfOdRYEd5BgDzQ.sKLfOfRNKu5I67NAH0CQh/mWPAZlCIiyOUv. 
+2017-02-23 15:57:01,408 DEBUG r.w.a.AccountMySQL [main] Aanmaken account met type 1 en wachtwoordwachtwoord en salt $2a$13$O7lfOdRYEd5BgDzQ.sKLfO.
+2017-02-23 15:57:01,490 INFO r.w.a.AccountMySQL [main] Account gegevens zijn succesvol aangemaakt.
+2017-02-23 15:57:01,490 DEBUG r.w.a.AccountMySQL [main] Resultaat aanmaken account: id: 2 type : 1 wachtwoord: $2a$13$O7lfOdRYEd5BgDzQ.sKLfOfRNKu5I67NAH0CQh/mWPAZlCIiyOUv.
+2017-02-23 15:57:15,416 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:57:49,616 DEBUG r.w.k.KlantMySQL [main] input bij create klant is 2 Eerste 0  Koper 06-11122233
+2017-02-23 15:57:49,669 DEBUG r.w.k.KlantMySQL [main] output bij create klant  is klanten id : 1 voornaam is Eerste tussenvoegsel is achternaam is :Koper telnr. 06-11122233 account id2 
+2017-02-23 15:58:02,374 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:58:02,382 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:58:21,516 DEBUG r.w.k.KlantMySQL [main] input bij findBijID is 1
+2017-02-23 15:58:21,524 DEBUG r.w.k.KlantMySQL [main] output bij findBijID is klanten id : 0 voornaam is null tussenvoegsel isnull achternaam is :null telnr. null account id0 
+2017-02-23 15:58:47,681 DEBUG r.w.a.AdresMySQL [main] Input  in toevoegenAdres is Adres 0, factuuradres van klant 1: Lindenlaan 3994 3333 EE België.
+
+2017-02-23 15:58:47,742 INFO r.w.a.AdresMySQL [main] Nieuw adres aangemaakt met ID:1
+2017-02-23 15:58:47,743 DEBUG r.w.a.AdresMySQL [main] output toevoegenAdres :Adres 1, factuuradres van klant 1: Lindenlaan 3994 3333 EE België.
+
+2017-02-23 15:59:17,158 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:59:17,172 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 15:59:31,301 DEBUG r.w.k.KlantMySQL [main] input bij findBijID is 1
+2017-02-23 15:59:31,306 DEBUG r.w.k.KlantMySQL [main] output bij findBijID is klanten id : 0 voornaam is null tussenvoegsel isnull achternaam is :null telnr. null account id0 
+2017-02-23 15:59:33,812 DEBUG r.w.a.AdresMySQL [main] Input  in findAdresById is 1
+2017-02-23 15:59:33,817 DEBUG r.w.a.AdresMySQL [main] output findAdresByID :Adres 1, factuuradres van klant 1: Lindenlaan 3994 3333 EE België.
+
+2017-02-23 15:59:47,752 DEBUG r.w.b.BestellingMySQL [main] Toevoegen bestelling Bestelling 0, behorende bij klant 1 en adres 1, heeft 2 artikelen met een totaalprijs van 40 Euro.
+2017-02-23 15:59:47,796 DEBUG r.w.b.BestellingMySQL [main] Output toevoegen: Bestelling 1, behorende bij klant 1 en adres 1, heeft 2 artikelen met een totaalprijs van 40 Euro.
+2017-02-23 16:00:18,618 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 16:00:18,624 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 16:00:27,941 DEBUG r.w.b.BestellingMySQL [main] Zoek bestelling op id 1
+2017-02-23 16:00:27,948 DEBUG r.w.b.BestellingMySQL [main] Output zoeken op bestellingId: Bestelling 1, behorende bij klant 1 en adres 1, heeft 2 artikelen met een totaalprijs van 40.00 Euro.
+2017-02-23 16:00:32,151 DEBUG r.w.p.ProductMySQL [main] Input  in findProductById is 1
+2017-02-23 16:00:32,153 DEBUG r.w.p.ProductMySQL [main] output findProductById : Product Id is : 1 omschrijving is : lekkere brie uit Zuid-Frankrijk soort is : Brie 70+ prijs is : 20.00 voorraad aantal is : 100.
+2017-02-23 16:00:36,864 DEBUG r.w.b.BestelregelMySQL [main] Toevoegen bestelregel: Bestelregel 0 hoort bij bestelling 1 en bevat 3 keer product 1.
+2017-02-23 16:01:15,465 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 16:01:15,471 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 16:01:18,772 DEBUG r.w.b.BestellingMySQL [main] Zoek bestelling op id 1
+2017-02-23 16:01:18,793 DEBUG r.w.b.BestellingMySQL [main] Output zoeken op bestellingId: Bestelling 1, behorende bij klant 1 en adres 1, heeft 2 artikelen met een totaalprijs van 40.00 Euro.
+2017-02-23 16:02:16,513 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 16:06:38,194 DEBUG r.w.a.AccountMySQL [main] Haal hashedwachtwoord terug via id van accountId: 111
+2017-02-23 16:07:21,790 DEBUG r.w.a.AccountMySQL [main] Haal hashedwachtwoord terug via id van accountId: 1
+2017-02-23 16:07:44,836 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 16:07:54,913 DEBUG r.w.a.AccountMySQL [main] Haal hashedwachtwoord terug via id van accountId: 1
+2017-02-23 16:08:05,947 DEBUG r.w.a.AccountMySQL [main] Haal hashedwachtwoord terug via id van accountId: 1
+2017-02-23 16:27:16,768 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 16:27:24,310 DEBUG r.w.a.Inlogmenu [main] In inputs waren wachtwoord: 1 , en type 1 
+2017-02-23 16:27:24,315 DEBUG r.w.a.AccountMySQL [main] In inputs waren wachtwoord: 1 , en type 1 
+2017-02-23 16:27:24,494 DEBUG r.w.a.AccountMySQL [main] In inputs waren workload: 13 , en salt $2a$13$ERin0a9Lewb4fGeikUVVDe 
+2017-02-23 16:27:25,343 DEBUG r.w.a.AccountMySQL [main] In outputs waren hashed_password: $2a$13$ERin0a9Lewb4fGeikUVVDeeL8qpkZz.CBT/XnH2q9VGaSBtqevk5u 
+2017-02-23 16:27:25,343 DEBUG r.w.a.AccountMySQL [main] Aanmaken account met type 1 en wachtwoord1 en salt $2a$13$ERin0a9Lewb4fGeikUVVDe.
+2017-02-23 16:27:25,462 INFO r.w.a.AccountMySQL [main] Account gegevens zijn succesvol aangemaakt.
+2017-02-23 16:27:25,462 DEBUG r.w.a.AccountMySQL [main] Resultaat aanmaken account: id: 3 type : 1 wachtwoord: $2a$13$ERin0a9Lewb4fGeikUVVDeeL8qpkZz.CBT/XnH2q9VGaSBtqevk5u

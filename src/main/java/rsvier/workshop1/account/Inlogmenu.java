@@ -115,15 +115,16 @@ else{ System.out.println("foute cijfer waarde probeer opnieuw"); inlogMenu(); }
         
         LOGGER.debug("In inputs waren wachtwoord: {} , en type {} ", wachtwoord, type);
                 
-                
-       accountController.createAccount(type, wachtwoord);
+          Account a = new Account();
+        
+        a= accountController.createAccount(type, wachtwoord);
        
        
          
                   
+          System.out.println("uw account is : "+ a.toStringWachtwoordloos() );
                   
-                  
-          System.out.println("uw type is : "+ type );
+          
          
           //System.out.println("uw wachtwoord is : "+ wachtwoord);
           
