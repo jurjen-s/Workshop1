@@ -5,10 +5,31 @@
  */
 package rsvier.workshop1.bestelling;
 
+import java.sql.Connection;
+import rsvier.workshop1.db.Connector;
+import rsvier.workshop1.db.DbConfigurator;
+
 /**
  *
  * @author Frank
  */
 public class BestellingDAOfactory {
+    // DAOfactory vraagt Connector om een connectie te geven (Connector doet dat op basis van databasetype)
+    // Factory kijkt naar ingesteld databasetype en geeft de juiste implementatie van de DAO terug
+    // Factory geeft wel supertype (de DAO) van die implemenatie terug
+    private Connector connector = new Connector();
+    private Connection connectie = connector.getConnection();
+    private DbConfigurator dbConfigurator = DbConfigurator.getDbConfigurator();
     
-}
+    public BestellingDAO getBestellingDAO() {
+        String type = dbConfigurator.getDbType();
+        if (type.equals("MYSQL")) {
+            return new BestellingMySQL(connectie);
+        } else if (type.equals("FIREBIRD")) {
+            return new BestellingFireBird(connectie);
+        }
+        return null;        
+    }
+}   
+    
+

@@ -35,43 +35,18 @@ public class AdresDAOfactory {
      public AdresDAO getAdresDAO(){
          
         
-        
-        String type = DbConfigurator.getDbConfigurator().getDbType();
-        System.out.println(type);
-        
-        //geeft de string "MySQL" of "Firebird" uit de XML bestand.
-        
-        
-        
-        label:
-        while(true){
+        String type = dbConfigurator.getDbType();
         if (type.equalsIgnoreCase("MYSQL")) {
-           System.out.println("MySQL is de database");
-             AdresDAO mysql = new AdresMySQL(connectie);
-             
-             return mysql;
-             //return new AccountMySQLSQL;  
-          //  return new AccountSQL();    
-        } else if (type.equalsIgnoreCase("Firebird")) {
-            System.out.println("Firebird is de database");
-                return new AdresFireBird();
+            return new AdresMySQL(connectie);
+        } else if (type.equalsIgnoreCase("FIREBIRD")) {
+            return new AdresFireBird(connectie);
         }
-        else{ //Zoekt een default
-        System.out.println("geen SQL config gegeven: type Firebird of MySQL of overige");
-        System.out.println("We nemen de default db met MySQL");
-          type =  "";
-          
-        DbConfigurator dbConfigurator = DbConfigurator.getDbConfigurator();
+        return null;        
+    }   
+}  
         
         
-        dbConfigurator.setDatabase(type);
         
-        type = dbConfigurator.getDbType();
-        
-        }
-        }
-     }
-}
         
         
          

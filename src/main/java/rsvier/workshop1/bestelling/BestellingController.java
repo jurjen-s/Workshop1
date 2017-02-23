@@ -8,7 +8,7 @@ package rsvier.workshop1.bestelling;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.util.List;
-import rsvier.workshop1.db.SQLConnection;
+import rsvier.workshop1.db.Connector;
 
 /**
  *
@@ -16,9 +16,9 @@ import rsvier.workshop1.db.SQLConnection;
  */
 public class BestellingController {
     
-    private Connection sqlConnectie = new SQLConnection().getSQLConnection();
-    private BestellingDAO bestellingDAO = new BestellingMySQL(sqlConnectie);
-    //private BestellingMenu bestellingMenu = new BestellingMenu();
+   // Controller vraagt DAOfactory om een DAO waar Controller mee kan werken
+    BestellingDAOfactory factory = new BestellingDAOfactory();
+    BestellingDAO bestellingDAO = factory.getBestellingDAO();
     
     public Bestelling findBestellingById(int bestellingId) {
         Bestelling bestelling = bestellingDAO.findBestellingById(bestellingId);

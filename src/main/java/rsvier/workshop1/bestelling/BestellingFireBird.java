@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rsvier.workshop1.adres;
+package rsvier.workshop1.bestelling;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.util.List;
 
@@ -12,85 +13,77 @@ import java.util.List;
  *
  * @author Frank
  */
-public class AdresFireBird  implements AdresDAO {
-    
+public class BestellingFireBird implements BestellingDAO{
+
     private Connection connectie;
 
-    AdresFireBird(Connection connectie) {
+    BestellingFireBird(Connection connectie) {
        this.connectie = connectie;
     }
     
     
     
     
-
+    
+    
+    
     @Override
-    public Adres findAdresById(int adresId) {
+    public Bestelling findBestellingById(int bestellingId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List findAdresByType(int adresType) {
+    public List findBestellingByKlantId(int klantId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List findAdresByKlantId(int klantId) {
+    public List findBestellingByAdresId(int adresId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List findAdresByPostcode(String postcode) {
+    public List findBestellingByAantalArtikelen(int aantal) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List findAdresByLand(String land) {
+    public List findBestellingByTotaalprijs(BigDecimal prijs) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Adres toevoegenAdres(Adres adres) {
+    public Bestelling toevoegenBestelling(Bestelling opgegevenBestelling) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteAdres(int AdresID) {
+    public boolean updateBestellingKlantId(int bestellingId, int klantId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateAdresType(int adresId, int adresType) {
+    public boolean updateBestellingAdresId(int bestellingId, int adresId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateAdresStraatnaam(int adresId, String straatnaam) {
+    public boolean updateBestellingAantalArtikelen(int bestellingId, int aantalArtikelen) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateAdresHuisnummer(int adresId, int huisnummer) {
+    public boolean updateBestellingTotaalprijs(int bestellingId, BigDecimal totaalprijs) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateAdresHeeftHuisnrToevoeging(int adresId, int heeftHuisnrToevoeging) {
+    public boolean deleteBestelling(int bestellingId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateAdresHuisnrToevoeging(int adresId, String huisnrToevoeging) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean updateAdresPostcode(int adresId, String postcode) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean updateAdresLand(int adresId, String land) {
+    public void bekijkBestelling(int bestellingId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
