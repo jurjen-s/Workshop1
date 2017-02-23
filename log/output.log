@@ -959,3 +959,9 @@ Testlaan 1 1234 AA Nederland.
 2017-02-20 11:09:06,833 DEBUG r.w.AccountSQL [main] Aanmaken account met type 1 en wachtwoordhoi en salt $2a$13$6cRlyOXTlmZvcILQrzwl/e.
 2017-02-20 11:09:06,967 INFO r.w.AccountSQL [main] Account gegevens zijn succesvol aangemaakt.
 2017-02-20 11:09:06,967 DEBUG r.w.AccountSQL [main] Resultaat aanmaken account: id: 2 type : 1 wachtwoord: $2a$13$6cRlyOXTlmZvcILQrzwl/eBKhl57ufX.yy8FtFjMeeFW.fJqBI1mS
+2017-02-23 10:08:27,436 INFO r.w.d.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-23 10:08:27,494 INFO r.w.d.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-23 10:08:35,724 DEBUG r.w.a.AccountMySQL [main] Haal hashedwachtwoord terug via id van accountId: 1
+2017-02-23 10:36:50,809 INFO r.w.d.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-23 10:36:50,822 INFO r.w.d.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-23 10:36:58,731 DEBUG r.w.a.AccountMySQL [main] Haal hashedwachtwoord terug via id van accountId: 1

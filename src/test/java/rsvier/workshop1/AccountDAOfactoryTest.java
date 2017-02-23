@@ -5,6 +5,8 @@
  */
 package rsvier.workshop1;
 
+import rsvier.workshop1.account.AccountSQL;
+import rsvier.workshop1.account.AccountDAOfactory;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

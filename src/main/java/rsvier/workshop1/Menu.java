@@ -6,10 +6,21 @@
 
 
 package rsvier.workshop1;
+import rsvier.workshop1.util.TextIO;
+import rsvier.workshop1.product.ProductMenu;
+import rsvier.workshop1.product.Product;
+import rsvier.workshop1.medewerker.MedewerkerMenu;
+import rsvier.workshop1.klant.KlantMenu;
+import rsvier.workshop1.factuur.FactuurMenu;
+import rsvier.workshop1.bestelregel.BestelregelMenu;
+import rsvier.workshop1.bestelling.BestellingMenu;
+import rsvier.workshop1.adres.AdresMenu;
+import rsvier.workshop1.account.AccountMenu;
 import java.util.Scanner;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
+import rsvier.workshop1.db.InstellingenMenu;
 
 
 /**
@@ -42,6 +53,7 @@ System.out.println("=========================");
         System.out.println(" 6 Accounts gegevens menu ");    
         System.out.println(" 7 Factuur gegevens menu ");  
         System.out.println(" 8 Bestelregel menu ");
+        System.out.println(" 9 Instellingen menu ");
         System.out.println(" 0: Stoppen");
         System.out.println("=========================");
 System.out.println("Vul het cijfer in wat u wilt doen");
@@ -51,7 +63,7 @@ System.out.println("en druk dan op enter.");
 
 cijfer = input.nextInt();
 if (cijfer == 0){ System.out.println("Einde"); System.exit(0); }
-else if (cijfer <= 8 && cijfer >0){
+else if (cijfer <= 9 && cijfer >0){
     switch (cijfer){
         case 1: System.out.println(" 1 Producten menu ");  ProductMenu productmenu = new ProductMenu(); productmenu.productmenu(); break;
         case 2: System.out.println(" 2 Klanten menu "); KlantMenu klantmenu = new KlantMenu(); klantmenu.klantenmenu();   break;
@@ -61,6 +73,7 @@ else if (cijfer <= 8 && cijfer >0){
         case 6: System.out.println(" 6 Accounts gegevens menu  ");  AccountMenu am = new AccountMenu(); am.accountsmenu(); break;
         case 7: System.out.println(" 7 Factuur gegevens menu ");   FactuurMenu factuurmenu = new FactuurMenu(); factuurmenu.facturenmenu(); break;
         case 8: System.out.println(" 8 Bestelling regel menu "); BestelregelMenu bestelregelmenu = new BestelregelMenu(); bestelregelmenu.bestelregelmenu(); break;
+        case 9: System.out.println(" 9 Instellingen menu"); InstellingenMenu instellingenmenu = new InstellingenMenu(); instellingenmenu.instellingenmenu(); break;
      
     }
 }

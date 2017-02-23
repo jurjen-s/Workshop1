@@ -5,6 +5,31 @@
  */
 package rsvier.workshop1;
 
+import rsvier.workshop1.db.SQLConnection;
+import rsvier.workshop1.product.ProductSQL;
+import rsvier.workshop1.product.ProductDAO;
+import rsvier.workshop1.product.Product;
+import rsvier.workshop1.medewerker.Medewerker;
+import rsvier.workshop1.medewerker.MedewerkerDAO;
+import rsvier.workshop1.medewerker.MedewerkerSQL;
+import rsvier.workshop1.klant.Klant;
+import rsvier.workshop1.klant.KlantSQL;
+import rsvier.workshop1.klant.KlantDAO;
+import rsvier.workshop1.factuur.Factuur;
+import rsvier.workshop1.factuur.FactuurDAO;
+import rsvier.workshop1.factuur.FactuurSQL;
+import rsvier.workshop1.bestelregel.BestelregelSQL;
+import rsvier.workshop1.bestelregel.Bestelregel;
+import rsvier.workshop1.bestelregel.BestelregelDAO;
+import rsvier.workshop1.bestelling.Bestelling;
+import rsvier.workshop1.bestelling.BestellingDAO;
+import rsvier.workshop1.bestelling.BestellingSQL;
+import rsvier.workshop1.adres.AdresSQL;
+import rsvier.workshop1.adres.Adres;
+import rsvier.workshop1.adres.AdresDAO;
+import rsvier.workshop1.account.AccountDAO;
+import rsvier.workshop1.account.Account;
+import rsvier.workshop1.account.AccountMySQL;
 import java.sql.Connection;
 import java.util.List;
 
