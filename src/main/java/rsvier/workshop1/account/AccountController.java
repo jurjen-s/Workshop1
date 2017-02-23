@@ -33,7 +33,6 @@ public class AccountController {
     
     
     
-    
     //
     Account findAccountByID(int id){
       
@@ -44,10 +43,6 @@ public class AccountController {
         return accountNaarMenu;
         
     }
-    
-    
-    
-    
     
     
     
@@ -64,8 +59,6 @@ public class AccountController {
     }
     
     
-    
-    
     boolean deleteAccount(int id){
         
         boolean accountNaarMenu2 ;
@@ -76,12 +69,6 @@ public class AccountController {
         
         
     }
-    
-    
-    
-    
-    
-    
     
     
     boolean updateAccountType(int id, int type){
@@ -95,14 +82,6 @@ public class AccountController {
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
     boolean updateAccountWachtwoord(int id, String wachtwoord){
     
     boolean accountNaarMenu3;
@@ -111,8 +90,6 @@ public class AccountController {
         
         return accountNaarMenu3;
     }
-    
-   
     
     
     boolean loginCheckAccount(int id, String wachtwoord){
@@ -125,10 +102,6 @@ public class AccountController {
         
         return accountNaarMenu4;
     }
-    
-    
-    
-    
     
     
     
