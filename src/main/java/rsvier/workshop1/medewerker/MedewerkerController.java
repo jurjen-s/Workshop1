@@ -6,7 +6,7 @@
 package rsvier.workshop1.medewerker;
 
 import java.sql.Connection;
-import rsvier.workshop1.db.SQLConnection;
+import rsvier.workshop1.db.Connector;
 
 /**
  *
@@ -16,11 +16,9 @@ import rsvier.workshop1.db.SQLConnection;
 public class MedewerkerController {
     
     
-    private SQLConnection connectie = new SQLConnection();
-    private Connection sqlConnectie = connectie.getSQLConnection();
-    
-    
-    private MedewerkerDAO medewerkerDAO = new MedewerkerSQL(sqlConnectie);
+   // Controller vraagt DAOfactory om een DAO waar Controller mee kan werken
+    MedewerkerDAOfactory factory = new MedewerkerDAOfactory();
+    MedewerkerDAO medewerkerDAO = factory.getMedewerkerDAO();
     
     
 

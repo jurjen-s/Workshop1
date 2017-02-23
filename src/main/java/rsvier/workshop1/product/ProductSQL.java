@@ -5,7 +5,7 @@
  */
 package rsvier.workshop1.product;
 
-import rsvier.workshop1.medewerker.MedewerkerSQL;
+import rsvier.workshop1.medewerker.MedewerkerMySQL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,7 +25,7 @@ public class ProductSQL implements ProductDAO {
     
     
     //logger maken
-    private static final Logger LOGGER = LogManager.getLogger(MedewerkerSQL.class);
+    private static final Logger LOGGER = LogManager.getLogger(MedewerkerMySQL.class);
     
     //connectie maken
     private Connection productenconnectie;

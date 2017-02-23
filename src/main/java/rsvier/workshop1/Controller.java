@@ -11,7 +11,7 @@ import rsvier.workshop1.product.ProductDAO;
 import rsvier.workshop1.product.Product;
 import rsvier.workshop1.medewerker.Medewerker;
 import rsvier.workshop1.medewerker.MedewerkerDAO;
-import rsvier.workshop1.medewerker.MedewerkerSQL;
+import rsvier.workshop1.medewerker.MedewerkerMySQL;
 import rsvier.workshop1.klant.Klant;
 import rsvier.workshop1.klant.KlantMySQL;
 import rsvier.workshop1.klant.KlantDAO;
@@ -140,7 +140,7 @@ public class Controller {
      public boolean existsMedewerkerId(int medewerkId) {
         SQLConnection sqlConnectie = new SQLConnection();
         Connection connectie = sqlConnectie.getSQLConnection();
-        MedewerkerDAO medewerkerDAO = new MedewerkerSQL(connectie);
+        MedewerkerDAO medewerkerDAO = new MedewerkerMySQL(connectie);
         Medewerker m = medewerkerDAO.findMedewerkerByID(medewerkId);
         System.out.println(m.getMedewerkerAccountID());
         if (m.getMedewerkerAccountID() == 0) {

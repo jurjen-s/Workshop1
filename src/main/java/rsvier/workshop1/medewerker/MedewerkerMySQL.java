@@ -19,14 +19,14 @@ import org.apache.logging.log4j.Logger;
  */
 
 
-public class MedewerkerSQL implements MedewerkerDAO{
+public class MedewerkerMySQL implements MedewerkerDAO{
     
     //logger aanmaken
-    private static final Logger LOGGER = LogManager.getLogger(MedewerkerSQL.class);
+    private static final Logger LOGGER = LogManager.getLogger(MedewerkerMySQL.class);
     
         //connectie aanmaken
         private Connection medewerkerconnectie;
-        public MedewerkerSQL(Connection connectie) {
+        public MedewerkerMySQL(Connection connectie) {
         this.medewerkerconnectie = connectie;
         }
 
