@@ -6,7 +6,7 @@
 package rsvier.workshop1.account;
 
 import java.sql.Connection;
-import rsvier.workshop1.db.SQLConnection;
+import rsvier.workshop1.db.Connector;
 
 /**
  *
@@ -14,31 +14,14 @@ import rsvier.workshop1.db.SQLConnection;
  */
 public class AccountController {
     
-    
-    
-    
-    
     AccountDAOfactory factory = new AccountDAOfactory();
+    AccountDAO accountDAO = factory.getAccountDAO();
     
-    
-    
-    
-    private SQLConnection connectie = new SQLConnection();
-    private Connection sqlConnectie = connectie.getSQLConnection();
-    
-    
-    private AccountDAO accountDAO = new AccountMySQL(sqlConnectie);
-    
-   // private AccountMenu accountmenu = new AccountMenu();
-    
-    
-    
-    //
     Account findAccountByID(int id){
       
         Account accountNaarMenu = new Account();
         
-        accountNaarMenu = (factory.getAccountDAO()).findAccountByID(id);
+        accountNaarMenu = accountDAO.findAccountByID(id);
         
         return accountNaarMenu;
         

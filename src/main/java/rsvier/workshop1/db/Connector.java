@@ -8,7 +8,6 @@ package rsvier.workshop1.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 //import static rsvier.workshop1.db.DbConfigurator.getDbConfigurator;

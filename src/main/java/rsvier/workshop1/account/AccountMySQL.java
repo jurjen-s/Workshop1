@@ -14,11 +14,12 @@ import java.math.BigDecimal;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;
+import rsvier.workshop1.db.Connector;
 /**
  *
  * @author Frank
  */
-public class AccountMySQL extends AccountSQL implements AccountDAO {
+public class AccountMySQL implements AccountDAO {
     
     private static final Logger LOGGER = LogManager.getLogger(AccountMenu.class);
     
@@ -27,8 +28,6 @@ public class AccountMySQL extends AccountSQL implements AccountDAO {
         
         this.accountconnectie = connectie;
     }
-
-   
     
     @Override
     public Account findAccountByID(int id) {

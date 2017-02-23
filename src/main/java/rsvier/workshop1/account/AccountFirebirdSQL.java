@@ -5,12 +5,19 @@
  */
 package rsvier.workshop1.account;
 
+import java.sql.Connection;
+
 /**
  *
  * @author Frank
  */
-public class AccountFireBirdSQL extends AccountSQL implements AccountDAO {
-
+public class AccountFirebirdSQL implements AccountDAO {
+    
+    private Connection accountconnectie;
+    public AccountFirebirdSQL(Connection connectie) {
+        
+        this.accountconnectie = connectie;
+    }
     @Override
     public Account findAccountByID(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
