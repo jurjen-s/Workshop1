@@ -29,7 +29,7 @@ import java.util.List;
  *
  * @author jurjen
  */
-public class AdresMySQL extends AdresSQL implements AdresDAO {
+public class AdresMySQL  implements AdresDAO {
 
     private static final Logger LOGGER = LogManager.getLogger(AdresMySQL.class);
     

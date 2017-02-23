@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Frank
  */
-public class AdresFireBirdSQL extends AdresSQL implements AdresDAO {
+public class AdresFireBird  implements AdresDAO {
 
     @Override
     public Adres findAdresById(int adresId) {

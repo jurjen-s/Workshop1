@@ -7,7 +7,7 @@ package rsvier.workshop1.adres;
 
 import java.sql.Connection;
 import java.util.List;
-import rsvier.workshop1.db.SQLConnection;
+import rsvier.workshop1.db.Connector;
 
 /**
  *
@@ -16,59 +16,59 @@ import rsvier.workshop1.db.SQLConnection;
 public class AdresController {
     
     
+    // Controller vraagt DAOfactory om een DAO waar Controller mee kan werken
     AdresDAOfactory factory = new AdresDAOfactory();
+    AdresDAO adresDAO = factory.getAdresDAO();
     
     
     
     
-    private Connection sqlConnectie = new SQLConnection().getSQLConnection();
-    private AdresDAO adresDAO = new AdresMySQL(sqlConnectie);
     
     
     
     Adres findAdresById(int adresId) {
-        return (factory.getAdresDAO()).findAdresById(adresId);
+        return adresDAO.findAdresById(adresId);
     }
     
     List findAdresByType(int adresType) {
-        return (factory.getAdresDAO()).findAdresByType(adresType);
+        return adresDAO.findAdresByType(adresType);
     }
     List findAdresByKlantId(int klantId) {
-        return (factory.getAdresDAO()).findAdresByKlantId(klantId);
+        return adresDAO.findAdresByKlantId(klantId);
     }
     List findAdresByPostcode(String postcode) {
-        return (factory.getAdresDAO()).findAdresByPostcode(postcode);
+        return adresDAO.findAdresByPostcode(postcode);
     }
     List findAdresByLand(String land) {
-        return (factory.getAdresDAO()).findAdresByLand(land);
+        return adresDAO.findAdresByLand(land);
     }
     
     Adres toevoegenAdres(Adres adres) {
-        return (factory.getAdresDAO()).toevoegenAdres(adres);
+        return adresDAO.toevoegenAdres(adres);
     }
     boolean deleteAdres(int AdresId) {
-        return (factory.getAdresDAO()).deleteAdres(AdresId);
+        return adresDAO.deleteAdres(AdresId);
     }
     
     boolean updateAdresType(int adresId, int adresType) {
-        return (factory.getAdresDAO()).updateAdresType(adresId, adresType);
+        return adresDAO.updateAdresType(adresId, adresType);
     }
     boolean updateAdresStraatnaam(int adresId, String straatnaam) {
-        return (factory.getAdresDAO()).updateAdresStraatnaam(adresId, straatnaam);
+        return adresDAO.updateAdresStraatnaam(adresId, straatnaam);
     }
     boolean updateAdresHuisnummer(int adresId, int huisnummer) {
-        return (factory.getAdresDAO()).updateAdresHuisnummer(adresId, huisnummer);
+        return adresDAO.updateAdresHuisnummer(adresId, huisnummer);
     }
     boolean updateAdresHeeftHuisnrToevoeging(int adresId, int heeftHuisnrToevoeging) {
-        return (factory.getAdresDAO()).updateAdresHeeftHuisnrToevoeging(adresId, heeftHuisnrToevoeging);
+        return adresDAO.updateAdresHeeftHuisnrToevoeging(adresId, heeftHuisnrToevoeging);
     }
     boolean updateAdresHuisnrToevoeging(int adresId, String huisnrToevoeging) {
-        return (factory.getAdresDAO()).updateAdresHuisnrToevoeging(adresId, huisnrToevoeging);
+        return adresDAO.updateAdresHuisnrToevoeging(adresId, huisnrToevoeging);
     }
     boolean updateAdresPostcode(int adresId, String postcode) {
-        return (factory.getAdresDAO()).updateAdresPostcode(adresId, postcode);
+        return adresDAO.updateAdresPostcode(adresId, postcode);
     }
     boolean updateAdresLand(int adresId, String land) {
-        return (factory.getAdresDAO()).updateAdresLand(adresId, land);
+        return adresDAO.updateAdresLand(adresId, land);
     }
 }
