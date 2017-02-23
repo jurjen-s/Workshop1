@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.zaxxer.hikari.HikariDataSource;
-import java.util.logging.Level;
 
 /**
  *
@@ -39,9 +38,14 @@ public class Connector {
     private Connection getJDBCConnection() {
         try { 
             Class.forName(dbConfigurator.getDbDriver());
-        } catch (ClassNotFoundException ex) {
-            LOGGER.error("MySQL Driver niet gevonden." + ex.getMessage());
-            return null;
+        } catch (ClassNotFoundException e) {
+            LOGGER.info("MySQL Driver niet gevonden. Probeer oudere versie.");
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException ex) {
+                LOGGER.error("Geen MySQL Driver gevonden." + ex.getMessage());
+                return null;
+            }
         }
         try {
             return DriverManager.getConnection(host, user, pass);

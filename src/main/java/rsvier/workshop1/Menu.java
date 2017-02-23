@@ -49,7 +49,7 @@ System.out.println("=========================");
         System.out.println(" 2 Klanten menu  "); 
         System.out.println(" 3 Adres gegevens menu  "); 
         System.out.println(" 4 Bestelling menu  ");  
-        System.out.println(" 5 Medewerkers  menu"); 
+        System.out.println(" 5 Medewerkers menu"); 
         System.out.println(" 6 Accounts gegevens menu ");    
         System.out.println(" 7 Factuur gegevens menu ");  
         System.out.println(" 8 Bestelregel menu ");

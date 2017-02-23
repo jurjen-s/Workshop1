@@ -26,11 +26,11 @@ and open the template in the editor.
     </databases>
     <connections>
         <connection>
-            <default>false</default>
+            <default>true</default>
             <type>JDBC</type>
         </connection>
         <connection>
-            <default>true</default>
+            <default>false</default>
             <type>HIKARICP</type>
         </connection>
     </connections>

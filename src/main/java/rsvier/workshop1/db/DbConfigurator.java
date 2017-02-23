@@ -122,7 +122,6 @@ public class DbConfigurator {
             dbUsername = resultNode.getElementsByTagName("username").item(0).getTextContent();
             dbUserpass = resultNode.getElementsByTagName("userpass").item(0).getTextContent();
             dbDriver = resultNode.getElementsByTagName("driver").item(0).getTextContent();
-            System.out.println("Test print: " +dbType+" "+dbHost+" "+dbUsername+" "+dbUserpass+" "+dbDriver);
             return true;
         } catch (XPathExpressionException ex) {
             System.out.println("Er ging iets mis bij het lezen van de instellingen: " + ex.getMessage());
@@ -151,7 +150,6 @@ public class DbConfigurator {
                 System.out.println("Geen connecties ingesteld in settings.xml.");
             // Get information from nodelist.
             connType = resultNode.getElementsByTagName("type").item(0).getTextContent();
-            System.out.println("Test print: " +connType);
             return true;
         } catch (XPathExpressionException ex) {
             System.out.println("Er ging iets mis bij het lezen van de instellingen: " + ex.getMessage());

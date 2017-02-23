@@ -39,7 +39,7 @@ public class AccountController {
         
        Account accountinfo = new Account();
         
-        accountinfo = (factory.getAccountDAO()).createAccount(type, wachtwoord);
+        accountinfo = accountDAO.createAccount(type, wachtwoord);
         
         return accountinfo;
         
@@ -50,7 +50,7 @@ public class AccountController {
         
         boolean accountNaarMenu2 ;
         
-        accountNaarMenu2 = (factory.getAccountDAO()).deleteAccount(id);
+        accountNaarMenu2 = accountDAO.deleteAccount(id);
         
         return accountNaarMenu2;
         
@@ -62,7 +62,7 @@ public class AccountController {
         
         boolean accountNaarMenu3;
         
-        accountNaarMenu3 = (factory.getAccountDAO()).updateAccountType(id, type);
+        accountNaarMenu3 = accountDAO.updateAccountType(id, type);
         
         return accountNaarMenu3;
         
@@ -73,7 +73,7 @@ public class AccountController {
     
     boolean accountNaarMenu3;
         
-        accountNaarMenu3 = (factory.getAccountDAO()).updateAccountWachtwoord(id, wachtwoord);
+        accountNaarMenu3 = accountDAO.updateAccountWachtwoord(id, wachtwoord);
         
         return accountNaarMenu3;
     }
@@ -83,7 +83,7 @@ public class AccountController {
     
     boolean accountNaarMenu4;
         
-        accountNaarMenu4 = (factory.getAccountDAO()).loginCheckAccount(id, wachtwoord);
+        accountNaarMenu4 = accountDAO.loginCheckAccount(id, wachtwoord);
         
         
         

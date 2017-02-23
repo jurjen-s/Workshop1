@@ -967,3 +967,11 @@ Testlaan 1 1234 AA Nederland.
 2017-02-23 10:36:58,731 DEBUG r.w.a.AccountMySQL [main] Haal hashedwachtwoord terug via id van accountId: 1
 2017-02-23 10:40:55,799 INFO r.w.d.SQLConnection [main] Verbonden met de MySQL database.
 2017-02-23 10:40:55,823 INFO r.w.d.SQLConnection [main] Verbonden met de MySQL database.
+2017-02-23 14:29:50,564 ERROR r.w.d.Connector [main] MySQL Driver niet gevonden.com.mysql.cj.jdbc.Driver
+2017-02-23 14:30:34,392 DEBUG r.w.a.AccountMySQL [main] Haal hashedwachtwoord terug via id van accountId: 1
+2017-02-23 14:33:26,582 ERROR r.w.d.Connector [main] MySQL Driver niet gevonden.com.mysql.cj.jdbc.Driver
+2017-02-23 14:40:22,160 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 14:40:30,858 DEBUG r.w.a.AccountMySQL [main] Haal hashedwachtwoord terug via id van accountId: 1
+2017-02-23 14:42:35,889 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-23 14:45:13,475 DEBUG r.w.p.ProductMySQL [main] Input  in findProductById is 1
+2017-02-23 14:45:13,569 DEBUG r.w.p.ProductMySQL [main] output findProductById : Product Id is : 1 omschrijving is : jamjamkaas soort is : romig prijs is : 4.00 voorraad aantal is : 10.
