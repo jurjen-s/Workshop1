@@ -23,7 +23,7 @@ import rsvier.workshop1.bestelregel.Bestelregel;
 import rsvier.workshop1.bestelregel.BestelregelDAO;
 import rsvier.workshop1.bestelling.Bestelling;
 import rsvier.workshop1.bestelling.BestellingDAO;
-import rsvier.workshop1.bestelling.BestellingSQL;
+import rsvier.workshop1.bestelling.BestellingMySQL;
 import rsvier.workshop1.adres.AdresMySQL;
 import rsvier.workshop1.adres.Adres;
 import rsvier.workshop1.adres.AdresDAO;
@@ -85,7 +85,7 @@ public class Controller {
     public boolean existsBestellingId(int bestellingId) {
         SQLConnection sqlConnectie = new SQLConnection();
         Connection connectie = sqlConnectie.getSQLConnection();
-        BestellingDAO bestellingDAO = new BestellingSQL(connectie);
+        BestellingDAO bestellingDAO = new BestellingMySQL(connectie);
         Bestelling bestelling = bestellingDAO.findBestellingById(bestellingId);
         if (bestelling.getBestellingId() == 0) {
             System.out.println("Opgegeven bestellingId niet gevonden.");

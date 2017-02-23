@@ -8,7 +8,7 @@ package rsvier.workshop1.util;
 import rsvier.workshop1.db.SQLConnection;
 import rsvier.workshop1.bestelling.Bestelling;
 import rsvier.workshop1.bestelling.BestellingDAO;
-import rsvier.workshop1.bestelling.BestellingSQL;
+import rsvier.workshop1.bestelling.BestellingMySQL;
 import rsvier.workshop1.adres.AdresMySQL;
 import rsvier.workshop1.adres.Adres;
 import rsvier.workshop1.adres.AdresDAO;
@@ -69,7 +69,7 @@ public class MaakDummies {
         adresDAO.updateAdresType(1, adresType);
     }
     public void dummyBestelling() {
-        BestellingDAO bestellingDAO = new BestellingSQL(dummyconnectie);
+        BestellingDAO bestellingDAO = new BestellingMySQL(dummyconnectie);
         int bestellingId = 1;
         int klantId = 1;
         int adresId = 1;

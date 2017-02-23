@@ -9,6 +9,6 @@ package rsvier.workshop1.bestelling;
  *
  * @author Frank
  */
-public abstract class BestellingSQL {
+public class BestellingFireBirdSQL {
     
 }

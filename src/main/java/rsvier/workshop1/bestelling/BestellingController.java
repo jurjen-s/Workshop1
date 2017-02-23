@@ -17,7 +17,7 @@ import rsvier.workshop1.db.SQLConnection;
 public class BestellingController {
     
     private Connection sqlConnectie = new SQLConnection().getSQLConnection();
-    private BestellingDAO bestellingDAO = new BestellingSQL(sqlConnectie);
+    private BestellingDAO bestellingDAO = new BestellingMySQL(sqlConnectie);
     //private BestellingMenu bestellingMenu = new BestellingMenu();
     
     public Bestelling findBestellingById(int bestellingId) {
