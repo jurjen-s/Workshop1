@@ -10,7 +10,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-//import static rsvier.workshop1.db.DbConfigurator.getDbConfigurator;
+import com.zaxxer.hikari.HikariDataSource;
+import java.util.logging.Level;
 
 /**
  *
@@ -19,34 +20,47 @@ import org.apache.logging.log4j.Logger;
 public class Connector {
     
     private DbConfigurator dbConfigurator = DbConfigurator.getDbConfigurator();
+    String host = dbConfigurator.getDbHost();
+    String user = dbConfigurator.getDbUsername();
+    String pass = dbConfigurator.getDbUserpass();
     private Logger LOGGER = LogManager.getLogger(Connector.class);
     
     public Connection getConnection() {
-        if (dbConfigurator.getDbType().equals("MYSQL")) {
-            return getMySQLConnection();
+        if (dbConfigurator.getConnType().equals("JDBC")) {
+            return getJDBCConnection();
+        } else if (dbConfigurator.getConnType().equals("HIKARICP")) {
+            return getDataSource();
         } else {
-            return getFirebirdConnection();
-        }
-    }
-
-    private Connection getMySQLConnection() {
-        try {
-            Class.forName(dbConfigurator.getDbDriver());
-        } catch (ClassNotFoundException ex) {
-            LOGGER.error("Driver niet gevonden." + ex.getMessage());
-        }
-        try {
-            String host = dbConfigurator.getDbHost();
-            String user = dbConfigurator.getDbUsername();
-            String pass = dbConfigurator.getDbUserpass();
-            return DriverManager.getConnection(host, user, pass);
-        } catch (SQLException ex) {
-            LOGGER.error("Geen verbinding gekregen." + ex.getMessage());
+            LOGGER.error("Geen connectie kunnen vinden.");
             return null;
         }
     }
 
-    private Connection getFirebirdConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private Connection getJDBCConnection() {
+        try { 
+            Class.forName(dbConfigurator.getDbDriver());
+        } catch (ClassNotFoundException ex) {
+            LOGGER.error("MySQL Driver niet gevonden." + ex.getMessage());
+            return null;
+        }
+        try {
+            return DriverManager.getConnection(host, user, pass);
+        } catch (SQLException ex) {
+            LOGGER.error("Geen JDBC verbinding." + ex.getMessage());
+            return null;
+        }
+    }
+
+    private Connection getDataSource() {
+        try {
+            HikariDataSource ds = new HikariDataSource();
+            ds.setJdbcUrl(host);
+            ds.setUsername(user);
+            ds.setPassword(pass);
+            return ds.getConnection();
+        } catch (SQLException ex) {
+            LOGGER.error("Geen Hikari verbinding." + ex.getMessage());
+            return null;
+        }
     }
 }
