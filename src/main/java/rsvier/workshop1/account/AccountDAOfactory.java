@@ -8,7 +8,6 @@ package rsvier.workshop1.account;
 import java.sql.Connection;
 import rsvier.workshop1.db.Connector;
 import rsvier.workshop1.db.DbConfigurator;
-import rsvier.workshop1.db.SQLConnection;
 
 /**
 *
@@ -17,6 +16,10 @@ import rsvier.workshop1.db.SQLConnection;
 
 
 public class AccountDAOfactory {
+    
+    // DAOfactory vraagt Connector om een connectie te geven (Connector doet dat op basis van databasetype)
+    // Factory kijkt naar ingesteld databasetype en geeft de juiste implementatie van de DAO terug
+    // Factory geeft wel supertype (de DAO) van die implemenatie terug
     private Connector connector = new Connector();
     private Connection connectie = connector.getConnection();
     private DbConfigurator dbConfigurator = DbConfigurator.getDbConfigurator();
@@ -26,7 +29,7 @@ public class AccountDAOfactory {
         if (type.equals("MYSQL")) {
             return new AccountMySQL(connectie);
         } else if (type.equals("FIREBIRD")) {
-            return new AccountFirebirdSQL(connectie);
+            return new AccountFirebird(connectie);
         }
         return null;        
     }

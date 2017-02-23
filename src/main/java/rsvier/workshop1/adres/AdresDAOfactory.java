@@ -6,7 +6,7 @@
 package rsvier.workshop1.adres;
 
 import java.sql.Connection;
-import rsvier.workshop1.account.AccountFireBirdSQL;
+import rsvier.workshop1.account.AccountFirebird;
 import rsvier.workshop1.account.AccountMySQL;
 import rsvier.workshop1.account.AccountSQL;
 import rsvier.workshop1.db.DbConfigurator;

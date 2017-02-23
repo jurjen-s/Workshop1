@@ -21,8 +21,10 @@ import rsvier.workshop1.db.Connector;
  */
 public class AccountMySQL implements AccountDAO {
     
+    
     private static final Logger LOGGER = LogManager.getLogger(AccountMenu.class);
     
+    // Elke implementatie van de DAO krijgt een connectie mee in zijn constructor
     private Connection accountconnectie;
     public AccountMySQL(Connection connectie) {
         

@@ -14,6 +14,7 @@ import rsvier.workshop1.db.Connector;
  */
 public class AccountController {
     
+    // Controller vraagt DAOfactory om een DAO waar Controller mee kan werken
     AccountDAOfactory factory = new AccountDAOfactory();
     AccountDAO accountDAO = factory.getAccountDAO();
     

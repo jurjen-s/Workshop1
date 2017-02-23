@@ -11,10 +11,11 @@ import java.sql.Connection;
  *
  * @author Frank
  */
-public class AccountFirebirdSQL implements AccountDAO {
+public class AccountFirebird implements AccountDAO {
     
+    // Elke implementatie van de DAO krijgt een connectie mee in zijn constructor
     private Connection accountconnectie;
-    public AccountFirebirdSQL(Connection connectie) {
+    public AccountFirebird(Connection connectie) {
         
         this.accountconnectie = connectie;
     }
