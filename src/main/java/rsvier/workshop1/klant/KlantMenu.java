@@ -31,23 +31,22 @@ public class KlantMenu {
     
     public void  klantenmenu(){
    
-  
+System.out.println("===================================");  
 System.out.println("Welkom in het klantenmenu ");
 System.out.println("Wat wilt u doen?");
 
-System.out.println(" 1: klant gegevens zoeken op klant id");
-System.out.println(" 2: klant gegevens zoeken op klant voornaam");     
-System.out.println(" 3: klant gegevens zoeken op klant achternaam");  
-System.out.println(" 4: klant gegevens zoeken met volledige naam");
-System.out.println(" 5: klant gegevens aanpassen");
-System.out.println(" 6: klant gegevens zien");
-System.out.println(" 7: Maak een klant");
-System.out.println(" 8: klant verwijderen");
-System.out.println(" 0: terug naar hoofdmenu");
-        
+System.out.println(" 1: Klant zoeken op klantId.");
+System.out.println(" 2: Klant zoeken op voornaam.");     
+System.out.println(" 3: Klant zoeken op achternaam.");  
+System.out.println(" 4: Klant zoeken op volledige naam.");
+System.out.println(" 5: Klantgegevens aanpassen.");
+System.out.println(" 6: Alle klantgegevens bekijken.");
+System.out.println(" 7: Nieuwe klant aanmaken.");
+System.out.println(" 8: Klant verwijderen.");
+System.out.println(" 0: Terug naar het hoofdmenu.");
+System.out.println("===================================");        
        
-System.out.println("Vul het cijfer in wat u wilt doen");
-System.out.println("en druk dan op enter.");
+System.out.print("Geef uw keuze: ");
     
         
    // Scanner inputklant = new Scanner(System.in); < text io is superieur.
@@ -59,21 +58,21 @@ else if(waarde <= 8 && waarde >0){
     
             switch (waarde){
                 
-                case 1: System.out.println(" 1 Klant zoeken op klant id"); klantenmenuZoKid(); break;
-                case 2: System.out.println(" 2 Klant zoeken op klant voornaam"); klantenmenuZoVN();    break;
-                case 3: System.out.println(" 3 klant zoeken op klant achternaam");  klantenmenuZoAN(); break;
-                case 4: System.out.println(" 4 klant zoeken op volledige naam");  klantenmenuZoN(); break;
-                case 5: System.out.println(" 5 klant gegevens aanpassen");  klantenmenuV(); break;
-                case 6: System.out.println(" 6 Laat alle klanten zien");  klantenmenuShow(); break;
-                case 7: System.out.println(" 7 Maak een klant"); klantenmenuT(); break;
-                case 8: System.out.println(" 8 klant verwijderen");  klantenmenuDELETE(); break;
+                case 1: System.out.println("1: Klant zoeken op klantId."); klantenmenuZoKid(); break;
+                case 2: System.out.println("-------------------------"); klantenmenuZoVN();    break;
+                case 3: System.out.println("3: Klant zoeken op achternaam.");  klantenmenuZoAN(); break;
+                case 4: System.out.println("4: Klant zoeken op volledige naam.");  klantenmenuZoN(); break;
+                case 5: System.out.println("5: Klantgegevens aanpassen.");  klantenmenuV(); break;
+                case 6: System.out.println("6: Alle klantgegevens bekijken.");  klantenmenuShow(); break;
+                case 7: System.out.println("----------------------------"); klantenmenuT(); break;
+                case 8: System.out.println("8: Klant verwijderen.");  klantenmenuDELETE(); break;
                
       
                              }
                         }
    
                      
-else{ System.out.println("verkeerde waarde");
+else{ System.out.println("Ongeldige invoer, probeer opnieuw.");
 klantenmenu();
 
     }
@@ -99,7 +98,7 @@ public void klantenmenuZoKid(){
 }
 public void klantenmenuZoVN(){
      System.out.println("U gaat een klant zoeken op voornaam.");
-    System.out.println("Vul de voornaam in en druk op enter.");
+    System.out.print("Voer de voornaam in: ");
     
     String VN = TextIO.getln();
     
@@ -159,33 +158,33 @@ public  void klantenmenuZoN(){
 public void klantenmenuV(){
     
     
-    System.out.println("U gaat een Klant toevoegen.");
+    System.out.println("U gaat een klant toevoegen.");
     
     
-    System.out.println("Vul de Account id van de klant in.");
+    System.out.print("Voer het accountId in: ");
     int accountidvanklant = TextIO.getlnInt();
     
    
      //int Bid = TextIO.getlnInt();
      
-      System.out.println("Vul de voornaam in en druk enter.");
+      System.out.print("Voer de voornaam in: ");
    String VN = TextIO.getln();
    
    
-   System.out.println("Vul '0' in en enter in als er GEEN tussenvoegsel , druk '1' in als het EEN tussenvoegsel heeft en druk enter  ");
+   System.out.print("Heeft de klantnaam een tussenvoegsel? (1 = ja, 2 = nee) ");
    int Heefttussenvoegsel = TextIO.getlnInt();
    
-   
-   
-        System.out.println("Vul de tussenvoegels in en druk enter .");
-                              String TV = TextIO.getln();
-           
-   System.out.println("Vul de achternaam in en druk enter.");
+   String TV="";
+   if (Heefttussenvoegsel == 1) {
+        System.out.print("Voer het tussenvoegsel in: ");
+                              TV = TextIO.getln();
+   }        
+   System.out.print("Voer de achternaam in: ");
    String AN = TextIO.getln(); 
         
    String Telefoonnr = "";
         do {
-            System.out.println("Wat is de nieuwe  telefoonnummer? Geef in het formaat 06-11122233");
+            System.out.print("Voer het telefoonnummer in: (scheid het net- en abonneenummer met een '-') ");
             Telefoonnr = TextIO.getln();
             if (validator.validateTelefoonnummer(Telefoonnr)) {
                 break;

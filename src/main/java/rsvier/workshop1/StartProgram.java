@@ -6,8 +6,6 @@
 package rsvier.workshop1;
 
 import rsvier.workshop1.account.Inlogmenu;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 
 /**
@@ -42,14 +40,14 @@ public class StartProgram {
             }  
         } while (true);
     */
-        System.out.println("Eerst inloggen");
+        //System.out.println("Eerst inloggen");
         
         Inlogmenu inlogmenu= new Inlogmenu();
         
        inlogmenu.inlogMenu();
        
        
-        System.out.println("Eind programma");
+        System.out.println("Einde programma.");
       
     
     }

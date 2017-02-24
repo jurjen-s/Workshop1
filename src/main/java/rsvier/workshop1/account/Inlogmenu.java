@@ -5,8 +5,6 @@
  */
 package rsvier.workshop1.account;
 
-import rsvier.workshop1.account.AccountController;
-import rsvier.workshop1.account.AccountMenu;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import rsvier.workshop1.Menu;
@@ -22,7 +20,7 @@ import rsvier.workshop1.util.TextIO;
  */
 public class Inlogmenu {
     
- private static final Logger LOGGER = LogManager.getLogger(AccountMenu.class);
+ private static final Logger LOGGER = LogManager.getLogger(Inlogmenu.class);
     
  private AccountController accountController = new AccountController();  
     
@@ -30,25 +28,28 @@ public class Inlogmenu {
   public void inlogMenu(){
       int cijfer;
       
-      
-      System.out.println("Log in");
-      System.out.println("1: inloggen ");
-      System.out.println("2: account aanmaken ");
-      System.out.println("0: stoppen");
+      System.out.println("==========================");
+      System.out.println("Welkom bij de Kaas Manager 2017.");
+      System.out.println("Wat wilt u doen?");
+      System.out.println(" 1: Inloggen.");
+      System.out.println(" 2: Account aanmaken.");
+      System.out.println(" 0: Afsluiten.");
+      System.out.println("==========================");
+      System.out.print("Maak uw keuze: ");
       
       cijfer = TextIO.getlnInt();
       
 if (cijfer == 0){ System.out.println(" "); cijfer = 0;}
 else if (cijfer <= 2 && cijfer >0){
     switch (cijfer){
-        case 1: System.out.println("U gaat inloggen"); inlogControle();      break;
-        case 2: System.out.println("U gaat een account aanmaken"); inlogAccountAanmaken(); break; 
+        case 1: System.out.println("U gaat inloggen."); inlogControle();      break;
+        case 2: System.out.println("------------------"); inlogAccountAanmaken(); break; 
      
         
       
     }
 }
-else{ System.out.println("foute cijfer waarde probeer opnieuw"); inlogMenu(); }
+else{ System.out.println("Ongeldige invoer, probeer opnieuw."); inlogMenu(); }
 
   
   }
@@ -67,10 +68,10 @@ else{ System.out.println("foute cijfer waarde probeer opnieuw"); inlogMenu(); }
 
        */
        
-       System.out.println("vul account id in");
+       System.out.print("Voer uw accountID in: ");
         int AcId = TextIO.getlnInt();
         
-       System.out.println("vul wachtwoord in");
+       System.out.print("Voer uw wachtwoord in: ");
        
        String wachtwoord = TextIO.getln();
        
@@ -99,19 +100,19 @@ else{ System.out.println("foute cijfer waarde probeer opnieuw"); inlogMenu(); }
    
       
       public  void inlogAccountAanmaken(){
+          System.out.println("U gaat een account aanmaken, u krijgt automatisch een accountId.");
+       System.out.println("Wat voor account wilt u aanmaken? \n1: Klant account.\n2: Medewerker account.");
+       System.out.print("Geef uw keuze: ");
           
-          System.out.println("u krijgt een automatische inlog id");
+       int type = TextIO.getlnInt();  
         
-        
-       System.out.println("vul u eigen wachtwoord in");
+       System.out.print("Wachtwoord: ");
        
        String wachtwoord = TextIO.getln();
        
-       System.out.println("vul u eigen type 1: klant , 2: medewerker  in");
-          
-       int type = TextIO.getlnInt();
        
-        System.out.print("uw nieuwe account id is: ");
+       
+        //System.out.print("uw nieuwe account id is: ");
         
         LOGGER.debug("In inputs waren wachtwoord: {} , en type {} ", wachtwoord, type);
                 
@@ -122,7 +123,7 @@ else{ System.out.println("foute cijfer waarde probeer opnieuw"); inlogMenu(); }
        
          
                   
-          System.out.println("uw account is : "+ a.toStringWachtwoordloos() );
+          System.out.println("Uw account is : "+ a.toStringWachtwoordloos() );
                   
           
          

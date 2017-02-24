@@ -46,8 +46,8 @@ System.out.println(klanten_id + voornaam + tussenvoegsel + achternaam + telefoon
 
 public void getAll (Klant klant){
 
-System.out.println("klanten id: " +this.klanten_id +" Naam :  "+ this.voornaam +"  "+ this.tussenvoegsel +"  "+ this.achternaam + " tel: "+ this.telefoonnummer + " "
-        + "account id: "+this.FK_accounts_id );
+System.out.println("[AccountId "+this.FK_accounts_id +", klantId " +this.klanten_id + "] Naam: "+ this.voornaam +" "+ this.tussenvoegsel +" "+ this.achternaam + ", tel.nr.: "+ this.telefoonnummer);
+        
 
 }
 

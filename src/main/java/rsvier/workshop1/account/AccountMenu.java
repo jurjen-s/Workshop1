@@ -24,20 +24,20 @@ public class AccountMenu {
     
    public void accountsmenu(){
     
-System.out.println("Welkom in het accountsmenu ");
-System.out.println("=========================");
+System.out.println("==================================");
+System.out.println("Welkom in het accountmenu ");
+
 
 System.out.println("Wat wilt u doen?");
-System.out.println(" 1: accountgegevens zoeken op id");
-System.out.println(" 2: account aanmaken");  
-System.out.println(" 3: account type aanpassen ");
-System.out.println(" 4: account wachtwoord aanpassen");
-System.out.println(" 5: account verwijderen");
-System.out.println(" 0: terug naar hoofdmenu");
-   System.out.println("=========================");     
+System.out.println(" 1: Account zoeken op accountId.");
+System.out.println(" 2: Nieuwe account aanmaken.");  
+System.out.println(" 3: Type account veranderen.");
+System.out.println(" 4: Wachtwoord account veranderen.");
+System.out.println(" 5: Account verwijderen.");
+System.out.println(" 0: Terug naar het hoofdmenu.");
+System.out.println("==================================");     
        
-System.out.println("Vul het cijfer in wat u wilt doen");
-System.out.println("en druk dan op enter.");
+System.out.print("Geef uw keuze: ");
     
        
     Scanner inputmedewerker = new Scanner(System.in); 
@@ -48,16 +48,16 @@ else if(waarde <= 5 && waarde >0){
     
             switch (waarde){
                 
-                case 1: System.out.println(" 1: accountgegevens zoeken op id"); accountsmenuZoId(); break;
-               case 2: System.out.println(" 2: account aanmaken");  accountsmenuAT(); break;
-                case 3: System.out.println(" 3: account type aanpassen "); accountsmenuAAt(); break;
-                case 4: System.out.println(" 4: account wachtwoord aanpassen "); accountsmenuAAw(); break;
-                case 5: System.out.println(" 5: account verwijderen"); accountsmenuDELETE(); break;
+                case 1: System.out.println("--------------------------"); accountsmenuZoId(); break;
+                case 2: System.out.println("2: Nieuwe account aanmaken.");  accountsmenuAT(); break;
+                case 3: System.out.println("3: Type account veranderen."); accountsmenuAAt(); break;
+                case 4: System.out.println("4: Wachtwoord account veranderen."); accountsmenuAAw(); break;
+                case 5: System.out.println("5: Account verwijderen."); accountsmenuDELETE(); break;
    
                             }
 
 }
-    else{ System.out.println("verkeerde waarde terug naar accountsmenu");
+    else{ System.out.println("Ongeldige invoer, probeer opnieuw.");
     
     
     accountsmenu();
@@ -67,17 +67,14 @@ else if(waarde <= 5 && waarde >0){
 
 
 public void accountsmenuZoId() {
-         System.out.println("U gaat een account zoeken op ID.");
+         System.out.println("U gaat een account zoeken op Id.");
     
     
-    System.out.println("Vul een id in druk enter.");
     
-     //int Bid = TextIO.getlnInt();
-   
     
    int Acid = -1;
         do {
-            System.out.println("Vul het Account Id in en druk op enter. Vul 0 in om te annuleren.");
+            System.out.print("Voer het accountId in (voer 0 in om te annuleren): ");
             if (Acid == 0) {
             accountsmenu();
             }
@@ -108,8 +105,9 @@ public void accountsmenuZoId() {
      
    
      
-   accountResultaat.setWachtwoord("");
-   accountResultaat.getALL(accountResultaat);
+   //accountResultaat.setWachtwoord("");
+   //accountResultaat.getALL(accountResultaat);
+   System.out.println(accountResultaat.toStringWachtwoordloos());
    
    accountsmenu();
     
@@ -118,16 +116,15 @@ public void accountsmenuAT() {
           System.out.println("U gaat een account toevoegen.");
     
     
-    System.out.println("Geef het type op (1: klant, 2: medewerker): ");
-    int type = TextIO.getlnInt();
-    
-    
-     //int Bid = TextIO.getlnInt();
-     
-      System.out.println("Vul een wachtwoord in en druk enter.");
-   String Aw8 = TextIO.getln();
+    System.out.print("Wat voor account wilt u aanmaken? \n1: Klant account.\n2: Medewerker account.");
+          
+       int type = TextIO.getlnInt();  
+        
+       System.out.print("Wachtwoord: ");
+       
+       String wachtwoord = TextIO.getln();
    
-   System.out.println( accountController.createAccount(type,Aw8).toStringWachtwoordloos());
+   System.out.println("Uw account is: " + accountController.createAccount(type,wachtwoord).toStringWachtwoordloos());
    
    
 

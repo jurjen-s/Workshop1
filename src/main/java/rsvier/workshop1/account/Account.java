@@ -59,7 +59,7 @@ public class Account {
     }
     
     public String toStringWachtwoordloos() {
-        String accountStr ="id: " + this.accountId +" type : " + this.type;
+        String accountStr ="AccountId: " + this.accountId +", type: " + this.type;
         return accountStr;
     }
     

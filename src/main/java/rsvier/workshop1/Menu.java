@@ -42,22 +42,22 @@ public class Menu  {
      Scanner input = new Scanner(System.in);   
    
 int cijfer = 100;     
-System.out.println("Welkom in het hoofdmenu van Kaas Manager 2017");
-System.out.println("Wat wilt u doen?");
 System.out.println("=========================");
-        System.out.println(" 1 Producten menu");  
-        System.out.println(" 2 Klanten menu  "); 
-        System.out.println(" 3 Adres gegevens menu  "); 
-        System.out.println(" 4 Bestelling menu  ");  
-        System.out.println(" 5 Medewerkers menu"); 
-        System.out.println(" 6 Accounts gegevens menu ");    
-        System.out.println(" 7 Factuur gegevens menu ");  
-        System.out.println(" 8 Bestelregel menu ");
-        System.out.println(" 9 Instellingen menu ");
-        System.out.println(" 0: Stoppen");
+System.out.println("Welkom in het hoofdmenu van Kaas Manager 2017.");
+System.out.println("Waar wilt u heen?");
+
+        System.out.println(" 1: Productmenu.");  
+        System.out.println(" 2: Klantmenu."); 
+        System.out.println(" 3: Adres menu."); 
+        System.out.println(" 4: Bestellingmenu.");  
+        System.out.println(" 5: Medewerkermenu."); 
+        System.out.println(" 6: Accountmenu.");    
+        System.out.println(" 7: Factuurmenu.");  
+        System.out.println(" 8: Bestelregelmenu.");
+        System.out.println(" 9: Instellingen.");
+        System.out.println(" 0: Afsluiten.");
         System.out.println("=========================");
-System.out.println("Vul het cijfer in wat u wilt doen");
-System.out.println("en druk dan op enter.");
+System.out.print("Geef uw keuze: ");
 
 
 
@@ -65,20 +65,20 @@ cijfer = input.nextInt();
 if (cijfer == 0){ System.out.println("Einde"); System.exit(0); }
 else if (cijfer <= 9 && cijfer >0){
     switch (cijfer){
-        case 1: System.out.println(" 1 Producten menu ");  ProductMenu productmenu = new ProductMenu(); productmenu.productmenu(); break;
-        case 2: System.out.println(" 2 Klanten menu "); KlantMenu klantmenu = new KlantMenu(); klantmenu.klantenmenu();   break;
-        case 3: System.out.println(" 3 Adres gegevens menu ");  AdresMenu adresmenu = new AdresMenu(); adresmenu.adressenmenu(); break;
-        case 4: System.out.println(" 4 Bestelling menu ");  BestellingMenu bestellingmenu = new BestellingMenu(); bestellingmenu.bestellingenmenu(); break;
-        case 5: System.out.println(" 5 Medewerkers maken menu ");  MedewerkerMenu medewerkersmenu = new MedewerkerMenu(); medewerkersmenu.medewerkersmenu(); break;
-        case 6: System.out.println(" 6 Accounts gegevens menu  ");  AccountMenu am = new AccountMenu(); am.accountsmenu(); break;
-        case 7: System.out.println(" 7 Factuur gegevens menu ");   FactuurMenu factuurmenu = new FactuurMenu(); factuurmenu.facturenmenu(); break;
-        case 8: System.out.println(" 8 Bestelling regel menu "); BestelregelMenu bestelregelmenu = new BestelregelMenu(); bestelregelmenu.bestelregelmenu(); break;
-        case 9: System.out.println(" 9 Instellingen menu"); InstellingenMenu instellingenmenu = new InstellingenMenu(); instellingenmenu.instellingenmenu(); break;
+        case 1: System.out.println("1 Productmenu.");  ProductMenu productmenu = new ProductMenu(); productmenu.productmenu(); break;
+        case 2: System.out.println("2 Klantmenu."); KlantMenu klantmenu = new KlantMenu(); klantmenu.klantenmenu();   break;
+        case 3: System.out.println("3 Adresmenu.");  AdresMenu adresmenu = new AdresMenu(); adresmenu.adressenmenu(); break;
+        case 4: System.out.println("4 Bestellingmenu.");  BestellingMenu bestellingmenu = new BestellingMenu(); bestellingmenu.bestellingenmenu(); break;
+        case 5: System.out.println("5 Medewerkermenu.");  MedewerkerMenu medewerkersmenu = new MedewerkerMenu(); medewerkersmenu.medewerkersmenu(); break;
+        case 6: System.out.println("6 Accountmenu.");  AccountMenu am = new AccountMenu(); am.accountsmenu(); break;
+        case 7: System.out.println("7 Factuurmenu.");   FactuurMenu factuurmenu = new FactuurMenu(); factuurmenu.facturenmenu(); break;
+        case 8: System.out.println("8 Bestelregelmenu."); BestelregelMenu bestelregelmenu = new BestelregelMenu(); bestelregelmenu.bestelregelmenu(); break;
+        case 9: System.out.println("9 Instellingen."); InstellingenMenu instellingenmenu = new InstellingenMenu(); instellingenmenu.instellingenmenu(); break;
      
     }
 }
 
-else{ System.out.println("foute cijfer waarde probeer opnieuw"); hoofdmenu(); }
+else{ System.out.println("Ongeldige invoer, probeer opnieuw."); hoofdmenu(); }
 
     
 

@@ -1147,3 +1147,107 @@ Testlaan 1 1234 AA Nederland.
 2017-02-23 16:27:25,462 INFO r.w.a.AccountMySQL [main] Account gegevens zijn succesvol aangemaakt.
 2017-02-23 16:27:25,462 DEBUG r.w.a.AccountMySQL [main] Resultaat aanmaken account: id: 3 type : 1 wachtwoord: $2a$13$ERin0a9Lewb4fGeikUVVDeeL8qpkZz.CBT/XnH2q9VGaSBtqevk5u
 2017-02-24 11:21:40,870 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 16:15:03,768 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 16:20:41,474 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 16:21:27,533 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 16:36:04,840 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 16:38:04,030 DEBUG r.w.a.Inlogmenu [main] In inputs waren wachtwoord: kipmetchili , en type 2 
+2017-02-24 16:38:04,037 DEBUG r.w.a.AccountMySQL [main] In inputs waren wachtwoord: kipmetchili , en type 2 
+2017-02-24 16:38:04,069 DEBUG r.w.a.AccountMySQL [main] In inputs waren workload: 13 , en salt $2a$13$qegzgWKlUTcrcJIf5GGjcu 
+2017-02-24 16:38:05,343 DEBUG r.w.a.AccountMySQL [main] In outputs waren hashed_password: $2a$13$qegzgWKlUTcrcJIf5GGjcuzh9IsqMVISJrdMXgEX.Hs2/kyz/pxmm 
+2017-02-24 16:38:05,346 DEBUG r.w.a.AccountMySQL [main] Aanmaken account met type 2 en wachtwoordkipmetchili en salt $2a$13$qegzgWKlUTcrcJIf5GGjcu.
+2017-02-24 16:38:05,501 INFO r.w.a.AccountMySQL [main] Account gegevens zijn succesvol aangemaakt.
+2017-02-24 16:38:05,503 DEBUG r.w.a.AccountMySQL [main] Resultaat aanmaken account: id: 2 type : 2 wachtwoord: $2a$13$qegzgWKlUTcrcJIf5GGjcuzh9IsqMVISJrdMXgEX.Hs2/kyz/pxmm
+2017-02-24 16:41:21,369 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 16:43:01,586 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 16:46:04,650 DEBUG r.w.a.AccountMySQL [main] Haal hashedwachtwoord terug via id van accountId: 2
+2017-02-24 16:49:38,950 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 16:49:39,009 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 16:56:27,523 DEBUG r.w.a.AccountMySQL [main] In inputs waren wachtwoord: test , en type 1 
+2017-02-24 16:56:27,526 DEBUG r.w.a.AccountMySQL [main] In inputs waren workload: 13 , en salt $2a$13$c2S2tr06U7yjbxhgaRtLFe 
+2017-02-24 16:56:28,760 DEBUG r.w.a.AccountMySQL [main] In outputs waren hashed_password: $2a$13$c2S2tr06U7yjbxhgaRtLFeXGCp5I89Lq03h635SWsxx4hiUmU2F9C 
+2017-02-24 16:56:28,761 DEBUG r.w.a.AccountMySQL [main] Aanmaken account met type 1 en wachtwoordtest en salt $2a$13$c2S2tr06U7yjbxhgaRtLFe.
+2017-02-24 16:56:28,784 INFO r.w.a.AccountMySQL [main] Account gegevens zijn succesvol aangemaakt.
+2017-02-24 16:56:28,785 DEBUG r.w.a.AccountMySQL [main] Resultaat aanmaken account: id: 3 type : 1 wachtwoord: $2a$13$c2S2tr06U7yjbxhgaRtLFeXGCp5I89Lq03h635SWsxx4hiUmU2F9C
+2017-02-24 17:00:44,070 DEBUG r.w.a.AccountMySQL [main] Account zoeken. Zoekterm: accountId 2
+2017-02-24 17:00:44,075 DEBUG r.w.a.AccountMySQL [main] Zoekresultaat account op accountId: id: 2 type : 2 wachtwoord: $2a$13$qegzgWKlUTcrcJIf5GGjcuzh9IsqMVISJrdMXgEX.Hs2/kyz/pxmm
+2017-02-24 17:00:44,076 DEBUG r.w.a.AccountMySQL [main] Account zoeken. Zoekterm: accountId 2
+2017-02-24 17:00:44,080 DEBUG r.w.a.AccountMySQL [main] Zoekresultaat account op accountId: id: 2 type : 2 wachtwoord: $2a$13$qegzgWKlUTcrcJIf5GGjcuzh9IsqMVISJrdMXgEX.Hs2/kyz/pxmm
+2017-02-24 17:01:37,082 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 17:02:07,597 DEBUG r.w.a.AccountMySQL [main] Haal hashedwachtwoord terug via id van accountId: 2
+2017-02-24 17:02:45,266 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 17:02:45,282 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 17:03:06,394 DEBUG r.w.a.AccountMySQL [main] Account zoeken. Zoekterm: accountId 2
+2017-02-24 17:03:06,399 DEBUG r.w.a.AccountMySQL [main] Zoekresultaat account op accountId: id: 2 type : 2 wachtwoord: $2a$13$qegzgWKlUTcrcJIf5GGjcuzh9IsqMVISJrdMXgEX.Hs2/kyz/pxmm
+2017-02-24 17:03:06,399 DEBUG r.w.a.AccountMySQL [main] Account zoeken. Zoekterm: accountId 2
+2017-02-24 17:03:06,401 DEBUG r.w.a.AccountMySQL [main] Zoekresultaat account op accountId: id: 2 type : 2 wachtwoord: $2a$13$qegzgWKlUTcrcJIf5GGjcuzh9IsqMVISJrdMXgEX.Hs2/kyz/pxmm
+2017-02-24 17:06:08,245 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 17:14:00,191 DEBUG r.w.k.KlantMySQL [main] input bij findBijVoornaam is test
+2017-02-24 17:14:00,202 DEBUG r.w.k.KlantMySQL [main] output bij findBijVoornaam is klanten id : 0 voornaam is null tussenvoegsel isnull achternaam is :null telnr. null account id0 
+2017-02-24 17:20:01,670 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 17:20:39,390 DEBUG r.w.a.AccountMySQL [main] Haal hashedwachtwoord terug via id van accountId: 2
+2017-02-24 17:20:43,627 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 17:21:09,206 DEBUG r.w.k.KlantMySQL [main] input bij findBijVoornaam is TEST
+2017-02-24 17:21:09,212 DEBUG r.w.k.KlantMySQL [main] output bij findBijVoornaam is klanten id : 0 voornaam is null tussenvoegsel isnull achternaam is :null telnr. null account id0 
+2017-02-24 17:25:36,325 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 17:25:58,414 DEBUG r.w.a.AccountMySQL [main] Haal hashedwachtwoord terug via id van accountId: 2
+2017-02-24 17:26:36,747 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 17:26:40,671 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 17:26:40,706 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 17:26:47,412 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 17:26:47,422 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 17:26:51,438 DEBUG r.w.a.AccountMySQL [main] Account zoeken. Zoekterm: accountId 2
+2017-02-24 17:26:51,444 DEBUG r.w.a.AccountMySQL [main] Zoekresultaat account op accountId: id: 2 type : 2 wachtwoord: $2a$13$qegzgWKlUTcrcJIf5GGjcuzh9IsqMVISJrdMXgEX.Hs2/kyz/pxmm
+2017-02-24 17:26:51,450 DEBUG r.w.a.AccountMySQL [main] Account zoeken. Zoekterm: accountId 2
+2017-02-24 17:26:51,451 DEBUG r.w.a.AccountMySQL [main] Zoekresultaat account op accountId: id: 2 type : 2 wachtwoord: $2a$13$qegzgWKlUTcrcJIf5GGjcuzh9IsqMVISJrdMXgEX.Hs2/kyz/pxmm
+2017-02-24 17:28:25,007 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 17:31:22,159 DEBUG r.w.k.KlantMySQL [main] input bij findBijID is 15
+2017-02-24 17:31:22,166 DEBUG r.w.k.KlantMySQL [main] output bij findBijID is klanten id : 0 voornaam is null tussenvoegsel isnull achternaam is :null telnr. null account id0 
+2017-02-24 17:31:30,311 DEBUG r.w.k.KlantMySQL [main] input bij findBijVoornaam is Test
+2017-02-24 17:31:30,317 DEBUG r.w.k.KlantMySQL [main] output bij findBijVoornaam is klanten id : 0 voornaam is null tussenvoegsel isnull achternaam is :null telnr. null account id0 
+2017-02-24 17:32:42,754 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 17:32:42,778 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 17:41:55,041 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 17:44:31,344 DEBUG r.w.a.Inlogmenu [main] In inputs waren wachtwoord: qwerty , en type 2 
+2017-02-24 17:44:31,351 DEBUG r.w.a.AccountMySQL [main] In inputs waren wachtwoord: qwerty , en type 2 
+2017-02-24 17:44:31,360 DEBUG r.w.a.AccountMySQL [main] In inputs waren workload: 13 , en salt $2a$13$xwH1h1J/czJapSEKdmTcwe 
+2017-02-24 17:44:32,644 DEBUG r.w.a.AccountMySQL [main] In outputs waren hashed_password: $2a$13$xwH1h1J/czJapSEKdmTcwe85rtfa1b.MuIkHdh12lbuG3GAvyQ3Dm 
+2017-02-24 17:44:32,645 DEBUG r.w.a.AccountMySQL [main] Aanmaken account met type 2 en wachtwoordqwerty en salt $2a$13$xwH1h1J/czJapSEKdmTcwe.
+2017-02-24 17:44:32,682 INFO r.w.a.AccountMySQL [main] Account gegevens zijn succesvol aangemaakt.
+2017-02-24 17:44:32,683 DEBUG r.w.a.AccountMySQL [main] Resultaat aanmaken account: id: 4 type : 2 wachtwoord: $2a$13$xwH1h1J/czJapSEKdmTcwe85rtfa1b.MuIkHdh12lbuG3GAvyQ3Dm
+2017-02-24 17:45:22,588 DEBUG r.w.a.AccountMySQL [main] Haal hashedwachtwoord terug via id van accountId: 4
+2017-02-24 17:45:52,705 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 17:45:52,733 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 17:46:20,887 DEBUG r.w.a.AccountMySQL [main] Account zoeken. Zoekterm: accountId 4
+2017-02-24 17:46:20,890 DEBUG r.w.a.AccountMySQL [main] Zoekresultaat account op accountId: id: 4 type : 2 wachtwoord: $2a$13$xwH1h1J/czJapSEKdmTcwe85rtfa1b.MuIkHdh12lbuG3GAvyQ3Dm
+2017-02-24 17:46:20,892 DEBUG r.w.a.AccountMySQL [main] Account zoeken. Zoekterm: accountId 4
+2017-02-24 17:46:20,898 DEBUG r.w.a.AccountMySQL [main] Zoekresultaat account op accountId: id: 4 type : 2 wachtwoord: $2a$13$xwH1h1J/czJapSEKdmTcwe85rtfa1b.MuIkHdh12lbuG3GAvyQ3Dm
+2017-02-24 17:46:34,883 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 17:54:36,792 DEBUG r.w.k.KlantMySQL [main] input bij create klant is 4 Pjotrt 0  Plezkawolscinzky 0487-235386
+2017-02-24 17:54:36,844 DEBUG r.w.k.KlantMySQL [main] output bij create klant  is klanten id : 2 voornaam is Pjotrt tussenvoegsel is achternaam is :Plezkawolscinzky telnr. 0487-235386 account id4 
+2017-02-24 17:58:17,628 DEBUG r.w.k.KlantMySQL [main] input bij findBijVoornaam is pjotrt
+2017-02-24 17:58:17,633 DEBUG r.w.k.KlantMySQL [main] output bij findBijVoornaam is klanten id : 0 voornaam is null tussenvoegsel isnull achternaam is :null telnr. null account id0 
+2017-02-24 17:58:42,082 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 17:58:42,093 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 17:59:06,760 DEBUG r.w.k.KlantMySQL [main] input bij findBijID is 2
+2017-02-24 17:59:06,769 DEBUG r.w.k.KlantMySQL [main] output bij findBijID is klanten id : 0 voornaam is null tussenvoegsel isnull achternaam is :null telnr. null account id0 
+2017-02-24 17:59:32,639 DEBUG r.w.a.AdresMySQL [main] Input  in toevoegenAdres is Adres 0, factuuradres van klant 2: Spandaulaan 42bis 2315 JS Nederland.
+
+2017-02-24 17:59:32,660 INFO r.w.a.AdresMySQL [main] Nieuw adres aangemaakt met ID:2
+2017-02-24 17:59:32,661 DEBUG r.w.a.AdresMySQL [main] output toevoegenAdres :Adres 2, factuuradres van klant 2: Spandaulaan 42bis 2315 JS Nederland.
+
+2017-02-24 18:02:31,518 DEBUG r.w.k.KlantMySQL [main] input bij findBijID is 5
+2017-02-24 18:02:31,522 DEBUG r.w.k.KlantMySQL [main] output bij findBijID is klanten id : 0 voornaam is null tussenvoegsel isnull achternaam is :null telnr. null account id0 
+2017-02-24 18:02:34,342 DEBUG r.w.k.KlantMySQL [main] input bij findBijID is 2
+2017-02-24 18:02:34,346 DEBUG r.w.k.KlantMySQL [main] output bij findBijID is klanten id : 0 voornaam is null tussenvoegsel isnull achternaam is :null telnr. null account id0 
+2017-02-24 18:02:34,347 DEBUG r.w.a.AdresMySQL [main] Input  in findAdresByKlant is 2
+2017-02-24 18:02:34,355 DEBUG r.w.a.AdresMySQL [main] output findAdresByKlantID :[Adres 2, factuuradres van klant 2: Spandaulaan 42bis 2315 JS Nederland.
+]
+2017-02-24 18:04:19,854 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 18:04:37,193 DEBUG r.w.a.AccountMySQL [main] Haal hashedwachtwoord terug via id van accountId: 2
+2017-02-24 18:04:50,781 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 18:04:50,792 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-24 18:04:59,332 DEBUG r.w.k.KlantMySQL [main] input bij findBijID is 2
+2017-02-24 18:04:59,336 DEBUG r.w.k.KlantMySQL [main] output bij findBijID is klanten id : 0 voornaam is null tussenvoegsel isnull achternaam is :null telnr. null account id0 
+2017-02-24 18:04:59,337 DEBUG r.w.a.AdresMySQL [main] Input  in findAdresByKlant is 2
+2017-02-24 18:04:59,346 DEBUG r.w.a.AdresMySQL [main] output findAdresByKlantID :[Adres 2 (factuuradres van klant 2): Spandaulaan 42bis, 2315 JS, Nederland.]

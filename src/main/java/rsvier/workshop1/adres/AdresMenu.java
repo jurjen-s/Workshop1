@@ -24,27 +24,26 @@ public class AdresMenu {
     
     public  void  adressenmenu(){
    
+        System.out.println("==========================================");
         System.out.println("Welkom in het adressenmenu ");
         System.out.println("Wat wilt u doen?");
-        System.out.println("=========================");
-        System.out.println("Doorzoek adressen");
-        System.out.println("-------------------------");
-        System.out.println("1: Doorzoek op adresID."); 
-        System.out.println("2: Doorzoek op postcode.");
-        System.out.println("3: Doorzoek op adrestype.");
-        System.out.println("4: Doorzoek op klantIDadress.");
-        System.out.println("5: Doorzoek op land");
-        System.out.println("6: Adres toevoegen");
-        System.out.println("7: verander type");
-        System.out.println("8: verander straat");
-        System.out.println("9: verander huisnummer");
-        System.out.println("10: verander huisnummertoevoeging");
-        System.out.println("11: verander postcode");
-        System.out.println("12: verander land");
+        
+        System.out.println(" 1: Zoek adres op adresID."); 
+        System.out.println(" 2: Zoek adres op postcode.");
+        System.out.println(" 3: Zoek adres op adrestype.");
+        System.out.println(" 4: Zoek adres op klantId.");
+        System.out.println(" 5: Zoek adres op land.");
+        System.out.println(" 6: Nieuw adres aanmaken.");
+        System.out.println(" 7: Type adres veranderen.");
+        System.out.println(" 8: Straat adres veranderen.");
+        System.out.println(" 9: Huisnummer adres veranderen.");
+        System.out.println("10: Huisnummertoevoeging adres veranderen.");
+        System.out.println("11: Postcode adres veranderen.");
+        System.out.println("12: Land adres veranderen.");
         System.out.println("13: Adres verwijderen");
-        System.out.println("0: Terug naar hoofdmenu.");
-        System.out.println("=========================");
-        System.out.println("Geef uw keuze : ");
+        System.out.println(" 0: Terug naar het hoofdmenu.");
+        System.out.println("==========================================");
+        System.out.print("Geef uw keuze: ");
 
         int keuze = TextIO.getlnInt();
 
@@ -52,9 +51,9 @@ public class AdresMenu {
                 case 1:    System.out.println("1: Doorzoek op adresID."); adressenmenuDoAid(); break;
                 case 2: System.out.println("2: Doorzoek op postcode.");adressenmenuDoPc(); break;
                 case 3:  System.out.println("3: Doorzoek op adrestype.");adressenmenuDoT(); break;
-                case 4: System.out.println("4: Doorzoek op klantID.");adressenmenuDoK(); break;
+                case 4: System.out.println("------------------------------");adressenmenuDoK(); break;
                 case 5: System.out.println("5: Doorzoek op land");adressenmenuDoL(); break;
-                case 6: System.out.println("6: Adres toevoegen");adressenmenuTA(); break;
+                case 6: System.out.println("------------------------------");adressenmenuTA(); break;
                 case 7 :System.out.println("7: verander type");adressenmenuVT(); break;
                 case 8: System.out.println("8: verander straat");adressenmenuVS(); break;
                 case 9:  System.out.println("9: verander huisnummer");adressenmenuVHnr(); break;
@@ -117,7 +116,7 @@ public class AdresMenu {
         //Controleren op FK constraints
         int klantId = -1;
         do {
-            System.out.println("Vul het klantID in en druk op enter. Vul 0 in als u wilt annuleren.");
+            System.out.print("Vul het klantID in en druk op enter. Vul 0 in als u wilt annuleren. ");
             klantId = TextIO.getlnInt();
             if (klantId == 0) {
                 adressenmenu();
@@ -147,44 +146,44 @@ public class AdresMenu {
     public  void adressenmenuTA(){
         System.out.println("U gaat een adres toevoegen.");
         Adres adres = new Adres();
-        System.out.println("Geef het adres type (1: woonadres, 2: bezorgadres, 3: factuuradres): ");
+        System.out.print("Geef het adres type (1: woonadres, 2: bezorgadres, 3: factuuradres): ");
         int adresType = TextIO.getlnInt();
         adres.setAdresType(adresType);
         //Controleren op foreign key constraints
         int klantId = -1;
         do {
-            System.out.println("Geef het bijbehorende klantenID. Vul 0 in als u wilt annuleren.");
+            System.out.print("Geef het bijbehorende klantenID. Vul 0 in als u wilt annuleren. ");
             klantId = TextIO.getlnInt();
             if (klantId == 0) {
                 adressenmenu();
             }
             adres.setKlantId(klantId);
         } while (!controller.existsKlantId(klantId));
-        System.out.println("Geef de straatnaam: ");
+        System.out.print("Geef de straatnaam: ");
         String straatnaam = TextIO.getln();
         adres.setStraatnaam(straatnaam);
-        System.out.println("Geef het huisnummer: ");
+        System.out.print("Geef het huisnummer: ");
         int huisnummer = TextIO.getlnInt();
         adres.setHuisnummer(huisnummer);
-        System.out.println("Heeft het een huisnummertoevoeging? 1 = ja, 0 = nee");
+        System.out.print("Heeft het een huisnummertoevoeging? (1 = ja, 0 = nee) ");
         boolean heeftHuisnrToevoeging = TextIO.getlnBoolean();
         adres.setHeeftHuisnrToevoeging(heeftHuisnrToevoeging);
         String huisnrToevoeging = "";
         if (heeftHuisnrToevoeging) {
-            System.out.println("Geef de huisnummertoevoeging: ");
+            System.out.print("Geef de huisnummertoevoeging: ");
             huisnrToevoeging = TextIO.getln();
             adres.setHuisnrToevoeging(huisnrToevoeging);
         }
         String postcode = "";        
         do {
-            System.out.println("Geef de postcode, in het formaat \'1234 AZ\': ");
+            System.out.print("Geef de postcode (in het formaat \'1234 AZ\'): ");
             postcode = TextIO.getln();
             if (validator.validatePostcode(postcode)) {
                 break;
             }  
         } while (true);
         adres.setPostcode(postcode);
-        System.out.println("Geef het land: ");
+        System.out.print("Geef het land: ");
         String land = TextIO.getln();
         adres.setLand(land);
         System.out.println(adresController.toevoegenAdres(adres).toString());
