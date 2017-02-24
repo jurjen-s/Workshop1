@@ -7,8 +7,13 @@ package rsvier.workshop1.product;
 
 import java.math.BigDecimal;
 import java.util.List;
+import rsvier.workshop1.Controller;
 import rsvier.workshop1.Menu;
 import rsvier.workshop1.util.TextIO;
+import rsvier.workshop1.bestelling.BestellingController;
+import rsvier.workshop1.bestelling.Bestelling;
+import rsvier.workshop1.bestelregel.BestelregelController;
+import rsvier.workshop1.bestelregel.Bestelregel;
 
 /**
  *
@@ -18,14 +23,13 @@ import rsvier.workshop1.util.TextIO;
 public class ProductMenu {
 
     private ProductController productController = new ProductController();
+    private Controller controller = new Controller();
     
     public void  productmenu(){
    
         System.out.println("Welkom in het productmenu ");
         System.out.println("Wat wilt u doen?");
         System.out.println("=========================");
-        System.out.println("Doorzoek producten");
-        System.out.println("-------------------------");
         System.out.println("1: Doorzoek op PRODUCT ID");
         System.out.println("2: Doorzoek op SOORT."); 
         System.out.println("3: Doorzoek op PRIJS.");
@@ -36,6 +40,7 @@ public class ProductMenu {
         System.out.println("8: Verander PRIJS product met behulp van product id.");
         System.out.println("9: Verander VOORRAAD product met behulp van product id.");
         System.out.println("10: VERWIJDER product met behulp van product id.");
+        System.out.println("11: Bestel product.");
         System.out.println("0: Terug naar hoofdmenu.");
         System.out.println("=========================");
         System.out.println("Geef uw keuze : ");
@@ -53,6 +58,7 @@ public class ProductMenu {
                 case 8: System.out.println(" 8 Verander Prijs product met behulp van product id"); productmenuVPP() ;break;
                 case 9: System.out.println(" 9 Verander Voorraad product met behulp van product id");productmenuVPV() ; break;
                 case 10: System.out.println(" 10 Verwijder product met behulp van product id"); productmenuDELETE() ; break;
+                case 11: System.out.println(" 11 Bestel product"); productmenuBestel(); break;
                 case 0: Menu menu = new Menu(); menu.hoofdmenu(); break;
                 default: System.out.println("Verkeerde invoer."); productmenu();
         }
@@ -203,5 +209,70 @@ public class ProductMenu {
             System.out.println("Het verwijderen is mislukt.");
         }
         productmenu();
+    }
+
+    private void productmenuBestel() {
+        System.out.println("U wilt een product bestellen.");
+        //Controleren op FK constraints
+        int klantId = -1;
+        do {
+            System.out.println("Voor welke klant wilt u het procuct bestellen? Geef het klantId of 0 om te annuleren.");
+            klantId = TextIO.getlnInt();
+            if (klantId == 0) {
+                productmenu();
+            }
+        } while (!controller.existsKlantId(klantId));
+        //Controleren op FK constraints
+        int adresId = -1;
+        do {
+            System.out.println("Naar welk adres wordt de bestelling gestuurd? Geef het adresId of 0 om te annuleren.");
+            adresId = TextIO.getlnInt();
+            if (adresId == 0) {
+                productmenu();
+            }
+        } while (!controller.existsAdresId(adresId));
+        boolean doorgaan = true;
+        while (doorgaan) {
+            // Maak dummy bestelling om bestellingId te krijgen
+            Bestelling dummyBestelling = new Bestelling();
+            dummyBestelling.setKlantId(klantId);
+            dummyBestelling.setAdresId(adresId);
+            BestellingController bControl = new BestellingController();
+            Bestelling bestelling = bControl.toevoegenBestelling(dummyBestelling);
+            //Controleren op FK constraints
+            int productId = -1;
+            do {
+                System.out.println("Geef het productId van het te bestellen product:");
+                productId = TextIO.getlnInt();
+                if (productId == 0) {
+                    productmenu();
+                }
+            } while (!controller.existsProductId(productId));        
+            System.out.println("Hoeveel stuks wilt u hiervan bestellen?");
+            int hoeveelheid = TextIO.getlnInt();       
+            // Maak bestelregel met opgegeven product, hoeveelheid en verkregen bestellingId
+            Bestelregel legeBestelregel = new Bestelregel();
+            int bestellingId = dummyBestelling.getBestellingId();
+            legeBestelregel.setBestellingId(bestellingId);
+            legeBestelregel.setProductId(productId);
+            legeBestelregel.setHoeveelheid(hoeveelheid);
+            // Voeg bestelregel toe in db
+            BestelregelController brControl = new BestelregelController();
+            if (brControl.toevoegenBestelregel(legeBestelregel)) {
+                System.out.println("Het bestellen is gelukt. Wilt u nog een product aan de bestelling toevoegen? J/N: ");
+                String antwoord = TextIO.getln();
+                if (!antwoord.equalsIgnoreCase("j")) {
+                    doorgaan = false;
+                    bControl.updateBestelling(bestellingId);
+                    System.out.println("De bestelling is aangemaakt met het ID: " + bestelling.getBestellingId());
+                    bControl.bekijkBestelling(bestellingId);
+                    productmenu();
+                }
+            } else {
+                System.out.println("Het bestellen is mislukt.");
+                doorgaan = false;
+                productmenu();
+            }
+        }
     }
 }

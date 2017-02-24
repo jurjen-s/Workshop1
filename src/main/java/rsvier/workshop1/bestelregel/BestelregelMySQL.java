@@ -190,7 +190,7 @@ public class BestelregelMySQL implements BestelregelDAO {
     @Override
     public boolean deleteBestelregel(int bestelregelId) {
         LOGGER.debug("Verwijder bestelregel: {}", bestelregelId);
-        String query = "DELETE FROM bestelregel WHERE bestelregels_id = ?";
+        String query = "DELETE FROM bestelregels WHERE bestelregels_id = ?";
         try (PreparedStatement stmt = bestelregelconnectie.prepareStatement(query)) {
             stmt.setInt(1, bestelregelId);
             stmt.executeUpdate();

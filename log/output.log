@@ -1146,3 +1146,4 @@ Testlaan 1 1234 AA Nederland.
 2017-02-23 16:27:25,343 DEBUG r.w.a.AccountMySQL [main] Aanmaken account met type 1 en wachtwoord1 en salt $2a$13$ERin0a9Lewb4fGeikUVVDe.
 2017-02-23 16:27:25,462 INFO r.w.a.AccountMySQL [main] Account gegevens zijn succesvol aangemaakt.
 2017-02-23 16:27:25,462 DEBUG r.w.a.AccountMySQL [main] Resultaat aanmaken account: id: 3 type : 1 wachtwoord: $2a$13$ERin0a9Lewb4fGeikUVVDeeL8qpkZz.CBT/XnH2q9VGaSBtqevk5u
+2017-02-24 11:21:40,870 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.

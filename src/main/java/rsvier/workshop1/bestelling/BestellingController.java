@@ -20,6 +20,13 @@ public class BestellingController {
     BestellingDAOfactory factory = new BestellingDAOfactory();
     BestellingDAO bestellingDAO = factory.getBestellingDAO();
     
+    public void updateBestelling(int bestellingId) {
+        bestellingDAO.updateBestelling(bestellingId);
+    }
+    public void bekijkBestelling(int bestellingId) {
+        bestellingDAO.bekijkBestelling(bestellingId);
+    }
+    
     public Bestelling findBestellingById(int bestellingId) {
         Bestelling bestelling = bestellingDAO.findBestellingById(bestellingId);
         return bestelling;

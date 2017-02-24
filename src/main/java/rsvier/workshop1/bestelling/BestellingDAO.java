@@ -33,5 +33,6 @@ public interface BestellingDAO {
     boolean deleteBestelling(int bestellingId); // returns succes of mislukt
     // 5: Om een bestelling te bekijken:
     void bekijkBestelling(int bestellingId); // print een lijst met de inhoud van de bestelling
+    boolean updateBestelling(int bestellingId);
     
 }

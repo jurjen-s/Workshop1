@@ -26,8 +26,6 @@ public class BestellingMenu {
         System.out.println("Welkom in het bestellingenmenu ");
         System.out.println("Wat wilt u doen?");
         System.out.println("=========================");
-        System.out.println("Doorzoek bestellingen");
-        System.out.println("-------------------------");
         System.out.println("1: Doorzoek bestelling op bestellingId.");
         System.out.println("2: Doorzoek bestelling op klantId.");
         System.out.println("3: Doorzoek bestelling op adres."); 
@@ -39,6 +37,8 @@ public class BestellingMenu {
         System.out.println("9: Verander bestelling: aantal artikelen");
         System.out.println("10: Verander bestelling: totaalprijs.");
         System.out.println("11: Verwijder bestelling.");
+        System.out.println("12: Bekijk bestelling.");
+        //System.out.println("13: TEST update bestelling.");
         System.out.println("0: Terug naar hoofdmenu.");
         System.out.println("=========================");
         System.out.println("Geef uw keuze : ");
@@ -57,6 +57,8 @@ public class BestellingMenu {
             case 9: System.out.println(" 9 Verander bestelling aantal artikelen"); bestellingenmenuVAA(); break;
             case 10: System.out.println(" 10 Verander bestelling totaal prijs");bestellingenmenuVTP(); break;
             case 11: System.out.println(" 11 Verwijder bestelling dmv id"); bestellingenmenuDELETE(); break;
+            case 12: System.out.println(" 12 Bekijk bestelling"); bestellingenmenuBekijk(); break;
+            //case 13: System.out.println(" 13 TEST update bestelling"); bestellingenmenuUpdate(); break;
             case 0: Menu menu = new Menu(); menu.hoofdmenu(); break;
             default: System.out.println("Verkeerde invoer."); bestellingenmenu();
         }
@@ -169,10 +171,12 @@ public class BestellingMenu {
                 bestellingenmenu();
             }
         } while (!controller.existsAdresId(adresId));
-        System.out.println("Vul aantal artikelen in en druk op enter");
-        int aantalArtikelen = TextIO.getlnInt();
-        System.out.println("Vul totaalprijs in en druk op enter");
-        BigDecimal totaalprijs = new BigDecimal(TextIO.getln());
+        //System.out.println("Vul aantal artikelen in en druk op enter");
+        //int aantalArtikelen = TextIO.getlnInt();
+        //System.out.println("Vul totaalprijs in en druk op enter");
+        //BigDecimal totaalprijs = new BigDecimal(TextIO.getln());
+        int aantalArtikelen = 0;
+        BigDecimal totaalprijs = new BigDecimal(0);
         Bestelling bestelling = new Bestelling.BestellingBuilder()
                                               .klantId(klantId)
                                               .adresId(adresId)
@@ -303,6 +307,36 @@ public class BestellingMenu {
         } else {
             System.out.println("Het verwijderen van de bestelling is mislukt.");
         }
+        bestellingenmenu();
+    }
+
+    private void bestellingenmenuBekijk() {
+        System.out.println("Welke bestelling wilt u bekijken?");
+        //Controleren op FK constraints
+        int bestellingId = -1;
+        do {
+            System.out.println("Vul bestellingId in en druk op enter. Vul 0 in als u wilt annuleren.");
+            bestellingId = TextIO.getlnInt();
+            if (bestellingId == 0) {
+                bestellingenmenu();
+            }
+        } while (!controller.existsBestellingId(bestellingId));
+        bestellingController.bekijkBestelling(bestellingId);
+        bestellingenmenu();
+    }
+
+    private void bestellingenmenuUpdate() {
+        System.out.println("Welke bestelling wilt u bijwerken?");
+        //Controleren op FK constraints
+        int bestellingId = -1;
+        do {
+            System.out.println("Vul bestellingId in en druk op enter. Vul 0 in als u wilt annuleren.");
+            bestellingId = TextIO.getlnInt();
+            if (bestellingId == 0) {
+                bestellingenmenu();
+            }
+        } while (!controller.existsBestellingId(bestellingId));
+        bestellingController.updateBestelling(bestellingId);
         bestellingenmenu();
     }
 }
