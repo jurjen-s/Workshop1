@@ -364,15 +364,16 @@ public class BestellingMySQL implements BestellingDAO {
             stmt.setInt(1, bestellingId);
             ResultSet rs = stmt.executeQuery();
             System.out.println("Bestelling " + bestellingId + " bestaat uit: ");
-            System.out.println("---------------------------------------------------------------");
-            System.out.println("soort"+"   "+"stukprijs"+"   "+"aantal"+"   "+"totaalprijs");
-            System.out.println("---------------------------------------------------------------");
+            System.out.println("-----------------------------------------------------");
+            System.out.println("soort"+"\t       "+"stukprijs"+"   "+"aantal"+"    "+"totaalprijs");
+            System.out.println("-----------------------------------------------------");
             while (rs.next()) {
                 BigDecimal totaalprijs = rs.getBigDecimal("prijs").multiply(new BigDecimal(rs.getInt("hoeveelheid")));
-                System.out.println(rs.getString("soort")+"\t"+rs.getBigDecimal("prijs")+"        "+rs.getInt("hoeveelheid")+"   \t"+totaalprijs);
+                System.out.printf("%-15s%-12.2g%-10d%-6.2g",rs.getString("soort"),rs.getBigDecimal("prijs"),rs.getInt("hoeveelheid"),totaalprijs);
+                System.out.println();
             }
         } catch (SQLException ex) {
-            System.out.println("Er ging wat mis. " + ex.getMessage());
+            System.out.println("Er ging wat mis: " + ex.getMessage());
         }
     }
     

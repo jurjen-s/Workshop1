@@ -56,7 +56,7 @@ public class Bestelling {
         String bestelling = "Bestelling " + bestellingId +
                             ", behorende bij klant " + klantId +
                             " en adres " + adresId +
-                            ", heeft " + aantalArtikelen + " artikelen" +
+                            ", bevat " + aantalArtikelen + " producten" +
                             " met een totaalprijs van " + totaalprijs + " Euro.";
         return bestelling;                           
     }

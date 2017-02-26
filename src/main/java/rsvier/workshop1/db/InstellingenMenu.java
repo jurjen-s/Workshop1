@@ -97,7 +97,7 @@ public class InstellingenMenu {
 
     private void editConnType() {
         System.out.println("Welk type connectie wilt u gebruiken?");
-        String connType = TextIO.getln();
+        String connType = TextIO.getln();        
         if (dbConfigurator.setConnection(connType)) {
             System.out.println("Connectie type is succesvol aangepast.");
             connectiemenu();

@@ -5,8 +5,10 @@
  */
 package rsvier.workshop1.account;
 
+import java.io.Console;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.beryx.textio.TextIoFactory;
 import rsvier.workshop1.Menu;
 import rsvier.workshop1.util.TextIO;
 
@@ -79,6 +81,7 @@ else{ System.out.println("Ongeldige invoer, probeer opnieuw."); inlogMenu(); }
        
        
        
+       
        if (accountController.loginCheckAccount(AcId, wachtwoord)){
        // if ok -> cijfer 1  -> menu, ,  else inlogmenu();
        
@@ -91,7 +94,9 @@ else{ System.out.println("Ongeldige invoer, probeer opnieuw."); inlogMenu(); }
        menu.hoofdmenu();
        
        }
-       else{ inlogMenu();}
+       else { 
+           System.out.println("Ongeldige invoer, probeer opnieuw.");
+           inlogMenu();}
            
        
        
@@ -100,13 +105,13 @@ else{ System.out.println("Ongeldige invoer, probeer opnieuw."); inlogMenu(); }
    
       
       public  void inlogAccountAanmaken(){
-          System.out.println("U gaat een account aanmaken, u krijgt automatisch een accountId.");
+          System.out.println("U gaat een account aanmaken, u krijgt automatisch een accountId toegewezen.");
        System.out.println("Wat voor account wilt u aanmaken? \n1: Klant account.\n2: Medewerker account.");
        System.out.print("Geef uw keuze: ");
           
        int type = TextIO.getlnInt();  
         
-       System.out.print("Wachtwoord: ");
+       System.out.print("Voer een wachtwoord voor deze account in: ");
        
        String wachtwoord = TextIO.getln();
        
@@ -120,10 +125,9 @@ else{ System.out.println("Ongeldige invoer, probeer opnieuw."); inlogMenu(); }
         
         a= accountController.createAccount(type, wachtwoord);
        
-       
-         
+               
                   
-          System.out.println("Uw account is : "+ a.toStringWachtwoordloos() );
+          System.out.println("Uw account is: "+ a.toStringWachtwoordloos() );
                   
           
          

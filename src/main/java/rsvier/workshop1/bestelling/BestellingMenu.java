@@ -23,25 +23,25 @@ public class BestellingMenu {
     
     public  void bestellingenmenu(){
 
+        System.out.println("===========================================");
         System.out.println("Welkom in het bestellingenmenu ");
-        System.out.println("Wat wilt u doen?");
-        System.out.println("=========================");
-        System.out.println("1: Doorzoek bestelling op bestellingId.");
-        System.out.println("2: Doorzoek bestelling op klantId.");
-        System.out.println("3: Doorzoek bestelling op adres."); 
-        System.out.println("4: Doorzoek bestelling op aantal artikelen.");
-        System.out.println("5: Doorzoek bestelling op totaalprijs.");
-        System.out.println("6: Toevoegen bestelling.");
-        System.out.println("7: Verander bestelling: klantId.");
-        System.out.println("8: Verander bestelling: adresId.");
-        System.out.println("9: Verander bestelling: aantal artikelen");
-        System.out.println("10: Verander bestelling: totaalprijs.");
-        System.out.println("11: Verwijder bestelling.");
-        System.out.println("12: Bekijk bestelling.");
+        System.out.println("Wat wilt u doen?");        
+        System.out.println(" 1: Zoek bestelling op bestellingId.");
+        System.out.println(" 2: Zoek bestelling op klantId.");
+        System.out.println(" 3: Zoek bestelling op adres."); 
+        System.out.println(" 4: Zoek bestelling op aantal artikelen.");
+        System.out.println(" 5: Zoek bestelling op totaalprijs.");
+        System.out.println(" 6: Nieuwe bestelling toevoegen.");
+        System.out.println(" 7: KlantId bestelling veranderen.");
+        System.out.println(" 8: AdresId bestelling veranderen.");
+        System.out.println(" 9: Aantal artikelen bestelling veranderen.");
+        System.out.println("10: Totaalprijs bestelling veranderen.");
+        System.out.println("11: Bestelling verwijderen.");
+        System.out.println("12: Bestelling bekijken.");
         //System.out.println("13: TEST update bestelling.");
-        System.out.println("0: Terug naar hoofdmenu.");
-        System.out.println("=========================");
-        System.out.println("Geef uw keuze : ");
+        System.out.println("0: Terug naar het hoofdmenu.");
+        System.out.println("===========================================");
+        System.out.print("Geef uw keuze: ");
 
         int keuze = TextIO.getlnInt();
 
@@ -57,16 +57,16 @@ public class BestellingMenu {
             case 9: System.out.println(" 9 Verander bestelling aantal artikelen"); bestellingenmenuVAA(); break;
             case 10: System.out.println(" 10 Verander bestelling totaal prijs");bestellingenmenuVTP(); break;
             case 11: System.out.println(" 11 Verwijder bestelling dmv id"); bestellingenmenuDELETE(); break;
-            case 12: System.out.println(" 12 Bekijk bestelling"); bestellingenmenuBekijk(); break;
+            case 12: System.out.println("----------------------"); bestellingenmenuBekijk(); break;
             //case 13: System.out.println(" 13 TEST update bestelling"); bestellingenmenuUpdate(); break;
             case 0: Menu menu = new Menu(); menu.hoofdmenu(); break;
-            default: System.out.println("Verkeerde invoer."); bestellingenmenu();
+            default: System.out.println("Ongeldige invoer, probeer opnieuw."); bestellingenmenu();
         }
     }
 
     public void bestellingenmenuDbi(){
         System.out.println("U gaat een bestelling zoeken op bestelling ID.");
-        System.out.println("Vul bestellingID in en druk op enter.");
+        System.out.println("Voer het bestellingID in: ");
         int bestellingId = TextIO.getlnInt();
         Bestelling bestelling = bestellingController.findBestellingById(bestellingId);
         if (bestelling.getBestellingId() == 0) {
@@ -315,7 +315,7 @@ public class BestellingMenu {
         //Controleren op FK constraints
         int bestellingId = -1;
         do {
-            System.out.println("Vul bestellingId in en druk op enter. Vul 0 in als u wilt annuleren.");
+            System.out.print("Voer het bestellingId in: (0 om te annuleren) ");
             bestellingId = TextIO.getlnInt();
             if (bestellingId == 0) {
                 bestellingenmenu();

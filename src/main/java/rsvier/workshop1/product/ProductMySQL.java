@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
+import java.sql.Statement;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -176,14 +177,17 @@ public class ProductMySQL implements ProductDAO {
     @Override
     public boolean toevoegenProduct(Product product) {
          LOGGER.debug("Input  in toevoegenProduct is {}",product.toString());
-        try (PreparedStatement stmt = productenconnectie.prepareStatement(
-                "INSERT into producten (omschrijving, soort, prijs, voorraad) "+
-                "VALUES (?, ?, ?, ?)")) {
+         String query = "INSERT into producten (omschrijving, soort, prijs, voorraad) VALUES (?, ?, ?, ?)";
+        try (PreparedStatement stmt = productenconnectie.prepareStatement(query,Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, product.getOmschrijving());
             stmt.setString(2, product.getSoort());
             stmt.setBigDecimal(3, product.getPrijs());
             stmt.setInt(4, product.getVoorraad());
             stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) {
+                product.setProductId(rs.getInt(1));
+             }
             LOGGER.debug("output toevoegenProduct is  true");
             return true;
         }//einde try
@@ -279,7 +283,7 @@ public class ProductMySQL implements ProductDAO {
          LOGGER.debug("Input  in deleteProduct is {}",productId);
         try (PreparedStatement stmt = productenconnectie.prepareStatement(
                 "DELETE FROM producten" +
-                "WHERE productId = ?")) {
+                "WHERE producten_id = ?")) {
             stmt.setInt(1, productId);
             stmt.executeUpdate();
             stmt.close();

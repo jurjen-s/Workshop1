@@ -30,7 +30,7 @@ System.out.println("Welkom in het accountmenu ");
 
 System.out.println("Wat wilt u doen?");
 System.out.println(" 1: Account zoeken op accountId.");
-System.out.println(" 2: Nieuwe account aanmaken.");  
+System.out.println(" 2: Nieuwe account toevoegen.");  
 System.out.println(" 3: Type account veranderen.");
 System.out.println(" 4: Wachtwoord account veranderen.");
 System.out.println(" 5: Account verwijderen.");
@@ -123,8 +123,8 @@ public void accountsmenuAT() {
        System.out.print("Wachtwoord: ");
        
        String wachtwoord = TextIO.getln();
-   
-   System.out.println("Uw account is: " + accountController.createAccount(type,wachtwoord).toStringWachtwoordloos());
+   System.out.println("Dit zijn de gegevens van het aangemaakte account: ");
+   System.out.println(accountController.createAccount(type,wachtwoord).toStringWachtwoordloos());
    
    
 

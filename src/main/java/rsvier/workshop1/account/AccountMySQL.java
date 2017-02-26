@@ -314,7 +314,7 @@ public class AccountMySQL implements AccountDAO {
     
     
     public static int giveWorkload(){
-        int workloadnumber = 13;
+        int workloadnumber = 12;
         return workloadnumber;
     }
     

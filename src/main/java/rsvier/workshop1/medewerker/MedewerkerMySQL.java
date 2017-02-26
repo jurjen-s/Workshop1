@@ -114,7 +114,7 @@ public class MedewerkerMySQL implements MedewerkerDAO{
             ResultSet rs = stmt2.executeQuery();
         
             while (rs.next()){
-            
+            /*
                 System.out.println(rs.getInt("medewerkers_id")); System.out.print("is uw medewerkers id");
                 System.out.println("medewerker id is :");
                 System.out.println(rs.getString(1));System.out.print(" ");
@@ -125,7 +125,7 @@ public class MedewerkerMySQL implements MedewerkerDAO{
                 System.out.print(rs.getString(6));System.out.print(" ");
                   
                 System.out.println(" ");
-                  
+                  */
                 medewerker.setMedewerkerID(rs.getInt("medewerkers_id"));
                 medewerker.setMedewerkerAccountID(rs.getInt("FK_medewerkers_accounts_id"));
                 medewerker.setMedewerkerEmail(rs.getString("email"));

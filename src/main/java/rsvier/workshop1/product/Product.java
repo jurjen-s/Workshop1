@@ -54,7 +54,7 @@ public class Product {
     
     @Override
     public String toString() {
-        String product = " Product Id is : " + productId + " omschrijving is : " + omschrijving + " soort is : "  + soort + " prijs is : " +  prijs + " voorraad aantal is : "  + voorraad + ".";
+        String product = "[ProductId " + productId + "] Soort: "  + soort + ", prijs: " +  prijs + ", voorraad: "  + voorraad + ".";
         return product;
     }
     

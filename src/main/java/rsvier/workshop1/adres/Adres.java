@@ -88,12 +88,12 @@ public class Adres {
             case 2: typeAdres = "bezorgadres";
             case 3: typeAdres = "factuuradres";
         }
-        String deelAdres = "Adres " + adresId + " (" + typeAdres + " van klant " + klantId + "): " + straatnaam + " " + huisnummer;
+        String deelAdres = "[AdresId " + adresId + ", " + typeAdres + " van klant " + klantId + "] : " + straatnaam + " " + huisnummer;
         String adres;
         if (heeftHuisnrToevoeging) {
-            adres = deelAdres + huisnrToevoeging + ", " + postcode + ", " + land + ".";
+            adres = deelAdres + huisnrToevoeging + ", " + postcode + ", " + land + ".\n";
         } else {
-            adres = deelAdres + ", " + postcode + ", " + land + ".";
+            adres = deelAdres + ", " + postcode + ", " + land + ".\n";
         }
         return adres;
     }

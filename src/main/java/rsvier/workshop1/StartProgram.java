@@ -6,6 +6,7 @@
 package rsvier.workshop1;
 
 import rsvier.workshop1.account.Inlogmenu;
+import rsvier.workshop1.util.MaakDummies;
 
 
 /**
@@ -21,6 +22,20 @@ public class StartProgram {
     
     
     public static void main(String[] args){
+        
+        // Initialiseer DB
+        MaakDummies dummies = new MaakDummies();
+        dummies.dummyAccount();
+        dummies.dummyMedewerker();
+        dummies.dummyKlant();
+        dummies.dummyAdres();
+        dummies.dummyBestelling();
+        dummies.dummyProduct();
+        dummies.dummyBestelregel();
+        dummies.dummyFactuur();
+        
+        
+        
     /*    
          Logger logger = LogManager.getLogger(StartProgram.class);
         

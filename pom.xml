@@ -62,6 +62,12 @@
             <artifactId>jbcrypt</artifactId>
             <version>0.3m</version>
         </dependency>
+        <dependency>
+            <groupId>org.beryx</groupId>
+            <artifactId>text-io</artifactId>
+            <version>1.6.0</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <build>
         <resources>

@@ -1251,3 +1251,7 @@ Testlaan 1 1234 AA Nederland.
 2017-02-24 18:04:59,336 DEBUG r.w.k.KlantMySQL [main] output bij findBijID is klanten id : 0 voornaam is null tussenvoegsel isnull achternaam is :null telnr. null account id0 
 2017-02-24 18:04:59,337 DEBUG r.w.a.AdresMySQL [main] Input  in findAdresByKlant is 2
 2017-02-24 18:04:59,346 DEBUG r.w.a.AdresMySQL [main] output findAdresByKlantID :[Adres 2 (factuuradres van klant 2): Spandaulaan 42bis, 2315 JS, Nederland.]
+2017-02-26 10:23:06,277 INFO r.w.d.Connector [main] MySQL Driver niet gevonden. Probeer oudere versie.
+2017-02-26 11:41:50,491 ERROR r.w.p.ProductMySQL [main] Er gaat iets mis met het verwijderen van het product You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'productId = 514545' at line 1
+2017-02-26 16:47:24,258 ERROR r.w.a.AccountMySQL [main] Er is geen matchend accountId gevonden.
+2017-02-26 16:47:35,426 ERROR r.w.a.AccountMySQL [main] Er is geen matchend accountId gevonden.

@@ -21,28 +21,27 @@ public class FactuurMenu {
     private FactuurController factuurController = new FactuurController();
     
     public void facturenmenu(){
+        System.out.println("===============================");
         System.out.println("Welkom in het facturenmenu ");
         System.out.println("Wat wilt u doen?");
-        System.out.println("=========================");
-        System.out.println("-------------------------");
-        System.out.println("1: Doorzoek facturen op factuur id.");
-        System.out.println("2: Doorzoek facturen op klant id.");
-        System.out.println("3: Doorzoek facturen op adress id ."); 
-        System.out.println("4: Doorzoek facturen op bestelling id.");
-        System.out.println("5: Doorzoek facturen op totaalprijs.");
-        System.out.println("6: Doorzoek facturen op status.");
-        System.out.println("7: Toevoegen factuur.");
-        System.out.println("8: Zet status factuur op betaald.");
-        System.out.println("9: Verwijder factuur met id.");
-        System.out.println("0: Terug naar hoofdmenu.");
-        System.out.println("=========================");
-        System.out.println("Geef uw keuze : ");
+        System.out.println(" 1: Zoek factuur op factuurId.");
+        System.out.println(" 2: Zoek factuur op klantId.");
+        System.out.println(" 3: Zoek factuur op adresId."); 
+        System.out.println(" 4: Zoek factuur op bestellingId.");
+        System.out.println(" 5: Zoek factuur op totaalprijs.");
+        System.out.println(" 6: Zoek factuur op status.");
+        System.out.println(" 7: Nieuwe factuur toevoegen.");
+        System.out.println(" 8: Status factuur veranderen.");
+        System.out.println(" 9: Factuur verwijderen.");
+        System.out.println("0: Terug naar het hoofdmenu.");
+        System.out.println("===============================");
+        System.out.print("Geef uw keuze : ");
         int keuze = TextIO.getlnInt();
         switch (keuze) {
             case 1:  System.out.println("1: Doorzoek facturen met id."); facturenmenuZoId(); break; 
             case 2:  System.out.println("2: Doorzoek facturen met klant id."); facturenmenuZoKid(); break;
             case 3:  System.out.println("3: Doorzoek facturen met adress id ."); facturenmenuZoAid(); break;
-            case 4:  System.out.println("4: Doorzoek facturen met bestelling id.");facturenmenuZoBid(); break;
+            case 4:  System.out.println("----------------------");facturenmenuZoBid(); break;
             case 5:  System.out.println("5: Doorzoek facturen met totaal prijs."); facturenmenuZoTP(); break;
             case 6:  System.out.println("6: Doorzoek facturen op status."); facturenmenuZoS(); break;              
             case 7:  System.out.println("7: Toevoegen factuur."); facturenmenuFT(); break;              
@@ -164,11 +163,11 @@ public class FactuurMenu {
     }
     
     public void facturenmenuZoBid() {
-        System.out.println("U gaat een factuur zoeken op bestelling id");
+        System.out.println("U gaat een factuur zoeken op bestellingId");
         //Controleren op FK constraints
         int bestellingId = -1;
         do {
-            System.out.println("Vul het bestellingId in en druk op enter. Vul 0 in als u wilt annuleren.");
+            System.out.print("Voer het bestellingId in: (voer 0 in om te annuleren)");
             bestellingId = TextIO.getlnInt();
             if (bestellingId == 0) {
                 facturenmenu();

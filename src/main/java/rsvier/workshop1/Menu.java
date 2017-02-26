@@ -65,15 +65,15 @@ cijfer = input.nextInt();
 if (cijfer == 0){ System.out.println("Einde"); System.exit(0); }
 else if (cijfer <= 9 && cijfer >0){
     switch (cijfer){
-        case 1: System.out.println("1 Productmenu.");  ProductMenu productmenu = new ProductMenu(); productmenu.productmenu(); break;
-        case 2: System.out.println("2 Klantmenu."); KlantMenu klantmenu = new KlantMenu(); klantmenu.klantenmenu();   break;
-        case 3: System.out.println("3 Adresmenu.");  AdresMenu adresmenu = new AdresMenu(); adresmenu.adressenmenu(); break;
-        case 4: System.out.println("4 Bestellingmenu.");  BestellingMenu bestellingmenu = new BestellingMenu(); bestellingmenu.bestellingenmenu(); break;
-        case 5: System.out.println("5 Medewerkermenu.");  MedewerkerMenu medewerkersmenu = new MedewerkerMenu(); medewerkersmenu.medewerkersmenu(); break;
-        case 6: System.out.println("6 Accountmenu.");  AccountMenu am = new AccountMenu(); am.accountsmenu(); break;
-        case 7: System.out.println("7 Factuurmenu.");   FactuurMenu factuurmenu = new FactuurMenu(); factuurmenu.facturenmenu(); break;
-        case 8: System.out.println("8 Bestelregelmenu."); BestelregelMenu bestelregelmenu = new BestelregelMenu(); bestelregelmenu.bestelregelmenu(); break;
-        case 9: System.out.println("9 Instellingen."); InstellingenMenu instellingenmenu = new InstellingenMenu(); instellingenmenu.instellingenmenu(); break;
+        case 1: System.out.println("1: Productmenu.");  ProductMenu productmenu = new ProductMenu(); productmenu.productmenu(); break;
+        case 2: System.out.println("2: Klantmenu."); KlantMenu klantmenu = new KlantMenu(); klantmenu.klantenmenu();   break;
+        case 3: System.out.println("3: Adresmenu.");  AdresMenu adresmenu = new AdresMenu(); adresmenu.adressenmenu(); break;
+        case 4: System.out.println("4: Bestellingmenu.");  BestellingMenu bestellingmenu = new BestellingMenu(); bestellingmenu.bestellingenmenu(); break;
+        case 5: System.out.println("5: Medewerkermenu.");  MedewerkerMenu medewerkersmenu = new MedewerkerMenu(); medewerkersmenu.medewerkersmenu(); break;
+        case 6: System.out.println("6: Accountmenu.");  AccountMenu am = new AccountMenu(); am.accountsmenu(); break;
+        case 7: System.out.println("7: Factuurmenu.");   FactuurMenu factuurmenu = new FactuurMenu(); factuurmenu.facturenmenu(); break;
+        case 8: System.out.println("8: Bestelregelmenu."); BestelregelMenu bestelregelmenu = new BestelregelMenu(); bestelregelmenu.bestelregelmenu(); break;
+        case 9: System.out.println("9: Instellingen."); InstellingenMenu instellingenmenu = new InstellingenMenu(); instellingenmenu.instellingenmenu(); break;
      
     }
 }

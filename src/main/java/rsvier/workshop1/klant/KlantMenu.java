@@ -41,7 +41,7 @@ System.out.println(" 3: Klant zoeken op achternaam.");
 System.out.println(" 4: Klant zoeken op volledige naam.");
 System.out.println(" 5: Klantgegevens aanpassen.");
 System.out.println(" 6: Alle klantgegevens bekijken.");
-System.out.println(" 7: Nieuwe klant aanmaken.");
+System.out.println(" 7: Nieuwe klant toevoegen.");
 System.out.println(" 8: Klant verwijderen.");
 System.out.println(" 0: Terug naar het hoofdmenu.");
 System.out.println("===================================");        
@@ -212,34 +212,34 @@ public void klantenmenuShow(){
 public  void klantenmenuT(){
     
     
-     System.out.println("U gaat een Klant toevoegen.");
+     System.out.println("U gaat een klant toevoegen.");
     
     
-    System.out.println("Vul de Account id van de klant in.");
+    System.out.print("Voer het accountId van de klant in: ");
     int accountidvanklant = TextIO.getlnInt();
     
     
      //int Bid = TextIO.getlnInt();
      
-      System.out.println("Vul de voornaam in en druk enter.");
+      System.out.print("Voer de voornaam in: ");
    String VN = TextIO.getln();
    
-   System.out.println("Vul '0' in en enter in als er GEEN tussenvoegsel , druk '1' in als het EEN tussenvoegsel heeft en druk enter  ");
+   System.out.print("Bevat de klantnaam een tussenvoegsel? (1=ja, 0=nee) ");
    int Heefttussenvoegsel = TextIO.getlnInt();
    
   
    
     
        
-   
-   
-        System.out.println("Vul de tussenvoegels in en druk enter .");
-                              String TV = TextIO.getln();
-                      
+   String TV="";
+   if (Heefttussenvoegsel == 1) {
+        System.out.print("Voer het tussenvoegel in: ");
+                              TV = TextIO.getln();
+   }
         
         
         
-   System.out.println("Vul de achternaam in en druk enter.");
+   System.out.print("Voer de achternaam in: ");
    String AN = TextIO.getln(); 
         
    
@@ -247,7 +247,7 @@ public  void klantenmenuT(){
    
     String Telefoonnr = "";
         do {
-            System.out.println("Wat is de telefoonnummer? Geef in het formaat 06-11122233");
+            System.out.print("Wat is het telefoonnummer? Scheid het net- van het abonneenummer met een '-': ");
             Telefoonnr = TextIO.getln();
             if (validator.validateTelefoonnummer(Telefoonnr)) {
                 break;
@@ -262,6 +262,7 @@ public  void klantenmenuT(){
    //controller & check.
    Klant createKlantInfo = new Klant();
    createKlantInfo = klantController.createKlant(accountidvanklant,VN,Heefttussenvoegsel, TV ,AN,Telefoonnr);
+   System.out.println("Dit zijn de gegevens van de aangemaakte klant: ");
    createKlantInfo.getAll(createKlantInfo);
     
     
